@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//Fukin forms
+
 namespace Whos_that
 {  
     public partial class Form1 : Form
