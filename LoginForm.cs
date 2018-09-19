@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace whos_that_mofo
+namespace Whos_that
 {
     public partial class LoginForm : Form
     {
@@ -17,9 +17,21 @@ namespace whos_that_mofo
             InitializeComponent();
         }
 
+        // enables dragging the login screen
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+            if (m.Msg == WM_NCHITTEST)
+                m.Result = (IntPtr)(HT_CAPTION);
+        }
+
+        private const int WM_NCHITTEST = 0x84;
+        private const int HT_CLIENT = 0x1;
+        private const int HT_CAPTION = 0x2;
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void clickUsername(object sender, EventArgs e)
@@ -56,6 +68,16 @@ namespace whos_that_mofo
                 MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
             else
             MessageBox.Show(String.Concat("Your username is ", usernameTextbox.Text));
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

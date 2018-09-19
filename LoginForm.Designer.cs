@@ -1,4 +1,4 @@
-﻿namespace whos_that_mofo
+﻿namespace Whos_that
 {
     partial class LoginForm
     {
@@ -40,6 +40,7 @@
             this.loginLabel = new System.Windows.Forms.Label();
             this.paparazzi = new System.Windows.Forms.PictureBox();
             this.facebookPicture = new System.Windows.Forms.PictureBox();
+            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.usernamePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paparazzi)).BeginInit();
@@ -137,6 +138,7 @@
             this.registerButton.TabIndex = 10;
             this.registerButton.Text = "Register";
             this.registerButton.UseVisualStyleBackColor = false;
+            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
             // loginLabel
             // 
@@ -170,12 +172,30 @@
             this.facebookPicture.TabStop = false;
             this.facebookPicture.Click += new System.EventHandler(this.facebookPicture_Click_1);
             // 
-            // Form1
+            // closeButton
+            // 
+            this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeButton.FlatAppearance.BorderSize = 0;
+            this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(186)))));
+            this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.closeButton.Location = new System.Drawing.Point(369, 12);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(19, 32);
+            this.closeButton.TabIndex = 17;
+            this.closeButton.Text = "X";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(400, 500);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.facebookPicture);
             this.Controls.Add(this.paparazzi);
             this.Controls.Add(this.loginLabel);
@@ -189,7 +209,7 @@
             this.Controls.Add(this.usernamePicture);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.TopMost = true;
@@ -215,6 +235,7 @@
         private System.Windows.Forms.Label loginLabel;
         private System.Windows.Forms.PictureBox paparazzi;
         private System.Windows.Forms.PictureBox facebookPicture;
+        private System.Windows.Forms.Button closeButton;
     }
 }
 
