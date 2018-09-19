@@ -9,10 +9,11 @@ using System.Text.RegularExpressions;
 
 namespace Whos_that
 {
-    public class User
+    public class User : SecurityManager
     {
         public String username;
         public String gender;
+        private String passwordHash;
         private String email;
 
         public void RestoreAccount() {
@@ -34,12 +35,12 @@ namespace Whos_that
             Match match = regex.Match(checkEmail);
             if (!match.Success)
                 return "Email format is wrong";
-            //password comes in hashed
-            //TODO:add hashing and de-hashing
+            //hash the password
+            String passHash = HashPassword(username, password);
 
             //Currently no database, so will store accounts in files
 
-            //Open file
+            //Open file to read
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName,@"\data.txt");
             System.IO.StreamReader fileRead;
             try
@@ -77,9 +78,26 @@ namespace Whos_that
             else {
                 Console.WriteLine("No File");
             }
+            //Close File
+            fileRead.Close();
 
             //Account can be created, so we gather final data and send it to the database (currently to the file)
             this.email = email;
+            passwordHash = passHash;
+            this.username = username;
+
+            String outputLine = String.Concat("\n", this.username, " ", this.email, " ", this.passwordHash);
+
+            File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
+            
+
+            //FOR TESTING
+           /* string test = HashPassword(username,password);
+            Console.WriteLine(String.Concat("hash: ",test));
+
+            string test1 = DehashPassword(test, password);
+            Console.WriteLine(String.Concat("dehashed string: ", test1));*/
+            //-------
             return "Account created successfully!";
         }
 
