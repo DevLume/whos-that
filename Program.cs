@@ -17,6 +17,9 @@ namespace Whos_that
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+
+            User usr = new User();
+            Console.WriteLine(usr.CreateAccount("TEXT", "test", "test"));
         }
     }
 }
