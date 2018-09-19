@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}</ProjectGuid>
+    <ProjectGuid>{CF77CAD6-773C-40B9-BE73-1A3B2A084EEF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Whos_that</RootNamespace>
     <AssemblyName>Whos-that</AssemblyName>

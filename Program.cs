@@ -19,7 +19,9 @@ namespace Whos_that
             Application.Run(new LoginForm());
 
             User usr = new User();
-            Console.WriteLine(usr.CreateAccount("TEXT", "test", "test"));
+            Console.WriteLine(usr.CreateAccount("TEXT", "test", "tet@email.com"));
+
+           // MessageBox.Show(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName);
         }
     }
 }

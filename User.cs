@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Whos_that
 {
@@ -21,15 +22,34 @@ namespace Whos_that
         public String CreateAccount(String username, String password, String email) {
             //Check username length
             if (username.Length > 16) return "Username is too long";
-            
+
+            //check email
+            const String regexPattern =
+                 @"^([0-9a-zA-Z]" + //Start with a digit or alphabetical
+               @"([\+\-_\.][0-9a-zA-Z]+)*" + // No continuous or ending +-_. chars in email
+               @")+" +
+               @"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$";
+            String checkEmail = email;
+            Regex regex = new Regex(regexPattern);
+            Match match = regex.Match(checkEmail);
+            if (!match.Success)
+                return "Email format is wrong";
             //password comes in hashed
             //TODO:add hashing and de-hashing
 
             //Currently no database, so will store accounts in files
 
             //Open file
-            String dataFilePath = @"C:\Users\Luke M\source\repos\whos-that\data.txt";//this path is bad
-            System.IO.StreamReader fileRead = new System.IO.StreamReader(dataFilePath);
+            String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName,@"\data.txt");
+            System.IO.StreamReader fileRead;
+            try
+            {
+                fileRead = new System.IO.StreamReader(dataFilePath);
+            }
+            catch (IOException e) {
+                Console.WriteLine("There was problem with File", e.GetType().Name);
+                return "IO error";
+            }
             String line;
             
             //Check if same username exists
