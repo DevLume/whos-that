@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//Fukin forms
+
 namespace Whos_that
-{  
+{
     public partial class LoginForm : Form
     {
         public LoginForm()
@@ -17,88 +17,67 @@ namespace Whos_that
             InitializeComponent();
         }
 
-        private void signupButton_Click(object sender, EventArgs e)
+        // enables dragging the login screen
+        protected override void WndProc(ref Message m)
         {
-            //Sign Up button
+            base.WndProc(ref m);
+            if (m.Msg == WM_NCHITTEST)
+                m.Result = (IntPtr)(HT_CAPTION);
         }
 
-        private void signinButton_Click(object sender, EventArgs e)
-        {
-            // Sign In button
-            if (username_login.Text == "")
-                MessageBox.Show("Please enter your username");
-            else
-                MessageBox.Show(String.Concat("Your username is ",username_login.Text));
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            // Just a random picture box
-        }
-
-        private void loginUsername_TextChanged(object sender, EventArgs e)
-        {
-            //Username textbox
-        }
-
-        private void loginPassword_TextChanged(object sender, EventArgs e)
-        {
-            //Password
-        }
+        private const int WM_NCHITTEST = 0x84;
+        private const int HT_CLIENT = 0x1;
+        private const int HT_CAPTION = 0x2;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            register_panel.Hide(); // hide register form first
+            
         }
 
-        private void restore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void clickUsername(object sender, EventArgs e)
         {
+            usernameTextbox.Clear();
+            usernamePanel.BackColor = Color.FromArgb(78, 184, 206);
+            usernameTextbox.ForeColor = Color.FromArgb(78, 184, 206);
 
+            passwordPanel.BackColor = Color.WhiteSmoke;
+            passwordTextBox.ForeColor = Color.WhiteSmoke;
         }
 
-        private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void clickPassword(object sender, EventArgs e)
         {
-            register_panel.Show();
+            passwordTextBox.Clear();
+            passwordPanel.BackColor = Color.FromArgb(78, 184, 206);
+            passwordTextBox.ForeColor = Color.FromArgb(78, 184, 206);
+
+            usernamePanel.BackColor = Color.WhiteSmoke;
+            usernameTextbox.ForeColor = Color.WhiteSmoke;
         }
 
-        private void facebook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        private void facebookPicture_Click_1(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://facebook.com");
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void SignInButton_Click(object sender, EventArgs e)
         {
-
+            if (usernameTextbox.Text == "")
+                MessageBox.Show("Please enter your username");
+            else if (usernameTextbox.Text == "Username")
+                MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
+            else
+            MessageBox.Show(String.Concat("Your username is ", usernameTextbox.Text));
         }
 
-        private void registerUsername_TextChanged(object sender, EventArgs e)
+        private void closeButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void registerPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void registerEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void registerGenderCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            Close();
         }
 
         private void registerButton_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void goBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            register_panel.Hide();
         }
     }
 }
