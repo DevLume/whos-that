@@ -36,7 +36,7 @@ namespace Whos_that
             if (!match.Success)
                 return "Email format is wrong";
             //hash the password
-            String passHash = HashPassword(username, password);
+            String passHash = HashPassword(password, username);
 
             //Currently no database, so will store accounts in files
 
@@ -61,13 +61,10 @@ namespace Whos_that
                     while ((line = fileRead.ReadLine()) != null)
                     {
                         String dbUsername = line;
-                        //TEST:
-                        //Console.Write(temp.GetString(b));
-                        
+                        string[] tokens = dbUsername.Split(' ');
 
-                        //Console.Write(String.Concat(username," ",dbUsername, " ", String.Compare(username, dbUsername).ToString()));
-                        //Console.WriteLine("");
-                        //----
+                        dbUsername = tokens[0];
+                        MessageBox.Show(dbUsername);
 
                         if (String.Compare(username, dbUsername).CompareTo(0) == 0) {
                             return "Such username already exists";
@@ -86,19 +83,66 @@ namespace Whos_that
             passwordHash = passHash;
             this.username = username;
 
-            String outputLine = String.Concat("\n", this.username, " ", this.email, " ", this.passwordHash);
+            String outputLine = String.Concat(this.username, " ", this.email, " ", this.passwordHash, "\n");
 
             File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
-            
 
-            //FOR TESTING
-           /* string test = HashPassword(username,password);
-            Console.WriteLine(String.Concat("hash: ",test));
-
-            string test1 = DehashPassword(test, password);
-            Console.WriteLine(String.Concat("dehashed string: ", test1));*/
-            //-------
             return "Account created successfully!";
+        }
+
+        public bool Login(String username, String password) {
+            String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
+            System.IO.StreamReader fileRead;
+            try
+            {
+                fileRead = new System.IO.StreamReader(dataFilePath);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was problem with File", e.GetType().Name);
+                return false; 
+            }
+            String line;
+
+            if (File.Exists(dataFilePath))
+            {
+                using (FileStream fs = File.OpenRead(dataFilePath))
+                {
+                    while ((line = fileRead.ReadLine()) != null)
+                    {
+                        String[] temp = line.Split(' ');
+                        String dbUsername = temp[0];
+
+                        if (String.Compare(username, dbUsername) == 0)
+                        {
+                            String passwordHash = temp[2];
+                            String dbPass;
+                            try
+                            {
+                                dbPass = DehashPassword(passwordHash, username);
+                                if (String.Compare(password, dbPass) == 0)
+                                {
+                                    fileRead.Close();                                 
+                                    return true;
+                                }
+                            }
+                            catch (System.Security.Cryptography.CryptographicException e) {
+                                Console.WriteLine("Password is wrong");
+                                fileRead.Close();
+                                return false;
+                            }
+                              
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No File");
+            }
+
+            fileRead.Close();
+            return false;
         }
 
     }
