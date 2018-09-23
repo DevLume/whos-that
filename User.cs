@@ -83,7 +83,7 @@ namespace Whos_that
             passwordHash = passHash;
             this.username = username;
 
-            String outputLine = String.Concat(this.username, " ", this.email, " ", this.passwordHash, "\n");
+            String outputLine = String.Concat(this.username, " ", this.email, " ", passwordHash, "\n");
 
             File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
 
@@ -115,14 +115,17 @@ namespace Whos_that
 
                         if (String.Compare(username, dbUsername) == 0)
                         {
-                            String passwordHash = temp[2];
+                            passwordHash = temp[2];
                             String dbPass;
                             try
                             {
                                 dbPass = DehashPassword(passwordHash, username);
                                 if (String.Compare(password, dbPass) == 0)
                                 {
-                                    fileRead.Close();                                 
+                                    fileRead.Close();
+                                    this.username = username;
+                                    email = temp[1];
+
                                     return true;
                                 }
                             }
