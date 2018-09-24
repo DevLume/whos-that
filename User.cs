@@ -83,6 +83,7 @@ namespace Whos_that
             passwordHash = passHash;
             this.username = username;
 
+
             String outputLine = String.Concat(this.username, " ", this.email, " ", passwordHash, "\n");
 
             File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
@@ -103,7 +104,7 @@ namespace Whos_that
                 return false; 
             }
             String line;
-
+            bool foundUser = false;
             if (File.Exists(dataFilePath))
             {
                 using (FileStream fs = File.OpenRead(dataFilePath))
@@ -115,6 +116,7 @@ namespace Whos_that
 
                         if (String.Compare(username, dbUsername) == 0)
                         {
+                            foundUser = true;
                             passwordHash = temp[2];
                             String dbPass;
                             try
@@ -130,7 +132,7 @@ namespace Whos_that
                                 }
                             }
                             catch (System.Security.Cryptography.CryptographicException e) {
-                                Console.WriteLine("Password is wrong");
+                                Console.WriteLine("Username or Password is wrong");
                                 fileRead.Close();
                                 return false;
                             }
@@ -144,7 +146,13 @@ namespace Whos_that
                 Console.WriteLine("No File");
             }
 
+            if (!foundUser) {
+                Console.WriteLine("No such user is found");
+                return false;
+            }
+
             fileRead.Close();
+            Console.WriteLine("Password is wrong");
             return false;
         }
 
