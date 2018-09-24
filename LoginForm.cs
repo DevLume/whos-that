@@ -15,59 +15,38 @@ namespace Whos_that
         public LoginForm()
         {
             InitializeComponent();
+            registerPanel.Hide();
         }
 
-        // enables dragging the login screen
-        protected override void WndProc(ref Message m)
+        int mouseX = 0;
+        int mouseY = 0;
+        bool mouseDown;
+        //
+        //enables dragging the screen
+        //
+        private void registerPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            base.WndProc(ref m);
-            if (m.Msg == WM_NCHITTEST)
-                m.Result = (IntPtr)(HT_CAPTION);
+            mouseDown = true;
         }
-
-        private const int WM_NCHITTEST = 0x84;
-        private const int HT_CLIENT = 0x1;
-        private const int HT_CAPTION = 0x2;
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void registerPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            
-        }
+            if (mouseDown)
+            {
+                mouseX = MousePosition.X - 200;
+                mouseY = MousePosition.Y - 40;
 
-        private void clickUsername(object sender, EventArgs e)
+                this.SetDesktopLocation(mouseX, mouseY);
+            }
+        }
+        private void registerPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            usernameTextbox.Clear();
-            usernamePanel.BackColor = Color.FromArgb(78, 184, 206);
-            usernameTextbox.ForeColor = Color.FromArgb(78, 184, 206);
-
-            passwordPanel.BackColor = Color.WhiteSmoke;
-            passwordTextBox.ForeColor = Color.WhiteSmoke;
-        }
-
-        private void clickPassword(object sender, EventArgs e)
-        {
-            passwordTextBox.Clear();
-            passwordPanel.BackColor = Color.FromArgb(78, 184, 206);
-            passwordTextBox.ForeColor = Color.FromArgb(78, 184, 206);
-
-            usernamePanel.BackColor = Color.WhiteSmoke;
-            usernameTextbox.ForeColor = Color.WhiteSmoke;
+            mouseDown = false;
         }
 
 
-        private void facebookPicture_Click_1(object sender, EventArgs e)
+        private void facebookPicture_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://facebook.com");
-        }
-
-        private void SignInButton_Click(object sender, EventArgs e)
-        {
-            if (usernameTextbox.Text == "")
-                MessageBox.Show("Please enter your username");
-            else if (usernameTextbox.Text == "Username")
-                MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
-            else
-            MessageBox.Show(String.Concat("Your username is ", usernameTextbox.Text));
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -75,9 +54,95 @@ namespace Whos_that
             Close();
         }
 
+        private void usernameText_Click(object sender, EventArgs e)
+        {
+            usernameText.Clear();
+            panel1.BackColor = Color.FromArgb(78, 184, 206);
+            usernameText.ForeColor = Color.FromArgb(78, 184, 206);
+
+            panel2.BackColor = Color.WhiteSmoke;
+            passwordText.ForeColor = Color.WhiteSmoke;
+            passwordText.Text = "Password";
+        }
+
+        private void passwordText_Click(object sender, EventArgs e)
+        {
+            passwordText.Clear();
+            panel2.BackColor = Color.FromArgb(78, 184, 206);
+            passwordText.ForeColor = Color.FromArgb(78, 184, 206);
+
+            panel1.BackColor = Color.WhiteSmoke;
+            usernameText.ForeColor = Color.WhiteSmoke;
+            usernameText.Text = "Username";
+        }
+
+        private void signInButton_Click(object sender, EventArgs e)
+        {
+            if (usernameText.Text == "")
+                MessageBox.Show("Please enter your username");
+            else if (usernameText.Text == "Username")
+                MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
+            else
+                MessageBox.Show(String.Concat("Your username is ", usernameText.Text));
+        }
+
         private void registerButton_Click(object sender, EventArgs e)
         {
-
+            registerPanel.Show();
         }
+
+        private void backToLogin_Click(object sender, EventArgs e)
+        {
+            registerPanel.Hide();
+            registerPassword.Text = "Password";
+            registerUsername.Text = "Username";
+            emailText.Text = "Email";
+            passwordText.Text = "Password";
+            usernameText.Text = "Username";
+        }
+
+        private void registerUsername_TextChanged(object sender, EventArgs e)
+        {
+            registerUsername.Clear();
+            panel5.BackColor = Color.FromArgb(78, 184, 206);
+            registerUsername.ForeColor = Color.FromArgb(78, 184, 206);
+
+            panel4.BackColor = Color.WhiteSmoke;
+            panel6.BackColor = Color.WhiteSmoke;
+            registerPassword.ForeColor = Color.WhiteSmoke;
+            emailText.ForeColor = Color.WhiteSmoke;
+            registerPassword.Text = "Password";
+            emailText.Text = "Email";
+        }
+
+        private void registerPassword_TextChanged(object sender, EventArgs e)
+        {
+            registerPassword.Clear();
+            panel4.BackColor = Color.FromArgb(78, 184, 206);
+            registerPassword.ForeColor = Color.FromArgb(78, 184, 206);
+
+            panel5.BackColor = Color.WhiteSmoke;
+            panel6.BackColor = Color.WhiteSmoke;
+            registerUsername.ForeColor = Color.WhiteSmoke;
+            emailText.ForeColor = Color.WhiteSmoke;
+            registerUsername.Text = "Username";
+            emailText.Text = "Email";
+        }
+
+        private void emailText_TextChanged(object sender, EventArgs e)
+        {
+            emailText.Clear();
+            panel6.BackColor = Color.FromArgb(78, 184, 206);
+            emailText.ForeColor = Color.FromArgb(78, 184, 206);
+
+            panel4.BackColor = Color.WhiteSmoke;
+            panel5.BackColor = Color.WhiteSmoke;
+            registerPassword.ForeColor = Color.WhiteSmoke;
+            registerUsername.ForeColor = Color.WhiteSmoke;
+            registerPassword.Text = "Password";
+            registerUsername.Text = "Username";
+        }
+
+
     }
 }
