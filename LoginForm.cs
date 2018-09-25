@@ -12,14 +12,21 @@ namespace Whos_that
 {
     public partial class LoginForm : Form
     {
+        int maxLength = 20; // textBox visu ilgis
         public LoginForm()
         {
             InitializeComponent();
             registerPanel.Hide();
+
+            registerPassword.MaxLength = maxLength;
+            registerUsername.MaxLength = maxLength;
+            emailText.MaxLength = maxLength;
+            passwordText.MaxLength = maxLength;
+            usernameText.MaxLength = maxLength;
         }
 
-        public string username = "username";
-        public string password = "password";
+        public string username = "Username";
+        public string password = "Password";
         public string email = "Email";
 
         AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
@@ -168,6 +175,7 @@ namespace Whos_that
 
         private void passwordText_TextChanged(object sender, EventArgs e)
         {
+            passwordText.PasswordChar = '*';
             password = passwordText.Text;
             if (password == "") password = "Password";
         }
@@ -181,6 +189,7 @@ namespace Whos_that
 
         private void registerPassword_TextChanged_1(object sender, EventArgs e)
         {
+            registerPassword.PasswordChar = '*';
             password = registerPassword.Text;
             if (password == "") password = "Password";
 
