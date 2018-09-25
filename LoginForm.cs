@@ -18,6 +18,12 @@ namespace Whos_that
             registerPanel.Hide();
         }
 
+        public string username = "username";
+        public string password = "password";
+        public string email = "Email";
+
+        AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
+
         int mouseX = 0;
         int mouseY = 0;
         bool mouseDown;
@@ -62,7 +68,7 @@ namespace Whos_that
 
             panel2.BackColor = Color.WhiteSmoke;
             passwordText.ForeColor = Color.WhiteSmoke;
-            passwordText.Text = "Password";
+            passwordText.Text = password;
         }
 
         private void passwordText_Click(object sender, EventArgs e)
@@ -73,17 +79,18 @@ namespace Whos_that
 
             panel1.BackColor = Color.WhiteSmoke;
             usernameText.ForeColor = Color.WhiteSmoke;
-            usernameText.Text = "Username";
+            usernameText.Text = username;
         }
 
         private void signInButton_Click(object sender, EventArgs e)
         {
-            if (usernameText.Text == "")
+            /*if (usernameText.Text == "")
                 MessageBox.Show("Please enter your username");
             else if (usernameText.Text == "Username")
                 MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
             else
-                MessageBox.Show(String.Concat("Your username is ", usernameText.Text));
+                MessageBox.Show(String.Concat("Your username is ", usernameText.Text));*/
+            if (acm.Login(username, password)) MessageBox.Show("Login was successful");
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -111,8 +118,8 @@ namespace Whos_that
             panel6.BackColor = Color.WhiteSmoke;
             registerPassword.ForeColor = Color.WhiteSmoke;
             emailText.ForeColor = Color.WhiteSmoke;
-            registerPassword.Text = "Password";
-            emailText.Text = "Email";
+            registerPassword.Text = password;
+            emailText.Text = email;
         }
 
         private void registerPassword_TextChanged(object sender, EventArgs e)
@@ -125,8 +132,8 @@ namespace Whos_that
             panel6.BackColor = Color.WhiteSmoke;
             registerUsername.ForeColor = Color.WhiteSmoke;
             emailText.ForeColor = Color.WhiteSmoke;
-            registerUsername.Text = "Username";
-            emailText.Text = "Email";
+            registerUsername.Text = username;
+            emailText.Text = email;
         }
 
         private void emailText_TextChanged(object sender, EventArgs e)
@@ -139,10 +146,50 @@ namespace Whos_that
             panel5.BackColor = Color.WhiteSmoke;
             registerPassword.ForeColor = Color.WhiteSmoke;
             registerUsername.ForeColor = Color.WhiteSmoke;
-            registerPassword.Text = "Password";
-            registerUsername.Text = "Username";
+            registerPassword.Text = password;
+            registerUsername.Text = username;
         }
 
+        private void registerRegisterButton_Click(object sender, EventArgs e)
+        {
+            acm.CreateAccount(username, password, email);
+        }
 
+        private void registerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void usernameText_TextChanged(object sender, EventArgs e)
+        {
+            username = usernameText.Text;
+            if (username == "") username = "Username";
+        }
+
+        private void passwordText_TextChanged(object sender, EventArgs e)
+        {
+            password = passwordText.Text;
+            if (password == "") password = "Password";
+        }
+
+        private void registerUsername_TextChanged_1(object sender, EventArgs e)
+        {
+            username = registerUsername.Text;
+            if (username == "") username = "Username";
+
+        }
+
+        private void registerPassword_TextChanged_1(object sender, EventArgs e)
+        {
+            password = registerPassword.Text;
+            if (password == "") password = "Password";
+
+        }
+
+        private void emailText_TextChanged_1(object sender, EventArgs e)
+        {
+            email = emailText.Text;
+            if (email == "") email = "Email";
+        }
     }
 }

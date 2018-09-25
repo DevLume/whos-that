@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whos-that", "Whos-that.csproj", "{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whos-that", "Whos-that.csproj", "{A0914C65-CA4C-4B4A-B115-23AAA9A88071}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6E45EB2-0F87-406F-B9E6-1550D46D9F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0914C65-CA4C-4B4A-B115-23AAA9A88071}.Debug|x86.ActiveCfg = Debug|x86
+		{A0914C65-CA4C-4B4A-B115-23AAA9A88071}.Debug|x86.Build.0 = Debug|x86
+		{A0914C65-CA4C-4B4A-B115-23AAA9A88071}.Release|x86.ActiveCfg = Release|x86
+		{A0914C65-CA4C-4B4A-B115-23AAA9A88071}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0DF65E0B-34B3-4464-8668-FF74F0AC6CB6}
+		SolutionGuid = {1737B54E-2CA7-4E79-A344-1BB6574E71DE}
 	EndGlobalSection
 EndGlobal
