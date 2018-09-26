@@ -30,17 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.loginPanel = new System.Windows.Forms.Panel();
-            this.registerButton = new System.Windows.Forms.Button();
-            this.signInButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.passwordText = new System.Windows.Forms.TextBox();
-            this.usernameText = new System.Windows.Forms.TextBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.facebookPicture = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.closeButton = new System.Windows.Forms.Button();
             this.registerPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.emailText = new System.Windows.Forms.TextBox();
@@ -54,18 +43,26 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dragPanel = new System.Windows.Forms.Panel();
+            this.registerButton = new System.Windows.Forms.Button();
+            this.signInButton = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.passwordText = new System.Windows.Forms.TextBox();
+            this.usernameText = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.facebookPicture = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.loginPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.facebookPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.registerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facebookPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // loginPanel
@@ -82,152 +79,11 @@
             this.loginPanel.Controls.Add(this.pictureBox3);
             this.loginPanel.Controls.Add(this.facebookPicture);
             this.loginPanel.Controls.Add(this.pictureBox1);
-            this.loginPanel.Controls.Add(this.closeButton);
-            this.loginPanel.Location = new System.Drawing.Point(0, 20);
+            this.loginPanel.Location = new System.Drawing.Point(0, 0);
             this.loginPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(400, 530);
+            this.loginPanel.Size = new System.Drawing.Size(400, 550);
             this.loginPanel.TabIndex = 0;
-            // 
-            // registerButton
-            // 
-            this.registerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.registerButton.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.registerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.registerButton.Location = new System.Drawing.Point(35, 330);
-            this.registerButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(325, 41);
-            this.registerButton.TabIndex = 11;
-            this.registerButton.Text = "Register";
-            this.registerButton.UseVisualStyleBackColor = false;
-            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
-            // 
-            // signInButton
-            // 
-            this.signInButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.signInButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signInButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signInButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.signInButton.Location = new System.Drawing.Point(35, 260);
-            this.signInButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.signInButton.Name = "signInButton";
-            this.signInButton.Size = new System.Drawing.Size(325, 41);
-            this.signInButton.TabIndex = 10;
-            this.signInButton.Text = "Sign in";
-            this.signInButton.UseVisualStyleBackColor = false;
-            this.signInButton.Click += new System.EventHandler(this.signInButton_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Location = new System.Drawing.Point(40, 218);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(320, 1);
-            this.panel2.TabIndex = 9;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Location = new System.Drawing.Point(40, 153);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 1);
-            this.panel1.TabIndex = 8;
-            // 
-            // passwordText
-            // 
-            this.passwordText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.passwordText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.passwordText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordText.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.passwordText.Location = new System.Drawing.Point(65, 199);
-            this.passwordText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.passwordText.Name = "passwordText";
-            this.passwordText.Size = new System.Drawing.Size(250, 20);
-            this.passwordText.TabIndex = 7;
-            this.passwordText.Text = "Password";
-            this.passwordText.Click += new System.EventHandler(this.passwordText_Click);
-            this.passwordText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
-            // 
-            // usernameText
-            // 
-            this.usernameText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.usernameText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.usernameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameText.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.usernameText.Location = new System.Drawing.Point(65, 134);
-            this.usernameText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.usernameText.Name = "usernameText";
-            this.usernameText.Size = new System.Drawing.Size(250, 20);
-            this.usernameText.TabIndex = 6;
-            this.usernameText.Text = "Username";
-            this.usernameText.Click += new System.EventHandler(this.usernameText_Click);
-            this.usernameText.TextChanged += new System.EventHandler(this.usernameText_TextChanged);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(35, 192);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(25, 27);
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(35, 126);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(29, 28);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // facebookPicture
-            // 
-            this.facebookPicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.facebookPicture.Image = ((System.Drawing.Image)(resources.GetObject("facebookPicture.Image")));
-            this.facebookPicture.Location = new System.Drawing.Point(156, 400);
-            this.facebookPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.facebookPicture.Name = "facebookPicture";
-            this.facebookPicture.Size = new System.Drawing.Size(87, 76);
-            this.facebookPicture.TabIndex = 2;
-            this.facebookPicture.TabStop = false;
-            this.facebookPicture.Click += new System.EventHandler(this.facebookPicture_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(167, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(65, 78);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // closeButton
-            // 
-            this.closeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closeButton.FlatAppearance.BorderSize = 0;
-            this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.closeButton.Location = new System.Drawing.Point(359, 12);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(29, 32);
-            this.closeButton.TabIndex = 0;
-            this.closeButton.Text = "X";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // registerPanel
             // 
@@ -243,11 +99,10 @@
             this.registerPanel.Controls.Add(this.pictureBox2);
             this.registerPanel.Controls.Add(this.pictureBox5);
             this.registerPanel.Controls.Add(this.pictureBox7);
-            this.registerPanel.Controls.Add(this.button3);
             this.registerPanel.Location = new System.Drawing.Point(0, 0);
             this.registerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerPanel.Name = "registerPanel";
-            this.registerPanel.Size = new System.Drawing.Size(400, 530);
+            this.registerPanel.Size = new System.Drawing.Size(400, 550);
             this.registerPanel.TabIndex = 12;
             this.registerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.registerPanel_Paint);
             // 
@@ -394,48 +249,133 @@
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
             // 
-            // button3
+            // registerButton
             // 
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Location = new System.Drawing.Point(359, 12);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(29, 32);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "X";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.closeButton_Click);
+            this.registerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.registerButton.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.registerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.registerButton.Location = new System.Drawing.Point(35, 330);
+            this.registerButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.registerButton.Name = "registerButton";
+            this.registerButton.Size = new System.Drawing.Size(325, 41);
+            this.registerButton.TabIndex = 11;
+            this.registerButton.Text = "Register";
+            this.registerButton.UseVisualStyleBackColor = false;
+            this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
-            // dragPanel
+            // signInButton
             // 
-            this.dragPanel.AccessibleRole = System.Windows.Forms.AccessibleRole.Border;
-            this.dragPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
-            this.dragPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dragPanel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dragPanel.Location = new System.Drawing.Point(0, 0);
-            this.dragPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dragPanel.Name = "dragPanel";
-            this.dragPanel.Size = new System.Drawing.Size(399, 20);
-            this.dragPanel.TabIndex = 1;
-            this.dragPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.registerPanel_MouseDown);
-            this.dragPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.registerPanel_MouseMove);
-            this.dragPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.registerPanel_MouseUp);
+            this.signInButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.signInButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signInButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signInButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.signInButton.Location = new System.Drawing.Point(35, 260);
+            this.signInButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.signInButton.Name = "signInButton";
+            this.signInButton.Size = new System.Drawing.Size(325, 41);
+            this.signInButton.TabIndex = 10;
+            this.signInButton.Text = "Sign in";
+            this.signInButton.UseVisualStyleBackColor = false;
+            this.signInButton.Click += new System.EventHandler(this.signInButton_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Location = new System.Drawing.Point(40, 218);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(320, 1);
+            this.panel2.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Location = new System.Drawing.Point(40, 153);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 1);
+            this.panel1.TabIndex = 8;
+            // 
+            // passwordText
+            // 
+            this.passwordText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.passwordText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.passwordText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordText.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.passwordText.Location = new System.Drawing.Point(65, 199);
+            this.passwordText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.passwordText.Name = "passwordText";
+            this.passwordText.Size = new System.Drawing.Size(250, 20);
+            this.passwordText.TabIndex = 7;
+            this.passwordText.Text = "Password";
+            this.passwordText.Click += new System.EventHandler(this.passwordText_Click);
+            this.passwordText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
+            // 
+            // usernameText
+            // 
+            this.usernameText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.usernameText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.usernameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameText.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.usernameText.Location = new System.Drawing.Point(65, 134);
+            this.usernameText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.usernameText.Name = "usernameText";
+            this.usernameText.Size = new System.Drawing.Size(250, 20);
+            this.usernameText.TabIndex = 6;
+            this.usernameText.Text = "Username";
+            this.usernameText.Click += new System.EventHandler(this.usernameText_Click);
+            this.usernameText.TextChanged += new System.EventHandler(this.usernameText_TextChanged);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(35, 192);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(25, 27);
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(35, 126);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(29, 28);
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // facebookPicture
+            // 
+            this.facebookPicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.facebookPicture.Image = ((System.Drawing.Image)(resources.GetObject("facebookPicture.Image")));
+            this.facebookPicture.Location = new System.Drawing.Point(156, 400);
+            this.facebookPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.facebookPicture.Name = "facebookPicture";
+            this.facebookPicture.Size = new System.Drawing.Size(87, 76);
+            this.facebookPicture.TabIndex = 2;
+            this.facebookPicture.TabStop = false;
+            this.facebookPicture.Click += new System.EventHandler(this.facebookPicture_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(167, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(65, 78);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 550);
-            this.Controls.Add(this.dragPanel);
             this.Controls.Add(this.loginPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -443,16 +383,16 @@
             this.TopMost = true;
             this.loginPanel.ResumeLayout(false);
             this.loginPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.facebookPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.registerPanel.ResumeLayout(false);
             this.registerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facebookPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -460,7 +400,6 @@
         #endregion
 
         private System.Windows.Forms.Panel loginPanel;
-        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.PictureBox facebookPicture;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -471,7 +410,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Button signInButton;
-        private System.Windows.Forms.Panel dragPanel;
         private System.Windows.Forms.Panel registerPanel;
         private System.Windows.Forms.Button BackToLoginButton;
         private System.Windows.Forms.Button registerRegisterButton;
@@ -482,7 +420,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox emailText;
         private System.Windows.Forms.PictureBox pictureBox6;

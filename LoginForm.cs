@@ -30,13 +30,11 @@ namespace Whos_that
         public string email = "Email";
 
         AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
-
+/*
+        enables dragging the screen
         int mouseX = 0;
         int mouseY = 0;
         bool mouseDown;
-        //
-        //enables dragging the screen
-        //
         private void registerPanel_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -45,8 +43,8 @@ namespace Whos_that
         {
             if (mouseDown)
             {
-                mouseX = MousePosition.X - 200;
-                mouseY = MousePosition.Y - 40;
+                mouseX = Cursor.Position.X;
+                mouseY = Cursor.Position.Y;
 
                 this.SetDesktopLocation(mouseX, mouseY);
             }
@@ -55,7 +53,7 @@ namespace Whos_that
         {
             mouseDown = false;
         }
-
+*/
 
         private void facebookPicture_Click(object sender, EventArgs e)
         {
