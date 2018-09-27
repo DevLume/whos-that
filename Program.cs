@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MailKit.Net.Smtp;
+using MimeKit;
+
+
 
 namespace Whos_that
 {
@@ -11,28 +15,53 @@ namespace Whos_that
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+
+        //user init steps:
+        /*
+            1. create list of logged users
+            2. on successful login, add new user to the list
+            3. give option to list all users
+        */
+        public static List<User> userList = new List<User>(); // this will hold online users only
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+             Application.EnableVisualStyles();
+             Application.SetCompatibleTextRenderingDefault(false);
+             AccountManager acmos = new AccountManager();
 
-            User usr = new User();
-            SecurityManager secMan = new SecurityManager();
+             acmos.RemindPassword("lukaszm.dev@gmail.com");
+             LoginForm logForm = new LoginForm();
 
-            /*string hashedText = secMan.HashPassword("password", "username");
+             Application.Run(logForm);
 
-            Console.WriteLine(String.Concat("password hash: ", hashedText));
+            //Test mailing code snippet taken from MailKit github
+            /*
+            var messg = new MimeMessage();
+            messg.From.Add(new MailboxAddress("email_from", "bot@mail.com"));
+            messg.To.Add(new MailboxAddress("email_to", "lukaszm.dev@gmail.com"));
+            messg.Subject = "TEST";
 
-            hashedText = secMan.DehashPassword(hashedText, "username");
+            var builder = new BodyBuilder();
 
-            Console.WriteLine(String.Concat("dehashed password: ", hashedText));*/
-            //Console.WriteLine(usr.CreateAccount("password", "username", "megaEmail@email.com"));
+            builder.TextBody = "TEST";
 
-            if (usr.Login("passsword", "username")) Console.WriteLine("Login is successful");
+            messg.Body = builder.ToMessageBody();
 
-            // MessageBox.Show(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName);            
+            try
+            {
+                var client = new SmtpClient();
+                client.Connect("smtp.gmail.com", 465, true);
+                client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
+                client.Send(messg);
+                client.Disconnect(true);
+            }
+            catch (Exception e) {
+                Console.WriteLine("Send Mail failed: " + e.Message);
+            }
+            Console.ReadLine();
+            */
         }
     }
 }
