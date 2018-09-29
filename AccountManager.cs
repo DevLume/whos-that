@@ -132,7 +132,7 @@ namespace Whos_that
                                     User usr = new User(temp[0], temp[2], temp[1]);
                                     UserManager.userList.Add(usr); // For now we'll always have one user connected... guess why.
                                     //TESTING
-                                    
+                                    /*
                                     string[] str = UserManager.ListUsers();
                                     Console.WriteLine("List All Users:");
                                     for (int i = 0; i < str.Length; i++) {
@@ -140,7 +140,7 @@ namespace Whos_that
                                     }
 
                                     RemindPassword(temp[1]);
-                                    
+                                    */
                                     //----------------------
                                     return true;
                                 }

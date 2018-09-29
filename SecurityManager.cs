@@ -86,7 +86,6 @@ namespace Whos_that
 
                        if(tokens.Length == 3) { 
                            String mail = String.Copy(tokens[1]);
-                            Console.WriteLine(String.Concat("Comparing ", mail, " and ", email, ": "));
                            if (String.Compare(email, mail).CompareTo(0) == 0)
                             {
                                 Console.WriteLine("your email has been found, sending password");
@@ -101,8 +100,10 @@ namespace Whos_that
                                 messg.Subject = "Your Whos_that Password";
 
                                 var builder = new BodyBuilder();
+                              
+                                string dehashedPass = DehashPassword(tokens[2], tokens[0]);
 
-                                builder.TextBody = String.Concat("Here's your password hash, do whatever you want with it:",tokens[2]);
+                                builder.TextBody = String.Concat("Here's your password, we suggest changing it as soon as we build this option: ",dehashedPass);
 
                                 messg.Body = builder.ToMessageBody();
 
@@ -118,8 +119,7 @@ namespace Whos_that
                                 {
                                     Console.WriteLine("Send Mail failed: " + e.Message);
                                 }
-                                Console.ReadLine();
-                                //Console.WriteLine("FOUND!");
+                                Console.ReadLine();                       
                             }
                         }
                     }
@@ -131,7 +131,7 @@ namespace Whos_that
             }
             //Close File
             fileRead.Close();
-            //throw new NotImplementedException();
+            
             return true;
         }
     }

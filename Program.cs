@@ -27,41 +27,17 @@ namespace Whos_that
         [STAThread]
         static void Main()
         {
-             Application.EnableVisualStyles();
-             Application.SetCompatibleTextRenderingDefault(false);
-             AccountManager acmos = new AccountManager();
-
-             acmos.RemindPassword("lukaszm.dev@gmail.com");
-             LoginForm logForm = new LoginForm();
-
-             Application.Run(logForm);
-
-            //Test mailing code snippet taken from MailKit github
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            //TESTING
             /*
-            var messg = new MimeMessage();
-            messg.From.Add(new MailboxAddress("email_from", "bot@mail.com"));
-            messg.To.Add(new MailboxAddress("email_to", "lukaszm.dev@gmail.com"));
-            messg.Subject = "TEST";
+            AccountManager acmos = new AccountManager();
 
-            var builder = new BodyBuilder();
-
-            builder.TextBody = "TEST";
-
-            messg.Body = builder.ToMessageBody();
-
-            try
-            {
-                var client = new SmtpClient();
-                client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
-                client.Send(messg);
-                client.Disconnect(true);
-            }
-            catch (Exception e) {
-                Console.WriteLine("Send Mail failed: " + e.Message);
-            }
-            Console.ReadLine();
+            acmos.RemindPassword("lukaszm.dev@gmail.com");
             */
+            LoginForm logForm = new LoginForm();
+
+            Application.Run(logForm);
         }
     }
 }
