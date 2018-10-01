@@ -198,5 +198,22 @@ namespace Whos_that
             email = emailText.Text;
             if (email == "") email = "Email";
         }
+
+        private void loginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void forgotPasswordLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgottenPasswordForm fpf = new ForgottenPasswordForm();
+            fpf.ShowDialog();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

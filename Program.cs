@@ -24,6 +24,7 @@ namespace Whos_that
             3. give option to list all users
         */
         public static List<User> userList = new List<User>(); // this will hold online users only
+
         [STAThread]
         static void Main()
         {
