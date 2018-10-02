@@ -12,7 +12,7 @@ namespace Whos_that
 {
     public partial class LoginForm : Form
     {
-        int maxLength = 20; // textBox visu ilgis
+        int maxLength = 35; // textBox visu ilgis
         public LoginForm()
         {
             InitializeComponent();
@@ -95,7 +95,12 @@ namespace Whos_that
                 MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
             else
                 MessageBox.Show(String.Concat("Your username is ", usernameText.Text));*/
-            if (acm.Login(username, password)) MessageBox.Show("Login was successful");
+            if (acm.Login(username, password))
+            {
+                Mainscreen mainscreen = new Mainscreen(username);
+                mainscreen.Show();
+                this.Hide();
+            }
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -197,6 +202,38 @@ namespace Whos_that
         {
             email = emailText.Text;
             if (email == "") email = "Email";
+        }
+
+        private void loginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void forgotPasswordLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgottenPasswordForm fpf = new ForgottenPasswordForm();
+            fpf.ShowDialog();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+            // Confirm user wants to close
+            switch (MessageBox.Show(this, "Are you sure want to leave the best app the world has ever seen?", "Closing", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.No:
+                    e.Cancel = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
