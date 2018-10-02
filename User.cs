@@ -14,5 +14,12 @@ namespace Whos_that
         private String passwordHash;
         private String email;   
 
+        public User(String username, String passHash, String email)
+        {
+            this.username = username;
+            this.passwordHash = passHash;
+            this.email = email;
+        }
+
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using MailKit.Net.Smtp;
+using MimeKit;
+
 
 namespace Whos_that
 {
@@ -15,11 +18,6 @@ namespace Whos_that
         private const int keysize = 256;
 
         public string ChangePassword()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckPassword()
         {
             throw new NotImplementedException();
         }
@@ -61,9 +59,80 @@ namespace Whos_that
             return Convert.ToBase64String(cipherTextBytes);
         }
 
-        public string RemindPassword()
+        public bool RemindPassword(string email)
         {
-            throw new NotImplementedException();
+            String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
+            System.IO.StreamReader fileRead;
+            try
+            {
+                fileRead = new System.IO.StreamReader(dataFilePath);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was problem with File", e.GetType().Name);
+                return false;
+            }
+            String line;
+          
+            if (File.Exists(dataFilePath))
+            {
+                using (FileStream fs = File.OpenRead(dataFilePath))
+                {
+                    while ((line = fileRead.ReadLine()) != null)
+                    {
+                       String dbEmail = line;
+
+                       String[] tokens = dbEmail.Split(' ');
+
+                       if(tokens.Length == 3) { 
+                           String mail = String.Copy(tokens[1]);
+                           if (String.Compare(email, mail).CompareTo(0) == 0)
+                            {
+                                Console.WriteLine("your email has been found, sending password");
+                                String passwordHash = tokens[2];
+                                String usrname = tokens[0];
+
+                                var messg = new MimeMessage();
+                                messg.From.Add(new MailboxAddress("your Whos_that password", "bot@whos_mail.com"));
+
+                                Console.WriteLine("Sending email to " + email);
+                                messg.To.Add(new MailboxAddress("email_to", email));
+                                messg.Subject = "Your Whos_that Password";
+
+                                var builder = new BodyBuilder();
+                              
+                                string dehashedPass = DehashPassword(tokens[2], tokens[0]);
+
+                                builder.TextBody = String.Concat("Here's your password, we suggest changing it as soon as we build this option: ",dehashedPass);
+
+                                messg.Body = builder.ToMessageBody();
+
+                                try
+                                {
+                                    var client = new SmtpClient();
+                                    client.Connect("smtp.gmail.com", 465, true);
+                                    client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
+                                    client.Send(messg);
+                                    client.Disconnect(true);
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Send Mail failed: " + e.Message);
+                                }
+                                Console.ReadLine();                       
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No File");
+            }
+            //Close File
+            fileRead.Close();
+            
+            return true;
         }
     }
 }

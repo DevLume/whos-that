@@ -9,12 +9,6 @@ namespace Whos_that
 {
     public class AccountManager : SecurityManager
     {
-
-        public void RestoreAccount()
-        {
-            //TODO: add account restore 
-        }
-
         public bool CreateAccount(String username, String password, String email)
         {
             //Check username length
@@ -23,6 +17,7 @@ namespace Whos_that
                 Console.WriteLine("username is too long");
                 return false;
             }
+
             //check email
             const String regexPattern =
                  @"^([0-9a-zA-Z]" + //Start with a digit or alphabetical
@@ -66,8 +61,7 @@ namespace Whos_that
                         String dbUsername = line;
                         string[] tokens = dbUsername.Split(' ');
 
-                        dbUsername = tokens[0];
-                       
+                        dbUsername = tokens[0];                      
 
                         if (String.Compare(username, dbUsername).CompareTo(0) == 0)
                         {
@@ -88,14 +82,19 @@ namespace Whos_that
            
             String outputLine = String.Concat(username, " ", email, " ", passHash, "\n");
 
-            File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
-
+            try
+            {
+                File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
+            }
+            catch (System.IO.IOException e) {
+                Console.WriteLine("Could not create an account! data file is at use", e.GetType().Name);
+                return false;
+            }
             return true;
         }
 
         public bool Login(String username, String password)
         {
-            //TODO: Add User initialisation
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
             System.IO.StreamReader fileRead;
             try
@@ -121,6 +120,7 @@ namespace Whos_that
                         if (String.Compare(username, dbUsername) == 0)
                         {
                             foundUser = true;
+                            
                             passwordHash = temp[2];
                             String dbPass;
                             try
@@ -128,7 +128,20 @@ namespace Whos_that
                                 dbPass = DehashPassword(passwordHash, username);
                                 if (String.Compare(password, dbPass) == 0)
                                 {
-                                    fileRead.Close();     
+                                    fileRead.Close();
+                                    User usr = new User(temp[0], temp[2], temp[1]);
+                                    UserManager.userList.Add(usr); // For now we'll always have one user connected... guess why.
+                                    //TESTING
+                                    /*
+                                    string[] str = UserManager.ListUsers();
+                                    Console.WriteLine("List All Users:");
+                                    for (int i = 0; i < str.Length; i++) {
+                                        Console.WriteLine(str[i]);
+                                    }
+
+                                    RemindPassword(temp[1]);
+                                    */
+                                    //----------------------
                                     return true;
                                 }
                             }
