@@ -30,24 +30,12 @@ namespace Whos_that
         {     
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
-            //TESTING
-            /*
-            AccountManager acmos = new AccountManager();
-
-            acmos.RemindPassword("lukaszm.dev@gmail.com");
-            */
-            LoginForm logForm = new LoginForm();
-
             Application.Run(logForm);
-=======
-
             LoginForm logForm = new LoginForm();
 
             Application.Run(logForm);
 
 
->>>>>>> master
         }
     }
 }
