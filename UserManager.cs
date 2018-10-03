@@ -5,27 +5,31 @@ using System.Text;
 
 namespace Whos_that
 {
-    public static class UserManager
+    public class UserManager
     {
-        public static List<User> userList = new List<User>();
+        public static List<User> onlineUserList = new List<User>();
 
-        public static string[] ListUsers() {
-            string[] usrListString = new string[userList.Count];
+        public static string[] ListOnlineUsers()
+        {
+            string[] usrListString = new string[onlineUserList.Count];
             int i = 0;
-            /*
-            foreach (User usr in userList) {
-                usrListString[i] = String.Concat(usr.username, " ");
-            }
-            */
 
-            //OR using IEnumerator:
-            using (IEnumerator<User> usrEnumerator = userList.GetEnumerator()) {
-                while (usrEnumerator.MoveNext()) {
+            using (IEnumerator<User> usrEnumerator = onlineUserList.GetEnumerator())
+            {
+                while (usrEnumerator.MoveNext())
+                {
                     User usr = usrEnumerator.Current;
                     usrListString[i] = usr.username;
                 }
             }
             return usrListString;
+        }
+
+
+        public User GetUserByUsername(string username) {
+            User usr = new User("test","test", "test");
+
+            return usr;
         }
     }
 }

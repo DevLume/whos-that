@@ -97,12 +97,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="ForgottenPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ForgottenPasswordForm.Designer.cs">
       <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDataManager.cs" />
     <Compile Include="ISecurityManager.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

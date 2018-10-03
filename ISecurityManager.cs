@@ -11,6 +11,6 @@ namespace Whos_that
         String HashPassword(string text, string password);
         String DehashPassword(string text, string password);
         String ChangePassword(); //Still not implemented
-        bool RemindPassword(string email); //Still not implemented
+        bool RemindPassword(string email);
     }
 }
