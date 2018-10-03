@@ -56,5 +56,10 @@ namespace Whos_that
         {
             sidePanel.Top = recognizeButton.Top;
         }
+
+        private void createTestContinue1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
