@@ -12,7 +12,11 @@ namespace Whos_that
 {
     public partial class LoginForm : Form
     {
+<<<<<<< HEAD
+        int maxLength = 35; // textBox visu ilgis
+=======
         int maxLength = 20; // textBox visu ilgis
+>>>>>>> master
         public LoginForm()
         {
             InitializeComponent();
@@ -194,9 +198,32 @@ namespace Whos_that
         }
 
         private void emailText_TextChanged_1(object sender, EventArgs e)
+<<<<<<< HEAD
         {
             email = emailText.Text;
             if (email == "") email = "Email";
+        }
+
+        private void loginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void forgotPasswordLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgottenPasswordForm fpf = new ForgottenPasswordForm();
+            fpf.ShowDialog();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+=======
+        {
+            email = emailText.Text;
+            if (email == "") email = "Email";
+>>>>>>> master
         }
     }
 }
