@@ -39,7 +39,12 @@
             this.createTestButton = new System.Windows.Forms.Button();
             this.statisticsButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.createTestPanel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.testName = new System.Windows.Forms.TextBox();
+            this.createTestContinue1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
+            this.createTestPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -182,12 +187,57 @@
             this.panel1.Size = new System.Drawing.Size(792, 53);
             this.panel1.TabIndex = 2;
             // 
+            // createTestPanel1
+            // 
+            this.createTestPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.createTestPanel1.Controls.Add(this.label1);
+            this.createTestPanel1.Controls.Add(this.testName);
+            this.createTestPanel1.Controls.Add(this.createTestContinue1);
+            this.createTestPanel1.Location = new System.Drawing.Point(156, 59);
+            this.createTestPanel1.Name = "createTestPanel1";
+            this.createTestPanel1.Size = new System.Drawing.Size(774, 456);
+            this.createTestPanel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(257, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(237, 37);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Name your test";
+            // 
+            // testName
+            // 
+            this.testName.Location = new System.Drawing.Point(264, 191);
+            this.testName.Name = "testName";
+            this.testName.Size = new System.Drawing.Size(230, 22);
+            this.testName.TabIndex = 2;
+            // 
+            // createTestContinue1
+            // 
+            this.createTestContinue1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createTestContinue1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createTestContinue1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.createTestContinue1.Location = new System.Drawing.Point(264, 272);
+            this.createTestContinue1.Name = "createTestContinue1";
+            this.createTestContinue1.Size = new System.Drawing.Size(230, 34);
+            this.createTestContinue1.TabIndex = 0;
+            this.createTestContinue1.Text = "Continue";
+            this.createTestContinue1.UseVisualStyleBackColor = true;
+            this.createTestContinue1.Click += new System.EventHandler(this.createTestContinue1_Click);
+            // 
             // Mainscreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(198)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(942, 527);
+            this.Controls.Add(this.createTestPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "Mainscreen";
@@ -196,6 +246,8 @@
             this.Load += new System.EventHandler(this.Mainscreen_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.createTestPanel1.ResumeLayout(false);
+            this.createTestPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +265,9 @@
         private System.Windows.Forms.Label usernameLogged;
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel sidePanel;
+        private System.Windows.Forms.Panel createTestPanel1;
+        private System.Windows.Forms.Button createTestContinue1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox testName;
     }
 }
