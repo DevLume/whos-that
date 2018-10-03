@@ -13,6 +13,7 @@ namespace Whos_that
         public String gender;
         private String passwordHash;
         private String email;   
+<<<<<<< HEAD
 
         public User(String username, String passHash, String email)
         {
@@ -20,6 +21,8 @@ namespace Whos_that
             this.passwordHash = passHash;
             this.email = email;
         }
+=======
+>>>>>>> master
 
     }
 }

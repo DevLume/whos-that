@@ -27,9 +27,10 @@ namespace Whos_that
 
         [STAThread]
         static void Main()
-        {
+        {     
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             //TESTING
             /*
             AccountManager acmos = new AccountManager();
@@ -39,6 +40,14 @@ namespace Whos_that
             LoginForm logForm = new LoginForm();
 
             Application.Run(logForm);
+=======
+
+            LoginForm logForm = new LoginForm();
+
+            Application.Run(logForm);
+
+
+>>>>>>> master
         }
     }
 }
