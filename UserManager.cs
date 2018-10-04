@@ -27,9 +27,18 @@ namespace Whos_that
 
 
         public User GetUserByUsername(string username) {
-            User usr = new User("test","test", "test");
+            DataManager dataMan = new DataManager();
+            string[] userData = dataMan.GetDataLine(username);
 
-            return usr;
+            if (userData == null)
+            {
+                Console.WriteLine("No such user is found!");
+                return null;
+            }
+            else {
+                User usr = new User(userData[0], userData[2], userData[1]);
+                return usr;
+            }          
         }
     }
 }
