@@ -9,8 +9,56 @@ namespace Whos_that
 {
     class DataManager : IDataManager
     {
-        string dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
+        // DataManager methods for saving Tests
 
+        string userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, @"\user tests");
+        string folderName, testName;
+        public DataManager()
+        {
+
+        }
+        public DataManager(string folderName, string testName)
+        {
+            this.folderName = folderName;
+            this.testName = testName;
+            this.testName += ".txt";
+        }
+        public string getDirectoryPath()
+        {
+            return Path.Combine(userDirectoryPath, folderName);
+        }
+        public string getFilePath()
+        {
+            return Path.Combine(Path.Combine(userDirectoryPath, folderName), testName);
+        }
+        public bool fileExists()
+        {
+            return File.Exists(Path.Combine(Path.Combine(userDirectoryPath, folderName), testName));
+        }
+        public void createDirectory(string path)
+        {
+            Directory.CreateDirectory(path);
+        }
+        public void writeToFile(string path, List<string> questions, List<string> answersA, List<string> answersB, List<string> answersC, List<string> answersD, List<int> correctAnswers)
+        {
+            string insertedLine;
+            for (int i = 0; i < questions.Count(); i++)
+            {
+                insertedLine = String.Concat(questions[i], "|", answersA[i], "|", answersB[i], "|", answersC[i], "|", answersD[i], "|", correctAnswers[i], "\n");
+                try
+                {
+                    File.AppendAllText(path, insertedLine + Environment.NewLine);
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine("Could Not modify" + testName + ".txt", e.GetType().Name);
+                }
+            }
+        }
+
+        // Methods for working with data.txt
+
+        string dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
         public string[] GetDataLine(string username)
         {
             System.IO.StreamReader fileRead;

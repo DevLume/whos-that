@@ -195,7 +195,12 @@ namespace Whos_that
 
         private void testEnd_Click(object sender, EventArgs e)
         {
-            // NEED TO IMPLEMENT SAVE TO FILE
+            DataManager dataManager = new DataManager(username, testName);
+            if (!dataManager.fileExists())
+            {
+                dataManager.createDirectory(dataManager.getDirectoryPath());
+                dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
+            }
             this.Close();
         }
 
