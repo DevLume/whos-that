@@ -12,30 +12,24 @@ namespace Whos_that
 {
     public partial class Mainscreen : Form
     {
-        private string username;
+        private string username, testName;
         public Mainscreen(string username)
         {
             this.username = username;
             InitializeComponent();
             usernameLogged.Text += username;
-
-        }
-
-        private void Mainscreen_Load(object sender, EventArgs e)
-        {
-
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Exit();
         }
-
         private void profileButton_Click(object sender, EventArgs e)
         {
             sidePanel.Top = profileButton.Top;
         }
         private void createTestButton_Click(object sender, EventArgs e)
         {
+            createTestPanel1.Show();
             sidePanel.Top = createTestButton.Top;
         }
         private void statisticsButton_Click_1(object sender, EventArgs e)
@@ -59,7 +53,12 @@ namespace Whos_that
 
         private void createTestContinue1_Click(object sender, EventArgs e)
         {
-
+            CreateTest createTest = new CreateTest(testName, username);
+            createTest.ShowDialog();
+        }
+        private void textBoxTestName_TextChanged(object sender, EventArgs e)
+        {
+             testName = textBoxTestName.Text;
         }
     }
 }
