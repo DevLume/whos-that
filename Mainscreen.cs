@@ -12,7 +12,7 @@ namespace Whos_that
 {
     public partial class Mainscreen : Form
     {
-        private string username, testName;
+        private string username, testName, usernameToGuess;
         public Mainscreen(string username)
         {
             this.username = username;
@@ -23,14 +23,18 @@ namespace Whos_that
         {
             Application.Exit();
         }
-        private void profileButton_Click(object sender, EventArgs e)
+        private void guessButton_Click(object sender, EventArgs e)
         {
-            sidePanel.Top = profileButton.Top;
+            sidePanel.Top = guessButton.Top;
+            guessPanel.Show();
+
         }
         private void createTestButton_Click(object sender, EventArgs e)
         {
-            createTestPanel1.Show();
             sidePanel.Top = createTestButton.Top;
+            createTestPanel1.Show();
+
+           guessPanel.Hide();
         }
         private void statisticsButton_Click_1(object sender, EventArgs e)
         {
@@ -56,6 +60,37 @@ namespace Whos_that
             CreateTest createTest = new CreateTest(testName, username);
             createTest.ShowDialog();
         }
+
+        private void guessContinue_Click(object sender, EventArgs e)
+        {
+            if (checkUsername(usernameToGuess) == false)
+            {
+                MessageBox.Show("Such username does not exist");
+            }
+            else
+            { 
+                if (username == usernameToGuess)
+                {
+                    MessageBox.Show("Trying to solve your own test, ay?");
+                }
+                GuessForm guessForm = new GuessForm(testName, username, usernameToGuess);
+                guessForm.ShowDialog();
+            }
+        }
+
+        private void guessUsername_TextChanged(object sender, EventArgs e)
+        {
+            usernameToGuess = guessUsername.Text;
+        }
+        private bool checkUsername(string usernameToGuess)
+        {
+            string[] temp;
+            DataManager dataManager = new DataManager();
+            temp =  dataManager.GetDataLine(usernameToGuess);
+            if (temp != null) return true;
+            else return false;
+        }
+
         private void textBoxTestName_TextChanged(object sender, EventArgs e)
         {
              testName = textBoxTestName.Text;

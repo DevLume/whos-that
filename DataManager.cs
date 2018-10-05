@@ -47,7 +47,7 @@ namespace Whos_that
             {
                 insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB, 
                     "|", questions[i].answerC, "|", questions[i].answerD, "|",
-                    questions[i].correctAnswerNum, "\n");
+                    questions[i].correctAnswerNum);
                 try
                 {
                     File.AppendAllText(path, insertedLine + Environment.NewLine);
@@ -58,6 +58,37 @@ namespace Whos_that
                 }
             }
         }
+        public List<string> getTestData(string testName, string username, string path)
+        {
+            List<string> lines = new List<string>();
+            StreamReader fileRead;
+            try
+            {
+                fileRead = new System.IO.StreamReader(path);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was a problem with File", e.GetType().Name);
+                return null;
+            }
+            string line;
+            if (File.Exists(path))
+            {
+                using (FileStream fs = File.OpenRead(path))
+                {
+                    while ((line = fileRead.ReadLine()) != null)
+                    {
+                        lines.Add(line);
+                    }
+                }
+            }
+
+            fileRead.Close();
+            return lines;
+        }
+
+
+
         // Methods for working with data.txt
 
         string dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");

@@ -220,7 +220,7 @@ namespace Whos_that
     }
 }
 //put questions in separate objects, and create list of questions
-class Question {
+public class Question {
     public string questionText;
     public string answerA;
     public string answerB;

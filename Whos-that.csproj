@@ -110,6 +110,12 @@
     <Compile Include="CreateTest.Designer.cs">
       <DependentUpon>CreateTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuessForm.Designer.cs">
+      <DependentUpon>GuessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IDataManager.cs" />
     <Compile Include="ISecurityManager.cs" />
     <Compile Include="LoginForm.cs">
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ForgottenPasswordForm.resx">
       <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuessForm.resx">
+      <DependentUpon>GuessForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

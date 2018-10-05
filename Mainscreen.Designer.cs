@@ -35,16 +35,22 @@
             this.recognizeButton = new System.Windows.Forms.Button();
             this.challengeButton = new System.Windows.Forms.Button();
             this.friendsListButton = new System.Windows.Forms.Button();
-            this.profileButton = new System.Windows.Forms.Button();
+            this.guessButton = new System.Windows.Forms.Button();
             this.createTestButton = new System.Windows.Forms.Button();
             this.statisticsButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.createTestPanel1 = new System.Windows.Forms.Panel();
+            this.textBoxTestName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.createTestContinue1 = new System.Windows.Forms.Button();
-            this.textBoxTestName = new System.Windows.Forms.TextBox();
+            this.guessPanel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.guessUsername = new System.Windows.Forms.TextBox();
+            this.guessContinue = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.createTestPanel1.SuspendLayout();
+            this.guessPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -56,7 +62,7 @@
             this.panel2.Controls.Add(this.recognizeButton);
             this.panel2.Controls.Add(this.challengeButton);
             this.panel2.Controls.Add(this.friendsListButton);
-            this.panel2.Controls.Add(this.profileButton);
+            this.panel2.Controls.Add(this.guessButton);
             this.panel2.Controls.Add(this.createTestButton);
             this.panel2.Controls.Add(this.statisticsButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -136,19 +142,19 @@
             this.friendsListButton.UseVisualStyleBackColor = true;
             this.friendsListButton.Click += new System.EventHandler(this.friendsListButton_Click);
             // 
-            // profileButton
+            // guessButton
             // 
-            this.profileButton.FlatAppearance.BorderSize = 0;
-            this.profileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.profileButton.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profileButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.profileButton.Location = new System.Drawing.Point(11, 68);
-            this.profileButton.Name = "profileButton";
-            this.profileButton.Size = new System.Drawing.Size(128, 53);
-            this.profileButton.TabIndex = 2;
-            this.profileButton.Text = "Profile";
-            this.profileButton.UseVisualStyleBackColor = true;
-            this.profileButton.Click += new System.EventHandler(this.profileButton_Click);
+            this.guessButton.FlatAppearance.BorderSize = 0;
+            this.guessButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.guessButton.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.guessButton.Location = new System.Drawing.Point(11, 68);
+            this.guessButton.Name = "guessButton";
+            this.guessButton.Size = new System.Drawing.Size(128, 53);
+            this.guessButton.TabIndex = 2;
+            this.guessButton.Text = "Guess!";
+            this.guessButton.UseVisualStyleBackColor = true;
+            this.guessButton.Click += new System.EventHandler(this.guessButton_Click);
             // 
             // createTestButton
             // 
@@ -190,6 +196,7 @@
             // createTestPanel1
             // 
             this.createTestPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.createTestPanel1.Controls.Add(this.guessPanel);
             this.createTestPanel1.Controls.Add(this.textBoxTestName);
             this.createTestPanel1.Controls.Add(this.label1);
             this.createTestPanel1.Controls.Add(this.createTestContinue1);
@@ -197,6 +204,17 @@
             this.createTestPanel1.Name = "createTestPanel1";
             this.createTestPanel1.Size = new System.Drawing.Size(774, 481);
             this.createTestPanel1.TabIndex = 3;
+            // 
+            // textBoxTestName
+            // 
+            this.textBoxTestName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.textBoxTestName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTestName.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxTestName.Location = new System.Drawing.Point(264, 186);
+            this.textBoxTestName.Name = "textBoxTestName";
+            this.textBoxTestName.Size = new System.Drawing.Size(230, 28);
+            this.textBoxTestName.TabIndex = 4;
+            this.textBoxTestName.TextChanged += new System.EventHandler(this.textBoxTestName_TextChanged);
             // 
             // label1
             // 
@@ -223,16 +241,65 @@
             this.createTestContinue1.UseVisualStyleBackColor = true;
             this.createTestContinue1.Click += new System.EventHandler(this.createTestContinue1_Click);
             // 
-            // textBoxTestName
+            // guessPanel
             // 
-            this.textBoxTestName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
-            this.textBoxTestName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTestName.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxTestName.Location = new System.Drawing.Point(264, 186);
-            this.textBoxTestName.Name = "textBoxTestName";
-            this.textBoxTestName.Size = new System.Drawing.Size(230, 28);
-            this.textBoxTestName.TabIndex = 4;
-            this.textBoxTestName.TextChanged += new System.EventHandler(this.textBoxTestName_TextChanged);
+            this.guessPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.guessPanel.Controls.Add(this.label4);
+            this.guessPanel.Controls.Add(this.guessUsername);
+            this.guessPanel.Controls.Add(this.guessContinue);
+            this.guessPanel.Controls.Add(this.label3);
+            this.guessPanel.Location = new System.Drawing.Point(0, 0);
+            this.guessPanel.Name = "guessPanel";
+            this.guessPanel.Size = new System.Drawing.Size(774, 481);
+            this.guessPanel.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Location = new System.Drawing.Point(136, 97);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(482, 37);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Whose test do you wish to take?";
+            // 
+            // guessUsername
+            // 
+            this.guessUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.guessUsername.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessUsername.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.guessUsername.Location = new System.Drawing.Point(235, 189);
+            this.guessUsername.Name = "guessUsername";
+            this.guessUsername.Size = new System.Drawing.Size(230, 28);
+            this.guessUsername.TabIndex = 6;
+            this.guessUsername.TextChanged += new System.EventHandler(this.guessUsername_TextChanged);
+            // 
+            // guessContinue
+            // 
+            this.guessContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.guessContinue.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessContinue.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.guessContinue.Location = new System.Drawing.Point(235, 255);
+            this.guessContinue.Name = "guessContinue";
+            this.guessContinue.Size = new System.Drawing.Size(230, 34);
+            this.guessContinue.TabIndex = 5;
+            this.guessContinue.Text = "Continue";
+            this.guessContinue.UseVisualStyleBackColor = true;
+            this.guessContinue.Click += new System.EventHandler(this.guessContinue_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label4.Location = new System.Drawing.Point(272, 164);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 19);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Enter their username";
             // 
             // Mainscreen
             // 
@@ -251,6 +318,8 @@
             this.panel2.PerformLayout();
             this.createTestPanel1.ResumeLayout(false);
             this.createTestPanel1.PerformLayout();
+            this.guessPanel.ResumeLayout(false);
+            this.guessPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -261,7 +330,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button statisticsButton;
         private System.Windows.Forms.Button friendsListButton;
-        private System.Windows.Forms.Button profileButton;
+        private System.Windows.Forms.Button guessButton;
         private System.Windows.Forms.Button createTestButton;
         private System.Windows.Forms.Button recognizeButton;
         private System.Windows.Forms.Button challengeButton;
@@ -272,5 +341,10 @@
         private System.Windows.Forms.Button createTestContinue1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTestName;
+        private System.Windows.Forms.Panel guessPanel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox guessUsername;
+        private System.Windows.Forms.Button guessContinue;
+        private System.Windows.Forms.Label label3;
     }
 }

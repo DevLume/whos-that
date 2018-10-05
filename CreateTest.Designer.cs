@@ -35,6 +35,11 @@
             this.RulesOkButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.sameFilePanel = new System.Windows.Forms.Panel();
+            this.closeButton = new System.Windows.Forms.Button();
+            this.replaceButton = new System.Windows.Forms.Button();
+            this.AppendButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.answerButtonD = new System.Windows.Forms.RadioButton();
             this.answerButtonC = new System.Windows.Forms.RadioButton();
             this.answerButtonB = new System.Windows.Forms.RadioButton();
@@ -59,11 +64,6 @@
             this.testEnd = new System.Windows.Forms.Button();
             this.rulesButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.sameFilePanel = new System.Windows.Forms.Panel();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.replaceButton = new System.Windows.Forms.Button();
-            this.AppendButton = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.CreateTestPanel.SuspendLayout();
             this.RulesPanel.SuspendLayout();
             this.sameFilePanel.SuspendLayout();
@@ -146,6 +146,63 @@
             this.label7.Size = new System.Drawing.Size(182, 19);
             this.label7.TabIndex = 17;
             this.label7.Text = "Rules for creating the test";
+            // 
+            // sameFilePanel
+            // 
+            this.sameFilePanel.Controls.Add(this.closeButton);
+            this.sameFilePanel.Controls.Add(this.replaceButton);
+            this.sameFilePanel.Controls.Add(this.AppendButton);
+            this.sameFilePanel.Controls.Add(this.label9);
+            this.sameFilePanel.Location = new System.Drawing.Point(10, 20);
+            this.sameFilePanel.Name = "sameFilePanel";
+            this.sameFilePanel.Size = new System.Drawing.Size(339, 362);
+            this.sameFilePanel.TabIndex = 21;
+            // 
+            // closeButton
+            // 
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.closeButton.Location = new System.Drawing.Point(213, 111);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(86, 59);
+            this.closeButton.TabIndex = 23;
+            this.closeButton.Text = "ooops,\r\nclose";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // replaceButton
+            // 
+            this.replaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.replaceButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.replaceButton.Location = new System.Drawing.Point(113, 114);
+            this.replaceButton.Name = "replaceButton";
+            this.replaceButton.Size = new System.Drawing.Size(86, 59);
+            this.replaceButton.TabIndex = 22;
+            this.replaceButton.Text = "Replace it";
+            this.replaceButton.UseVisualStyleBackColor = true;
+            this.replaceButton.Click += new System.EventHandler(this.replaceButton_Click);
+            // 
+            // AppendButton
+            // 
+            this.AppendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AppendButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.AppendButton.Location = new System.Drawing.Point(13, 114);
+            this.AppendButton.Name = "AppendButton";
+            this.AppendButton.Size = new System.Drawing.Size(86, 59);
+            this.AppendButton.TabIndex = 21;
+            this.AppendButton.Text = "Append to it";
+            this.AppendButton.UseVisualStyleBackColor = true;
+            this.AppendButton.Click += new System.EventHandler(this.AppendButton_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label9.Location = new System.Drawing.Point(7, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(292, 38);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "A test with the same name already exists.\r\nWhat would you like to do?";
             // 
             // answerButtonD
             // 
@@ -387,63 +444,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // sameFilePanel
-            // 
-            this.sameFilePanel.Controls.Add(this.closeButton);
-            this.sameFilePanel.Controls.Add(this.replaceButton);
-            this.sameFilePanel.Controls.Add(this.AppendButton);
-            this.sameFilePanel.Controls.Add(this.label9);
-            this.sameFilePanel.Location = new System.Drawing.Point(10, 21);
-            this.sameFilePanel.Name = "sameFilePanel";
-            this.sameFilePanel.Size = new System.Drawing.Size(339, 361);
-            this.sameFilePanel.TabIndex = 21;
-            // 
-            // closeButton
-            // 
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.closeButton.Location = new System.Drawing.Point(213, 111);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(86, 59);
-            this.closeButton.TabIndex = 23;
-            this.closeButton.Text = "ooops,\r\nclose";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
-            // replaceButton
-            // 
-            this.replaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.replaceButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.replaceButton.Location = new System.Drawing.Point(113, 114);
-            this.replaceButton.Name = "replaceButton";
-            this.replaceButton.Size = new System.Drawing.Size(86, 59);
-            this.replaceButton.TabIndex = 22;
-            this.replaceButton.Text = "Replace it";
-            this.replaceButton.UseVisualStyleBackColor = true;
-            this.replaceButton.Click += new System.EventHandler(this.replaceButton_Click);
-            // 
-            // AppendButton
-            // 
-            this.AppendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AppendButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AppendButton.Location = new System.Drawing.Point(13, 114);
-            this.AppendButton.Name = "AppendButton";
-            this.AppendButton.Size = new System.Drawing.Size(86, 59);
-            this.AppendButton.TabIndex = 21;
-            this.AppendButton.Text = "Append to it";
-            this.AppendButton.UseVisualStyleBackColor = true;
-            this.AppendButton.Click += new System.EventHandler(this.AppendButton_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label9.Location = new System.Drawing.Point(7, 14);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(292, 38);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "A test with the same name already exists.\r\nWhat would you like to do?";
             // 
             // CreateTest
             // 
