@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Whos_that
 {
@@ -12,7 +13,7 @@ namespace Whos_that
         // DataManager methods for saving Tests
 
         string userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, @"\user tests");
-        string folderName, testName;
+        private string folderName, testName;
         public DataManager()
         {
 
@@ -42,9 +43,29 @@ namespace Whos_that
         public void writeToFile(string path, List<string> questions, List<string> answersA, List<string> answersB, List<string> answersC, List<string> answersD, List<int> correctAnswers)
         {
             string insertedLine;
+
             for (int i = 0; i < questions.Count(); i++)
             {
                 insertedLine = String.Concat(questions[i], "|", answersA[i], "|", answersB[i], "|", answersC[i], "|", answersD[i], "|", correctAnswers[i], "\n");
+                try
+                {
+                    File.AppendAllText(path, insertedLine + Environment.NewLine);
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine("Could Not modify" + testName + ".txt", e.GetType().Name);
+                }
+            }
+        }
+
+        public void writeToFile(string path, List<Question> questions) {
+            string insertedLine;
+
+            for (int i = 0; i < questions.Count(); i++)
+            {
+                insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB, 
+                    "|", questions[i].answerC, "|", questions[i].answerD, "|",
+                    questions[i].correctAnswerNum, "\n");
                 try
                 {
                     File.AppendAllText(path, insertedLine + Environment.NewLine);
@@ -152,7 +173,7 @@ namespace Whos_that
                 return false;
             }
             string line;
-            bool foundSameLine = false;
+           // bool foundSameLine = false; sitas variable kinda useless 
 
             if (File.Exists(dataFilePath))
             {

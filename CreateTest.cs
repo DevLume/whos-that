@@ -13,6 +13,7 @@ namespace Whos_that
     public partial class CreateTest : Form
     {
         private String testName, username;
+        private List<Question> qList = new List<Question>();
         private List<string> questions = new List<string>();
         private List<string> answersA = new List<string>();
         private List<string> answersB = new List<string>();
@@ -174,8 +175,17 @@ namespace Whos_that
                 MessageBox.Show("The amount of correct answers is waaay too little..");
                 return;
             }
+            //TEST:
+            //save info to question List
+            int corrans = 0;
+            if (answerButtonA.Checked) corrans = 1;
+            if (answerButtonB.Checked) corrans = 2;
+            if (answerButtonC.Checked) corrans = 3;
+            if (answerButtonD.Checked) corrans = 4;
+            qList.Add(new Question(questionTextBox.Text, answerA.Text, answerB.Text, answerC.Text, answerD.Text, corrans));
+
             // save info to lists
-            answersA.Add(answerA.Text);
+            /*answersA.Add(answerA.Text);
             answersB.Add(answerB.Text);
             answersC.Add(answerC.Text);
             answersD.Add(answerD.Text);
@@ -183,7 +193,7 @@ namespace Whos_that
             if (answerButtonA.Checked) correctAnswers.Add(1);
             if (answerButtonB.Checked) correctAnswers.Add(2);
             if (answerButtonC.Checked) correctAnswers.Add(3);
-            if (answerButtonD.Checked) correctAnswers.Add(4);
+            if (answerButtonD.Checked) correctAnswers.Add(4);*/
 
             // clear the textboxes
             answerA.Clear();
@@ -199,10 +209,36 @@ namespace Whos_that
             if (!dataManager.fileExists())
             {
                 dataManager.createDirectory(dataManager.getDirectoryPath());
-                dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
+                dataManager.writeToFile(dataManager.getFilePath(), qList);
+                //dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
+            }
+            else
+            {
+                MessageBox.Show("Such test exists, appending questions to it");
+                dataManager.writeToFile(dataManager.getFilePath(), qList);
+                //dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
             }
             this.Close();
         }
 
+    }
+}
+
+//What if we put questions in separate objects, and create list of questions?
+class Question {
+    public string questionText;
+    public string answerA;
+    public string answerB;
+    public string answerC;
+    public string answerD;
+    public int correctAnswerNum;
+
+    public Question(string question, string A, string B, string C, string D, int corrAns) {
+        questionText = question;
+        answerA = A;
+        answerB = B;
+        answerC = C;
+        answerD = D;
+        correctAnswerNum = corrAns;
     }
 }
