@@ -40,27 +40,9 @@ namespace Whos_that
         {
             Directory.CreateDirectory(path);
         }
-        public void writeToFile(string path, List<string> questions, List<string> answersA, List<string> answersB, List<string> answersC, List<string> answersD, List<int> correctAnswers)
-        {
+        public void writeToFile(string path, List<Question> questions, bool append) {
+            if(append == false) File.Delete(path);
             string insertedLine;
-
-            for (int i = 0; i < questions.Count(); i++)
-            {
-                insertedLine = String.Concat(questions[i], "|", answersA[i], "|", answersB[i], "|", answersC[i], "|", answersD[i], "|", correctAnswers[i], "\n");
-                try
-                {
-                    File.AppendAllText(path, insertedLine + Environment.NewLine);
-                }
-                catch (System.IO.IOException e)
-                {
-                    Console.WriteLine("Could Not modify" + testName + ".txt", e.GetType().Name);
-                }
-            }
-        }
-
-        public void writeToFile(string path, List<Question> questions) {
-            string insertedLine;
-
             for (int i = 0; i < questions.Count(); i++)
             {
                 insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB, 
@@ -70,13 +52,12 @@ namespace Whos_that
                 {
                     File.AppendAllText(path, insertedLine + Environment.NewLine);
                 }
-                catch (System.IO.IOException e)
+                catch (IOException e)
                 {
                     Console.WriteLine("Could Not modify" + testName + ".txt", e.GetType().Name);
                 }
             }
         }
-
         // Methods for working with data.txt
 
         string dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
@@ -117,7 +98,6 @@ namespace Whos_that
             fileRead.Close();
             return null;
         }
-
         public string[] GetDataLine(string username, string email)
         {
             if (username != null) GetDataLine(username);

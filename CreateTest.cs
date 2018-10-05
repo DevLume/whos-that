@@ -14,12 +14,6 @@ namespace Whos_that
     {
         private String testName, username;
         private List<Question> qList = new List<Question>();
-        private List<string> questions = new List<string>();
-        private List<string> answersA = new List<string>();
-        private List<string> answersB = new List<string>();
-        private List<string> answersC = new List<string>();
-        private List<string> answersD = new List<string>();
-        private List<int> correctAnswers = new List<int>();
 
         public CreateTest(String testName, String username)
         {
@@ -27,6 +21,7 @@ namespace Whos_that
             this.testName = testName;
             InitializeComponent();
             RulesPanel.Hide();
+            sameFilePanel.Hide();
         }
 
         // design
@@ -175,25 +170,13 @@ namespace Whos_that
                 MessageBox.Show("The amount of correct answers is waaay too little..");
                 return;
             }
-            //TEST:
             //save info to question List
-            int corrans = 0;
-            if (answerButtonA.Checked) corrans = 1;
-            if (answerButtonB.Checked) corrans = 2;
-            if (answerButtonC.Checked) corrans = 3;
-            if (answerButtonD.Checked) corrans = 4;
-            qList.Add(new Question(questionTextBox.Text, answerA.Text, answerB.Text, answerC.Text, answerD.Text, corrans));
-
-            // save info to lists
-            /*answersA.Add(answerA.Text);
-            answersB.Add(answerB.Text);
-            answersC.Add(answerC.Text);
-            answersD.Add(answerD.Text);
-            questions.Add(questionTextBox.Text);
-            if (answerButtonA.Checked) correctAnswers.Add(1);
-            if (answerButtonB.Checked) correctAnswers.Add(2);
-            if (answerButtonC.Checked) correctAnswers.Add(3);
-            if (answerButtonD.Checked) correctAnswers.Add(4);*/
+            int corrAns = 0;
+            if (answerButtonA.Checked) corrAns = 1;
+            if (answerButtonB.Checked) corrAns = 2;
+            if (answerButtonC.Checked) corrAns = 3;
+            if (answerButtonD.Checked) corrAns = 4;
+            qList.Add(new Question(questionTextBox.Text, answerA.Text, answerB.Text, answerC.Text, answerD.Text, corrAns));
 
             // clear the textboxes
             answerA.Clear();
@@ -202,29 +185,41 @@ namespace Whos_that
             answerD.Clear();
             questionTextBox.Clear();
         }
-
         private void testEnd_Click(object sender, EventArgs e)
         {
             DataManager dataManager = new DataManager(username, testName);
             if (!dataManager.fileExists())
             {
                 dataManager.createDirectory(dataManager.getDirectoryPath());
-                dataManager.writeToFile(dataManager.getFilePath(), qList);
-                //dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
+                dataManager.writeToFile(dataManager.getFilePath(), qList, true);
+                this.Close();
             }
-            else
+            if (dataManager.fileExists())
             {
-                MessageBox.Show("Such test exists, appending questions to it");
-                dataManager.writeToFile(dataManager.getFilePath(), qList);
-                //dataManager.writeToFile(dataManager.getFilePath(), questions, answersA, answersB, answersC, answersD, correctAnswers);
+                sameFilePanel.Show();
             }
+        }
+        private void AppendButton_Click(object sender, EventArgs e)
+        {
+            DataManager dataManager = new DataManager(username, testName);
+            dataManager.writeToFile(dataManager.getFilePath(), qList, true);
             this.Close();
         }
 
+        private void replaceButton_Click(object sender, EventArgs e)
+        {
+            DataManager dataManager = new DataManager(username, testName);
+            dataManager.writeToFile(dataManager.getFilePath(), qList, false);
+            this.Close();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
-
-//What if we put questions in separate objects, and create list of questions?
+//put questions in separate objects, and create list of questions
 class Question {
     public string questionText;
     public string answerA;
