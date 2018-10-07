@@ -9,8 +9,8 @@
   </Table>
   <Table Name="dbo.usersRelTable" Member="usersRelTables">
     <Type Name="usersRelTable">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="user1ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user1ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="user2ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="since" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -19,7 +19,7 @@
   </Table>
   <Table Name="dbo.usersTable" Member="usersTables">
     <Type Name="usersTable">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PassHash" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

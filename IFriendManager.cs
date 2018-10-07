@@ -8,7 +8,9 @@ namespace Whos_that
 {
     interface IFriendManager
     {
-        List<User> ListFriends(User usr);
-
+        List<User> ListFriends();
+        List<User> ListFriendRequests();
+        void AnswerFriendRq(int usrID, bool response);
+        void SendFriendRq(int usrID);
     }
 }

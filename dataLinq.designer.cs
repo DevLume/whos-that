@@ -214,7 +214,7 @@ namespace Whos_that
 		
 		private int _Id;
 		
-		private int _user1ID;
+		private System.Nullable<int> _user1ID;
 		
 		private System.Nullable<int> _user2ID;
 		
@@ -231,7 +231,7 @@ namespace Whos_that
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void Onuser1IDChanging(int value);
+    partial void Onuser1IDChanging(System.Nullable<int> value);
     partial void Onuser1IDChanged();
     partial void Onuser2IDChanging(System.Nullable<int> value);
     partial void Onuser2IDChanged();
@@ -258,7 +258,16 @@ namespace Whos_that
             this.received = received;
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+        public usersRelTable(int user1ID, int user2ID, bool approved, DateTime date, bool received)
+        {
+            this.user1ID = user1ID;
+            this.user2ID = user2ID;
+            this.approved = approved;
+            this.date = date;
+            this.received = received;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -278,8 +287,8 @@ namespace Whos_that
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user1ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int user1ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user1ID", DbType="Int")]
+		public System.Nullable<int> user1ID
 		{
 			get
 			{
@@ -440,16 +449,15 @@ namespace Whos_that
 			OnCreated();
 		}
 
-        public usersTable(int id, string name, string email, string passHash, string gender)
+        public usersTable(string name, string email, string passHash, string gender)
         {
-            Id = id;
             Name = name;
             Email = email;
             PassHash = passHash;
             Gender = gender;
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get

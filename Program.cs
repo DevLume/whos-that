@@ -20,10 +20,43 @@ namespace Whos_that
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //TEST SPACE (friendlist v.0.1)
+            //TEST SPACE (friendlist v.0.2)
 
             DataManager dataMan = new DataManager();
+            UserManager userMan = new UserManager();
+            User Alice = new User("Alice","AliceD@gmail.com","pasahas","Female");
+            User Bob = new User("Bob", "BobD@gmail.com", "pasahasz", "Male");
 
+            List<UserData> temp = new List<UserData>();
+
+            /*temp.Add(Alice.ConvertToUserData());
+            temp.Add(Bob.ConvertToUserData());*/
+
+            //            dataMan.InsertUserDataDB(temp);
+
+            /*List<UserData> alicedat = dataMan.GetUserDataDB("Alice");
+            int aliceID = 0;
+            foreach (UserData u in alicedat) {
+                aliceID = u.id;
+            }
+            Console.WriteLine(aliceID);
+
+            List<UserData> bobdat = dataMan.GetUserDataDB("Bob");
+            int bobID = 0;
+            foreach (UserData u in bobdat)
+            {
+                bobID = u.id;
+            }
+            Console.WriteLine(bobID);
+            Alice.id = aliceID;
+            Bob.id = bobID;
+         
+            Bob.SendFriendRq(aliceID);
+            Alice.AnswerFriendRq(6, true);*/
+            /*List<User> alicefrnd = alice.ListFriends();
+            foreach (User ur in alicefrnd) {
+                Console.WriteLine(ur.username);
+            }*/
             /*List<UserData> userDat = dataMan.GetUserDataDB("Bob");
 
             foreach (UserData dat in userDat)
@@ -47,20 +80,20 @@ namespace Whos_that
 
              dataMan.InsertUserRelDataDB(udata);
              */
-/*
-            UserManager userMan = new UserManager();
+            /*
+                        UserManager userMan = new UserManager();
 
-            List<User> list = userMan.ListOnlineUsers();
-            foreach (User u in list) {
-                Console.WriteLine(u.username);
-            }
+                        List<User> list = userMan.ListOnlineUsers();
+                        foreach (User u in list) {
+                            Console.WriteLine(u.username);
+                        }
 
-            User alice = userMan.GetUser(0);
-            User bob = userMan.GetUser("Bob");
+                        User alice = userMan.GetUser(0);
+                        User bob = userMan.GetUser("Bob");
 
-            Console.WriteLine(alice.username);
-            Console.WriteLine(bob.username);
-            */
+                        Console.WriteLine(alice.username);
+                        Console.WriteLine(bob.username);
+                        */
             /* var test1 = new dataLinqDataContext();
              var tt = test1.GetTable<testTable>();
              var q = from a in tt where a.Id == 2 select a;

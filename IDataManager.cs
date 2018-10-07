@@ -20,5 +20,7 @@ namespace Whos_that
         List<UserRelData> GetUserRelDataDB(int id);
         void InsertUserDataDB(List<UserData> data);
         void InsertUserRelDataDB(List<UserRelData> data);
+        void RemoveUserDataDB(List<UserData> data);
+        void RemoveUserRelDataDB(List<UserRelData> data);
     }
 }

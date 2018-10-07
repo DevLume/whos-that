@@ -40,13 +40,14 @@ namespace Whos_that
         {
             Directory.CreateDirectory(path);
         }
-        public void writeToFile(string path, List<Question> questions, bool append) {
-            if(append == false) File.Delete(path);
+        public void writeToFile(string path, List<Question> questions, bool append)
+        {
+            if (append == false) File.Delete(path);
             Console.WriteLine("Creating file in " + path);
             string insertedLine;
             for (int i = 0; i < questions.Count(); i++)
             {
-                insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB, 
+                insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB,
                     "|", questions[i].answerC, "|", questions[i].answerD, "|",
                     questions[i].correctAnswerNum, "\n");
                 try
@@ -69,8 +70,9 @@ namespace Whos_that
             {
                 fileRead = new System.IO.StreamReader(dataFilePath);
             }
-            catch (IOException e) {
-                Console.WriteLine("There was a problem with File", e.GetType().Name);   
+            catch (IOException e)
+            {
+                Console.WriteLine("There was a problem with File", e.GetType().Name);
                 return null;
             }
             string line;
@@ -102,7 +104,8 @@ namespace Whos_that
         public string[] GetDataLine(string username, string email)
         {
             if (username != null) GetDataLine(username);
-            else {
+            else
+            {
                 System.IO.StreamReader fileRead;
                 try
                 {
@@ -132,7 +135,7 @@ namespace Whos_that
                                     fileRead.Close();
                                     return searchResult;
                                 }
-                            } 
+                            }
                         }
                     }
                 }
@@ -154,7 +157,7 @@ namespace Whos_that
                 return false;
             }
             string line;
-           // bool foundSameLine = false; sitas variable kinda useless 
+            // bool foundSameLine = false; sitas variable kinda useless 
 
             if (File.Exists(dataFilePath))
             {
@@ -173,7 +176,8 @@ namespace Whos_that
                     }
                 }
             }
-            else {
+            else
+            {
                 Console.WriteLine("No File");
                 return false;
             }
@@ -186,11 +190,12 @@ namespace Whos_that
             {
                 File.AppendAllText(dataFilePath, insertedLine + Environment.NewLine);
             }
-            catch (System.IO.IOException e) {
+            catch (System.IO.IOException e)
+            {
                 Console.WriteLine("Could Not modify data.txt", e.GetType().Name);
                 return false;
             }
-            return true; 
+            return true;
         }
         //Database methods here:
         //TODO:Add exception handling
@@ -202,10 +207,11 @@ namespace Whos_that
             //get needed table from data context
             var usrTable = dataSpace.GetTable<usersTable>();
             //query and parsing here:
-
+          
             var q = from a in usrTable where a.Name == username select a;
-            foreach (var i in q) {
-                result.Add(new UserData (i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online));
+            foreach (var i in q)
+            {
+                result.Add(new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online));
             }
 
             //Close data context
@@ -263,10 +269,10 @@ namespace Whos_that
             var usrTable = dataSpace.GetTable<usersRelTable>();
             //query and parsing here:
 
-            var q = from a in usrTable where a.Id == id select a;
+            var q = from a in usrTable where a.user1ID == id select a;
             foreach (var i in q)
             {
-                result.Add(new UserRelData(i.Id, i.user1ID, (int)i.user2ID, (bool)i.approved, (DateTime)i.since, (bool)i.received));
+                result.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, (DateTime)i.since, (bool)i.received));
             }
 
             //Close data context
@@ -282,8 +288,9 @@ namespace Whos_that
             var usrTable = dataSpace.GetTable<usersTable>();
             usersTable tbl;
             //query and parsing here:
-            foreach (UserData userdat in data) {
-                tbl = new usersTable(userdat.id,userdat.name,
+            foreach (UserData userdat in data)
+            {
+                tbl = new usersTable(userdat.name,
                     userdat.email, userdat.passHash, userdat.gender);
                 dataSpace.usersTables.InsertOnSubmit(tbl);
             }
@@ -292,13 +299,14 @@ namespace Whos_that
             {
                 dataSpace.SubmitChanges();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
             }
 
             //Close data context
             dataSpace.Dispose();
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public void InsertUserRelDataDB(List<UserRelData> data)
@@ -311,7 +319,7 @@ namespace Whos_that
             //query and parsing here:
             foreach (UserRelData userdat in data)
             {
-                tbl = new usersRelTable(userdat.id, userdat.user1ID,
+                tbl = new usersRelTable(userdat.user1ID,
                     userdat.user2ID, userdat.approved, userdat.date, userdat.received);
                 dataSpace.usersRelTables.InsertOnSubmit(tbl);
             }
@@ -327,6 +335,64 @@ namespace Whos_that
 
             //Close data context
             dataSpace.Dispose();
-        }  
+        }
+
+        public void RemoveUserDataDB(List<UserData> data)
+        {
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parsing here:
+
+            foreach (UserData userdat in data) {
+                var q = from a in usrTable where a.Id == userdat.id select a;
+                foreach (var i in q) {
+                    usrTable.DeleteOnSubmit(i);
+                }
+            }
+
+            try
+            {
+                dataSpace.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            //Close data context
+            dataSpace.Dispose();
+        }
+
+        public void RemoveUserRelDataDB(List<UserRelData> data)
+        {
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersRelTable>();
+
+            //query and parsing here:
+            foreach (UserRelData userdat in data)
+            {
+                var q = from a in usrTable where a.Id == userdat.id select a;
+                foreach (var i in q)
+                {
+                    usrTable.DeleteOnSubmit(i);
+                }
+            }
+
+            try
+            {
+                dataSpace.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            //Close data context
+            dataSpace.Dispose();
+        }
     }
 }
