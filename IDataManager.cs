@@ -12,5 +12,13 @@ namespace Whos_that
         string[] GetDataLine(string username);
         string[] GetDataLine(string username, string email);
         bool InsertUniqueDataLine(string username, string email, string passwordHash);
+
+        //methods for DB
+        List<UserData> GetUserDataDB(string username);
+        List<UserData> GetUserDataDB(int id);
+        List<UserRelData> GetUserRelDataDB(string username);
+        List<UserRelData> GetUserRelDataDB(int id);
+        void InsertUserDataDB(List<UserData> data);
+        void InsertUserRelDataDB(List<UserRelData> data);
     }
 }

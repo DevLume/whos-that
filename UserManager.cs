@@ -5,40 +5,45 @@ using System.Text;
 
 namespace Whos_that
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
-        public static List<User> onlineUserList = new List<User>();
-
-        public static string[] ListOnlineUsers()
+        public User GetUser(int id)
         {
-            string[] usrListString = new string[onlineUserList.Count];
-            int i = 0;
-
-            using (IEnumerator<User> usrEnumerator = onlineUserList.GetEnumerator())
+            DataManager dataMan = new DataManager();
+            List<UserData> usr = dataMan.GetUserDataDB(id);
+            foreach (UserData userdat in usr)
             {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    usrListString[i] = usr.username;
-                }
+                return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
             }
-            return usrListString;
+            return null;
         }
 
-
-        public User GetUserByUsername(string username) {
+        public User GetUser(string username)
+        {
             DataManager dataMan = new DataManager();
-            string[] userData = dataMan.GetDataLine(username);
-
-            if (userData == null)
+            List<UserData> usr = dataMan.GetUserDataDB(username);
+            foreach (UserData userdat in usr)
             {
-                Console.WriteLine("No such user is found!");
-                return null;
+                return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
             }
-            else {
-                User usr = new User(userData[0], userData[2], userData[1]);
-                return usr;
-            }          
+            return null;
+        }
+
+        public List<User> ListOnlineUsers()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table 
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parse here:
+            var q = from a in usrTable where a.Online == true select a;
+
+            foreach (var i in q) {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash,i.Gender));
+            }
+
+            return result;
         }
     }
 }

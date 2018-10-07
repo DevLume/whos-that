@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Whos_that
 {
@@ -20,42 +21,95 @@ namespace Whos_that
             Application.SetCompatibleTextRenderingDefault(false);
 
             //TEST SPACE (friendlist v.0.1)
-            User usr1 = new User("Alice", "test", "mail@mail.com");
-            User usr2 = new User("Bob", "test1", "mail1@mail.com");
 
             DataManager dataMan = new DataManager();
 
-            dataMan.InsertUniqueDataLine("Alice", "mail@mail.com", "test");
-            dataMan.InsertUniqueDataLine("Bob", "mail1@mail.com", "test1");
+            /*List<UserData> userDat = dataMan.GetUserDataDB("Bob");
 
-            Console.WriteLine("Alice sends friend request to Bob...");
-            usr1.SendFriendRequest(usr2);
+            foreach (UserData dat in userDat)
+            {
+                Console.WriteLine(dat.ToString());
+            }
 
-            Console.WriteLine("Alice checks her sent friend requests...");
-            usr1.ListSentFriendRequests();
+            userDat = dataMan.GetUserDataDB(0);
 
-            Console.WriteLine("Bob checks his friend Requests...");
-            usr2.ListReceivedFriendRequests();
+            foreach (UserData dat in userDat)
+            {
+                Console.WriteLine(dat.ToString());
+            }*/
 
-            Console.WriteLine("Bob accepts friend request from Alice");
-            usr2.ReceiveRequest(usr1, true);
+            /* List<UserRelData> udata = new List<UserRelData>();
 
-            Console.WriteLine("Alice checks her sent friend requests...");
-            usr1.ListSentFriendRequests();
+             udata.Add(new UserRelData(0, 1, 2, false, DateTime.Today, true));
+             udata.Add(new UserRelData(1, 2, 4, false, DateTime.Today, true));
+             udata.Add(new UserRelData(2, 5, 5, false, DateTime.Today, true));
+             udata.Add(new UserRelData(3, 3, 6, false, DateTime.Today, true));
 
-            Console.WriteLine("Bob checks his friend Requests...");
-            usr2.ListReceivedFriendRequests();
+             dataMan.InsertUserRelDataDB(udata);
+             */
 
-            Console.WriteLine("Bob checks his friendlist...");
-            usr2.ListAllFriends();
+            UserManager userMan = new UserManager();
 
-            Console.WriteLine("Alice checks her friendlist...");
-            usr1.ListAllFriends();
+            List<User> list = userMan.ListOnlineUsers();
+            foreach (User u in list) {
+                Console.WriteLine(u.username);
+            }
+
+            User alice = userMan.GetUser(0);
+            User bob = userMan.GetUser("Bob");
+
+            Console.WriteLine(alice.username);
+            Console.WriteLine(bob.username);
+
+            /* var test1 = new dataLinqDataContext();
+             var tt = test1.GetTable<testTable>();
+             var q = from a in tt where a.Id == 2 select a;
+
+             foreach (var j in q) {
+                 Console.WriteLine(j.Name);
+             }
+             test1.Dispose();*/
+            //TEST LINQ
+            /* 
+             var test = new dataLinqDataContext(); // Creating data context like: .dbml file name + DataContext()     
+             var g = from a in test.testTables select new{ text1 = a.Name, text2 = a.Age }; // query
+             foreach (var i in g) {
+                 Console.WriteLine(i.text1 +" "+ i.text2.ToString());
+             }
+             int sum = (int)g.AsEnumerable().Sum(o=>o.text2); // dis will return sum of years (just for test purposes)                     
+             Console.WriteLine("Sum of ages: " + sum);
+
+             //data insertion:
+            /* testTable pers = new testTable(3,"Toby",49);
+             test.testTables.InsertOnSubmit(pers);
+             try {
+                 test.SubmitChanges();
+             } catch (Exception e) {
+                 Console.WriteLine(e);
+             }*/
+            /*
+            Console.WriteLine("After Insertion:");
+            g = from a in test.testTables select new { text1 = a.Name, text2 = a.Age }; // query
+            foreach (var i in g)
+            {
+                Console.WriteLine(i.text1 + " " + i.text2.ToString());
+            }
+            sum = (int)g.AsEnumerable().Sum(o => o.text2); // dis will return sum of years (just for test purposes)                     
+            Console.WriteLine("Sum of ages: " + sum);
+
+            string nams = "Toby";
+
+            var f = from a in test.testTables where a.Name == nams select new { o = a.Age };
+            foreach (var i in f) {
+                Console.WriteLine(i.o);
+            }
+            */
             //---------
 
-            LoginForm logForm = new LoginForm();
+            //LoginForm logForm = new LoginForm();
 
-            Application.Run(logForm);
+            //Application.Run(logForm);
+            Application.Run();
         }
     }
 }

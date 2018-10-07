@@ -78,8 +78,8 @@ namespace Whos_that
             string dehashedPass = DehashPassword(temp[2], temp[0]);
 
             if (String.Compare(dehashedPass, password).CompareTo(0) == 0) {
-                User usr = new User(temp[0], temp[2], temp[1]);
-                UserManager.onlineUserList.Add(usr);
+               // User usr = new User(temp[0], temp[2], temp[1]);
+                //UserManager.onlineUserList.Add(usr);
                 Console.WriteLine("Login was successful!");
                 return true;
             }
