@@ -10,7 +10,7 @@ namespace Whos_that
 {
     public class User : IEquatable<User>
     {
-        private int id; //public or private?
+        private int id; 
         public string username { get; set; }
         public string gender { get; set; }
 

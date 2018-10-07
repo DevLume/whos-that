@@ -47,7 +47,7 @@ namespace Whos_that
 
              dataMan.InsertUserRelDataDB(udata);
              */
-
+/*
             UserManager userMan = new UserManager();
 
             List<User> list = userMan.ListOnlineUsers();
@@ -60,7 +60,7 @@ namespace Whos_that
 
             Console.WriteLine(alice.username);
             Console.WriteLine(bob.username);
-
+            */
             /* var test1 = new dataLinqDataContext();
              var tt = test1.GetTable<testTable>();
              var q = from a in tt where a.Id == 2 select a;
