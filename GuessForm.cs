@@ -80,11 +80,19 @@ namespace Whos_that
         {
             DataManager dataManager = new DataManager(usernameToGuess, testName);
             lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
-            lineAmount = lines.Count();
-            QuestionAmountLabel.Text += lineAmount.ToString();
-            questionNumber.Text += "1";
-            panel2.Hide();
-            loadTest();
+
+            try
+            {               
+                lineAmount = lines.Count(); //dis line causes nullptr exception
+                QuestionAmountLabel.Text += lineAmount.ToString();
+                questionNumber.Text += "1";
+                panel2.Hide();
+                loadTest();
+            }
+            catch (ArgumentNullException ex) {
+                Console.WriteLine(ex);
+                MessageBox.Show("No such test exists, try again");             
+            }           
         }
         public GuessForm(string testName, string username, string usernameToGuess)
         {
