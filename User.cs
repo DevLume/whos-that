@@ -10,7 +10,7 @@ namespace Whos_that
 {
     public class User : IEquatable<User>, IFriendManager
     {
-        public int id; 
+        private int id; 
         public string username { get; set; }
         public string gender { get; set; }
 
@@ -42,9 +42,14 @@ namespace Whos_that
             this.username = username;
             passwordHash = passHash;
             this.email = email;
-            receivedFriendRequests = new List<User>();
+
+            /*receivedFriendRequests = new List<User>();
             sentFriendRequests = new List<User>();
-            friends = new List<User>();
+            friends = new List<User>();*/
+        }
+
+        public int GetId() {
+            return id;
         }
 
         public void SendFriendRequest(User usr) {      
@@ -113,7 +118,7 @@ namespace Whos_that
         }
 
         public UserData ConvertToUserData() {
-            return new UserData(id, username, email, passwordHash, gender, false);
+            return new UserData(0, username, email, passwordHash, null, false);
         }
 
         public bool Equals(User other)
@@ -146,7 +151,7 @@ namespace Whos_that
         public List<User> ListFriends()
         {
             List<User> result = new List<User>();
-            DataManager dataMan = new DataManager();
+            DataBaseManager dataMan = new DataBaseManager();
             UserManager userMan = new UserManager();
             List<UserRelData> rel = dataMan.GetUserRelDataDB(id);
 
@@ -163,7 +168,7 @@ namespace Whos_that
         public List<User> ListFriendRequests()
         {
             List<User> result = new List<User>();
-            DataManager dataMan = new DataManager();
+            DataBaseManager dataMan = new DataBaseManager();
             UserManager userMan = new UserManager();
             List<UserRelData> rel = dataMan.GetUserRelDataDB(id);
 
@@ -179,31 +184,30 @@ namespace Whos_that
         }
 
         public void AnswerFriendRq(int usrID, bool response)
-        {
-            DataManager dataMan = new DataManager();          
+        {            
+            DataBaseManager dataMan = new DataBaseManager();          
             var dataSpace = new dataLinqDataContext();
             var usrTable = dataSpace.GetTable<usersRelTable>();
             if (!response)
             {
                 List<UserRelData> reldat = new List<UserRelData>();
-                var q = from a in usrTable where a.user2ID == usrID select a;
+                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
                 foreach (var i in q)
                 {
-                    reldat.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, (DateTime)i.since, (bool)i.received));
+                    reldat.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, DateTime.Today, (bool)i.received));
                 }
 
                 dataMan.RemoveUserRelDataDB(reldat);
             }
             else {
-                var q = from a in usrTable where a.user2ID == usrID select a;
-                int id1;
+                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
                 List<UserRelData> reldat = new List<UserRelData>();
                 foreach (var i in q) {
                     i.approved = true;
                     i.received = false;
                     i.since = DateTime.Today;
-                    id1 = (int)i.user1ID;                   
-                    reldat.Add(new UserRelData(0, usrID, id, true, DateTime.Today, false));                    
+                    reldat.Add(new UserRelData(i.Id, usrID, id, true, DateTime.Today, false));
+                    dataMan.InsertUserRelDataDB(reldat);
                 }
                 try
                 {
@@ -211,9 +215,7 @@ namespace Whos_that
                 }
                 catch (Exception e) {
                     Console.WriteLine(e);
-                }
-
-                dataMan.InsertUserRelDataDB(reldat);
+                }               
             }        
         }
 
@@ -222,7 +224,7 @@ namespace Whos_that
             List<UserRelData> reldat = new List<UserRelData>();
             reldat.Add(new UserRelData(0,usrID,id,false,DateTime.Today,true));
 
-            DataManager dataMan = new DataManager();
+            DataBaseManager dataMan = new DataBaseManager();
 
             dataMan.InsertUserRelDataDB(reldat);
         }

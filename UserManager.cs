@@ -9,24 +9,18 @@ namespace Whos_that
     {
         public User GetUser(int id)
         {
-            DataManager dataMan = new DataManager();
-            List<UserData> usr = dataMan.GetUserDataDB(id);
-            foreach (UserData userdat in usr)
-            {
-                return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
-            }
-            return null;
+            DataBaseManager dataMan = new DataBaseManager();
+            UserData userdat = dataMan.GetUserDataDB(id);
+           
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);                    
         }
 
         public User GetUser(string username)
         {
-            DataManager dataMan = new DataManager();
-            List<UserData> usr = dataMan.GetUserDataDB(username);
-            foreach (UserData userdat in usr)
-            {
-                return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
-            }
-            return null;
+            DataBaseManager dataMan = new DataBaseManager();
+            UserData userdat = dataMan.GetUserDataDB(username);
+
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
 
         public List<User> ListOnlineUsers()

@@ -33,5 +33,16 @@ namespace Whos_that.Properties {
                 return ((string)(this["dataConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DKETPGE\\SQLEXPRESS01;Initial Catalog=data;Integrated Security" +
+            "=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        public string dataConnectionString {
+            get {
+                return ((string)(this["dataConnectionString"]));
+            }
+        }
     }
 }

@@ -22,17 +22,35 @@ namespace Whos_that
 
             //TEST SPACE (friendlist v.0.2)
 
-            DataManager dataMan = new DataManager();
+            DataBaseManager dataMan = new DataBaseManager();
             UserManager userMan = new UserManager();
-            User Alice = new User("Alice","AliceD@gmail.com","pasahas","Female");
+          
+            User Bob = userMan.GetUser("Bob");
+            User Alice = userMan.GetUser("Alice");
+            User Toby = userMan.GetUser("Toby");
+
+            Alice.SendFriendRq(Bob.GetId());
+            //Bob.SendFriendRq(Toby.GetId());
+
+            /*Toby.AnswerFriendRq(Bob.GetId(), false);
+            Bob.AnswerFriendRq(Alice.GetId(), true);*/
+
+            Bob.AnswerFriendRq(Alice.GetId(),true);
+
+            /*User Toby = new User("Toby","lux","luxxul@nasxul.cr");
+            UserData TobyData = Toby.ConvertToUserData();
+            List<UserData> udat = new List<UserData>();
+            udat.Add(TobyData);
+            dataMan.InsertUserDataDB(udat);
+            /*User Alice = new User("Alice","AliceD@gmail.com","pasahas","Female");
             User Bob = new User("Bob", "BobD@gmail.com", "pasahasz", "Male");
 
             List<UserData> temp = new List<UserData>();
 
-            /*temp.Add(Alice.ConvertToUserData());
+            temp.Add(Alice.ConvertToUserData());
             temp.Add(Bob.ConvertToUserData());*/
 
-            //            dataMan.InsertUserDataDB(temp);
+            // dataMan.InsertUserDataDB(temp);
 
             /*List<UserData> alicedat = dataMan.GetUserDataDB("Alice");
             int aliceID = 0;
@@ -40,6 +58,7 @@ namespace Whos_that
                 aliceID = u.id;
             }
             Console.WriteLine(aliceID);
+            //User Alice = 
 
             List<UserData> bobdat = dataMan.GetUserDataDB("Bob");
             int bobID = 0;
@@ -48,11 +67,17 @@ namespace Whos_that
                 bobID = u.id;
             }
             Console.WriteLine(bobID);
-            Alice.id = aliceID;
-            Bob.id = bobID;
-         
-            Bob.SendFriendRq(aliceID);
-            Alice.AnswerFriendRq(6, true);*/
+            /*Alice.id = aliceID;
+            Bob.id = bobID;*/
+
+            /*User AliceD = userMan.GetUser("Bob");
+            Console.WriteLine(AliceD.id);
+            Console.WriteLine(AliceD.username);
+            //Console.WriteLine(AliceD.email);
+            Console.WriteLine(AliceD.gender);
+            //Console.WriteLine(AliceD.passHash);
+            /*Bob.SendFriendRq(aliceID);
+            Alice.AnswerFriendRq(bobID, true);*/
             /*List<User> alicefrnd = alice.ListFriends();
             foreach (User ur in alicefrnd) {
                 Console.WriteLine(ur.username);

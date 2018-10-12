@@ -61,7 +61,7 @@ namespace Whos_that
 
         public bool RemindPassword(string email)
         {
-            DataManager dataMan = new DataManager();
+            DataFileManager dataMan = new DataFileManager();
             string[] temp = dataMan.GetDataLine(null, email);
 
             if (temp != null)

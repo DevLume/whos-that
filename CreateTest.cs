@@ -187,7 +187,7 @@ namespace Whos_that
         }
         private void testEnd_Click(object sender, EventArgs e)
         {
-            DataManager dataManager = new DataManager(username, testName);
+            DataFileManager dataManager = new DataFileManager(username, testName);
             if (!dataManager.fileExists())
             {
                 dataManager.createDirectory(dataManager.getDirectoryPath());
@@ -201,14 +201,14 @@ namespace Whos_that
         }
         private void AppendButton_Click(object sender, EventArgs e)
         {
-            DataManager dataManager = new DataManager(username, testName);
+            DataFileManager dataManager = new DataFileManager(username, testName);
             dataManager.writeToFile(dataManager.getFilePath(), qList, true);
             this.Close();
         }
 
         private void replaceButton_Click(object sender, EventArgs e)
         {
-            DataManager dataManager = new DataManager(username, testName);
+            DataFileManager dataManager = new DataFileManager(username, testName);
             dataManager.writeToFile(dataManager.getFilePath(), qList, false);
             this.Close();
         }

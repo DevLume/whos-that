@@ -30,9 +30,6 @@ namespace Whos_that
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InserttestTable(testTable instance);
-    partial void UpdatetestTable(testTable instance);
-    partial void DeletetestTable(testTable instance);
     partial void InsertusersRelTable(usersRelTable instance);
     partial void UpdateusersRelTable(usersRelTable instance);
     partial void DeleteusersRelTable(usersRelTable instance);
@@ -42,7 +39,7 @@ namespace Whos_that
     #endregion
 		
 		public dataLinqDataContext() : 
-				base(global::Whos_that.Properties.Settings.Default.dataConnectionString1, mappingSource)
+				base(global::Whos_that.Properties.Settings.Default.dataConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,14 +68,6 @@ namespace Whos_that
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<testTable> testTables
-		{
-			get
-			{
-				return this.GetTable<testTable>();
-			}
-		}
-		
 		public System.Data.Linq.Table<usersRelTable> usersRelTables
 		{
 			get
@@ -92,116 +81,6 @@ namespace Whos_that
 			get
 			{
 				return this.GetTable<usersTable>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.testTable")]
-	public partial class testTable : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _Age;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAgeChanging(System.Nullable<int> value);
-    partial void OnAgeChanged();
-    #endregion
-		
-		public testTable()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int")]
-		public System.Nullable<int> Age
-		{
-			get
-			{
-				return this._Age;
-			}
-			set
-			{
-				if ((this._Age != value))
-				{
-					this.OnAgeChanging(value);
-					this.SendPropertyChanging();
-					this._Age = value;
-					this.SendPropertyChanged("Age");
-					this.OnAgeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -223,7 +102,7 @@ namespace Whos_that
 		private System.Nullable<System.DateTime> _since;
 		
 		private System.Nullable<bool> _received;
-        private DateTime date;
+       //private DateTime date;
 
         #region Extensibility Method Definitions
         partial void OnLoaded();
@@ -248,26 +127,16 @@ namespace Whos_that
 			OnCreated();
 		}
 
-        public usersRelTable(int id, int user1ID, int user2ID, bool approved, DateTime date, bool received)
-        {
-            Id = id;
-            this.user1ID = user1ID;
-            this.user2ID = user2ID;
-            this.approved = approved;
-            this.date = date;
-            this.received = received;
-        }
-
         public usersRelTable(int user1ID, int user2ID, bool approved, DateTime date, bool received)
         {
             this.user1ID = user1ID;
             this.user2ID = user2ID;
             this.approved = approved;
-            this.date = date;
+            this.since = date;
             this.received = received;
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -449,15 +318,16 @@ namespace Whos_that
 			OnCreated();
 		}
 
-        public usersTable(string name, string email, string passHash, string gender)
+        public usersTable(string name, string email, string passHash, string gender, bool online)
         {
             Name = name;
             Email = email;
             PassHash = passHash;
             Gender = gender;
+            Online = online;
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get

@@ -109,12 +109,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
+    <Compile Include="DataBaseManager.cs" />
+    <Compile Include="DataFileManager.cs" />
     <Compile Include="dataLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dataLinq.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DataManager.cs" />
     <Compile Include="ForgottenPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

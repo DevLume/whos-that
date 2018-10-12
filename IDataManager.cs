@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    interface IDataManager
-    {
-        //Change return values when not operating on strings only
-        string[] GetDataLine(string username);
-        string[] GetDataLine(string username, string email);
-        bool InsertUniqueDataLine(string username, string email, string passwordHash);
+    interface IDataManager : IDataBaseManager, IDataFileManager
+    { }
 
+
+    interface IDataBaseManager
+    {
         //methods for DB
-        List<UserData> GetUserDataDB(string username);
-        List<UserData> GetUserDataDB(int id);
+        //TODO: User Data must be returned as User object
+        UserData GetUserDataDB(string username);
+        UserData GetUserDataDB(int id);
         List<UserRelData> GetUserRelDataDB(string username);
         List<UserRelData> GetUserRelDataDB(int id);
         void InsertUserDataDB(List<UserData> data);
         void InsertUserRelDataDB(List<UserRelData> data);
         void RemoveUserDataDB(List<UserData> data);
-        void RemoveUserRelDataDB(List<UserRelData> data);
+        void RemoveUserRelDataDB(List<UserRelData> data);      
+    }
+
+    interface IDataFileManager
+    {
+        //Change return values when not operating on strings only
+        string[] GetDataLine(string username);
+        string[] GetDataLine(string username, string email);
+        bool InsertUniqueDataLine(string username, string email, string passwordHash);
     }
 }

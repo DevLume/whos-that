@@ -10,7 +10,7 @@ namespace Whos_that
 {
     public class AccountManager : SecurityManager
     {
-        DataManager dataMan = new DataManager();
+        DataFileManager dataMan = new DataFileManager();
    
         public bool CreateAccount(string username, string password, string email)
         {
