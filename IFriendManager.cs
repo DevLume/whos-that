@@ -10,7 +10,7 @@ namespace Whos_that
     {
         List<User> ListFriends();
         List<User> ListFriendRequests();
-        void AnswerFriendRq(int usrID, bool response);
-        void SendFriendRq(int usrID);
+        bool AnswerFriendRq(int usrID, bool response);
+        bool SendFriendRq(int usrID);
     }
 }

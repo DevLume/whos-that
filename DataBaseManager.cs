@@ -98,9 +98,10 @@ namespace Whos_that
             var usrTable = dataSpace.GetTable<usersTable>();
             usersTable tbl;
             bool online = false;
+
             //query and parsing here:
             foreach (UserData userdat in data)
-            {
+            {                
                 tbl = new usersTable(userdat.name,
                     userdat.email, userdat.passHash, userdat.gender, online);
                 dataSpace.usersTables.InsertOnSubmit(tbl);

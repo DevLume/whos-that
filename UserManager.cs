@@ -39,5 +39,19 @@ namespace Whos_that
 
             return result;
         }
+
+        public bool NewUser(User usr) {
+            DataBaseManager dataMan = new DataBaseManager();
+            User temp = GetUser(usr.username);
+            if (temp.GetId() == 0)
+            {
+                Console.WriteLine("Inserting new user " + usr.username);
+                List<UserData> udata = new List<UserData>();
+                udata.Add(usr.ConvertToUserData());
+                dataMan.InsertUserDataDB(udata);
+                return true;
+            }
+            else return false;
+        }
     }
 }

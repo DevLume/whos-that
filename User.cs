@@ -183,11 +183,20 @@ namespace Whos_that
             return result;
         }
 
-        public void AnswerFriendRq(int usrID, bool response)
+        public bool AnswerFriendRq(int usrID, bool response)
         {            
             DataBaseManager dataMan = new DataBaseManager();          
             var dataSpace = new dataLinqDataContext();
             var usrTable = dataSpace.GetTable<usersRelTable>();
+
+            var s = from a in usrTable where a.user1ID == usrID && a.user2ID == id select a;
+            foreach (var i in s) {
+                if (!(bool)i.received) {
+                    Console.WriteLine("Such relationship already exists");
+                    return false;
+                }
+            }
+
             if (!response)
             {
                 List<UserRelData> reldat = new List<UserRelData>();
@@ -213,20 +222,40 @@ namespace Whos_that
                 {
                     dataSpace.SubmitChanges();
                 }
-                catch (Exception e) {
+                catch (Exception e) {             
                     Console.WriteLine(e);
+                    return false;
                 }               
-            }        
+            }
+            return true;
         }
 
-        public void SendFriendRq(int usrID)
+        public bool SendFriendRq(int usrID)
         {
-            List<UserRelData> reldat = new List<UserRelData>();
-            reldat.Add(new UserRelData(0,usrID,id,false,DateTime.Today,true));
-
+            if (usrID == id) {
+                Console.WriteLine("friend request inception");
+                return false;
+            }
             DataBaseManager dataMan = new DataBaseManager();
+            List<UserRelData> temp = dataMan.GetUserRelDataDB(usrID);
+
+            foreach (UserRelData tmp in temp) {
+                if (tmp.user1ID == usrID && tmp.user2ID == id) {
+                    Console.WriteLine("Such relationship already exists");
+                    return false;
+                }
+                else if (tmp.user2ID == usrID && tmp.user1ID == id)
+                {
+                    Console.WriteLine("Such relationship already exists");
+                    return false;
+                }
+            }
+
+            List<UserRelData> reldat = new List<UserRelData>();
+            reldat.Add(new UserRelData(0, usrID, id, false, DateTime.Today, true));
 
             dataMan.InsertUserRelDataDB(reldat);
+            return true;
         }
     }
 }

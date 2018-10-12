@@ -24,18 +24,26 @@ namespace Whos_that
 
             DataBaseManager dataMan = new DataBaseManager();
             UserManager userMan = new UserManager();
-          
-            User Bob = userMan.GetUser("Bob");
-            User Alice = userMan.GetUser("Alice");
-            User Toby = userMan.GetUser("Toby");
 
-            Alice.SendFriendRq(Bob.GetId());
+            userMan.NewUser(new User("Bob", "bob", "bobmail@mob.pop"));
+
+            User Alice = userMan.GetUser("Alice");
+            User Bob = userMan.GetUser("Bob");
+
+            if (!Alice.SendFriendRq(Bob.GetId())) {
+                Console.WriteLine("No rq sent");
+            }
+
+            Bob.AnswerFriendRq(Alice.GetId(), true);           
+
+
+            //Alice.SendFriendRq(Bob.GetId());
             //Bob.SendFriendRq(Toby.GetId());
 
             /*Toby.AnswerFriendRq(Bob.GetId(), false);
             Bob.AnswerFriendRq(Alice.GetId(), true);*/
 
-            Bob.AnswerFriendRq(Alice.GetId(),true);
+            //Bob.AnswerFriendRq(Alice.GetId(),true);
 
             /*User Toby = new User("Toby","lux","luxxul@nasxul.cr");
             UserData TobyData = Toby.ConvertToUserData();
