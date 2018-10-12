@@ -44,13 +44,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.createTestContinue1 = new System.Windows.Forms.Button();
             this.guessPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.guessUsername = new System.Windows.Forms.TextBox();
             this.guessContinue = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.statisticsPanel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.usernameStatistics = new System.Windows.Forms.TextBox();
+            this.continueStatistics = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.createTestPanel1.SuspendLayout();
             this.guessPanel.SuspendLayout();
+            this.statisticsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -196,7 +202,6 @@
             // createTestPanel1
             // 
             this.createTestPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
-            this.createTestPanel1.Controls.Add(this.guessPanel);
             this.createTestPanel1.Controls.Add(this.textBoxTestName);
             this.createTestPanel1.Controls.Add(this.label1);
             this.createTestPanel1.Controls.Add(this.createTestContinue1);
@@ -210,7 +215,7 @@
             this.textBoxTestName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
             this.textBoxTestName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTestName.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxTestName.Location = new System.Drawing.Point(264, 186);
+            this.textBoxTestName.Location = new System.Drawing.Point(264, 188);
             this.textBoxTestName.Name = "textBoxTestName";
             this.textBoxTestName.Size = new System.Drawing.Size(230, 28);
             this.textBoxTestName.TabIndex = 4;
@@ -233,7 +238,7 @@
             this.createTestContinue1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createTestContinue1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createTestContinue1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.createTestContinue1.Location = new System.Drawing.Point(264, 272);
+            this.createTestContinue1.Location = new System.Drawing.Point(264, 271);
             this.createTestContinue1.Name = "createTestContinue1";
             this.createTestContinue1.Size = new System.Drawing.Size(230, 34);
             this.createTestContinue1.TabIndex = 0;
@@ -248,10 +253,46 @@
             this.guessPanel.Controls.Add(this.guessUsername);
             this.guessPanel.Controls.Add(this.guessContinue);
             this.guessPanel.Controls.Add(this.label3);
-            this.guessPanel.Location = new System.Drawing.Point(0, 0);
+            this.guessPanel.Location = new System.Drawing.Point(156, 34);
             this.guessPanel.Name = "guessPanel";
             this.guessPanel.Size = new System.Drawing.Size(774, 481);
             this.guessPanel.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label4.Location = new System.Drawing.Point(272, 158);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 19);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Enter their username";
+            // 
+            // guessUsername
+            // 
+            this.guessUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.guessUsername.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessUsername.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.guessUsername.Location = new System.Drawing.Point(235, 201);
+            this.guessUsername.Name = "guessUsername";
+            this.guessUsername.Size = new System.Drawing.Size(230, 28);
+            this.guessUsername.TabIndex = 6;
+            this.guessUsername.TextChanged += new System.EventHandler(this.guessUsername_TextChanged);
+            // 
+            // guessContinue
+            // 
+            this.guessContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.guessContinue.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessContinue.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.guessContinue.Location = new System.Drawing.Point(235, 253);
+            this.guessContinue.Name = "guessContinue";
+            this.guessContinue.Size = new System.Drawing.Size(230, 34);
+            this.guessContinue.TabIndex = 5;
+            this.guessContinue.Text = "Continue";
+            this.guessContinue.UseVisualStyleBackColor = true;
+            this.guessContinue.Click += new System.EventHandler(this.guessContinue_Click);
             // 
             // label3
             // 
@@ -265,41 +306,65 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Whose test do you wish to take?";
             // 
-            // guessUsername
+            // statisticsPanel
             // 
-            this.guessUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
-            this.guessUsername.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guessUsername.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.guessUsername.Location = new System.Drawing.Point(235, 189);
-            this.guessUsername.Name = "guessUsername";
-            this.guessUsername.Size = new System.Drawing.Size(230, 28);
-            this.guessUsername.TabIndex = 6;
-            this.guessUsername.TextChanged += new System.EventHandler(this.guessUsername_TextChanged);
+            this.statisticsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.statisticsPanel.Controls.Add(this.label5);
+            this.statisticsPanel.Controls.Add(this.label6);
+            this.statisticsPanel.Controls.Add(this.usernameStatistics);
+            this.statisticsPanel.Controls.Add(this.continueStatistics);
+            this.statisticsPanel.Location = new System.Drawing.Point(156, 34);
+            this.statisticsPanel.Name = "statisticsPanel";
+            this.statisticsPanel.Size = new System.Drawing.Size(774, 481);
+            this.statisticsPanel.TabIndex = 8;
             // 
-            // guessContinue
+            // label5
             // 
-            this.guessContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.guessContinue.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guessContinue.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.guessContinue.Location = new System.Drawing.Point(235, 255);
-            this.guessContinue.Name = "guessContinue";
-            this.guessContinue.Size = new System.Drawing.Size(230, 34);
-            this.guessContinue.TabIndex = 5;
-            this.guessContinue.Text = "Continue";
-            this.guessContinue.UseVisualStyleBackColor = true;
-            this.guessContinue.Click += new System.EventHandler(this.guessContinue_Click);
+            this.label5.AutoSize = true;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label5.Location = new System.Drawing.Point(272, 162);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(150, 19);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Enter their username";
             // 
-            // label4
+            // label6
             // 
-            this.label4.AutoSize = true;
-            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Location = new System.Drawing.Point(272, 164);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 19);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Enter their username";
+            this.label6.AutoSize = true;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label6.Location = new System.Drawing.Point(163, 102);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(383, 37);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Whose test did you take?";
+            // 
+            // usernameStatistics
+            // 
+            this.usernameStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.usernameStatistics.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameStatistics.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.usernameStatistics.Location = new System.Drawing.Point(235, 204);
+            this.usernameStatistics.Name = "usernameStatistics";
+            this.usernameStatistics.Size = new System.Drawing.Size(230, 28);
+            this.usernameStatistics.TabIndex = 6;
+            this.usernameStatistics.TextChanged += new System.EventHandler(this.usernameStatistics_TextChanged);
+            // 
+            // continueStatistics
+            // 
+            this.continueStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.continueStatistics.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.continueStatistics.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.continueStatistics.Location = new System.Drawing.Point(235, 255);
+            this.continueStatistics.Name = "continueStatistics";
+            this.continueStatistics.Size = new System.Drawing.Size(230, 34);
+            this.continueStatistics.TabIndex = 5;
+            this.continueStatistics.Text = "Continue";
+            this.continueStatistics.UseVisualStyleBackColor = true;
+            this.continueStatistics.Click += new System.EventHandler(this.continueStatistics_Click);
             // 
             // Mainscreen
             // 
@@ -308,6 +373,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(198)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(942, 527);
+            this.Controls.Add(this.statisticsPanel);
+            this.Controls.Add(this.guessPanel);
             this.Controls.Add(this.createTestPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -320,6 +387,8 @@
             this.createTestPanel1.PerformLayout();
             this.guessPanel.ResumeLayout(false);
             this.guessPanel.PerformLayout();
+            this.statisticsPanel.ResumeLayout(false);
+            this.statisticsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -346,5 +415,10 @@
         private System.Windows.Forms.TextBox guessUsername;
         private System.Windows.Forms.Button guessContinue;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel statisticsPanel;
+        private System.Windows.Forms.TextBox usernameStatistics;
+        private System.Windows.Forms.Button continueStatistics;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

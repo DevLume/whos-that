@@ -11,41 +11,103 @@ namespace Whos_that
     class DataManager : IDataManager
     {
         // DataManager methods for saving Tests
-
-        string userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, @"\user tests");
-        private string folderName, testName;
+        private string folderName, testName, usernameToGuess, userDirectoryPath;
+        const string testFileName = @"\user tests", resultFileName = @"\user answers";
         public DataManager()
         {
-
+            userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, testFileName);
         }
         public DataManager(string folderName, string testName)
         {
             this.folderName = folderName;
             this.testName = testName;
             this.testName += ".txt";
+            userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, testFileName);
+        }
+        public DataManager(string folderName, string testName, string usernameToGuess)
+        {
+            this.usernameToGuess = usernameToGuess;
+            this.folderName = folderName;
+            this.testName = testName;
+            this.testName += ".txt";
+            userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, resultFileName);
         }
         public string getDirectoryPath()
         {
             return Path.Combine(userDirectoryPath, folderName);
         }
+        public string getDirectoryPath(string usernameToGuess)
+        {
+            return Path.Combine(Path.Combine(userDirectoryPath, folderName), usernameToGuess);
+        }
         public string getFilePath()
         {
             return Path.Combine(Path.Combine(userDirectoryPath, folderName), testName);
+        }
+        public string getFilePath(string usernameToGuess)
+        {
+            return Path.Combine(Path.Combine(Path.Combine(userDirectoryPath, folderName), usernameToGuess), testName);
         }
         public bool fileExists()
         {
             return File.Exists(Path.Combine(Path.Combine(userDirectoryPath, folderName), testName));
         }
+        public bool fileExists(string usernameToGuess)
+        {
+            return File.Exists(Path.Combine(Path.Combine(Path.Combine(userDirectoryPath, folderName), usernameToGuess), testName));
+        }
         public void createDirectory(string path)
         {
             Directory.CreateDirectory(path);
         }
-        public void writeToFile(string path, List<Question> questions, bool append) {
-            if(append == false) File.Delete(path);
+        public void saveAnswers(string path, int correctAnswers)
+        {
+               try
+                {
+                    File.AppendAllText(path, correctAnswers + Environment.NewLine);
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("Could Not modify" + testName + ".txt", e.GetType().Name);
+                }
+        }
+        public int[] getAnswers(string path)
+        {
+            StreamReader fileRead;
+            try
+            {
+                fileRead = new System.IO.StreamReader(path);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was a problem with File", e.GetType().Name);
+                return null;
+            }
+            int[] results = new int[3];
+            string temp;
+            if (File.Exists(path))
+            {
+                using (FileStream fs = File.OpenRead(path))
+                {
+                    while ((temp = fileRead.ReadLine()) != null)
+                    {
+                        if (Convert.ToInt16(temp) > results[0]) results[0] = Convert.ToInt16(temp);
+                        results[1]++;
+                        results[2] += Convert.ToInt16(temp);
+                    }
+                }
+            }
+            fileRead.Close();
+            results[2] /= results[1];
+            return results;
+        }
+        public void writeToFile(string path, List<Question> questions, bool append)
+        {
+            if (append == false) File.Delete(path);
             string insertedLine;
             for (int i = 0; i < questions.Count(); i++)
             {
-                insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB, 
+                insertedLine = String.Concat(questions[i].questionText, "|", questions[i].answerA, "|", questions[i].answerB,
                     "|", questions[i].answerC, "|", questions[i].answerD, "|",
                     questions[i].correctAnswerNum);
                 try
@@ -58,6 +120,9 @@ namespace Whos_that
                 }
             }
         }
+
+        // methods for working with data.txt
+
         public List<string> getTestData(string testName, string username, string path)
         {
             List<string> lines = new List<string>();
@@ -87,10 +152,6 @@ namespace Whos_that
             return lines;
         }
 
-
-
-        // Methods for working with data.txt
-
         string dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
         public string[] GetDataLine(string username)
         {
@@ -99,8 +160,9 @@ namespace Whos_that
             {
                 fileRead = new System.IO.StreamReader(dataFilePath);
             }
-            catch (IOException e) {
-                Console.WriteLine("There was a problem with File", e.GetType().Name);   
+            catch (IOException e)
+            {
+                Console.WriteLine("There was a problem with File", e.GetType().Name);
                 return null;
             }
             string line;
@@ -132,7 +194,8 @@ namespace Whos_that
         public string[] GetDataLine(string username, string email)
         {
             if (username != null) GetDataLine(username);
-            else {
+            else
+            {
                 System.IO.StreamReader fileRead;
                 try
                 {
@@ -162,7 +225,7 @@ namespace Whos_that
                                     fileRead.Close();
                                     return searchResult;
                                 }
-                            } 
+                            }
                         }
                     }
                 }
@@ -184,7 +247,7 @@ namespace Whos_that
                 return false;
             }
             string line;
-           // bool foundSameLine = false; sitas variable kinda useless 
+            // bool foundSameLine = false; sitas variable kinda useless 
 
             if (File.Exists(dataFilePath))
             {
@@ -203,7 +266,8 @@ namespace Whos_that
                     }
                 }
             }
-            else {
+            else
+            {
                 Console.WriteLine("No File");
                 return false;
             }
@@ -216,11 +280,12 @@ namespace Whos_that
             {
                 File.AppendAllText(dataFilePath, insertedLine + Environment.NewLine);
             }
-            catch (System.IO.IOException e) {
+            catch (System.IO.IOException e)
+            {
                 Console.WriteLine("Could Not modify data.txt", e.GetType().Name);
                 return false;
             }
-            return true; 
+            return true;
         }
     }
 }

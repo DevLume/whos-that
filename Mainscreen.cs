@@ -12,12 +12,13 @@ namespace Whos_that
 {
     public partial class Mainscreen : Form
     {
-        private string username, testName, usernameToGuess;
+        private string username, testName, usernameToGuess, statisticsUsername;
         public Mainscreen(string username)
         {
             this.username = username;
             InitializeComponent();
             usernameLogged.Text += username;
+            guessPanel.BringToFront();
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -26,19 +27,17 @@ namespace Whos_that
         private void guessButton_Click(object sender, EventArgs e)
         {
             sidePanel.Top = guessButton.Top;
-            guessPanel.Show();
-
+            guessPanel.BringToFront();
         }
         private void createTestButton_Click(object sender, EventArgs e)
         {
             sidePanel.Top = createTestButton.Top;
-            createTestPanel1.Show();
-
-           guessPanel.Hide();
+            createTestPanel1.BringToFront();
         }
         private void statisticsButton_Click_1(object sender, EventArgs e)
         {
             sidePanel.Top = statisticsButton.Top;
+            statisticsPanel.BringToFront();
         }
         private void friendsListButton_Click(object sender, EventArgs e)
         {
@@ -80,8 +79,27 @@ namespace Whos_that
 
         private void guessUsername_TextChanged(object sender, EventArgs e)
         {
-            usernameToGuess = guessUsername.Text;
+                usernameToGuess = guessUsername.Text;
         }
+
+        private void continueStatistics_Click(object sender, EventArgs e)
+        {
+            if (checkUsername(statisticsUsername) == false)
+            {
+                MessageBox.Show("Such username does not exist");
+            }
+            else
+            {
+                StatisticsForm statisticsForm = new StatisticsForm(username, statisticsUsername);
+                statisticsForm.ShowDialog();
+            }
+        }
+
+        private void usernameStatistics_TextChanged(object sender, EventArgs e)
+        {
+            statisticsUsername = usernameStatistics.Text;
+        }
+
         private bool checkUsername(string usernameToGuess)
         {
             string[] temp;

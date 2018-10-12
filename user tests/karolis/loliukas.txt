@@ -1,0 +1,3 @@
+sd|ds|ds|ds|d|1
+s|dsd|ds|d|ds|1
+aa|aa||a|a|4

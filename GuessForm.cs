@@ -54,6 +54,7 @@ namespace Whos_that
                 questionNumber.Text = "Question: " + (lineCount+1).ToString();
                 if (lineAmount == lineCount)
                 {
+                    saveResult(correctAnswers * 100 / actualLines);
                     panel2.Hide();
                     scorePanel.Show();
                     scoreLabel.Text += correctAnswers.ToString() + " out of " + actualLines;
@@ -78,21 +79,21 @@ namespace Whos_that
         }
         private void Continue_Click(object sender, EventArgs e)
         {
-            DataManager dataManager = new DataManager(usernameToGuess, testName);
-            lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
-
             try
-            {               
-                lineAmount = lines.Count(); //dis line causes nullptr exception
+            {
+                DataManager dataManager = new DataManager(usernameToGuess, testName);
+                lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
+                lineAmount = lines.Count();
                 QuestionAmountLabel.Text += lineAmount.ToString();
                 questionNumber.Text += "1";
                 panel2.Hide();
                 loadTest();
             }
-            catch (ArgumentNullException ex) {
+            catch (ArgumentNullException ex)
+            {
                 Console.WriteLine(ex);
-                MessageBox.Show("No such test exists, try again");             
-            }           
+                MessageBox.Show("No such test exists, please try again");
+            }
         }
         public GuessForm(string testName, string username, string usernameToGuess)
         {
@@ -101,6 +102,15 @@ namespace Whos_that
             this.usernameToGuess = usernameToGuess;
             InitializeComponent();
             scorePanel.Hide();
+        }
+        public void saveResult(int result)
+        {
+            DataManager dataManager = new DataManager(username, testName, usernameToGuess);
+            if (!dataManager.fileExists())
+            {
+                dataManager.createDirectory(dataManager.getDirectoryPath(usernameToGuess));
+                dataManager.saveAnswers(dataManager.getFilePath(usernameToGuess), result);
+            }
         }
     }
 }

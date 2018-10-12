@@ -89,12 +89,6 @@ namespace Whos_that
 
         private void signInButton_Click(object sender, EventArgs e)
         {
-            /*if (usernameText.Text == "")
-                MessageBox.Show("Please enter your username");
-            else if (usernameText.Text == "Username")
-                MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
-            else
-                MessageBox.Show(String.Concat("Your username is ", usernameText.Text));*/
             if (acm.Login(username, password))
             {
                 Mainscreen mainscreen = new Mainscreen(username);
