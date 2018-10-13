@@ -83,7 +83,7 @@ namespace Whos_that
             {
                 DataManager dataManager = new DataManager(usernameToGuess, testName);
                 lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
-                lineAmount = lines.Count();
+                lineAmount = lines.Count() - 1; // -1 because we don't need empty an line
                 QuestionAmountLabel.Text += lineAmount.ToString();
                 questionNumber.Text += "1";
                 panel2.Hide();
