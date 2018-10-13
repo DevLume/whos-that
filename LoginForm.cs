@@ -30,30 +30,30 @@ namespace Whos_that
         public string email = "Email";
 
         AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
-/*
-        enables dragging the screen
-        int mouseX = 0;
-        int mouseY = 0;
-        bool mouseDown;
-        private void registerPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseDown = true;
-        }
-        private void registerPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                mouseX = Cursor.Position.X;
-                mouseY = Cursor.Position.Y;
+                                                   /*
+                                                           enables dragging the screen
+                                                           int mouseX = 0;
+                                                           int mouseY = 0;
+                                                           bool mouseDown;
+                                                           private void registerPanel_MouseDown(object sender, MouseEventArgs e)
+                                                           {
+                                                               mouseDown = true;
+                                                           }
+                                                           private void registerPanel_MouseMove(object sender, MouseEventArgs e)
+                                                           {
+                                                               if (mouseDown)
+                                                               {
+                                                                   mouseX = Cursor.Position.X;
+                                                                   mouseY = Cursor.Position.Y;
 
-                this.SetDesktopLocation(mouseX, mouseY);
-            }
-        }
-        private void registerPanel_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-*/
+                                                                   this.SetDesktopLocation(mouseX, mouseY);
+                                                               }
+                                                           }
+                                                           private void registerPanel_MouseUp(object sender, MouseEventArgs e)
+                                                           {
+                                                               mouseDown = false;
+                                                           }
+                                                   */
 
         private void facebookPicture_Click(object sender, EventArgs e)
         {
@@ -236,6 +236,5 @@ namespace Whos_that
                     break;
             }
         }
-f
     }
 }

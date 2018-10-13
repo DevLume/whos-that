@@ -132,7 +132,6 @@
     </Compile>
     <Compile Include="IDataManager.cs" />
     <Compile Include="IFriendManager.cs" />
-    <Compile Include="ISecurityManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="ISecurityManager.cs" />
     <Compile Include="LoginForm.cs">
