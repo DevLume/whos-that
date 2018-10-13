@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -98,6 +98,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings3.Designer.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +134,7 @@
     <Compile Include="IFriendManager.cs" />
     <Compile Include="ISecurityManager.cs" />
     <Compile Include="IUserManager.cs" />
+    <Compile Include="ISecurityManager.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,3 +191,4 @@
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
 </Project>
+

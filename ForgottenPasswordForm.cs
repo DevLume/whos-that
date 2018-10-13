@@ -28,9 +28,7 @@ namespace Whos_that
         private void forgottenPaswordSubmt_Click(object sender, EventArgs e)
         {
             AccountManager acmos = new AccountManager();
-
             acmos.RemindPassword(emailText);
-
             this.Close();
         }
     }

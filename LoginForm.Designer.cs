@@ -54,6 +54,9 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.facebookPicture = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+
+            this.forgotPasswordLabel = new System.Windows.Forms.LinkLabel();
+
             this.loginPanel.SuspendLayout();
             this.registerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -87,6 +90,7 @@
             this.loginPanel.Size = new System.Drawing.Size(400, 550);
             this.loginPanel.TabIndex = 0;
             this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
+
             // 
             // registerPanel
             // 
@@ -105,7 +109,7 @@
             this.registerPanel.Location = new System.Drawing.Point(0, 0);
             this.registerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerPanel.Name = "registerPanel";
-            this.registerPanel.Size = new System.Drawing.Size(400, 548);
+            this.registerPanel.Size = new System.Drawing.Size(400, 550);
             this.registerPanel.TabIndex = 12;
             this.registerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.registerPanel_Paint);
             // 
@@ -139,7 +143,9 @@
             this.pictureBox6.Location = new System.Drawing.Point(35, 265);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
+
             this.pictureBox6.Size = new System.Drawing.Size(41, 36);
+
             this.pictureBox6.TabIndex = 23;
             this.pictureBox6.TabStop = false;
             // 
@@ -201,7 +207,8 @@
             this.registerPassword.Location = new System.Drawing.Point(65, 199);
             this.registerPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerPassword.Name = "registerPassword";
-            this.registerPassword.Size = new System.Drawing.Size(251, 20);
+            this.registerPassword.Size = new System.Drawing.Size(250, 20);
+
             this.registerPassword.TabIndex = 18;
             this.registerPassword.Text = "Password";
             this.registerPassword.Click += new System.EventHandler(this.registerPassword_TextChanged);
@@ -216,7 +223,8 @@
             this.registerUsername.Location = new System.Drawing.Point(65, 134);
             this.registerUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerUsername.Name = "registerUsername";
-            this.registerUsername.Size = new System.Drawing.Size(251, 20);
+            this.registerUsername.Size = new System.Drawing.Size(250, 20);
+
             this.registerUsername.TabIndex = 17;
             this.registerUsername.Text = "Username";
             this.registerUsername.Click += new System.EventHandler(this.registerUsername_TextChanged);
@@ -229,6 +237,7 @@
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(41, 39);
+
             this.pictureBox2.TabIndex = 16;
             this.pictureBox2.TabStop = false;
             // 
@@ -239,6 +248,7 @@
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(41, 38);
+
             this.pictureBox5.TabIndex = 15;
             this.pictureBox5.TabStop = false;
             // 
@@ -248,6 +258,7 @@
             this.pictureBox7.Location = new System.Drawing.Point(167, 12);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
+
             this.pictureBox7.Size = new System.Drawing.Size(91, 100);
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
@@ -323,7 +334,7 @@
             this.passwordText.Location = new System.Drawing.Point(65, 199);
             this.passwordText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.passwordText.Name = "passwordText";
-            this.passwordText.Size = new System.Drawing.Size(251, 20);
+            this.passwordText.Size = new System.Drawing.Size(250, 20);
             this.passwordText.TabIndex = 7;
             this.passwordText.Text = "Password";
             this.passwordText.Click += new System.EventHandler(this.passwordText_Click);
@@ -338,7 +349,7 @@
             this.usernameText.Location = new System.Drawing.Point(65, 134);
             this.usernameText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.usernameText.Name = "usernameText";
-            this.usernameText.Size = new System.Drawing.Size(251, 20);
+            this.usernameText.Size = new System.Drawing.Size(250, 20);
             this.usernameText.TabIndex = 6;
             this.usernameText.Text = "Username";
             this.usernameText.Click += new System.EventHandler(this.usernameText_Click);
@@ -351,6 +362,7 @@
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(41, 39);
+
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
             // 
@@ -361,6 +373,7 @@
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(41, 38);
+
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
@@ -372,6 +385,7 @@
             this.facebookPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.facebookPicture.Name = "facebookPicture";
             this.facebookPicture.Size = new System.Drawing.Size(101, 92);
+
             this.facebookPicture.TabIndex = 2;
             this.facebookPicture.TabStop = false;
             this.facebookPicture.Click += new System.EventHandler(this.facebookPicture_Click);
@@ -386,12 +400,31 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // forgotPasswordLabel
+            // 
+            this.forgotPasswordLabel.AutoSize = true;
+            this.forgotPasswordLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.forgotPasswordLabel.Location = new System.Drawing.Point(115, 390);
+            this.forgotPasswordLabel.Name = "forgotPasswordLabel";
+            this.forgotPasswordLabel.Size = new System.Drawing.Size(153, 17);
+            this.forgotPasswordLabel.TabIndex = 14;
+            this.forgotPasswordLabel.TabStop = true;
+            this.forgotPasswordLabel.Text = "Forgot your password?";
+            this.forgotPasswordLabel.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
+            this.forgotPasswordLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.forgotPasswordLabel_LinkClicked);
+
+            this.pictureBox1.Size = new System.Drawing.Size(65, 78);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 550);
             this.Controls.Add(this.loginPanel);
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginForm";
@@ -399,6 +432,7 @@
             this.Text = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.LoginForm_Load);
+
             this.loginPanel.ResumeLayout(false);
             this.loginPanel.PerformLayout();
             this.registerPanel.ResumeLayout(false);
@@ -442,6 +476,7 @@
         private System.Windows.Forms.TextBox emailText;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.LinkLabel forgotPasswordLabel;
+
     }
 }
 

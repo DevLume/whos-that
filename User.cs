@@ -13,7 +13,6 @@ namespace Whos_that
         private int id; 
         public string username { get; set; }
         public string gender { get; set; }
-
         private List<User> receivedFriendRequests;
         private List<User> sentFriendRequests;
         private List<User> friends;
