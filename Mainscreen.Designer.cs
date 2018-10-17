@@ -40,11 +40,18 @@
             this.statisticsButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.createTestPanel1 = new System.Windows.Forms.Panel();
+            this.textBoxTestName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.createTestContinue1 = new System.Windows.Forms.Button();
-            this.textBoxTestName = new System.Windows.Forms.TextBox();
+            this.friendsPanel = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupPanel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.createTestPanel1.SuspendLayout();
+            this.friendsPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -198,6 +205,17 @@
             this.createTestPanel1.Size = new System.Drawing.Size(774, 481);
             this.createTestPanel1.TabIndex = 3;
             // 
+            // textBoxTestName
+            // 
+            this.textBoxTestName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.textBoxTestName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTestName.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxTestName.Location = new System.Drawing.Point(264, 186);
+            this.textBoxTestName.Name = "textBoxTestName";
+            this.textBoxTestName.Size = new System.Drawing.Size(230, 28);
+            this.textBoxTestName.TabIndex = 4;
+            this.textBoxTestName.TextChanged += new System.EventHandler(this.textBoxTestName_TextChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -223,16 +241,58 @@
             this.createTestContinue1.UseVisualStyleBackColor = true;
             this.createTestContinue1.Click += new System.EventHandler(this.createTestContinue1_Click);
             // 
-            // textBoxTestName
+            // friendsPanel
             // 
-            this.textBoxTestName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
-            this.textBoxTestName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTestName.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxTestName.Location = new System.Drawing.Point(264, 186);
-            this.textBoxTestName.Name = "textBoxTestName";
-            this.textBoxTestName.Size = new System.Drawing.Size(230, 28);
-            this.textBoxTestName.TabIndex = 4;
-            this.textBoxTestName.TextChanged += new System.EventHandler(this.textBoxTestName_TextChanged);
+            this.friendsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
+            this.friendsPanel.Controls.Add(this.groupBox1);
+            this.friendsPanel.Controls.Add(this.label3);
+            this.friendsPanel.Controls.Add(this.button1);
+            this.friendsPanel.Location = new System.Drawing.Point(156, 31);
+            this.friendsPanel.Name = "friendsPanel";
+            this.friendsPanel.Size = new System.Drawing.Size(774, 481);
+            this.friendsPanel.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.groupPanel);
+            this.groupBox1.Location = new System.Drawing.Point(10, 50);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(761, 428);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupPanel
+            // 
+            this.groupPanel.AutoScroll = true;
+            this.groupPanel.Location = new System.Drawing.Point(6, 11);
+            this.groupPanel.Name = "groupPanel";
+            this.groupPanel.Size = new System.Drawing.Size(731, 398);
+            this.groupPanel.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(185, 37);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Your friends";
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(528, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(230, 34);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "load those muthafackas";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Mainscreen
             // 
@@ -241,6 +301,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(198)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(942, 527);
+            this.Controls.Add(this.friendsPanel);
             this.Controls.Add(this.createTestPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -251,6 +312,9 @@
             this.panel2.PerformLayout();
             this.createTestPanel1.ResumeLayout(false);
             this.createTestPanel1.PerformLayout();
+            this.friendsPanel.ResumeLayout(false);
+            this.friendsPanel.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -272,5 +336,10 @@
         private System.Windows.Forms.Button createTestContinue1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxTestName;
+        private System.Windows.Forms.Panel friendsPanel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel groupPanel;
     }
 }

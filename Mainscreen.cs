@@ -13,9 +13,11 @@ namespace Whos_that
     public partial class Mainscreen : Form
     {
         private string username, testName;
+        private UserManager  userMan = new UserManager();
+        private User user;
         public Mainscreen(string username)
         {
-            this.username = username;
+            this.username =username;
             InitializeComponent();
             usernameLogged.Text += username;
         }
@@ -29,7 +31,7 @@ namespace Whos_that
         }
         private void createTestButton_Click(object sender, EventArgs e)
         {
-            createTestPanel1.Show();
+            createTestPanel1.BringToFront();
             sidePanel.Top = createTestButton.Top;
         }
         private void statisticsButton_Click_1(object sender, EventArgs e)
@@ -38,6 +40,7 @@ namespace Whos_that
         }
         private void friendsListButton_Click(object sender, EventArgs e)
         {
+            friendsPanel.BringToFront();
             sidePanel.Top = friendsListButton.Top;
         }
 
@@ -55,6 +58,36 @@ namespace Whos_that
         {
             CreateTest createTest = new CreateTest(testName, username);
             createTest.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int y =10;
+            for (int i = 0; i < 20; i++)
+            {
+                groupPanel.Controls.Add(createFriendLabel("samir", y));
+                groupPanel.Controls.Add(createFriendButton("samir", y));
+                y += 50;
+            }
+
+        }
+        private Label createFriendLabel(string friend, int y)
+        {
+            Label friendName = new Label();
+            friendName.Text = friend;
+            friendName.Location = new Point(10, y);
+            friendName.ForeColor = Color.WhiteSmoke;
+            return friendName;
+        }
+        private Button createFriendButton(string friend, int y)
+        {
+            Button friendButton = new Button();
+            friendButton.Text = "challenge the fuckin samir";
+            friendButton.Location = new Point(120, y);
+            friendButton.ForeColor = Color.WhiteSmoke;
+            friendButton.FlatStyle = FlatStyle.Flat;
+            friendButton.Size = new System.Drawing.Size(200, 37);
+            return friendButton;
         }
         private void textBoxTestName_TextChanged(object sender, EventArgs e)
         {
