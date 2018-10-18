@@ -17,9 +17,9 @@ namespace Whos_that
         private User user;
         public Mainscreen(string username)
         {
-            this.username =username;
+            user = userMan.GetUser(username);
             InitializeComponent();
-            usernameLogged.Text += username;
+            usernameLogged.Text += user.username;
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -62,12 +62,17 @@ namespace Whos_that
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int y =10;
+            /*int y =10;
             for (int i = 0; i < 20; i++)
             {
                 groupPanel.Controls.Add(createFriendLabel("samir", y));
                 groupPanel.Controls.Add(createFriendButton("samir", y));
                 y += 50;
+            }*/
+
+            List<User> ufriends = user.ListFriends();
+            foreach (User usor in ufriends) {
+                groupPanel.Controls.Add(createFriendLabel(usor.username, 10));
             }
 
         }

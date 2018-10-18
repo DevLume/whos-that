@@ -61,12 +61,13 @@ namespace Whos_that
 
         public bool RemindPassword(string email)
         {
-            DataFileManager dataMan = new DataFileManager();
-            string[] temp = dataMan.GetDataLine(null, email);
-
-            if (temp != null)
+            //DataFileManager dataMan = new DataFileManager();
+            //string[] temp = dataMan.GetDataLine(null, email);
+            DataBaseManager dataBaseMan = new DataBaseManager();
+            UserData user = dataBaseMan.GetUserDataByEmail(email);
+            if (user.passHash != null)
             {
-                string dehashedPass = DehashPassword(temp[2], temp[0]);
+                string dehashedPass = DehashPassword(user.passHash, user.name);
                 var messg = new MimeMessage();
                 messg.From.Add(new MailboxAddress("your Whos_that password", "bot@whos_mail.com"));
 

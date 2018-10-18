@@ -28,7 +28,7 @@ namespace Whos_that
         public string username = "Username";
         public string password = "Password";
         public string email = "Email";
-
+        AccountManagerDB acmdb = new AccountManagerDB();
         AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
                                                    /*
                                                            enables dragging the screen
@@ -95,8 +95,8 @@ namespace Whos_that
                 MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
             else
                 MessageBox.Show(String.Concat("Your username is ", usernameText.Text));*/
-            if (acm.Login(username, password))
-            {
+            if (acmdb.Login(username, password))
+            {                
                 Mainscreen mainscreen = new Mainscreen(username);
                 mainscreen.Show();
                 this.Hide();
@@ -162,7 +162,7 @@ namespace Whos_that
 
         private void registerRegisterButton_Click(object sender, EventArgs e)
         {
-            acm.CreateAccount(username, password, email);
+            acmdb.CreateAccount(username, password, email);
         }
 
         private void registerPanel_Paint(object sender, PaintEventArgs e)

@@ -49,6 +49,26 @@ namespace Whos_that
             return result;
         }
 
+        public UserData GetUserDataByEmail(string email)
+        {
+            UserData result = new UserData();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parsing here:
+
+            var q = from a in usrTable where a.Email == email select a;
+            foreach (var i in q)
+            {
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+            }
+
+            //Close data context
+            dataSpace.Dispose();
+            return result;
+        }
+
         public List<UserRelData> GetUserRelDataDB(string username)
         {
             /*List<UserData> result = new List<UserData>();

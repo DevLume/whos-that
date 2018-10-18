@@ -17,8 +17,8 @@ namespace Whos_that
         private List<User> sentFriendRequests;
         private List<User> friends;
 
-        private string passwordHash;
-        private string email;
+        public string passwordHash;
+        public string email;
 
         public User() { }
         public User(int id, string username, string email, string passhash, string gender) {
@@ -117,7 +117,7 @@ namespace Whos_that
         }
 
         public UserData ConvertToUserData() {
-            return new UserData(0, username, email, passwordHash, null, false);
+            return new UserData(0, username, email, passwordHash, "unspecified", false);
         }
 
         public bool Equals(User other)
