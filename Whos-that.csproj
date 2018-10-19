@@ -135,6 +135,7 @@
     <Compile Include="IFriendManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="ISecurityManager.cs" />
+    <Compile Include="ListManager.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

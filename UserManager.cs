@@ -43,7 +43,7 @@ namespace Whos_that
         public bool NewUser(User usr) {
             DataBaseManager dataMan = new DataBaseManager();
             User temp = GetUser(usr.username);
-            if (temp.GetId() == 0)
+            if (temp.id == 0)
             {
                 Console.WriteLine("Inserting new user " + usr.username);
                 List<UserData> udata = new List<UserData>();

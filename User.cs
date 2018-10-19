@@ -10,9 +10,9 @@ namespace Whos_that
 {
     public class User : IEquatable<User>, IFriendManager
     {
-        private int id; 
-        public string username { get; set; }
-        public string gender { get; set; }
+        public int id;
+        public string username;
+        public string gender;
         private List<User> receivedFriendRequests;
         private List<User> sentFriendRequests;
         private List<User> friends;
@@ -46,11 +46,6 @@ namespace Whos_that
             sentFriendRequests = new List<User>();
             friends = new List<User>();*/
         }
-
-        public int GetId() {
-            return id;
-        }
-
         public void SendFriendRequest(User usr) {      
             if (usr != null)
             {
