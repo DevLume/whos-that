@@ -33,6 +33,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.forgottenPasswordPanel = new System.Windows.Forms.Panel();
             this.forgottenPaswordSubmt = new System.Windows.Forms.Button();
+            this.BackToLoginButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // forgottenPasword
@@ -74,12 +75,30 @@
             this.forgottenPaswordSubmt.UseVisualStyleBackColor = true;
             this.forgottenPaswordSubmt.Click += new System.EventHandler(this.forgottenPaswordSubmt_Click);
             // 
+            // BackToLoginButton
+            // 
+            this.BackToLoginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(49)))));
+            this.BackToLoginButton.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.BackToLoginButton.FlatAppearance.BorderSize = 0;
+            this.BackToLoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackToLoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BackToLoginButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.BackToLoginButton.Location = new System.Drawing.Point(263, 1);
+            this.BackToLoginButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BackToLoginButton.Name = "BackToLoginButton";
+            this.BackToLoginButton.Size = new System.Drawing.Size(20, 33);
+            this.BackToLoginButton.TabIndex = 23;
+            this.BackToLoginButton.Text = "x";
+            this.BackToLoginButton.UseVisualStyleBackColor = false;
+            this.BackToLoginButton.Click += new System.EventHandler(this.BackToLoginButton_Click);
+            // 
             // ForgottenPasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(52)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(295, 218);
+            this.Controls.Add(this.BackToLoginButton);
             this.Controls.Add(this.forgottenPaswordSubmt);
             this.Controls.Add(this.forgottenPasswordPanel);
             this.Controls.Add(this.forgottenPasword);
@@ -99,5 +118,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel forgottenPasswordPanel;
         private System.Windows.Forms.Button forgottenPaswordSubmt;
+        private System.Windows.Forms.Button BackToLoginButton;
     }
 }
