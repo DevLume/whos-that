@@ -44,6 +44,7 @@ namespace Whos_that
         private void loadComboBox()
         {
             DataManager dataManager = new DataManager(username, testName, statisticsUsername);
+            dataManager.updateDirectoryAnswers();
             string[] files = Directory.GetFiles(dataManager.getDirectoryPath(statisticsUsername));
             foreach (string file in files)
                 comboBox2.Items.Add(Path.GetFileName(file));
@@ -53,6 +54,7 @@ namespace Whos_that
             try
             {
                 DataManager dataManager = new DataManager(username, testName, statisticsUsername);
+                dataManager.updateDirectoryAnswers();
                 int[] results = new int[2];
                 results = dataManager.getAnswers(dataManager.getFilePath(statisticsUsername));
                 resultLabel.Text += results[0] + "%";

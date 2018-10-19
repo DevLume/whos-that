@@ -13,7 +13,7 @@ namespace Whos_that
         // DataManager methods for saving Tests
         private string folderName, testName, usernameToGuess;
         private const string testFileName = @"\user tests", resultFileName = @"\user answers";
-        private string userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
+        private string userDirectoryPath;
         public DataManager()
         {
         }
@@ -30,9 +30,13 @@ namespace Whos_that
             this.testName = testName;
             userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
         }
-        private void updateDirectory(string directory)
+        public void updateDirectoryTests()
         {
-            userDirectoryPath = Path.Combine(userDirectoryPath, directory);
+          userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, testFileName);
+        }
+        public void updateDirectoryAnswers()
+        {
+            userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, resultFileName);
         }
 
         public string getDirectoryPath()

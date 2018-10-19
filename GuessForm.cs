@@ -119,6 +119,8 @@ namespace Whos_that
             try
             {
                 DataManager dataManager = new DataManager(usernameToGuess, testName);
+                dataManager.updateDirectoryTests();
+                Console.WriteLine(dataManager.getFilePath());
                 lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
                 lineAmount = lines.Count();
                 QuestionAmountLabel.Text += lineAmount.ToString();
@@ -145,6 +147,7 @@ namespace Whos_that
         private void loadComboBox()
         {
             DataManager dataManager = new DataManager(usernameToGuess, testName, username);
+            dataManager.updateDirectoryTests();
             string[] files = Directory.GetFiles(dataManager.getDirectoryPath());
             foreach (string file in files)
                 comboBox1.Items.Add(Path.GetFileName(file));
