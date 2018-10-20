@@ -119,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Extender.cs" />
     <Compile Include="ForgottenPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

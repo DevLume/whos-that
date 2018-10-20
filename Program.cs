@@ -27,22 +27,17 @@ namespace Whos_that
         static void Main()
         {
             UserManager userman = new UserManager();
+            ListManager listman = new ListManager();
 
-            sortOptions opt = sortOptions.none;
+            ListManager.sortOptions sortop = new ListManager.sortOptions { };
 
-            opt |= sortOptions.byGender;
-            /*
-             Lux
-            Mister
-            Garen
-            Johnny
-            */
+           
+            //sortop = ListManager.sortOptions.none;
+            //sortop |= ListManager.sortOptions.byName;
+            
+            List<User> ur = listman.CreateOutputList(sortop, userman.GetUser("luke").ListFriends());
 
-            List<User> frnd = userman.GetUser("luke").ListFriends();
-
-            List<User> sortOf = ListManager.CreateOutputList(opt,frnd);
-
-            foreach (User u in sortOf)
+            foreach (User u in ur)
             {
                 Console.WriteLine(u.username);
             }

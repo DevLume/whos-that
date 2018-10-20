@@ -7,24 +7,20 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    [Flags]
-    public enum sortOptions
+    public class ListManager
     {
-        none = 0,
-        byName = 1,
-        byGender = 2
-        //by whatever we might sort...
-    }
-    public static class ListManager
-    { 
-        private static IEnumerable<Enum> GetFlags(Enum e)
+        [Flags]
+        public enum sortOptions
         {
-            return Enum.GetValues(e.GetType()).Cast<Enum>().Where(e.HasFlag); //lambada + linq + enums (COMBO)
+            none = 0,
+            byName = 1,
+            byGender = 2
+            //by whatever we might sort...
         }
 
-        public static List<User> CreateOutputList(sortOptions opt, List<User> list)
+        public List<User> CreateOutputList(sortOptions opt, List<User> list)
         {
-            IEnumerable<Enum> flags = GetFlags(opt);
+            IEnumerable<Enum> flags = opt.GetSorts();
             bool byName = false;
             bool byGender = false;
             List<User> output = new List<User>();
@@ -37,8 +33,8 @@ namespace Whos_that
                 {
                     byGender = true;
                 }
-            }          
-            
+            }
+
             if (byName && byGender)
             {
                 var listQuery =
@@ -61,6 +57,17 @@ namespace Whos_that
             }
             else if (byGender)
             {
+                var listQuery =
+                    (from obj in list
+                     select obj).OrderBy(c => c.gender);
+                foreach (var v in listQuery)
+                {
+                    output.Add(v);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No sorting options chosen");
                 var listQuery =
                     (from obj in list
                      select obj).OrderBy(c => c.gender);
