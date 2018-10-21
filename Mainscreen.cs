@@ -14,11 +14,13 @@ namespace Whos_that
     {
         private int y = 10;
         private string username, testName, usernameToGuess, statisticsUsername;
+        User usr;
+        UserManager userman = new UserManager();
         public Mainscreen(string username)
         {
-            this.username = username;
+            usr = userman.GetUser(username);
             InitializeComponent();
-            usernameLogged.Text += username;
+            usernameLogged.Text += usr.username;
             guessPanel.BringToFront();
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -99,20 +101,25 @@ namespace Whos_that
 
         private void LoadFriends_Click(object sender, EventArgs e)
         {
-            Label friendName = createFriendLabel("samir", y);
-            Button removeButton = removeFriendButton(y);
-            Button challengeFriend = challengeFriendButton(y);
-            Button friendsTest = takeFriendsTest(y);
+            List<User> friendlist = usr.ListFriends();
 
-            scroll.Controls.Add(friendName);
-            scroll.Controls.Add(removeButton);
-            scroll.Controls.Add(challengeFriend);
-            scroll.Controls.Add(friendsTest);
+            foreach (User friend in friendlist)
+            {
+                Label friendName = createFriendLabel(friend.username, y);
+                Button removeButton = removeFriendButton(y);
+                Button challengeFriend = challengeFriendButton(y);
+                Button friendsTest = takeFriendsTest(y);
 
-            y += 50;
-            removeButton.Click += new EventHandler(this.removeButtonClicked);
-            challengeFriend.Click += new EventHandler(this.challengeFriendClicked);
-            friendsTest.Click += new EventHandler(this.friendsTestClicked);
+                scroll.Controls.Add(friendName);
+                scroll.Controls.Add(removeButton);
+                scroll.Controls.Add(challengeFriend);
+                scroll.Controls.Add(friendsTest);
+
+                y += 50;
+                removeButton.Click += new EventHandler(this.removeButtonClicked);
+                challengeFriend.Click += new EventHandler(this.challengeFriendClicked);
+                friendsTest.Click += new EventHandler(this.friendsTestClicked);
+            }          
 
             // if we would want to pass arguments throw event methods
             //Button removeButton = removeFriendButton(y);
