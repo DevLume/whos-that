@@ -18,7 +18,7 @@ namespace Whos_that
             //by whatever we might sort...
         }
 
-        public List<User> CreateOutputList(sortOptions opt, List<User> list)
+        public List<User> CreateOutputList(List<User> list, sortOptions opt = sortOptions.none)
         {
             IEnumerable<Enum> flags = opt.GetSorts();
             bool byName = false;
