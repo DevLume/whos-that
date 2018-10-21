@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Whos_that
     public class AccountManager : SecurityManager
     {
         DataFileManager dataMan = new DataFileManager();
-   
+
         public bool CreateAccount(string username, string password, string email)
 
         {
@@ -23,8 +23,10 @@ namespace Whos_that
                 return false;
             }
             //check username for spaces
-            for (int i = 0; i < username.Length; i++) {
-                if (username[i] == ' ') {
+            for (int i = 0; i < username.Length; i++)
+            {
+                if (username[i] == ' ')
+                {
                     MessageBox.Show("Wrong username format");
                     return false;
                 }
@@ -46,7 +48,7 @@ namespace Whos_that
             }
             //hash the password
             String passHash = HashPassword(password, username);
-          
+
             //Open file to read
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
             System.IO.StreamReader fileRead;
@@ -71,7 +73,7 @@ namespace Whos_that
                         String dbUsername = line;
                         string[] tokens = dbUsername.Split(' ');
 
-                        dbUsername = tokens[0];                      
+                        dbUsername = tokens[0];
 
                         if (String.Compare(username, dbUsername).CompareTo(0) == 0)
                         {
@@ -89,14 +91,15 @@ namespace Whos_that
             fileRead.Close();
 
             //Account can be created, so we gather final data and send it to the database (currently to the file)
-           
+
             String outputLine = String.Concat(username, " ", email, " ", passHash, "\n");
 
             try
             {
                 File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
             }
-            catch (System.IO.IOException e) {
+            catch (System.IO.IOException e)
+            {
                 Console.WriteLine("Could not create an account! data file is at use", e.GetType().Name);
                 return false;
             }
@@ -130,7 +133,7 @@ namespace Whos_that
                         if (String.Compare(username, dbUsername) == 0)
                         {
                             foundUser = true;
-                            
+
                             passwordHash = temp[2];
                             String dbPass;
                             try
@@ -138,7 +141,7 @@ namespace Whos_that
                                 dbPass = DehashPassword(passwordHash, username);
                                 if (String.Compare(password, dbPass) == 0)
                                 {
-                                    fileRead.Close();                    
+                                    fileRead.Close();
                                     return true;
                                 }
                             }

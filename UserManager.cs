@@ -11,8 +11,8 @@ namespace Whos_that
         {
             DataBaseManager dataMan = new DataBaseManager();
             UserData userdat = dataMan.GetUserDataDB(id);
-           
-            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);                    
+
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
 
         public User GetUser(string username)
@@ -33,14 +33,16 @@ namespace Whos_that
             //query and parse here:
             var q = from a in usrTable where a.Online == true select a;
 
-            foreach (var i in q) {
-                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash,i.Gender));
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender));
             }
 
             return result;
         }
 
-        public bool NewUser(User usr) {
+        public bool NewUser(User usr)
+        {
             DataBaseManager dataMan = new DataBaseManager();
             User temp = GetUser(usr.username);
             if (temp.id == 0)

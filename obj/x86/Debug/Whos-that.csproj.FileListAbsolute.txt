@@ -17,3 +17,5 @@ C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos-that.csproj.CopyComple
 C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos_that.CreateTest.resources
 C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos_that.ForgottenPasswordForm.resources
 C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos_that.Mainscreen.resources
+C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos_that.GuessForm.resources
+C:\Users\Luke M\source\repos\Whos-that\obj\x86\Debug\Whos_that.StatisticsForm.resources

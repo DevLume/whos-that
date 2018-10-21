@@ -185,7 +185,7 @@ namespace Whos_that
         private bool checkUsername(string username)
         {
             string[] temp;
-            DataManager dataManager = new DataManager();
+            DataFileManager dataManager = new DataFileManager();
             temp =  dataManager.GetDataLine(username);
             if (temp != null) return true;
             else return false;
@@ -196,4 +196,5 @@ namespace Whos_that
              testName = textBoxTestName.Text;
         }
     }
+
 }

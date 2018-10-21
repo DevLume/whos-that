@@ -14,7 +14,7 @@ namespace Whos_that
     {
         private int maxLength = 35;
         private string username = "Username", password = "Password", email = "Email";
-        AccountManager acm = new AccountManager();
+        AccountManagerDB acm = new AccountManagerDB();
 
         public LoginForm()
         {
