@@ -133,7 +133,7 @@
             this.label8.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label8.Location = new System.Drawing.Point(3, 56);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(243, 156);
+            this.label8.Size = new System.Drawing.Size(355, 228);
             this.label8.TabIndex = 18;
             this.label8.Text = resources.GetString("label8.Text");
             // 
@@ -143,7 +143,7 @@
             this.label7.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label7.Location = new System.Drawing.Point(77, 18);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 13);
+            this.label7.Size = new System.Drawing.Size(182, 19);
             this.label7.TabIndex = 17;
             this.label7.Text = "Rules for creating the test";
             // 
@@ -153,9 +153,9 @@
             this.sameFilePanel.Controls.Add(this.replaceButton);
             this.sameFilePanel.Controls.Add(this.AppendButton);
             this.sameFilePanel.Controls.Add(this.label9);
-            this.sameFilePanel.Location = new System.Drawing.Point(10, 21);
+            this.sameFilePanel.Location = new System.Drawing.Point(10, 20);
             this.sameFilePanel.Name = "sameFilePanel";
-            this.sameFilePanel.Size = new System.Drawing.Size(339, 361);
+            this.sameFilePanel.Size = new System.Drawing.Size(339, 362);
             this.sameFilePanel.TabIndex = 21;
             // 
             // closeButton
@@ -200,7 +200,7 @@
             this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label9.Location = new System.Drawing.Point(7, 14);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(200, 26);
+            this.label9.Size = new System.Drawing.Size(292, 38);
             this.label9.TabIndex = 21;
             this.label9.Text = "A test with the same name already exists.\r\nWhat would you like to do?";
             // 
@@ -209,7 +209,7 @@
             this.answerButtonD.AutoSize = true;
             this.answerButtonD.Location = new System.Drawing.Point(203, 279);
             this.answerButtonD.Name = "answerButtonD";
-            this.answerButtonD.Size = new System.Drawing.Size(14, 13);
+            this.answerButtonD.Size = new System.Drawing.Size(17, 16);
             this.answerButtonD.TabIndex = 15;
             this.answerButtonD.TabStop = true;
             this.answerButtonD.UseVisualStyleBackColor = true;
@@ -219,7 +219,7 @@
             this.answerButtonC.AutoSize = true;
             this.answerButtonC.Location = new System.Drawing.Point(203, 238);
             this.answerButtonC.Name = "answerButtonC";
-            this.answerButtonC.Size = new System.Drawing.Size(14, 13);
+            this.answerButtonC.Size = new System.Drawing.Size(17, 16);
             this.answerButtonC.TabIndex = 14;
             this.answerButtonC.TabStop = true;
             this.answerButtonC.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             this.answerButtonB.AutoSize = true;
             this.answerButtonB.Location = new System.Drawing.Point(203, 197);
             this.answerButtonB.Name = "answerButtonB";
-            this.answerButtonB.Size = new System.Drawing.Size(14, 13);
+            this.answerButtonB.Size = new System.Drawing.Size(17, 16);
             this.answerButtonB.TabIndex = 13;
             this.answerButtonB.TabStop = true;
             this.answerButtonB.UseVisualStyleBackColor = true;
@@ -239,7 +239,7 @@
             this.answerButtonA.AutoSize = true;
             this.answerButtonA.Location = new System.Drawing.Point(203, 156);
             this.answerButtonA.Name = "answerButtonA";
-            this.answerButtonA.Size = new System.Drawing.Size(14, 13);
+            this.answerButtonA.Size = new System.Drawing.Size(17, 16);
             this.answerButtonA.TabIndex = 12;
             this.answerButtonA.TabStop = true;
             this.answerButtonA.UseVisualStyleBackColor = true;
@@ -250,7 +250,7 @@
             this.label6.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label6.Location = new System.Drawing.Point(18, 273);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.Size = new System.Drawing.Size(23, 19);
             this.label6.TabIndex = 11;
             this.label6.Text = "D.";
             // 
@@ -260,7 +260,7 @@
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Location = new System.Drawing.Point(18, 233);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 13);
+            this.label5.Size = new System.Drawing.Size(24, 19);
             this.label5.TabIndex = 11;
             this.label5.Text = "C.";
             // 
@@ -279,7 +279,7 @@
             this.answerD.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.answerD.Location = new System.Drawing.Point(44, 269);
             this.answerD.Name = "answerD";
-            this.answerD.Size = new System.Drawing.Size(153, 12);
+            this.answerD.Size = new System.Drawing.Size(153, 16);
             this.answerD.TabIndex = 9;
             this.answerD.Click += new System.EventHandler(this.answerD_TextChanged);
             // 
@@ -289,7 +289,7 @@
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label4.Location = new System.Drawing.Point(18, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 13);
+            this.label4.Size = new System.Drawing.Size(21, 19);
             this.label4.TabIndex = 11;
             this.label4.Text = "B.";
             // 
@@ -308,7 +308,7 @@
             this.answerC.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.answerC.Location = new System.Drawing.Point(44, 232);
             this.answerC.Name = "answerC";
-            this.answerC.Size = new System.Drawing.Size(153, 12);
+            this.answerC.Size = new System.Drawing.Size(153, 16);
             this.answerC.TabIndex = 9;
             this.answerC.Click += new System.EventHandler(this.answerC_TextChanged);
             // 
@@ -327,7 +327,7 @@
             this.answerB.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.answerB.Location = new System.Drawing.Point(44, 195);
             this.answerB.Name = "answerB";
-            this.answerB.Size = new System.Drawing.Size(153, 12);
+            this.answerB.Size = new System.Drawing.Size(153, 16);
             this.answerB.TabIndex = 9;
             this.answerB.Click += new System.EventHandler(this.answerB_TextChanged);
             // 
@@ -337,7 +337,7 @@
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Location = new System.Drawing.Point(18, 153);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(17, 13);
+            this.label3.Size = new System.Drawing.Size(22, 19);
             this.label3.TabIndex = 8;
             this.label3.Text = "A.";
             // 
@@ -355,7 +355,7 @@
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Location = new System.Drawing.Point(18, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.Size = new System.Drawing.Size(188, 19);
             this.label2.TabIndex = 6;
             this.label2.Text = "Now think up to 4 answers";
             // 
@@ -374,7 +374,7 @@
             this.answerA.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.answerA.Location = new System.Drawing.Point(44, 158);
             this.answerA.Name = "answerA";
-            this.answerA.Size = new System.Drawing.Size(153, 12);
+            this.answerA.Size = new System.Drawing.Size(153, 16);
             this.answerA.TabIndex = 5;
             this.answerA.Click += new System.EventHandler(this.answerA_TextChanged);
             // 
@@ -384,7 +384,7 @@
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Location = new System.Drawing.Point(18, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(141, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Enter your question";
             // 
@@ -395,7 +395,7 @@
             this.questionTextBox.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.questionTextBox.Location = new System.Drawing.Point(22, 72);
             this.questionTextBox.Name = "questionTextBox";
-            this.questionTextBox.Size = new System.Drawing.Size(300, 12);
+            this.questionTextBox.Size = new System.Drawing.Size(300, 16);
             this.questionTextBox.TabIndex = 2;
             this.questionTextBox.Click += new System.EventHandler(this.questionTextBox_TextChanged);
             // 
@@ -447,12 +447,12 @@
             // 
             // CreateTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(198)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(382, 446);
             this.Controls.Add(this.CreateTestPanel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CreateTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create your own unique test!";

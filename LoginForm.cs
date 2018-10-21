@@ -12,7 +12,10 @@ namespace Whos_that
 {
     public partial class LoginForm : Form
     {
-        int maxLength = 35; // textBox visu ilgis
+        private int maxLength = 35;
+        private string username = "Username", password = "Password", email = "Email";
+        AccountManager acm = new AccountManager();
+
         public LoginForm()
         {
             InitializeComponent();
@@ -24,37 +27,6 @@ namespace Whos_that
             passwordText.MaxLength = maxLength;
             usernameText.MaxLength = maxLength;
         }
-
-        public string username = "Username";
-        public string password = "Password";
-        public string email = "Email";
-        AccountManagerDB acmdb = new AccountManagerDB();
-        AccountManager acm = new AccountManager(); // Well damn I don't like the new AccountManager instance here, any ideas guys?
-                                                   /*
-                                                           enables dragging the screen
-                                                           int mouseX = 0;
-                                                           int mouseY = 0;
-                                                           bool mouseDown;
-                                                           private void registerPanel_MouseDown(object sender, MouseEventArgs e)
-                                                           {
-                                                               mouseDown = true;
-                                                           }
-                                                           private void registerPanel_MouseMove(object sender, MouseEventArgs e)
-                                                           {
-                                                               if (mouseDown)
-                                                               {
-                                                                   mouseX = Cursor.Position.X;
-                                                                   mouseY = Cursor.Position.Y;
-
-                                                                   this.SetDesktopLocation(mouseX, mouseY);
-                                                               }
-                                                           }
-                                                           private void registerPanel_MouseUp(object sender, MouseEventArgs e)
-                                                           {
-                                                               mouseDown = false;
-                                                           }
-                                                   */
-
         private void facebookPicture_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://facebook.com");
@@ -89,14 +61,8 @@ namespace Whos_that
 
         private void signInButton_Click(object sender, EventArgs e)
         {
-            /*if (usernameText.Text == "")
-                MessageBox.Show("Please enter your username");
-            else if (usernameText.Text == "Username")
-                MessageBox.Show("Unfortunately, 'Username' is not accepted as a username");
-            else
-                MessageBox.Show(String.Concat("Your username is ", usernameText.Text));*/
-            if (acmdb.Login(username, password))
-            {                
+            if (acm.Login(username, password))
+            {
                 Mainscreen mainscreen = new Mainscreen(username);
                 mainscreen.Show();
                 this.Hide();
@@ -162,12 +128,7 @@ namespace Whos_that
 
         private void registerRegisterButton_Click(object sender, EventArgs e)
         {
-            acmdb.CreateAccount(username, password, email);
-        }
-
-        private void registerPanel_Paint(object sender, PaintEventArgs e)
-        {
-
+            acm.CreateAccount(username, password, email);
         }
 
         private void usernameText_TextChanged(object sender, EventArgs e)
@@ -204,27 +165,15 @@ namespace Whos_that
             if (email == "") email = "Email";
         }
 
-        private void loginPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
         private void forgotPasswordLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgottenPasswordForm fpf = new ForgottenPasswordForm();
             fpf.ShowDialog();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
             // Confirm user wants to close
             switch (MessageBox.Show(this, "Are you sure want to leave the best app the world has ever seen?", "Closing", MessageBoxButtons.YesNo))

@@ -114,13 +114,12 @@ namespace Whos_that
         {
             RulesPanel.Hide();
         }
-        // check if input is correct
-        private void nextQuestion_Click(object sender, EventArgs e)
+        private bool checkInput()
         {
-            if(questionTextBox.Text == "")
+            if (questionTextBox.Text == "")
             {
                 MessageBox.Show("Your question is waaay too short..");
-                return;
+                return false;
             }
 
             int answersCount = 0;
@@ -130,7 +129,7 @@ namespace Whos_that
                 if (answerButtonA.Checked)
                 {
                     MessageBox.Show("The chosen correct answer is empty");
-                    return;
+                    return false;
                 }
             }
             if (answerB.Text == "")
@@ -139,7 +138,7 @@ namespace Whos_that
                 if (answerButtonB.Checked)
                 {
                     MessageBox.Show("The chosen correct answer is empty");
-                    return;
+                    return false;
                 }
             }
             if (answerC.Text == "")
@@ -148,7 +147,7 @@ namespace Whos_that
                 if (answerButtonC.Checked)
                 {
                     MessageBox.Show("The chosen correct answer is empty");
-                    return;
+                    return false;
                 }
             }
             if (answerD.Text == "")
@@ -157,37 +156,49 @@ namespace Whos_that
                 if (answerButtonD.Checked)
                 {
                     MessageBox.Show("The chosen correct answer is empty");
-                    return;
+                    return false;
                 }
             }
-            if (answersCount > 2)        
+            if (answersCount > 2)
             {
                 MessageBox.Show("The amount of answers is waaay too little..");
-                return;
+                return false;
             }
             if (!answerButtonA.Checked && !answerButtonB.Checked && !answerButtonC.Checked && !answerButtonD.Checked)
             {
                 MessageBox.Show("The amount of correct answers is waaay too little..");
-                return;
+                return false;
             }
-            //save info to question List
-            int corrAns = 0;
-            if (answerButtonA.Checked) corrAns = 1;
-            if (answerButtonB.Checked) corrAns = 2;
-            if (answerButtonC.Checked) corrAns = 3;
-            if (answerButtonD.Checked) corrAns = 4;
-            qList.Add(new Question(questionTextBox.Text, answerA.Text, answerB.Text, answerC.Text, answerD.Text, corrAns));
-
-            // clear the textboxes
+            return true;
+        }
+        private void saveQuestion()
+        {
+            int corrAnswers = 0;
+            if (answerButtonA.Checked) corrAnswers = 1;
+            if (answerButtonB.Checked) corrAnswers = 2;
+            if (answerButtonC.Checked) corrAnswers = 3;
+            if (answerButtonD.Checked) corrAnswers = 4;
+            qList.Add(new Question(questionTextBox.Text, answerA.Text, answerB.Text, answerC.Text, answerD.Text, corrAnswers));
+        }
+        private void clearTextBoxes()
+        {
             answerA.Clear();
             answerB.Clear();
             answerC.Clear();
             answerD.Clear();
             questionTextBox.Clear();
         }
+        private void nextQuestion_Click(object sender, EventArgs e)
+        {
+           if (checkInput())
+            {
+                saveQuestion();
+                clearTextBoxes();
+            }
+        }
         private void testEnd_Click(object sender, EventArgs e)
         {
-            DataFileManager dataManager = new DataFileManager(username, testName);
+            DataManager dataManager = new DataManager(username, testName);
             if (!dataManager.fileExists())
             {
                 dataManager.createDirectory(dataManager.getDirectoryPath());
@@ -201,14 +212,14 @@ namespace Whos_that
         }
         private void AppendButton_Click(object sender, EventArgs e)
         {
-            DataFileManager dataManager = new DataFileManager(username, testName);
+            DataManager dataManager = new DataManager(username, testName);
             dataManager.writeToFile(dataManager.getFilePath(), qList, true);
             this.Close();
         }
 
         private void replaceButton_Click(object sender, EventArgs e)
         {
-            DataFileManager dataManager = new DataFileManager(username, testName);
+            DataManager dataManager = new DataManager(username, testName);
             dataManager.writeToFile(dataManager.getFilePath(), qList, false);
             this.Close();
         }
@@ -217,23 +228,5 @@ namespace Whos_that
         {
             this.Close();
         }
-    }
-}
-//put questions in separate objects, and create list of questions
-class Question {
-    public string questionText;
-    public string answerA;
-    public string answerB;
-    public string answerC;
-    public string answerD;
-    public int correctAnswerNum;
-
-    public Question(string question, string A, string B, string C, string D, int corrAns) {
-        questionText = question;
-        answerA = A;
-        answerB = B;
-        answerC = C;
-        answerD = D;
-        correctAnswerNum = corrAns;
     }
 }

@@ -14,16 +14,16 @@ namespace Whos_that
         private string folderName, testName, usernameToGuess;
         private const string testFileName = @"\user tests", resultFileName = @"\user answers";
         private string userDirectoryPath;
-        public DataManager()
+        public DataFileManager()
         {
         }
-        public DataManager(string folderName, string testName)
+        public DataFileManager(string folderName, string testName)
         {
             this.folderName = folderName;
             this.testName = testName;
             userDirectoryPath = String.Concat(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName);
         }
-        public DataManager(string folderName, string testName, string usernameToGuess)
+        public DataFileManager(string folderName, string testName, string usernameToGuess)
         {
             this.usernameToGuess = usernameToGuess;
             this.folderName = folderName;

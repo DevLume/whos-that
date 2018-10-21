@@ -7,41 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+// CheckUsername(string username). maybe this methods doesnt belong in this class?
 namespace Whos_that
 {
     public partial class Mainscreen : Form
     {
-        private string username, testName;
-        private UserManager  userMan = new UserManager();
-        private User user;
+        private int y = 10;
+        private string username, testName, usernameToGuess, statisticsUsername;
         public Mainscreen(string username)
         {
-            user = userMan.GetUser(username);
+            this.username = username;
             InitializeComponent();
-            usernameLogged.Text += user.username;
+            usernameLogged.Text += username;
+            guessPanel.BringToFront();
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Application.Exit();
         }
-        private void profileButton_Click(object sender, EventArgs e)
+        private void guessButton_Click(object sender, EventArgs e)
         {
-            sidePanel.Top = profileButton.Top;
+            sidePanel.Top = guessButton.Top;
+            guessPanel.BringToFront();
         }
         private void createTestButton_Click(object sender, EventArgs e)
         {
-            createTestPanel1.BringToFront();
             sidePanel.Top = createTestButton.Top;
+            createTestPanel1.BringToFront();
         }
         private void statisticsButton_Click_1(object sender, EventArgs e)
         {
             sidePanel.Top = statisticsButton.Top;
+            statisticsPanel.BringToFront();
         }
         private void friendsListButton_Click(object sender, EventArgs e)
         {
-            friendsPanel.BringToFront();
             sidePanel.Top = friendsListButton.Top;
+            friendListPanel.BringToFront();
         }
 
         private void challengeButton_Click(object sender, EventArgs e)
@@ -60,21 +62,75 @@ namespace Whos_that
             createTest.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void guessContinue_Click(object sender, EventArgs e)
         {
-            /*int y =10;
-            for (int i = 0; i < 20; i++)
+            if (checkUsername(usernameToGuess) == false)
             {
-                groupPanel.Controls.Add(createFriendLabel("samir", y));
-                groupPanel.Controls.Add(createFriendButton("samir", y));
-                y += 50;
-            }*/
-
-            List<User> ufriends = user.ListFriends();
-            foreach (User usor in ufriends) {
-                groupPanel.Controls.Add(createFriendLabel(usor.username, 10));
+                MessageBox.Show("Such username does not exist");
             }
+            else
+            { 
+                if (username == usernameToGuess)
+                {
+                    MessageBox.Show("Trying to solve your own test, ay?");
+                }
+                GuessForm guessForm = new GuessForm(testName, username, usernameToGuess);
+                guessForm.ShowDialog();
+            }
+        }
 
+        private void guessUsername_TextChanged(object sender, EventArgs e)
+        {
+                usernameToGuess = guessUsername.Text;
+        }
+
+        private void continueStatistics_Click(object sender, EventArgs e)
+        {
+            if (checkUsername(statisticsUsername) == false)
+            {
+                MessageBox.Show("Such username does not exist");
+            }
+            else
+            {
+                StatisticsForm statisticsForm = new StatisticsForm(username, statisticsUsername);
+                statisticsForm.ShowDialog();
+            }
+        }
+
+        private void LoadFriends_Click(object sender, EventArgs e)
+        {
+            Label friendName = createFriendLabel("samir", y);
+            Button removeButton = removeFriendButton(y);
+            Button challengeFriend = challengeFriendButton(y);
+            Button friendsTest = takeFriendsTest(y);
+
+            scroll.Controls.Add(friendName);
+            scroll.Controls.Add(removeButton);
+            scroll.Controls.Add(challengeFriend);
+            scroll.Controls.Add(friendsTest);
+
+            y += 50;
+            removeButton.Click += new EventHandler(this.removeButtonClicked);
+            challengeFriend.Click += new EventHandler(this.challengeFriendClicked);
+            friendsTest.Click += new EventHandler(this.friendsTestClicked);
+
+            // if we would want to pass arguments throw event methods
+            //Button removeButton = removeFriendButton(y);
+          //  scroll.Controls.Add(removeButton);
+            //removeButton.Click += delegate (object sender, EventArgs e) { removeButtonClicked(sender, e, "remove buttonas cia", int index); };
+
+        }
+    private void removeButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("aa");
+        }
+        private void challengeFriendClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("fuck");
+        }
+        private void friendsTestClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("lux");
         }
         private Label createFriendLabel(string friend, int y)
         {
@@ -84,16 +140,57 @@ namespace Whos_that
             friendName.ForeColor = Color.WhiteSmoke;
             return friendName;
         }
-        private Button createFriendButton(string friend, int y)
+        private Button removeFriendButton(int y)
         {
             Button friendButton = new Button();
-            friendButton.Text = "challenge the fuckin samir";
             friendButton.Location = new Point(120, y);
             friendButton.ForeColor = Color.WhiteSmoke;
             friendButton.FlatStyle = FlatStyle.Flat;
-            friendButton.Size = new System.Drawing.Size(200, 37);
+            friendButton.Size = new Size(30, 30);
+            friendButton.Text = "X";
             return friendButton;
         }
+        private Button challengeFriendButton(int y)
+        {
+            Button challengeFriend = new Button();
+            challengeFriend.Location = new Point(160, y);
+            challengeFriend.ForeColor = Color.WhiteSmoke;
+            challengeFriend.FlatStyle = FlatStyle.Flat;
+            challengeFriend.Size = new Size(85, 30);
+            challengeFriend.Text = "Challenge!";
+            return challengeFriend;
+        }
+        private Button takeFriendsTest(int y)
+        {
+            Button friendsTest = new Button();
+            friendsTest.Location = new Point(250, y);
+            friendsTest.ForeColor = Color.WhiteSmoke;
+            friendsTest.FlatStyle = FlatStyle.Flat;
+            friendsTest.Size = new Size(85, 30);
+            friendsTest.Text = "View tests!";
+            return friendsTest;
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            scroll.Controls.Clear();
+            y = 10;
+        }
+
+        private void usernameStatistics_TextChanged(object sender, EventArgs e)
+        {
+            statisticsUsername = usernameStatistics.Text;
+        }
+
+        private bool checkUsername(string username)
+        {
+            string[] temp;
+            DataManager dataManager = new DataManager();
+            temp =  dataManager.GetDataLine(username);
+            if (temp != null) return true;
+            else return false;
+        }
+
         private void textBoxTestName_TextChanged(object sender, EventArgs e)
         {
              testName = textBoxTestName.Text;
