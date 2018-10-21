@@ -122,7 +122,7 @@ namespace Whos_that
                 dataManager.updateDirectoryTests();
                 Console.WriteLine(dataManager.getFilePath());
                 lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
-                lineAmount = lines.Count();
+                lineAmount = lines.Count() - 1;
                 QuestionAmountLabel.Text += lineAmount.ToString();
                 questionNumber.Text += "1";
                 panel2.Hide();
