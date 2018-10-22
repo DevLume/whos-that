@@ -13,9 +13,6 @@ namespace Whos_that
         public int id;
         public string username;
         public string gender;
-        private List<User> receivedFriendRequests;
-        private List<User> sentFriendRequests;
-        private List<User> friends;
 
         public string passwordHash;
         public string email;
@@ -46,71 +43,7 @@ namespace Whos_that
             sentFriendRequests = new List<User>();
             friends = new List<User>();*/
         }
-        public void SendFriendRequest(User usr) {      
-            if (usr != null)
-            {
-                usr.receivedFriendRequests.Add(this);
-                sentFriendRequests.Add(usr);
-            }     
-        }
-
-        public bool ReceiveRequest(User usr, bool approval) {          
-            if (approval)
-            {
-                using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-                {
-                    while (usrEnumerator.MoveNext())
-                    {
-                        User temp = usrEnumerator.Current;
-                        if (usr.Equals(temp)) {
-                            receivedFriendRequests.Remove(temp);
-                            usr.sentFriendRequests.Remove(this);
-                            friends.Add(usr);
-                            usr.friends.Add(this);
-                            break;
-                        }
-                        //Console.WriteLine(usr.username);
-                    }
-                }
-            }
-            else {
-            }
-            return false;
-        }
-
-        public void ListReceivedFriendRequests() {
-            using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext()) {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListSentFriendRequests()
-        {
-            using (IEnumerator<User> usrEnumerator = sentFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListAllFriends() {
-            using (IEnumerator<User> usrEnumerator = friends.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
+    
         public UserData ConvertToUserData() {
             return new UserData(0, username, email, passwordHash, "unspecified", false);
         }
