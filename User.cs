@@ -142,6 +142,28 @@ namespace Whos_that
 
         //FriendManagement
 
+        public void Unfriend(User u)
+        {
+            UnfriendDB(u);
+            u.UnfriendDB(this);
+        }
+
+        private void UnfriendDB(User u)
+        {
+            int usrID = u.id;
+            DataBaseManager dataman = new DataBaseManager();
+            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> unfriendRel = new List<UserRelData>();
+
+            foreach (UserRelData r in rel)
+            {               
+                if ((r.user1ID == id) && (r.user2ID == usrID))
+                {
+                    unfriendRel.Add(r);
+                }       
+            }
+            dataman.RemoveUserRelDataDB(unfriendRel);        
+        }
         public List<User> ListFriends()
         {
             List<User> result = new List<User>();
@@ -209,7 +231,8 @@ namespace Whos_that
                     i.approved = true;
                     i.received = false;
                     i.since = DateTime.Today;
-                    reldat.Add(new UserRelData(i.Id, usrID, id, true, DateTime.Today, false));
+                    reldat.Add(new UserRelData(i.Id, usrID, id, true, (DateTime)i.since, false));
+                    Console.WriteLine("Adding with since date {0}", i.since);
                     dataMan.InsertUserRelDataDB(reldat);
                 }
                 try
@@ -246,7 +269,10 @@ namespace Whos_that
             }
 
             List<UserRelData> reldat = new List<UserRelData>();
-            reldat.Add(new UserRelData(0, usrID, id, false, DateTime.Today, true));
+            DateTime date = DateTime.Today;
+            UserRelData udat = new UserRelData(0, usrID, id, false, DateTime.Today, true);
+            Console.WriteLine("sent rq date {0}", udat.date);
+            reldat.Add(udat);
 
             dataMan.InsertUserRelDataDB(reldat);
             return true;

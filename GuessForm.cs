@@ -126,10 +126,10 @@ namespace Whos_that
                 //i'm still getting more lines than needed, so here is workaround         
                 foreach (string line in lines)
                 {
-                    Console.WriteLine("line: {0}",line);
+                    //Console.WriteLine("line: {0}",line);
                     if (String.IsNullOrEmpty(line))
                     {
-                        Console.WriteLine("null line: {0}", line);
+                        //Console.WriteLine("null line: {0}", line);
                         lineAmount--;
                     }
                 }

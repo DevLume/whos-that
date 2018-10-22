@@ -103,6 +103,8 @@ namespace Whos_that
 
         private void LoadFriends_Click(object sender, EventArgs e)
         {
+            scroll.Controls.Clear();
+            y = 10;
             List<User> friendlist = usr.ListFriends();
 
             foreach (User friend in friendlist)
@@ -118,28 +120,45 @@ namespace Whos_that
                 scroll.Controls.Add(friendsTest);
 
                 y += 50;
-                removeButton.Click += new EventHandler(this.removeButtonClicked);
+                removeButton.Click += delegate (object esender, EventArgs ee) { removeButtonClicked(sender, e, friend); };
                 challengeFriend.Click += new EventHandler(this.challengeFriendClicked);
-                friendsTest.Click += new EventHandler(this.friendsTestClicked);
-            }          
+                friendsTest.Click += new EventHandler(this.friendsTestClicked);                            
+                
+            }
 
             // if we would want to pass arguments throw event methods
             //Button removeButton = removeFriendButton(y);
-          //  scroll.Controls.Add(removeButton);
+            //  scroll.Controls.Add(removeButton);
             //removeButton.Click += delegate (object sender, EventArgs e) { removeButtonClicked(sender, e, "remove buttonas cia", int index); };
 
         }
-    private void removeButtonClicked(object sender, EventArgs e)
+        private void acceptButtonClicked(object sender, EventArgs e, User u)
         {
-            Console.WriteLine("aa");
+            usr.AnswerFriendRq(u.id, true);
+        }
+        private void sendRQClicked(object sender, EventArgs e, User u)
+        {
+            usr.SendFriendRq(u.id);
+        }
+        private void declineButtonClicked(object sender, EventArgs e, User u)
+        {
+            usr.AnswerFriendRq(u.id, false);
+        }
+        private void removeButtonClicked(object sender, EventArgs e, User u)
+        {
+            usr.Unfriend(u);
+        }
+        private void removeButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("TEST TOST");
         }
         private void challengeFriendClicked(object sender, EventArgs e)
         {
-            Console.WriteLine("fuck");
+            Console.WriteLine("Challenge is not implemented");
         }
         private void friendsTestClicked(object sender, EventArgs e)
         {
-            Console.WriteLine("lux");
+            Console.WriteLine("There are better ways to get these tests");
         }
         private Label createFriendLabel(string friend, int y)
         {
@@ -150,6 +169,26 @@ namespace Whos_that
             return friendName;
         }
         private Button removeFriendButton(int y)
+        {
+            Button friendButton = new Button();
+            friendButton.Location = new Point(120, y);
+            friendButton.ForeColor = Color.WhiteSmoke;
+            friendButton.FlatStyle = FlatStyle.Flat;
+            friendButton.Size = new Size(30, 30);
+            friendButton.Text = "X";
+            return friendButton;
+        }
+        private Button acceptFriendButton(int y)
+        {
+            Button friendButton = new Button();
+            friendButton.Location = new Point(120, y);
+            friendButton.ForeColor = Color.WhiteSmoke;
+            friendButton.FlatStyle = FlatStyle.Flat;
+            friendButton.Size = new Size(30, 30);
+            friendButton.Text = "V";
+            return friendButton;
+        }
+        private Button declineFriendButton(int y)
         {
             Button friendButton = new Button();
             friendButton.Location = new Point(120, y);
@@ -180,10 +219,71 @@ namespace Whos_that
             return friendsTest;
         }
 
+        
+
         private void clearButton_Click(object sender, EventArgs e)
         {
             scroll.Controls.Clear();
             y = 10;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //list friend requests button
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            scroll.Controls.Clear();
+            y = 10;
+
+            List<User> friendRq = usr.ListFriendRequests();
+
+            foreach (User friend in friendRq)
+            {
+                Label friendName = createFriendLabel(friend.username, y);
+                Button acceptButton = acceptFriendButton(y);
+                Button declineButton = declineFriendButton(y);
+                Button challengeFriend = challengeFriendButton(y);
+                Button friendsTest = takeFriendsTest(y);
+
+                scroll.Controls.Add(friendName);
+                scroll.Controls.Add(acceptButton);
+                scroll.Controls.Add(declineButton);
+                scroll.Controls.Add(challengeFriend);
+                scroll.Controls.Add(friendsTest);
+
+                y += 50;
+                acceptButton.Click += delegate (object esender, EventArgs ee) { acceptButtonClicked(sender, e, friend); };
+                declineButton.Click += delegate (object esender, EventArgs ee) { declineButtonClicked(sender, e, friend); };
+
+                challengeFriend.Click += new EventHandler(this.challengeFriendClicked);
+                friendsTest.Click += new EventHandler(this.friendsTestClicked);
+            }
+        }
+
+        //list users button
+        private void button2_Click(object sender, EventArgs e)
+        {
+            scroll.Controls.Clear();
+            y = 10;
+            UserManager userMan = new UserManager();
+
+            List<User> userList = userMan.ListUsers();
+
+            foreach (User friend in userList)
+            {
+                Label friendName = createFriendLabel(friend.username, y);
+                Button sendRQ = acceptFriendButton(y);
+                
+
+                scroll.Controls.Add(friendName);
+                scroll.Controls.Add(sendRQ);
+          
+                y += 50;
+                sendRQ.Click += delegate (object esender, EventArgs ee) { sendRQClicked(sender, e, friend); };
+            }
         }
 
         private void usernameStatistics_TextChanged(object sender, EventArgs e)

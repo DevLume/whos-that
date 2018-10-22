@@ -154,6 +154,8 @@ namespace Whos_that
                 Console.WriteLine(userdat.date);
                 tbl = new usersRelTable(userdat.user1ID,
                     userdat.user2ID, userdat.approved, userdat.date, userdat.received);
+
+                tbl.since = userdat.date;              
                 dataSpace.usersRelTables.InsertOnSubmit(tbl);
             }
 

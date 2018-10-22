@@ -12,5 +12,6 @@ namespace Whos_that
         List<User> ListFriendRequests();
         bool AnswerFriendRq(int usrID, bool response);
         bool SendFriendRq(int usrID);
+        void Unfriend(User u);
     }
 }

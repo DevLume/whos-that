@@ -30,6 +30,24 @@ namespace Whos_that
             else return false;
         }
 
+        public List<User> ListUsers()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table 
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parse here:
+            var q = from a in usrTable select a;
+
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender));
+            }
+
+            return result;
+        }
+
         public List<User> ListOnlineUsers()
         {
             List<User> result = new List<User>();
