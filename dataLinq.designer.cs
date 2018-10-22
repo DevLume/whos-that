@@ -102,7 +102,7 @@ namespace Whos_that
 		private System.Nullable<System.DateTime> _since;
 		
 		private System.Nullable<bool> _received;
-       //private DateTime date;
+        private DateTime date;
 
         #region Extensibility Method Definitions
         partial void OnLoaded();
@@ -132,7 +132,7 @@ namespace Whos_that
             this.user1ID = user1ID;
             this.user2ID = user2ID;
             this.approved = approved;
-            this.since = date;
+            this.date = date;
             this.received = received;
         }
 

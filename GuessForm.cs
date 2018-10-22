@@ -121,8 +121,18 @@ namespace Whos_that
                 DataFileManager dataManager = new DataFileManager(usernameToGuess, testName);
                 dataManager.updateDirectoryTests();
                 Console.WriteLine(dataManager.getFilePath());
-                lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
+                lines = dataManager.getTestData(testName, username, dataManager.getFilePath());               
                 lineAmount = lines.Count();
+                //i'm still getting more lines than needed, so here is workaround         
+                foreach (string line in lines)
+                {
+                    Console.WriteLine("line: {0}",line);
+                    if (String.IsNullOrEmpty(line))
+                    {
+                        Console.WriteLine("null line: {0}", line);
+                        lineAmount--;
+                    }
+                }
                 QuestionAmountLabel.Text += lineAmount.ToString();
                 questionNumber.Text += "1";
                 panel2.Hide();
