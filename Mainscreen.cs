@@ -66,7 +66,8 @@ namespace Whos_that
 
         private void guessContinue_Click(object sender, EventArgs e)
         {
-            if (checkUsername(usernameToGuess) == false)
+            UserManager userMan = new UserManager();
+            if (userMan.checkIfUserExists(usernameToGuess) == false)
             {
                 MessageBox.Show("Such username does not exist");
             }
@@ -88,7 +89,8 @@ namespace Whos_that
 
         private void continueStatistics_Click(object sender, EventArgs e)
         {
-            if (checkUsername(statisticsUsername) == false)
+            UserManager userMan = new UserManager();
+            if (userMan.checkIfUserExists(statisticsUsername) == false)
             {
                 MessageBox.Show("Such username does not exist");
             }
@@ -187,15 +189,6 @@ namespace Whos_that
         private void usernameStatistics_TextChanged(object sender, EventArgs e)
         {
             statisticsUsername = usernameStatistics.Text;
-        }
-
-        private bool checkUsername(string username)
-        {
-            string[] temp;
-            DataFileManager dataManager = new DataFileManager();
-            temp =  dataManager.GetDataLine(username);
-            if (temp != null) return true;
-            else return false;
         }
 
         private void textBoxTestName_TextChanged(object sender, EventArgs e)

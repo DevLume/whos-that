@@ -122,7 +122,7 @@ namespace Whos_that
                 dataManager.updateDirectoryTests();
                 Console.WriteLine(dataManager.getFilePath());
                 lines = dataManager.getTestData(testName, username, dataManager.getFilePath());
-                lineAmount = lines.Count() - 1;
+                lineAmount = lines.Count();
                 QuestionAmountLabel.Text += lineAmount.ToString();
                 questionNumber.Text += "1";
                 panel2.Hide();
@@ -155,6 +155,7 @@ namespace Whos_that
         public void saveResult(int result)
         {
             DataFileManager dataManager = new DataFileManager(username, testName, usernameToGuess);
+            dataManager.updateDirectoryAnswers();
             if (!dataManager.fileExists())
             {
                 dataManager.createDirectory(dataManager.getDirectoryPath(usernameToGuess));
