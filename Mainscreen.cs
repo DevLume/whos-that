@@ -13,7 +13,7 @@ namespace Whos_that
     public partial class Mainscreen : Form
     {
         private int y = 10;
-        private string username, testName, usernameToGuess, statisticsUsername;
+        private string testName, usernameToGuess, statisticsUsername;
         User usr;
         UserManager userman = new UserManager();
         public Mainscreen(string username)
@@ -60,7 +60,7 @@ namespace Whos_that
 
         private void createTestContinue1_Click(object sender, EventArgs e)
         {
-            CreateTest createTest = new CreateTest(testName, username);
+            CreateTest createTest = new CreateTest(testName, usr.username);
             createTest.ShowDialog();
         }
 
@@ -72,11 +72,11 @@ namespace Whos_that
             }
             else
             { 
-                if (username == usernameToGuess)
+                if (usr.username == usernameToGuess)
                 {
                     MessageBox.Show("Trying to solve your own test, ay?");
                 }
-                GuessForm guessForm = new GuessForm(testName, username, usernameToGuess);
+                GuessForm guessForm = new GuessForm(testName, usr.username, usernameToGuess);
                 guessForm.ShowDialog();
             }
         }
@@ -94,7 +94,7 @@ namespace Whos_that
             }
             else
             {
-                StatisticsForm statisticsForm = new StatisticsForm(username, statisticsUsername);
+                StatisticsForm statisticsForm = new StatisticsForm(usr.username, statisticsUsername);
                 statisticsForm.ShowDialog();
             }
         }
