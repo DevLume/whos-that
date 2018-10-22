@@ -13,7 +13,7 @@ namespace Whos_that
     public partial class Mainscreen : Form
     {
         private int y = 10;
-        private string username, testName, usernameToGuess, statisticsUsername;
+        private string testName, usernameToGuess, statisticsUsername;
         User usr;
         UserManager userman = new UserManager();
         public Mainscreen(string username)
@@ -60,23 +60,24 @@ namespace Whos_that
 
         private void createTestContinue1_Click(object sender, EventArgs e)
         {
-            CreateTest createTest = new CreateTest(testName, username);
+            CreateTest createTest = new CreateTest(testName, usr.username);
             createTest.ShowDialog();
         }
 
         private void guessContinue_Click(object sender, EventArgs e)
         {
-            if (checkUsername(usernameToGuess) == false)
+            UserManager userMan = new UserManager();
+            if (userMan.checkIfUserExists(usernameToGuess) == false)
             {
                 MessageBox.Show("Such username does not exist");
             }
             else
             { 
-                if (username == usernameToGuess)
+                if (usr.username == usernameToGuess)
                 {
                     MessageBox.Show("Trying to solve your own test, ay?");
                 }
-                GuessForm guessForm = new GuessForm(testName, username, usernameToGuess);
+                GuessForm guessForm = new GuessForm(testName, usr.username, usernameToGuess);
                 guessForm.ShowDialog();
             }
         }
@@ -88,13 +89,14 @@ namespace Whos_that
 
         private void continueStatistics_Click(object sender, EventArgs e)
         {
-            if (checkUsername(statisticsUsername) == false)
+            UserManager userMan = new UserManager();
+            if (userMan.checkIfUserExists(statisticsUsername) == false)
             {
                 MessageBox.Show("Such username does not exist");
             }
             else
             {
-                StatisticsForm statisticsForm = new StatisticsForm(username, statisticsUsername);
+                StatisticsForm statisticsForm = new StatisticsForm(usr.username, statisticsUsername);
                 statisticsForm.ShowDialog();
             }
         }
@@ -187,15 +189,6 @@ namespace Whos_that
         private void usernameStatistics_TextChanged(object sender, EventArgs e)
         {
             statisticsUsername = usernameStatistics.Text;
-        }
-
-        private bool checkUsername(string username)
-        {
-            string[] temp;
-            DataFileManager dataManager = new DataFileManager();
-            temp =  dataManager.GetDataLine(username);
-            if (temp != null) return true;
-            else return false;
         }
 
         private void textBoxTestName_TextChanged(object sender, EventArgs e)

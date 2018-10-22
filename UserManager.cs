@@ -22,6 +22,13 @@ namespace Whos_that
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
+        public bool checkIfUserExists(string username)
+        {
+            DataBaseManager dataMan = new DataBaseManager();
+            UserData userdat = dataMan.GetUserDataDB(username);
+            if (userdat.name == username) return true;
+            else return false;
+        }
 
         public List<User> ListOnlineUsers()
         {
