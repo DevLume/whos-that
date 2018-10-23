@@ -1,42 +1,63 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
 
 namespace Whos_that
 {
     public class AccountManager : SecurityManager
     {
-        public bool CreateAccount(String username, String password, String email)
+        DataFileManager dataMan = new DataFileManager();
+
+        public bool CreateAccount(string username, string password, string email)
+
         {
             //Check username length
             if (username.Length > 16)
             {
-                Console.WriteLine("username is too long");
+                MessageBox.Show("username is too long");
                 return false;
             }
+            //TODO:
+            // check password
 
+            //check username for spaces
+            for (int i = 0; i < username.Length; i++)
+            {
+                if (username[i] == ' ')
+                {
+                    MessageBox.Show("Wrong username format");
+                    return false;
+                }
+            }
             //check email
-            const String regexPattern =
+            const string regexPattern =
                  @"^([0-9a-zA-Z]" + //Start with a digit or alphabetical
                @"([\+\-_\.][0-9a-zA-Z]+)*" + // No continuous or ending +-_. chars in email
                @")+" +
                @"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$";
-            String checkEmail = email;
+            string checkEmail = email;
             Regex regex = new Regex(regexPattern);
             Match match = regex.Match(checkEmail);
             if (!match.Success)
             {
-                Console.WriteLine("E-mail format is wrong.");
+                MessageBox.Show("E-mail format is wrong.");
                 return false;
             }
             //hash the password
-            String passHash = HashPassword(password, username);
-
-            //Currently no database, so will store accounts in files
-
+            string passHash = null;
+            if (string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("password box is empty");
+            }
+            else
+            { 
+                passHash = HashPassword(password, username);
+            }
             //Open file to read
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
             System.IO.StreamReader fileRead;
@@ -61,7 +82,7 @@ namespace Whos_that
                         String dbUsername = line;
                         string[] tokens = dbUsername.Split(' ');
 
-                        dbUsername = tokens[0];                      
+                        dbUsername = tokens[0];
 
                         if (String.Compare(username, dbUsername).CompareTo(0) == 0)
                         {
@@ -79,14 +100,15 @@ namespace Whos_that
             fileRead.Close();
 
             //Account can be created, so we gather final data and send it to the database (currently to the file)
-           
+
             String outputLine = String.Concat(username, " ", email, " ", passHash, "\n");
 
             try
             {
                 File.AppendAllText(dataFilePath, outputLine + Environment.NewLine);
             }
-            catch (System.IO.IOException e) {
+            catch (System.IO.IOException e)
+            {
                 Console.WriteLine("Could not create an account! data file is at use", e.GetType().Name);
                 return false;
             }
@@ -120,7 +142,7 @@ namespace Whos_that
                         if (String.Compare(username, dbUsername) == 0)
                         {
                             foundUser = true;
-                            
+
                             passwordHash = temp[2];
                             String dbPass;
                             try
@@ -129,19 +151,6 @@ namespace Whos_that
                                 if (String.Compare(password, dbPass) == 0)
                                 {
                                     fileRead.Close();
-                                    User usr = new User(temp[0], temp[2], temp[1]);
-                                    UserManager.userList.Add(usr); // For now we'll always have one user connected... guess why.
-                                    //TESTING
-                                    /*
-                                    string[] str = UserManager.ListUsers();
-                                    Console.WriteLine("List All Users:");
-                                    for (int i = 0; i < str.Length; i++) {
-                                        Console.WriteLine(str[i]);
-                                    }
-
-                                    RemindPassword(temp[1]);
-                                    */
-                                    //----------------------
                                     return true;
                                 }
                             }

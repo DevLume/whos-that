@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Whos_that
+{
+    interface IUserManager
+    {
+        List<User> ListOnlineUsers();
+        User GetUser(int id);
+        User GetUser(string username);
+    }
+}

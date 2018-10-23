@@ -12,7 +12,7 @@ namespace Whos_that
 {
     public partial class ForgottenPasswordForm : Form
     {
-        String emailText;
+        private string emailText;
         public ForgottenPasswordForm()
         {
             InitializeComponent();
@@ -27,7 +27,14 @@ namespace Whos_that
         private void forgottenPaswordSubmt_Click(object sender, EventArgs e)
         {
             AccountManager acmos = new AccountManager();
+
             acmos.RemindPassword(emailText);
+
+            this.Close();
+        }
+
+        private void BackToLoginButton_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

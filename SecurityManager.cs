@@ -61,77 +61,40 @@ namespace Whos_that
 
         public bool RemindPassword(string email)
         {
-            String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
-            System.IO.StreamReader fileRead;
-            try
+            //DataFileManager dataMan = new DataFileManager();
+            //string[] temp = dataMan.GetDataLine(null, email);
+            IDataBaseManager dataBaseMan = new DataBaseManager();
+            UserData user = dataBaseMan.GetUserDataByEmail(email);
+            if (user.passHash != null)
             {
-                fileRead = new System.IO.StreamReader(dataFilePath);
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("There was problem with File", e.GetType().Name);
-                return false;
-            }
-            String line;
-          
-            if (File.Exists(dataFilePath))
-            {
-                using (FileStream fs = File.OpenRead(dataFilePath))
+                string dehashedPass = DehashPassword(user.passHash, user.name);
+                var messg = new MimeMessage();
+                messg.From.Add(new MailboxAddress("your Whos_that password", "bot@whos_mail.com"));
+
+                messg.To.Add(new MailboxAddress("email_to", email));
+                messg.Subject = "Your Whos_that Password";
+
+                var builder = new BodyBuilder();
+
+                builder.TextBody = String.Concat("Here's your password: ", dehashedPass);
+
+                messg.Body = builder.ToMessageBody();
+
+                try
                 {
-                    while ((line = fileRead.ReadLine()) != null)
-                    {
-                       String dbEmail = line;
-
-                       String[] tokens = dbEmail.Split(' ');
-
-                       if(tokens.Length == 3) { 
-                           String mail = String.Copy(tokens[1]);
-                           if (String.Compare(email, mail).CompareTo(0) == 0)
-                            {
-                                Console.WriteLine("your email has been found, sending password");
-                                String passwordHash = tokens[2];
-                                String usrname = tokens[0];
-
-                                var messg = new MimeMessage();
-                                messg.From.Add(new MailboxAddress("your Whos_that password", "bot@whos_mail.com"));
-
-                                Console.WriteLine("Sending email to " + email);
-                                messg.To.Add(new MailboxAddress("email_to", email));
-                                messg.Subject = "Your Whos_that Password";
-
-                                var builder = new BodyBuilder();
-                              
-                                string dehashedPass = DehashPassword(tokens[2], tokens[0]);
-
-                                builder.TextBody = String.Concat("Here's your password, we suggest changing it as soon as we build this option: ",dehashedPass);
-
-                                messg.Body = builder.ToMessageBody();
-
-                                try
-                                {
-                                    var client = new SmtpClient();
-                                    client.Connect("smtp.gmail.com", 465, true);
-                                    client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
-                                    client.Send(messg);
-                                    client.Disconnect(true);
-                                }
-                                catch (Exception e)
-                                {
-                                    Console.WriteLine("Send Mail failed: " + e.Message);
-                                }
-                                Console.ReadLine();                       
-                            }
-                        }
-                    }
+                    var client = new SmtpClient();
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
+                    client.Send(messg);
+                    client.Disconnect(true);
+                }
+                catch (Exception e) {
+                    Console.WriteLine("Send mail Failed: " + e.Message);
+                    return false;
                 }
             }
-            else
-            {
-                Console.WriteLine("No File");
-            }
-            //Close File
-            fileRead.Close();
-            
+            else MessageBox.Show("No account with such email is found");
+
             return true;
         }
     }
