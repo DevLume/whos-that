@@ -16,6 +16,7 @@ namespace Whos_that
         //TODO: User Data must be returned as User object
         UserData GetUserDataDB(string username);
         UserData GetUserDataDB(int id);
+        UserData GetUserDataByEmail(string email);
         List<UserRelData> GetUserRelDataDB(string username);
         List<UserRelData> GetUserRelDataDB(int id);
         void InsertUserDataDB(List<UserData> data);

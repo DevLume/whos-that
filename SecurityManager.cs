@@ -63,7 +63,7 @@ namespace Whos_that
         {
             //DataFileManager dataMan = new DataFileManager();
             //string[] temp = dataMan.GetDataLine(null, email);
-            DataBaseManager dataBaseMan = new DataBaseManager();
+            IDataBaseManager dataBaseMan = new DataBaseManager();
             UserData user = dataBaseMan.GetUserDataByEmail(email);
             if (user.passHash != null)
             {

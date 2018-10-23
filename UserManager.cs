@@ -7,25 +7,28 @@ namespace Whos_that
 {
     public class UserManager : IUserManager
     {
-        public User GetUser(int id)
+        private IDataBaseManager dataman;
+        public UserManager()
         {
-            DataBaseManager dataMan = new DataBaseManager();
-            UserData userdat = dataMan.GetUserDataDB(id);
+            dataman = new DataBaseManager();
+        }
+
+        public User GetUser(int id)
+        {    
+            UserData userdat = dataman.GetUserDataDB(id);
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
 
         public User GetUser(string username)
         {
-            DataBaseManager dataMan = new DataBaseManager();
-            UserData userdat = dataMan.GetUserDataDB(username);
+            UserData userdat = dataman.GetUserDataDB(username);
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
         public bool checkIfUserExists(string username)
         {
-            DataBaseManager dataMan = new DataBaseManager();
-            UserData userdat = dataMan.GetUserDataDB(username);
+            UserData userdat = dataman.GetUserDataDB(username);
             if (userdat.name == username) return true;
             else return false;
         }
@@ -68,14 +71,13 @@ namespace Whos_that
 
         public bool NewUser(User usr)
         {
-            DataBaseManager dataMan = new DataBaseManager();
             User temp = GetUser(usr.username);
             if (temp.id == 0)
             {
                 Console.WriteLine("Inserting new user " + usr.username);
                 List<UserData> udata = new List<UserData>();
                 udata.Add(usr.ConvertToUserData());
-                dataMan.InsertUserDataDB(udata);
+                dataman.InsertUserDataDB(udata);
                 return true;
             }
             else return false;

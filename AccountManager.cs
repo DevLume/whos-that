@@ -22,6 +22,9 @@ namespace Whos_that
                 MessageBox.Show("username is too long");
                 return false;
             }
+            //TODO:
+            // check password
+
             //check username for spaces
             for (int i = 0; i < username.Length; i++)
             {
@@ -31,14 +34,13 @@ namespace Whos_that
                     return false;
                 }
             }
-
             //check email
-            const String regexPattern =
+            const string regexPattern =
                  @"^([0-9a-zA-Z]" + //Start with a digit or alphabetical
                @"([\+\-_\.][0-9a-zA-Z]+)*" + // No continuous or ending +-_. chars in email
                @")+" +
                @"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$";
-            String checkEmail = email;
+            string checkEmail = email;
             Regex regex = new Regex(regexPattern);
             Match match = regex.Match(checkEmail);
             if (!match.Success)
@@ -47,8 +49,15 @@ namespace Whos_that
                 return false;
             }
             //hash the password
-            String passHash = HashPassword(password, username);
-
+            string passHash = null;
+            if (string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("password box is empty");
+            }
+            else
+            { 
+                passHash = HashPassword(password, username);
+            }
             //Open file to read
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
             System.IO.StreamReader fileRead;

@@ -44,5 +44,16 @@ namespace Whos_that.Properties {
                 return ((string)(this["dataConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=cebukas.database.windows.net;Initial Catalog=data;User ID=luke;Passwo" +
+            "rd=Username1;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False")]
+        public string dataConnectionString2 {
+            get {
+                return ((string)(this["dataConnectionString2"]));
+            }
+        }
     }
 }

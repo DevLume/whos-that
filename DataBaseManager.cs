@@ -59,6 +59,7 @@ namespace Whos_that
             //query and parsing here:
 
             var q = from a in usrTable where a.Email == email select a;
+           
             foreach (var i in q)
             {
                 result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
