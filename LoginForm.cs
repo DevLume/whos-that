@@ -128,7 +128,8 @@ namespace Whos_that
 
         private void registerRegisterButton_Click(object sender, EventArgs e)
         {
-            acm.CreateAccount(username, password, email);
+            if (password != "Password" && password != "") acm.CreateAccount(username, password, email);
+            else MessageBox.Show("Incorrect password input");
         }
 
         private void usernameText_TextChanged(object sender, EventArgs e)
