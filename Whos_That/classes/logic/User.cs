@@ -14,16 +14,15 @@ namespace Whos_that
         public string username;
         public string gender;
         private IDataBaseManager dataman;
-        private List<User> receivedFriendRequests;
-        private List<User> sentFriendRequests;
-        private List<User> friends;
-
+        
         public string passwordHash;
         public string email;
 
-        public User() { }
-        public User(int id, string username, string email, string passhash, string gender) {
+        User() {
             dataman = new DataBaseManager();
+        }
+        public User(int id, string username, string email, string passhash, string gender) : this(){
+            
             this.id = id;
             this.username = username;
             this.email = email;
@@ -31,8 +30,7 @@ namespace Whos_that
             passwordHash = passhash;
         }
         public User(string username, string email, string passhash, string gender)
-        {
-            dataman = new DataBaseManager();
+        {            
             this.username = username;
             this.email = email;
             this.gender = gender;
@@ -40,8 +38,7 @@ namespace Whos_that
         }
 
         public User(string username, string passHash, string email)
-        {
-            dataman = new DataBaseManager();
+        {        
             this.username = username;
             passwordHash = passHash;
             this.email = email;
@@ -50,73 +47,7 @@ namespace Whos_that
             sentFriendRequests = new List<User>();
             friends = new List<User>();*/
         }
-
-
-        public void SendFriendRequest(User usr) {      
-            if (usr != null)
-            {
-                usr.receivedFriendRequests.Add(this);
-                sentFriendRequests.Add(usr);
-            }     
-        }
-
-        public bool ReceiveRequest(User usr, bool approval) {          
-            if (approval)
-            {
-                using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-                {
-                    while (usrEnumerator.MoveNext())
-                    {
-                        User temp = usrEnumerator.Current;
-                        if (usr.Equals(temp)) {
-                            receivedFriendRequests.Remove(temp);
-                            usr.sentFriendRequests.Remove(this);
-                            friends.Add(usr);
-                            usr.friends.Add(this);
-                            break;
-                        }
-                        //Console.WriteLine(usr.username);
-                    }
-                }
-            }
-            else {
-            }
-            return false;
-        }
-
-        public void ListReceivedFriendRequests() {
-            using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext()) {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListSentFriendRequests()
-        {
-            using (IEnumerator<User> usrEnumerator = sentFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListAllFriends() {
-            using (IEnumerator<User> usrEnumerator = friends.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
+        
         public UserData ConvertToUserData() {
             return new UserData(0, username, email, passwordHash, "unspecified", false);
         }

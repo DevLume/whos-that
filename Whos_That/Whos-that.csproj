@@ -129,6 +129,8 @@
     <Compile Include="classes\logic\AccountManagerDB.cs" />
     <Compile Include="classes\logic\DataBaseManager.cs" />
     <Compile Include="classes\logic\DataFileManager.cs" />
+    <Compile Include="classes\logic\Interfaces\IDataTable.cs" />
+    <Compile Include="classes\logic\TestDataBaseManager.cs" />
     <Compile Include="dataLinq.cs">
       <DependentUpon>dataLinq.dbml</DependentUpon>
     </Compile>

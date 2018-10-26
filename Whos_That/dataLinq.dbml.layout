@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dataLinq">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="dataLinq">
   <DataContextMoniker Name="/dataLinqDataContext" />
   <nestedChildShapes>
     <classShape Id="0be0553f-8b79-4055-8e47-8b6cd27f4cf1" absoluteBounds="7.375, 3.125, 2, 1.9631982421875">
@@ -12,6 +12,18 @@
       <DataClassMoniker Name="/dataLinqDataContext/usersRelTable" />
       <nestedChildShapes>
         <elementListCompartment Id="aaaec125-7b6d-4c26-a16f-667b48a0fbe7" absoluteBounds="4.515, 3.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="716e71fc-81eb-44ca-a608-eb72896c6a6f" absoluteBounds="4, 7, 2, 1.9631982421875">
+      <DataClassMoniker Name="/dataLinqDataContext/usersTestTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b61d0a8-6a81-4547-ae24-3419f84afb4c" absoluteBounds="4.015, 7.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ab477a40-d76a-44d4-b2af-2b4a92b3ac43" absoluteBounds="6.375, 7, 2, 1.9631982421875">
+      <DataClassMoniker Name="/dataLinqDataContext/usersTestRelTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de1a91bf-193e-45ed-9860-e4744dd9eab6" absoluteBounds="6.3900000000000006, 7.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

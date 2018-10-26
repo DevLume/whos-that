@@ -16,6 +16,11 @@ namespace Whos_that
     {
         private const string initVector = "pemgail9uzpgzl88";
         private const int keysize = 256;
+        private IDataBaseManager dataman;
+        public SecurityManager()
+        {
+            dataman = new DataBaseManager();
+        }
 
         public string ChangePassword()
         {
@@ -63,8 +68,7 @@ namespace Whos_that
         {
             //DataFileManager dataMan = new DataFileManager();
             //string[] temp = dataMan.GetDataLine(null, email);
-            IDataBaseManager dataBaseMan = new DataBaseManager();
-            UserData user = dataBaseMan.GetUserDataByEmail(email);
+            UserData user = dataman.GetUserDataByEmail(email);
             if (user.passHash != null)
             {
                 string dehashedPass = DehashPassword(user.passHash, user.name);

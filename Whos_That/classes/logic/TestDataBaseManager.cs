@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    class DataBaseManager : IDataBaseManager
+    class TestDataBaseManager : IDataBaseManager
     {
         //Database methods here:
         //TODO:Add exception handling
@@ -16,7 +16,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersTable>();
+            var usrTable = dataSpace.GetTable<usersTestTable>();
             //query and parsing here:
 
             var q = from a in usrTable where a.Name == username select a;
@@ -35,7 +35,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersTable>();
+            var usrTable = dataSpace.GetTable<usersTestTable>();
             //query and parsing here:
 
             var q = from a in usrTable where a.Id == id select a;
@@ -55,7 +55,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersTable>();
+            var usrTable = dataSpace.GetTable<usersTestTable>();
             //query and parsing here:
 
             var q = from a in usrTable where a.Email == email select a;
@@ -95,7 +95,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersRelTable>();
+            var usrTable = dataSpace.GetTable<usersTestRelTable>();
             //query and parsing here:
 
             var q = from a in usrTable where a.user1ID == id select a;
@@ -114,7 +114,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersTable>();
+            var usrTable = dataSpace.GetTable<usersTestTable>();
             usersTable tbl;
             bool online = false;
 
@@ -145,7 +145,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersRelTable>();
+            var usrTable = dataSpace.GetTable<usersTestRelTable>();
             usersRelTable tbl;
             //query and parsing here:
             foreach (UserRelData userdat in data)
@@ -176,7 +176,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersTable>();
+            var usrTable = dataSpace.GetTable<usersTestTable>();
             //query and parsing here:
 
             foreach (UserData userdat in data)
@@ -206,7 +206,7 @@ namespace Whos_that
             //create new data context
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
-            var usrTable = dataSpace.GetTable<usersRelTable>();
+            var usrTable = dataSpace.GetTable<usersTestRelTable>();
             //query and parsing here:
             foreach (UserRelData userdat in data)
             {
