@@ -6,7 +6,7 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PassHash" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Online" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
