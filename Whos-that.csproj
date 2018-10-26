@@ -110,10 +110,10 @@
     <Content Include="UniversalPictures\spy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountManager.cs" />
-    <Compile Include="AccountManagerDB.cs" />
-    <Compile Include="DataBaseManager.cs" />
-    <Compile Include="DataFileManager.cs" />
+    <Compile Include="classes\logic\AccountManager.cs" />
+    <Compile Include="classes\logic\AccountManagerDB.cs" />
+    <Compile Include="classes\logic\DataBaseManager.cs" />
+    <Compile Include="classes\logic\DataFileManager.cs" />
     <Compile Include="dataLinq.cs">
       <DependentUpon>dataLinq.dbml</DependentUpon>
     </Compile>
@@ -122,43 +122,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataLinq.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Extender.cs" />
-    <Compile Include="ForgottenPasswordForm.cs">
+    <Compile Include="classes\logic\Extender.cs" />
+    <Compile Include="classes\GUI\ForgottenPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ForgottenPasswordForm.Designer.cs">
+    <Compile Include="classes\GUI\ForgottenPasswordForm.Designer.cs">
       <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateTest.cs">
+    <Compile Include="classes\GUI\CreateTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateTest.Designer.cs">
+    <Compile Include="classes\GUI\CreateTest.Designer.cs">
       <DependentUpon>CreateTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDataManager.cs" />
-    <Compile Include="IFriendManager.cs" />
-    <Compile Include="IUserManager.cs" />
-    <Compile Include="GuessForm.cs">
+    <Compile Include="classes\logic\Interfaces\IDataManager.cs" />
+    <Compile Include="classes\logic\Interfaces\IFriendManager.cs" />
+    <Compile Include="classes\logic\Interfaces\IUserManager.cs" />
+    <Compile Include="classes\GUI\GuessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuessForm.Designer.cs">
+    <Compile Include="classes\GUI\GuessForm.Designer.cs">
       <DependentUpon>GuessForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISecurityManager.cs" />
-    <Compile Include="ListManager.cs" />
-    <Compile Include="LoginForm.cs">
+    <Compile Include="classes\logic\Interfaces\ISecurityManager.cs" />
+    <Compile Include="classes\logic\ListManager.cs" />
+    <Compile Include="classes\GUI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="classes\GUI\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mainscreen.cs">
+    <Compile Include="classes\GUI\Mainscreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mainscreen.Designer.cs">
+    <Compile Include="classes\GUI\Mainscreen.Designer.cs">
       <DependentUpon>Mainscreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlaceholderTextBox.cs">
+    <Compile Include="classes\GUI\PlaceholderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -170,35 +170,35 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Question.cs" />
-    <Compile Include="SecurityManager.cs" />
-    <Compile Include="StatisticsForm.cs">
+    <Compile Include="classes\logic\Question.cs" />
+    <Compile Include="classes\logic\SecurityManager.cs" />
+    <Compile Include="classes\GUI\StatisticsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StatisticsForm.Designer.cs">
+    <Compile Include="classes\GUI\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
-    <Compile Include="UserManager.cs" />
+    <Compile Include="classes\logic\User.cs" />
+    <Compile Include="classes\logic\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CreateTest.resx">
+    <EmbeddedResource Include="classes\GUI\CreateTest.resx">
       <DependentUpon>CreateTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ForgottenPasswordForm.resx">
+    <EmbeddedResource Include="classes\GUI\ForgottenPasswordForm.resx">
       <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuessForm.resx">
+    <EmbeddedResource Include="classes\GUI\GuessForm.resx">
       <DependentUpon>GuessForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="classes\GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mainscreen.resx">
+    <EmbeddedResource Include="classes\GUI\Mainscreen.resx">
       <DependentUpon>Mainscreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx" />
-    <EmbeddedResource Include="StatisticsForm.resx">
+    <EmbeddedResource Include="classes\GUI\StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
