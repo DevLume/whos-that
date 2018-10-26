@@ -1,0 +1,217 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{A0914C65-CA4C-4B4A-B115-23AAA9A88071}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Whos_that</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>packages\MailKit.2.0.6\lib\net45\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>packages\MimeKit.2.0.6\lib\net45\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\pack\pack-47761f8b0903ea347fe4b656b01e09af2529cd09.idx" />
+    <None Include=".git\objects\pack\pack-47761f8b0903ea347fe4b656b01e09af2529cd09.pack" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include="App.config" />
+    <None Include="dataLinq.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dataLinq.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataLinq.dbml.layout">
+      <DependentUpon>dataLinq.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings3.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data.txt" />
+    <Content Include="UniversalPictures\fb.png" />
+    <Content Include="UniversalPictures\paparazi.png" />
+    <Content Include="UniversalPictures\passwordlogo2.png" />
+    <Content Include="UniversalPictures\spy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="classes\logic\AccountManager.cs" />
+    <Compile Include="classes\logic\AccountManagerDB.cs" />
+    <Compile Include="classes\logic\DataBaseManager.cs" />
+    <Compile Include="classes\logic\DataFileManager.cs" />
+    <Compile Include="dataLinq.cs">
+      <DependentUpon>dataLinq.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="dataLinq.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataLinq.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="classes\logic\Extender.cs" />
+    <Compile Include="classes\GUI\ForgottenPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\ForgottenPasswordForm.Designer.cs">
+      <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\GUI\CreateTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\CreateTest.Designer.cs">
+      <DependentUpon>CreateTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\logic\Interfaces\IDataManager.cs" />
+    <Compile Include="classes\logic\Interfaces\IFriendManager.cs" />
+    <Compile Include="classes\logic\Interfaces\IUserManager.cs" />
+    <Compile Include="classes\GUI\GuessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\GuessForm.Designer.cs">
+      <DependentUpon>GuessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\logic\Interfaces\ISecurityManager.cs" />
+    <Compile Include="classes\logic\ListManager.cs" />
+    <Compile Include="classes\GUI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\GUI\Mainscreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\Mainscreen.Designer.cs">
+      <DependentUpon>Mainscreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\GUI\PlaceholderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Properties\Settings3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="classes\logic\Question.cs" />
+    <Compile Include="classes\logic\SecurityManager.cs" />
+    <Compile Include="classes\GUI\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="classes\GUI\StatisticsForm.Designer.cs">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\logic\User.cs" />
+    <Compile Include="classes\logic\UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="classes\GUI\CreateTest.resx">
+      <DependentUpon>CreateTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="classes\GUI\ForgottenPasswordForm.resx">
+      <DependentUpon>ForgottenPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="classes\GUI\GuessForm.resx">
+      <DependentUpon>GuessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="classes\GUI\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="classes\GUI\Mainscreen.resx">
+      <DependentUpon>Mainscreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="classes\GUI\StatisticsForm.resx">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\refs\tags\" />
+    <Folder Include="Whos_that\Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
