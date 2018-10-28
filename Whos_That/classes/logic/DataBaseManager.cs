@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    class DataBaseManager : IDataBaseManager
+    public class DataBaseManager : IDataBaseManager
     {
         //Database methods here:
         //TODO:Add exception handling
@@ -22,7 +22,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Name == username select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, false);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
             }
             //Close data context
             dataSpace.Dispose();
@@ -228,6 +228,44 @@ namespace Whos_that
 
             //Close data context
             dataSpace.Dispose();
+        }
+
+        public List<User> GetAllOnlineUserDataDB()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parsing here:
+
+            var q = from a in usrTable where a.Online == true select a;
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender, true));
+            }
+            //Close data context
+            dataSpace.Dispose();
+            return result;
+        }
+
+        public List<User> GetAllUserDataDB()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTable>();
+            //query and parsing here:
+
+            var q = from a in usrTable select a;
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender, true));
+            }
+            //Close data context
+            dataSpace.Dispose();
+            return result;
         }
     }
 }

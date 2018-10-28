@@ -9,14 +9,7 @@ namespace Whos_that
 
         [STAThread]
         static void Main()
-        {
-            UserManager u = new UserManager();
-
-            User l = u.GetUser("luke");
-            User m = u.GetUser("Mister");
-
-            l.Unfriend(m);
-
+        { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginForm logForm = new LoginForm();

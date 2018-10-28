@@ -17,9 +17,12 @@ namespace Whos_that
         
         public string passwordHash;
         public string email;
+        private bool v;
 
-        User() {
-            dataman = new DataBaseManager();
+        User() :this(new TestDataBaseManager()){}
+        User(IDataBaseManager dataman)
+        {
+            this.dataman = dataman;
         }
         public User(int id, string username, string email, string passhash, string gender) : this(){
             
@@ -29,7 +32,7 @@ namespace Whos_that
             this.gender = gender;
             passwordHash = passhash;
         }
-        public User(string username, string email, string passhash, string gender)
+        public User(string username, string email, string passhash, string gender) : this()
         {            
             this.username = username;
             this.email = email;
@@ -37,7 +40,7 @@ namespace Whos_that
             passwordHash = passhash;
         }
 
-        public User(string username, string passHash, string email)
+        public User(string username, string passHash, string email) : this()
         {        
             this.username = username;
             passwordHash = passHash;
@@ -47,7 +50,12 @@ namespace Whos_that
             sentFriendRequests = new List<User>();
             friends = new List<User>();*/
         }
-        
+
+        public User(int id, string username, string email, string passhash, string gender, bool v) : this(id, username, email, passhash, gender)
+        {
+            this.v = v;
+        }
+
         public UserData ConvertToUserData() {
             return new UserData(0, username, email, passwordHash, "unspecified", false);
         }

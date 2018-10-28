@@ -10,13 +10,15 @@ namespace Whos_that
     { }
 
 
-    interface IDataBaseManager
+    public interface IDataBaseManager
     {
         //methods for DB
         //TODO: User Data must be returned as User object
         UserData GetUserDataDB(string username);
         UserData GetUserDataDB(int id);
         UserData GetUserDataByEmail(string email);
+        List<User> GetAllOnlineUserDataDB();
+        List<User> GetAllUserDataDB();
         List<UserRelData> GetUserRelDataDB(string username);
         List<UserRelData> GetUserRelDataDB(int id);
         void InsertUserDataDB(List<UserData> data);
@@ -25,7 +27,7 @@ namespace Whos_that
         void RemoveUserRelDataDB(List<UserRelData> data);      
     }
 
-    interface IDataFileManager
+    public interface IDataFileManager
     {
         //Change return values when not operating on strings only
         string[] GetDataLine(string username);

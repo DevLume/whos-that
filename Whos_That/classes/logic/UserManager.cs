@@ -8,9 +8,10 @@ namespace Whos_that
     public class UserManager : IUserManager
     {
         private IDataBaseManager dataman;
-        public UserManager()
+        public UserManager() : this(new TestDataBaseManager()) { }
+        private UserManager(IDataBaseManager dataman)
         {
-            dataman = new DataBaseManager();
+            this.dataman = dataman;
         }
 
         public User GetUser(int id)
@@ -34,39 +35,13 @@ namespace Whos_that
         }
 
         public List<User> ListUsers()
-        {
-            List<User> result = new List<User>();
-            //create new data context
-            var dataSpace = new dataLinqDataContext();
-            //get needed table 
-            var usrTable = dataSpace.GetTable<usersTable>();
-            //query and parse here:
-            var q = from a in usrTable select a;
-
-            foreach (var i in q)
-            {
-                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender));
-            }
-
-            return result;
+        { 
+            return dataman.GetAllUserDataDB();          
         }
 
         public List<User> ListOnlineUsers()
-        {
-            List<User> result = new List<User>();
-            //create new data context
-            var dataSpace = new dataLinqDataContext();
-            //get needed table 
-            var usrTable = dataSpace.GetTable<usersTable>();
-            //query and parse here:
-            var q = from a in usrTable where a.Online == true select a;
-
-            foreach (var i in q)
-            {
-                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender));
-            }
-
-            return result;
+        {           
+            return dataman.GetAllOnlineUserDataDB();
         }
 
         public bool NewUser(User usr)
@@ -81,6 +56,22 @@ namespace Whos_that
                 return true;
             }
             else return false;
+        }
+
+        public bool RemoveUser(string username) // pass username in order to check if such user exists
+        {
+            UserData userdat = dataman.GetUserDataDB(username);
+            if (userdat.id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                List<UserData> dataToDelete = new List<UserData>();
+                dataToDelete.Add(userdat);
+                dataman.RemoveUserDataDB(dataToDelete);
+                return true;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Whos_that
 {
-    class DataFileManager : IDataFileManager
+    public class DataFileManager : IDataFileManager
     {
         // DataManager methods for saving Tests
         private string folderName, testName, usernameToGuess;

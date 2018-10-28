@@ -6,10 +6,48 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    class TestDataBaseManager : IDataBaseManager
+    public class TestDataBaseManager : IDataBaseManager
     {
         //Database methods here:
-        //TODO:Add exception handling
+        //TODO:Add exception handling    
+        public List<User> GetAllOnlineUserDataDB()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTestTable>();
+            //query and parsing here:
+
+            var q = from a in usrTable where a.Online == true select a;
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender, true));
+            }
+            //Close data context
+            dataSpace.Dispose();
+            return result;
+        }
+
+        public List<User> GetAllUserDataDB()
+        {
+            List<User> result = new List<User>();
+            //create new data context
+            var dataSpace = new dataLinqDataContext();
+            //get needed table from data context
+            var usrTable = dataSpace.GetTable<usersTestTable>();
+            //query and parsing here:
+
+            var q = from a in usrTable select a;
+            foreach (var i in q)
+            {
+                result.Add(new User(i.Id, i.Name, i.Email, i.PassHash, i.Gender, true));
+            }
+            //Close data context
+            dataSpace.Dispose();
+            return result;
+        }
+
         public UserData GetUserDataDB(string username)
         {
             UserData result = new UserData();
@@ -22,7 +60,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Name == username select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, false);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
             }
             //Close data context
             dataSpace.Dispose();
@@ -115,15 +153,15 @@ namespace Whos_that
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
             var usrTable = dataSpace.GetTable<usersTestTable>();
-            usersTable tbl;
+            usersTestTable tbl;
             bool online = false;
 
             //query and parsing here:
             foreach (UserData userdat in data)
             {
-                tbl = new usersTable(userdat.name,
+                tbl = new usersTestTable(userdat.name,
                     userdat.email, userdat.passHash, userdat.gender, online);
-                dataSpace.usersTables.InsertOnSubmit(tbl);
+                dataSpace.usersTestTables.InsertOnSubmit(tbl);
             }
 
             try
@@ -146,16 +184,16 @@ namespace Whos_that
             var dataSpace = new dataLinqDataContext();
             //get needed table from data context
             var usrTable = dataSpace.GetTable<usersTestRelTable>();
-            usersRelTable tbl;
+            usersTestRelTable tbl;
             //query and parsing here:
             foreach (UserRelData userdat in data)
             {
                 Console.WriteLine(userdat.date);
-                tbl = new usersRelTable(userdat.user1ID,
+                tbl = new usersTestRelTable(userdat.user1ID,
                     userdat.user2ID, userdat.approved, userdat.date, userdat.received);
 
                 tbl.since = userdat.date;
-                dataSpace.usersRelTables.InsertOnSubmit(tbl);
+                dataSpace.usersTestRelTables.InsertOnSubmit(tbl);
             }
 
             try
