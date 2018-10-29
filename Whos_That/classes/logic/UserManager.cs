@@ -7,41 +7,41 @@ namespace Whos_that
 {
     public class UserManager : IUserManager
     {
-        private IDataBaseManager dataman;
-        public UserManager() : this(new TestDataBaseManager()) { }
-        private UserManager(IDataBaseManager dataman)
+        private IDataManager dataman;
+        public UserManager() : this(new DataFileManager()) { }
+        private UserManager(IDataManager dataman)
         {
             this.dataman = dataman;
         }
 
         public User GetUser(int id)
         {    
-            UserData userdat = dataman.GetUserDataDB(id);
+            UserData userdat = dataman.GetUserData(id);
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
 
         public User GetUser(string username)
         {
-            UserData userdat = dataman.GetUserDataDB(username);
+            UserData userdat = dataman.GetUserData(username);
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
         public bool checkIfUserExists(string username)
         {
-            UserData userdat = dataman.GetUserDataDB(username);
+            UserData userdat = dataman.GetUserData(username);
             if (userdat.name == username) return true;
             else return false;
         }
 
         public List<User> ListUsers()
         { 
-            return dataman.GetAllUserDataDB();          
+            return dataman.GetAllUserData();          
         }
 
         public List<User> ListOnlineUsers()
         {           
-            return dataman.GetAllOnlineUserDataDB();
+            return dataman.GetAllOnlineUserData();
         }
 
         public bool NewUser(User usr)
@@ -52,7 +52,7 @@ namespace Whos_that
                 Console.WriteLine("Inserting new user " + usr.username);
                 List<UserData> udata = new List<UserData>();
                 udata.Add(usr.ConvertToUserData());
-                dataman.InsertUserDataDB(udata);
+                dataman.InsertUserData(udata);
                 return true;
             }
             else return false;
@@ -60,7 +60,7 @@ namespace Whos_that
 
         public bool RemoveUser(string username) // pass username in order to check if such user exists
         {
-            UserData userdat = dataman.GetUserDataDB(username);
+            UserData userdat = dataman.GetUserData(username);
             if (userdat.id == 0)
             {
                 return false;
@@ -69,7 +69,7 @@ namespace Whos_that
             {
                 List<UserData> dataToDelete = new List<UserData>();
                 dataToDelete.Add(userdat);
-                dataman.RemoveUserDataDB(dataToDelete);
+                dataman.RemoveUserData(dataToDelete);
                 return true;
             }
         }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    public class DataBaseManager : IDataBaseManager
+    public class DataBaseManager : IDataManager
     {
         //Database methods here:
         //TODO:Add exception handling
-        public UserData GetUserDataDB(string username)
+        public UserData GetUserData(string username)
         {
             UserData result = new UserData();
             //create new data context
@@ -29,7 +29,7 @@ namespace Whos_that
             return result;
         }
 
-        public UserData GetUserDataDB(int id)
+        public UserData GetUserData(int id)
         {
             UserData result = new UserData();
             //create new data context
@@ -70,7 +70,7 @@ namespace Whos_that
             return result;
         }
 
-        public List<UserRelData> GetUserRelDataDB(string username)
+        public List<UserRelData> GetUserRelData(string username)
         {
             /*List<UserData> result = new List<UserData>();
             //create new data context
@@ -89,7 +89,7 @@ namespace Whos_that
             throw new NotImplementedException();
         }
 
-        public List<UserRelData> GetUserRelDataDB(int id)
+        public List<UserRelData> GetUserRelData(int id)
         {
             List<UserRelData> result = new List<UserRelData>();
             //create new data context
@@ -109,7 +109,7 @@ namespace Whos_that
             return result;
         }
 
-        public void InsertUserDataDB(List<UserData> data)
+        public void InsertUserData(List<UserData> data)
         {
             //create new data context
             var dataSpace = new dataLinqDataContext();
@@ -140,7 +140,7 @@ namespace Whos_that
             // throw new NotImplementedException();
         }
 
-        public void InsertUserRelDataDB(List<UserRelData> data)
+        public void InsertUserRelData(List<UserRelData> data)
         {
             //create new data context
             var dataSpace = new dataLinqDataContext();
@@ -171,7 +171,7 @@ namespace Whos_that
             dataSpace.Dispose();
         }
 
-        public void RemoveUserDataDB(List<UserData> data)
+        public void RemoveUserData(List<UserData> data)
         {
             //create new data context
             var dataSpace = new dataLinqDataContext();
@@ -201,7 +201,7 @@ namespace Whos_that
             dataSpace.Dispose();
         }
 
-        public void RemoveUserRelDataDB(List<UserRelData> data)
+        public void RemoveUserRelData(List<UserRelData> data)
         {
             //create new data context
             var dataSpace = new dataLinqDataContext();
@@ -230,7 +230,7 @@ namespace Whos_that
             dataSpace.Dispose();
         }
 
-        public List<User> GetAllOnlineUserDataDB()
+        public List<User> GetAllOnlineUserData()
         {
             List<User> result = new List<User>();
             //create new data context
@@ -249,7 +249,7 @@ namespace Whos_that
             return result;
         }
 
-        public List<User> GetAllUserDataDB()
+        public List<User> GetAllUserData()
         {
             List<User> result = new List<User>();
             //create new data context
@@ -266,6 +266,69 @@ namespace Whos_that
             //Close data context
             dataSpace.Dispose();
             return result;
+        }
+
+        public bool CreateRelationship(int uid1, int uid2, bool approved)
+        {
+            var dataSpace = new dataLinqDataContext();
+            var usrTable = dataSpace.GetTable<usersRelTable>();
+
+            var s = from a in usrTable where a.user1ID == uid2 && a.user2ID == uid1 select a;
+            foreach (var i in s)
+            {
+                if (!(bool)i.received)
+                {
+                    Console.WriteLine("Such relationship already exists");
+                    return false;
+                }
+            }
+            List<UserRelData> userdat = GetUserRelData(uid1);
+            foreach (var i in userdat)
+            {
+                if (!(bool)i.received && i.user1ID == uid2 && i.user2ID == uid1)
+                {
+                    Console.WriteLine("Such relationship already exists");
+                    return false;
+                }
+            }
+            if (!approved)
+            {
+                List<UserRelData> reldat = new List<UserRelData>();
+                var q = from a in usrTable where a.user2ID == uid2 && a.user1ID == uid1 select a;
+                foreach (var i in q)
+                {
+                    if (i.user2ID == uid2 && i.user1ID == uid1)
+                    {
+                        reldat.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, DateTime.Today, (bool)i.received));
+                    }
+                }
+
+                RemoveUserRelData(reldat);
+            }
+            else
+            {
+                var q = from a in usrTable where a.user2ID == uid2 && a.user1ID == uid1 select a;
+                List<UserRelData> reldat = new List<UserRelData>();
+                foreach (var i in q)
+                {
+                    i.approved = true;
+                    i.received = false;
+                    i.since = DateTime.Today;
+                    reldat.Add(new UserRelData(i.Id, uid2, uid1, true, (DateTime)i.since, false));
+                    Console.WriteLine("Adding with since date {0}", i.since);
+                    InsertUserRelData(reldat);
+                }
+                try
+                {
+                    dataSpace.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

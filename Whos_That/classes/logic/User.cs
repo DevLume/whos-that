@@ -13,14 +13,14 @@ namespace Whos_that
         public int id;
         public string username;
         public string gender;
-        private IDataBaseManager dataman;
+        private IDataManager dataman;
         
         public string passwordHash;
         public string email;
         private bool v;
 
-        User() :this(new TestDataBaseManager()){}
-        User(IDataBaseManager dataman)
+        User() :this(new DataFileManager()){}
+        User(IDataManager dataman)
         {
             this.dataman = dataman;
         }
@@ -96,7 +96,7 @@ namespace Whos_that
         private void UnfriendDB(User u)
         {
             int usrID = u.id;
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
             List<UserRelData> unfriendRel = new List<UserRelData>();
 
             foreach (UserRelData r in rel)
@@ -106,13 +106,13 @@ namespace Whos_that
                     unfriendRel.Add(r);
                 }       
             }
-            dataman.RemoveUserRelDataDB(unfriendRel);        
+            dataman.RemoveUserRelData(unfriendRel);        
         }
         public List<User> ListFriends()
         {
             List<User> result = new List<User>();
             UserManager userMan = new UserManager();
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
 
             foreach (UserRelData dat in rel) {
                 if (dat.approved)
@@ -128,7 +128,7 @@ namespace Whos_that
         {
             List<User> result = new List<User>();
             UserManager userMan = new UserManager();
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
 
             foreach (UserRelData dat in rel)
             {
@@ -142,50 +142,15 @@ namespace Whos_that
         }
 
         public bool AnswerFriendRq(int usrID, bool response)
-        {            
-            var dataSpace = new dataLinqDataContext();
-            var usrTable = dataSpace.GetTable<usersRelTable>();
-
-            var s = from a in usrTable where a.user1ID == usrID && a.user2ID == id select a;
-            foreach (var i in s) {
-                if (!(bool)i.received) {
-                    Console.WriteLine("Such relationship already exists");
-                    return false;
-                }
-            }
-
-            if (!response)
+        {          
+            if (dataman.CreateRelationship(id, usrID, response))
             {
-                List<UserRelData> reldat = new List<UserRelData>();
-                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
-                foreach (var i in q)
-                {
-                    reldat.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, DateTime.Today, (bool)i.received));
-                }
-
-                dataman.RemoveUserRelDataDB(reldat);
+                return true;
             }
-            else {
-                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
-                List<UserRelData> reldat = new List<UserRelData>();
-                foreach (var i in q) {
-                    i.approved = true;
-                    i.received = false;
-                    i.since = DateTime.Today;
-                    reldat.Add(new UserRelData(i.Id, usrID, id, true, (DateTime)i.since, false));
-                    Console.WriteLine("Adding with since date {0}", i.since);
-                    dataman.InsertUserRelDataDB(reldat);
-                }
-                try
-                {
-                    dataSpace.SubmitChanges();
-                }
-                catch (Exception e) {             
-                    Console.WriteLine(e);
-                    return false;
-                }               
+            else
+            {
+                return false;
             }
-            return true;
         }
 
         public bool SendFriendRq(int usrID)
@@ -194,7 +159,7 @@ namespace Whos_that
                 Console.WriteLine("friend request inception");
                 return false;
             }
-            List<UserRelData> temp = dataman.GetUserRelDataDB(usrID);
+            List<UserRelData> temp = dataman.GetUserRelData(usrID);
 
             foreach (UserRelData tmp in temp) {
                 if (tmp.user1ID == usrID && tmp.user2ID == id) {
@@ -214,7 +179,7 @@ namespace Whos_that
             Console.WriteLine("sent rq date {0}", udat.date);
             reldat.Add(udat);
 
-            dataman.InsertUserRelDataDB(reldat);
+            dataman.InsertUserRelData(reldat);
             return true;
         }
     }

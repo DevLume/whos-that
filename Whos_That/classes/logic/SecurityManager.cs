@@ -16,9 +16,9 @@ namespace Whos_that
     {
         private const string initVector = "pemgail9uzpgzl88";
         private const int keysize = 256;
-        private IDataBaseManager dataman;
-        public SecurityManager() : this(new TestDataBaseManager()) { }
-        public SecurityManager(IDataBaseManager dataman)
+        private IDataManager dataman;
+        public SecurityManager() : this(new DataFileManager()) { }
+        public SecurityManager(IDataManager dataman)
         {
             this.dataman = dataman;
         }

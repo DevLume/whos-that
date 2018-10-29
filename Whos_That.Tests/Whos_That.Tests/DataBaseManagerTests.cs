@@ -17,7 +17,7 @@ namespace Whos_That.Tests
         {
             UserData wantedData = new UserData(1,"test1","test1@maul.com", "passhash1", "unspecified    ", true);
 
-            UserData actualData =  dataman.GetUserDataDB("test1");
+            UserData actualData =  dataman.GetUserData("test1");
 
             Assert.Equal(wantedData, actualData);
         }
@@ -27,7 +27,7 @@ namespace Whos_That.Tests
         {
             UserData wantedData = new UserData(1, "test1", "test1@maul.com", "passhash1", "unspecified    ", true);
 
-            UserData actualData = dataman.GetUserDataDB(1);
+            UserData actualData = dataman.GetUserData(1);
 
             Assert.Equal(wantedData, actualData);
         }

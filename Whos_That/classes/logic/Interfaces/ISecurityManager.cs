@@ -8,9 +8,9 @@ namespace Whos_that
 {
     interface ISecurityManager
     {
-        String HashPassword(string text, string password);
-        String DehashPassword(string text, string password);
-        String ChangePassword(); //Still not implemented
+        string HashPassword(string text, string password);
+        string DehashPassword(string text, string password);
+        string ChangePassword(); //Still not implemented
         bool RemindPassword(string email);
     }
 }

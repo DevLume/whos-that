@@ -6,32 +6,28 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    interface IDataManager : IDataBaseManager, IDataFileManager
-    { }
-
-
-    public interface IDataBaseManager
+    public interface IDataManager
     {
-        //methods for DB
-        //TODO: User Data must be returned as User object
-        UserData GetUserDataDB(string username);
-        UserData GetUserDataDB(int id);
+        UserData GetUserData(string username);
+        UserData GetUserData(int id);
         UserData GetUserDataByEmail(string email);
-        List<User> GetAllOnlineUserDataDB();
-        List<User> GetAllUserDataDB();
-        List<UserRelData> GetUserRelDataDB(string username);
-        List<UserRelData> GetUserRelDataDB(int id);
-        void InsertUserDataDB(List<UserData> data);
-        void InsertUserRelDataDB(List<UserRelData> data);
-        void RemoveUserDataDB(List<UserData> data);
-        void RemoveUserRelDataDB(List<UserRelData> data);      
+        List<User> GetAllOnlineUserData();
+        List<User> GetAllUserData();
+        List<UserRelData> GetUserRelData(string username);
+        List<UserRelData> GetUserRelData(int id);
+        void InsertUserData(List<UserData> data);
+        void InsertUserRelData(List<UserRelData> data);
+        void RemoveUserData(List<UserData> data);
+        void RemoveUserRelData(List<UserRelData> data);
+        bool CreateRelationship(int uid1, int uid2, bool approved);
     }
 
-    public interface IDataFileManager
+
+    public interface IDataBaseManager : IDataManager
+    {  
+    }
+
+    public interface IDataFileManager : IDataManager 
     {
-        //Change return values when not operating on strings only
-        string[] GetDataLine(string username);
-        string[] GetDataLine(string username, string email);
-        bool InsertUniqueDataLine(string username, string email, string passwordHash);
     }
 }
