@@ -39,6 +39,11 @@ namespace Whos_that
                 MessageBox.Show("E-mail format is wrong");
                 return false;
             }
+            if (userMan.GetUserByEmail(email).id != 0)
+            {
+                MessageBox.Show("such E-mail is already taken");
+                return false;
+            }
             string passHash = HashPassword(password, username);
 
             //database time

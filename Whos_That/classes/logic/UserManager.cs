@@ -20,7 +20,15 @@ namespace Whos_that
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }
+        
+        public User GetUserByEmail(string email)
+        {
+            DataBaseManager dataMan = new DataBaseManager();
+            UserData userdat = dataMan.GetUserDataByEmail(email);
 
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
+        }
+        
         public User GetUser(string username)
         {
             UserData userdat = dataman.GetUserData(username);
