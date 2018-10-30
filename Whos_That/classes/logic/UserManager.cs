@@ -8,7 +8,7 @@ namespace Whos_that
     public class UserManager : IUserManager
     {
         private IDataManager dataman;
-        public UserManager() : this(new DataFileManager()) { }
+        public UserManager() : this(DataManager.GetDataManager()) { }
         private UserManager(IDataManager dataman)
         {
             this.dataman = dataman;
@@ -23,8 +23,8 @@ namespace Whos_that
         
         public User GetUserByEmail(string email)
         {
-            DataBaseManager dataMan = new DataBaseManager();
-            UserData userdat = dataMan.GetUserDataByEmail(email);
+           // DataBaseManager dataMan = new TestDataBaseManager();
+            UserData userdat = dataman.GetUserDataByEmail(email);
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
         }

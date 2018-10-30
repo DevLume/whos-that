@@ -19,7 +19,7 @@ namespace Whos_that
         public string email;
         private bool v;
 
-        User() :this(new DataFileManager()){}
+        User() :this(DataManager.GetDataManager()){}
         User(IDataManager dataman)
         {
             this.dataman = dataman;

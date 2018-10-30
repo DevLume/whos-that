@@ -15,7 +15,7 @@ namespace Whos_That.Tests
         [Fact]
         public void GetUserDataDBWithUsername_ShouldReturnUserData()
         {
-            UserData wantedData = new UserData(1,"test1","test1@maul.com", "passhash1", "unspecified    ", true);
+            UserData wantedData = new UserData(3,"test1","test1@maul.com", "passhash1", "unspecified    ", true);
 
             UserData actualData =  dataman.GetUserData("test1");
 
@@ -25,9 +25,9 @@ namespace Whos_That.Tests
         [Fact]
         public void GetUserDataDBWithID_ShouldReturnUserData()
         {
-            UserData wantedData = new UserData(1, "test1", "test1@maul.com", "passhash1", "unspecified    ", true);
+            UserData wantedData = new UserData(3, "test1", "test1@maul.com", "passhash1", "unspecified    ", true);
 
-            UserData actualData = dataman.GetUserData(1);
+            UserData actualData = dataman.GetUserData(3);
 
             Assert.Equal(wantedData, actualData);
         }
@@ -35,7 +35,7 @@ namespace Whos_That.Tests
         [Fact]
         public void GetUserDataDBWithEmail_ShouldReturnUserData()
         {
-            UserData wantedData = new UserData(1, "test1", "test1@maul.com", "passhash1", "unspecified    ", true);
+            UserData wantedData = new UserData(3, "test1", "test1@maul.com", "passhash1", "unspecified    ", true);
 
             UserData actualData = dataman.GetUserDataByEmail("test1@maul.com");
 

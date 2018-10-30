@@ -9,7 +9,8 @@ namespace Whos_that
 
         [STAThread]
         static void Main()
-        { 
+        {
+            DataManager.SetDataManager(new DataFileManager());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginForm logForm = new LoginForm();

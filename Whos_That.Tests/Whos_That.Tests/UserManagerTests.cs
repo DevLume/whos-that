@@ -14,7 +14,7 @@ namespace Whos_That.Tests
         [Fact]
         public void GetUserByUsername_ShouldReturnUser()
         {
-            User wantedUser = new User(1, "test1", "test1@maul.com", "passhash1", "unspecified    ");
+            User wantedUser = new User(3, "test1", "test1@maul.com", "passhash1", "unspecified    ");
 
             User actualUser = userman.GetUser("test1");
 
@@ -24,9 +24,9 @@ namespace Whos_That.Tests
         [Fact]
         public void GetUserByID_ShouldReturnUser()
         {
-            User wantedUser = new User(1, "test1", "test1@maul.com", "passhash1", "unspecified    ");
+            User wantedUser = new User(3, "test1", "test1@maul.com", "passhash1", "unspecified    ");
 
-            User actualUser = userman.GetUser(1);
+            User actualUser = userman.GetUser(3);
 
             Assert.Equal(wantedUser, actualUser);
         }
@@ -57,9 +57,9 @@ namespace Whos_That.Tests
         [Fact]
         public void ListUsers_ShouldReturnUserList()
         {
-            User u1 = new User(1, "test1", "test1@maul.com", "passhash1", "unspecified    ");
-            User u2 = new User(2, "test2", "test2@maul.com", "passhash2", "unspecified    ");
-            User u3 = new User(3, "test3", "test3@maul.com", "passhash3", "unspecified    ");
+            User u1 = new User(3, "test1", "test1@maul.com", "passhash1", "unspecified    ");
+            User u2 = new User(4, "test2", "test2@maul.com", "passhash2", "unspecified    ");
+            User u3 = new User(5, "test3", "test3@maul.com", "passhash3", "unspecified    ");
 
             List<User> wantedResult = new List<User>();
             wantedResult.Add(u1);
@@ -73,7 +73,7 @@ namespace Whos_That.Tests
         [Fact]
         public void ListOnlineUsers_ShouldReturnOnlineUser()
         {
-            User u1 = new User(1, "test1", "test1@maul.com", "passhash1", "unspecified    ");
+            User u1 = new User(3, "test1", "test1@maul.com", "passhash1", "unspecified    ");
 
             List<User> wantedResult = new List<User>();
             wantedResult.Add(u1);
