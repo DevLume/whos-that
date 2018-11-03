@@ -8,20 +8,11 @@
       <Column Name="approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="since" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="received" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.usersTable" Member="usersTables">
     <Type Name="usersTable">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PassHash" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Online" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.usersTestTable" Member="usersTestTables">
-    <Type Name="usersTestTable">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -38,6 +29,17 @@
       <Column Name="approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="since" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="received" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.usersTestTable" Member="usersTestTables">
+    <Type Name="usersTestTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PassHash" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Online" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

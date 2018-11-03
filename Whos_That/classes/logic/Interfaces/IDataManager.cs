@@ -20,14 +20,7 @@ namespace Whos_that
         void RemoveUserData(List<UserData> data);
         void RemoveUserRelData(List<UserRelData> data);
         bool CreateRelationship(int uid1, int uid2, bool approved);
-    }
-
-
-    public interface IDataBaseManager : IDataManager
-    {  
-    }
-
-    public interface IDataFileManager : IDataManager 
-    {
+        bool InsertMessage(int uid1, int uid2, string message);
+        bool ModifyOnline(int usrID, bool isOnline);
     }
 }

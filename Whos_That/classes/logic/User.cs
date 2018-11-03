@@ -182,6 +182,43 @@ namespace Whos_that
             dataman.InsertUserRelData(reldat);
             return true;
         }
+
+        public bool SendMessage(User friend, string message)
+        {
+            List<UserRelData> relationships = dataman.GetUserRelData(this.id);
+            bool sent = false;
+            foreach (UserRelData u in relationships)
+            {
+                if (friend.id == u.user2ID)
+                {
+                    sent = dataman.InsertMessage(this.id, friend.id, message);
+                    break;
+                }
+            }
+            if (!sent)
+            {
+                Console.WriteLine("Message could not be sent");
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Message has been set succesfully");
+                return true;
+            }
+        }
+
+        public List<string> ListMessages()
+        {
+            List<string> result = new List<string>();
+            UserManager userMan = new UserManager();
+            List<UserRelData> rel = dataman.GetUserRelData(id);
+
+            foreach (UserRelData dat in rel)
+            {            
+                result.Add(dat.message);
+            }
+            return result;
+        }
     }
 }
 
@@ -225,8 +262,9 @@ public struct UserRelData {
     public bool approved;
     public System.DateTime date;
     public bool received;
+    public string message;
 
-    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received)
+    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received) : this()
     {
         this.id = id;
         user1ID = id1;
@@ -234,6 +272,17 @@ public struct UserRelData {
         approved = appr;
         this.date = date;
         this.received = received;
+    }
+
+    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received, string message)
+    {
+        this.id = id;
+        user1ID = id1;
+        user2ID = id2;
+        approved = appr;
+        this.date = date;
+        this.received = received;
+        this.message = message;
     }
 
     public override string ToString()

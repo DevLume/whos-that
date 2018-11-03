@@ -26,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -198,6 +199,7 @@
     </Compile>
     <Compile Include="classes\logic\User.cs" />
     <Compile Include="classes\logic\UserManager.cs" />
+    <Compile Include="classes\logic\Signer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="classes\GUI\CreateTest.resx">

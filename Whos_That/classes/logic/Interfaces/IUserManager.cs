@@ -11,5 +11,9 @@ namespace Whos_that
         List<User> ListOnlineUsers();
         User GetUser(int id);
         User GetUser(string username);
+        bool NewUser(User usr);
+        bool RemoveUser(string username);
+        bool SignUser(int id, Sign sg); // Sign is useless
+        bool UnsignUser(int id, Sign sg); // Sign is useless
     }
 }

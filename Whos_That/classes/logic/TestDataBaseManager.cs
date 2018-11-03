@@ -202,7 +202,7 @@ namespace Whos_that
             var q = from a in usrTable where a.user1ID == id select a;
             foreach (var i in q)
             {
-                result.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, (DateTime)i.since, (bool)i.received));
+                result.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, (DateTime)i.since, (bool)i.received, i.message));
             }
 
             //Close data context
@@ -329,6 +329,34 @@ namespace Whos_that
 
             //Close data context
             dataSpace.Dispose();
+        }
+
+        public bool InsertMessage(int uid1, int uid2, string message)
+        {
+            if (!CreateRelationship(uid1, uid2, true))
+            {
+                var dataSpace = new dataLinqDataContext();
+                var usrTable = dataSpace.GetTable<usersTestRelTable>();
+
+                (from a in usrTable where a.user1ID == uid2 && a.user2ID == uid1 select a).ToList().ForEach(x => x.message = message);
+
+                dataSpace.SubmitChanges();
+                dataSpace.Dispose();
+                return true;
+            }
+            return false;
+        }
+
+        public bool ModifyOnline(int usrID, bool isOnline)
+        {
+            var dataSpace = new dataLinqDataContext();
+            var usrTable = dataSpace.GetTable<usersTable>();
+
+            (from a in usrTable where a.Id == usrID select a).ToList().ForEach(x => x.Online = isOnline);
+
+            dataSpace.SubmitChanges();
+            dataSpace.Dispose();
+            return true;
         }
     }
 }

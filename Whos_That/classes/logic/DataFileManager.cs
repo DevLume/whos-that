@@ -768,5 +768,15 @@ namespace Whos_that
 
             return true;
         }
+
+        public bool InsertMessage(int uid1, int uid2, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ModifyOnline(int usrID, bool isOnline)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

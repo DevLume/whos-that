@@ -173,7 +173,7 @@ namespace Whos_that
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
-        {
+        {     
             base.OnFormClosing(e);
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
             // Confirm user wants to close
@@ -183,7 +183,9 @@ namespace Whos_that
                     e.Cancel = true;
                     break;
                 default:
-                    break;
+                    Sign action = Signer.UserSignedOff;
+                    action();
+                    break;                                     
             }
         }
     }

@@ -6,7 +6,7 @@ using System.Text;
 namespace Whos_that
 {
     public class UserManager : IUserManager
-    {
+    {       
         private IDataManager dataman;
         public UserManager() : this(DataManager.GetDataManager()) { }
         private UserManager(IDataManager dataman)
@@ -78,6 +78,32 @@ namespace Whos_that
                 List<UserData> dataToDelete = new List<UserData>();
                 dataToDelete.Add(userdat);
                 dataman.RemoveUserData(dataToDelete);
+                return true;
+            }
+        }
+
+        public bool SignUser(int id, Sign sg)
+        {
+            if (GetUser(id) == null)
+            {
+                return false;
+            }
+            else
+            {
+                dataman.ModifyOnline(id, true);
+                return true;
+            }
+        }
+
+        public bool UnsignUser(int id, Sign sg)
+        {
+            if (this.GetUser(id) == null)
+            {
+                return false;
+            }
+            else
+            {
+                dataman.ModifyOnline(id, false);
                 return true;
             }
         }

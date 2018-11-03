@@ -73,11 +73,14 @@ namespace Whos_that
                     if (string.Compare(password, dbPass) == 0)
                     {
                         MessageBox.Show("Username and password are correct");
+                        Signer.setID(usr.id);
+                        Sign action = Signer.UserSignedOn;
+                        action();
                         return true;
                     }
                     else
                     {                      
-                        Console.WriteLine("Something is wrong");
+                        Console.WriteLine("wrong password");
                     }
                 }
                 catch (Exception e)

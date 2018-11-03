@@ -36,12 +36,12 @@ namespace Whos_that
     partial void InsertusersTable(usersTable instance);
     partial void UpdateusersTable(usersTable instance);
     partial void DeleteusersTable(usersTable instance);
-    partial void InsertusersTestTable(usersTestTable instance);
-    partial void UpdateusersTestTable(usersTestTable instance);
-    partial void DeleteusersTestTable(usersTestTable instance);
     partial void InsertusersTestRelTable(usersTestRelTable instance);
     partial void UpdateusersTestRelTable(usersTestRelTable instance);
     partial void DeleteusersTestRelTable(usersTestRelTable instance);
+    partial void InsertusersTestTable(usersTestTable instance);
+    partial void UpdateusersTestTable(usersTestTable instance);
+    partial void DeleteusersTestTable(usersTestTable instance);
     #endregion
 		
 		public dataLinqDataContext() : 
@@ -90,19 +90,19 @@ namespace Whos_that
 			}
 		}
 		
-		public System.Data.Linq.Table<usersTestTable> usersTestTables
-		{
-			get
-			{
-				return this.GetTable<usersTestTable>();
-			}
-		}
-		
 		public System.Data.Linq.Table<usersTestRelTable> usersTestRelTables
 		{
 			get
 			{
 				return this.GetTable<usersTestRelTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<usersTestTable> usersTestTables
+		{
+			get
+			{
+				return this.GetTable<usersTestTable>();
 			}
 		}
 	}
@@ -124,6 +124,8 @@ namespace Whos_that
 		private System.Nullable<System.DateTime> _since;
 		
 		private System.Nullable<bool> _received;
+		
+		private string _message;
         private DateTime date;
 
         #region Extensibility Method Definitions
@@ -142,6 +144,8 @@ namespace Whos_that
     partial void OnsinceChanged();
     partial void OnreceivedChanging(System.Nullable<bool> value);
     partial void OnreceivedChanged();
+    partial void OnmessageChanging(string value);
+    partial void OnmessageChanged();
     #endregion
 		
 		public usersRelTable()
@@ -274,6 +278,26 @@ namespace Whos_that
 					this._received = value;
 					this.SendPropertyChanged("received");
 					this.OnreceivedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(MAX)")]
+		public string message
+		{
+			get
+			{
+				return this._message;
+			}
+			set
+			{
+				if ((this._message != value))
+				{
+					this.OnmessageChanging(value);
+					this.SendPropertyChanging();
+					this._message = value;
+					this.SendPropertyChanged("message");
+					this.OnmessageChanged();
 				}
 			}
 		}
@@ -490,6 +514,222 @@ namespace Whos_that
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usersTestRelTable")]
+	public partial class usersTestRelTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _user1ID;
+		
+		private System.Nullable<int> _user2ID;
+		
+		private System.Nullable<bool> _approved;
+		
+		private System.Nullable<System.DateTime> _since;
+		
+		private System.Nullable<bool> _received;
+		
+		private string _message;
+        private DateTime date;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void Onuser1IDChanging(System.Nullable<int> value);
+    partial void Onuser1IDChanged();
+    partial void Onuser2IDChanging(System.Nullable<int> value);
+    partial void Onuser2IDChanged();
+    partial void OnapprovedChanging(System.Nullable<bool> value);
+    partial void OnapprovedChanged();
+    partial void OnsinceChanging(System.Nullable<System.DateTime> value);
+    partial void OnsinceChanged();
+    partial void OnreceivedChanging(System.Nullable<bool> value);
+    partial void OnreceivedChanged();
+    partial void OnmessageChanging(string value);
+    partial void OnmessageChanged();
+    #endregion
+		
+		public usersTestRelTable()
+		{
+			OnCreated();
+		}
+
+        public usersTestRelTable(int user1ID, int user2ID, bool approved, DateTime date, bool received)
+        {
+            this.user1ID = user1ID;
+            this.user2ID = user2ID;
+            this.approved = approved;
+            this.date = date;
+            this.received = received;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user1ID", DbType="Int")]
+		public System.Nullable<int> user1ID
+		{
+			get
+			{
+				return this._user1ID;
+			}
+			set
+			{
+				if ((this._user1ID != value))
+				{
+					this.Onuser1IDChanging(value);
+					this.SendPropertyChanging();
+					this._user1ID = value;
+					this.SendPropertyChanged("user1ID");
+					this.Onuser1IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user2ID", DbType="Int")]
+		public System.Nullable<int> user2ID
+		{
+			get
+			{
+				return this._user2ID;
+			}
+			set
+			{
+				if ((this._user2ID != value))
+				{
+					this.Onuser2IDChanging(value);
+					this.SendPropertyChanging();
+					this._user2ID = value;
+					this.SendPropertyChanged("user2ID");
+					this.Onuser2IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Bit")]
+		public System.Nullable<bool> approved
+		{
+			get
+			{
+				return this._approved;
+			}
+			set
+			{
+				if ((this._approved != value))
+				{
+					this.OnapprovedChanging(value);
+					this.SendPropertyChanging();
+					this._approved = value;
+					this.SendPropertyChanged("approved");
+					this.OnapprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_since", DbType="Date")]
+		public System.Nullable<System.DateTime> since
+		{
+			get
+			{
+				return this._since;
+			}
+			set
+			{
+				if ((this._since != value))
+				{
+					this.OnsinceChanging(value);
+					this.SendPropertyChanging();
+					this._since = value;
+					this.SendPropertyChanged("since");
+					this.OnsinceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_received", DbType="Bit")]
+		public System.Nullable<bool> received
+		{
+			get
+			{
+				return this._received;
+			}
+			set
+			{
+				if ((this._received != value))
+				{
+					this.OnreceivedChanging(value);
+					this.SendPropertyChanging();
+					this._received = value;
+					this.SendPropertyChanged("received");
+					this.OnreceivedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(MAX)")]
+		public string message
+		{
+			get
+			{
+				return this._message;
+			}
+			set
+			{
+				if ((this._message != value))
+				{
+					this.OnmessageChanging(value);
+					this.SendPropertyChanging();
+					this._message = value;
+					this.SendPropertyChanged("message");
+					this.OnmessageChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usersTestTable")]
 	public partial class usersTestTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -656,198 +896,6 @@ namespace Whos_that
 					this._Online = value;
 					this.SendPropertyChanged("Online");
 					this.OnOnlineChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usersTestRelTable")]
-	public partial class usersTestRelTable : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _user1ID;
-		
-		private System.Nullable<int> _user2ID;
-		
-		private System.Nullable<bool> _approved;
-		
-		private System.Nullable<System.DateTime> _since;
-		
-		private System.Nullable<bool> _received;
-        private DateTime date;
-
-        #region Extensibility Method Definitions
-        partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void Onuser1IDChanging(System.Nullable<int> value);
-    partial void Onuser1IDChanged();
-    partial void Onuser2IDChanging(System.Nullable<int> value);
-    partial void Onuser2IDChanged();
-    partial void OnapprovedChanging(System.Nullable<bool> value);
-    partial void OnapprovedChanged();
-    partial void OnsinceChanging(System.Nullable<System.DateTime> value);
-    partial void OnsinceChanged();
-    partial void OnreceivedChanging(System.Nullable<bool> value);
-    partial void OnreceivedChanged();
-    #endregion
-		
-		public usersTestRelTable()
-		{
-			OnCreated();
-		}
-
-        public usersTestRelTable(int user1ID, int user2ID, bool approved, DateTime date, bool received)
-        {
-            this.user1ID = user1ID;
-            this.user2ID = user2ID;
-            this.approved = approved;
-            this.date = date;
-            this.received = received;
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user1ID", DbType="Int")]
-		public System.Nullable<int> user1ID
-		{
-			get
-			{
-				return this._user1ID;
-			}
-			set
-			{
-				if ((this._user1ID != value))
-				{
-					this.Onuser1IDChanging(value);
-					this.SendPropertyChanging();
-					this._user1ID = value;
-					this.SendPropertyChanged("user1ID");
-					this.Onuser1IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_user2ID", DbType="Int")]
-		public System.Nullable<int> user2ID
-		{
-			get
-			{
-				return this._user2ID;
-			}
-			set
-			{
-				if ((this._user2ID != value))
-				{
-					this.Onuser2IDChanging(value);
-					this.SendPropertyChanging();
-					this._user2ID = value;
-					this.SendPropertyChanged("user2ID");
-					this.Onuser2IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_approved", DbType="Bit")]
-		public System.Nullable<bool> approved
-		{
-			get
-			{
-				return this._approved;
-			}
-			set
-			{
-				if ((this._approved != value))
-				{
-					this.OnapprovedChanging(value);
-					this.SendPropertyChanging();
-					this._approved = value;
-					this.SendPropertyChanged("approved");
-					this.OnapprovedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_since", DbType="Date")]
-		public System.Nullable<System.DateTime> since
-		{
-			get
-			{
-				return this._since;
-			}
-			set
-			{
-				if ((this._since != value))
-				{
-					this.OnsinceChanging(value);
-					this.SendPropertyChanging();
-					this._since = value;
-					this.SendPropertyChanged("since");
-					this.OnsinceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_received", DbType="Bit")]
-		public System.Nullable<bool> received
-		{
-			get
-			{
-				return this._received;
-			}
-			set
-			{
-				if ((this._received != value))
-				{
-					this.OnreceivedChanging(value);
-					this.SendPropertyChanging();
-					this._received = value;
-					this.SendPropertyChanged("received");
-					this.OnreceivedChanged();
 				}
 			}
 		}
