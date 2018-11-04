@@ -8,8 +8,8 @@ namespace Whos_that
 {
     interface ISecurityManager
     {
-        string HashPassword(string text, string password);
-        string DehashPassword(string text, string password);
+        string HashString(string text, string password);
+        string DehashString(string text, string password);
         string ChangePassword(); //Still not implemented
         bool RemindPassword(string email);
     }

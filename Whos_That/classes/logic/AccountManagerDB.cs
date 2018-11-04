@@ -44,7 +44,7 @@ namespace Whos_that
                 MessageBox.Show("such E-mail is already taken");
                 return false;
             }
-            string passHash = HashPassword(password, username);
+            string passHash = HashString(password, username);
 
             //database time
             User newUser = new User(username,email, passHash,"unspecified");
@@ -69,7 +69,7 @@ namespace Whos_that
             {
                 try
                 {
-                    string dbPass = DehashPassword(usr.passwordHash, username);
+                    string dbPass = DehashString(usr.passwordHash, username);
                     if (string.Compare(password, dbPass) == 0)
                     {
                         MessageBox.Show("Username and password are correct");

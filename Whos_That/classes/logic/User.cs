@@ -186,18 +186,21 @@ namespace Whos_that
         public bool SendMessage(User friend, string message)
         {
             List<UserRelData> relationships = dataman.GetUserRelData(this.id);
+            SecurityManager secman = new SecurityManager();
             bool sent = false;
+            string firstWord = message.Split(' ')[0];
             foreach (UserRelData u in relationships)
             {
                 if (friend.id == u.user2ID)
                 {
-                    sent = dataman.InsertMessage(this.id, friend.id, message);
+                    sent = dataman.InsertMessage(this.id, friend.id, string.Concat(firstWord," ", secman.HashString(message,firstWord)));
                     break;
                 }
             }
             if (!sent)
             {
-                Console.WriteLine("Message could not be sent");
+                Console.WriteLine("Message could not be sent, " +
+                    "either you are not a friend to the recipient, or there is no such user");
                 return false;
             }
             else
@@ -207,17 +210,68 @@ namespace Whos_that
             }
         }
 
-        public List<string> ListMessages()
+        public List<string> GetMessageData()
         {
             List<string> result = new List<string>();
             UserManager userMan = new UserManager();
+            SecurityManager secman = new SecurityManager();
             List<UserRelData> rel = dataman.GetUserRelData(id);
-
+            string temp;
+            string ciph;
             foreach (UserRelData dat in rel)
-            {            
-                result.Add(dat.message);
+            {
+                if (dat.message != null)
+                {
+                    try
+                    {
+                        temp = dat.message.Split(' ')[0];
+                        ciph = dat.message.Split(' ')[1];
+                        result.Add(string.Concat(dat.user2ID.ToString()," ",secman.DehashString(ciph, temp)));
+                        MarkMessageAsRead(dat.user2ID);
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        Console.WriteLine("something bad occured with messaging, ", ex);
+                    }
+                }
             }
             return result;
+        }
+
+        public List<string> ListMessages(List<string> mesgData)
+        {
+            List<string> result = new List<string>();
+            UserManager userman = new UserManager();
+            foreach (string s in mesgData)
+            {
+                int uid = Int32.Parse(s.Split(' ')[0]);
+                string resMesg = string.Concat(userman.GetUser(uid).username, ": ");
+                IEnumerable<string> mesg = s.Split(' ').Skip(1);              
+                StringBuilder sb = new StringBuilder();
+                sb.Append(resMesg);
+                foreach (string m in mesg)
+                {
+                    sb.Append(m);
+                    sb.Append(' ');
+                }
+                resMesg = sb.ToString();
+                result.Add(resMesg);
+            }
+            return result;
+        }
+
+        public bool MarkMessageAsRead(int senderID)
+        {
+            bool marked = false;
+            try
+            {
+                marked = dataman.InsertMessage(senderID, this.id, null);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("something bad occured with messaging, ", ex);
+            }
+            return marked;
         }
     }
 }

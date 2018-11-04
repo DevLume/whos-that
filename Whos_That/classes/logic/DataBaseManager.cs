@@ -338,7 +338,7 @@ namespace Whos_that
                 var dataSpace = new dataLinqDataContext();
                 var usrTable = dataSpace.GetTable<usersRelTable>();
               
-                (from a in usrTable where a.user1ID == uid1 && a.user2ID == uid2 select a).ToList().ForEach(x => x.message = message);
+                (from a in usrTable where a.user1ID == uid2 && a.user2ID == uid1 select a).ToList().ForEach(x => x.message = message);
 
                 dataSpace.SubmitChanges();
                 dataSpace.Dispose();
