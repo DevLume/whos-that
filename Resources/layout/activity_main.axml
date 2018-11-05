@@ -9,11 +9,35 @@
 	android:background="#242a31"
 	android:minWidth="25px"
 	android:minHeight="25px"
-	android:weightSum="100">
-	<TextView
-		android:layout_weight="15"
+	android:weightSum="100"
+	android:id="@+id/loginLinearLayout">
+	<EditText
+		android:id="@+id/txtLoginUsername"
+		android:textColorHint="#f5f5f5"
+		android:inputType="text"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"/>
+		android:layout_height="0dp"
+		android:layout_weight="15"
+		android:layout_marginBottom="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginTop="25dp"
+		android:hint="Username"
+		android:paddingLeft="10dp"
+		android:textColor="#f5f5f5"/>
+	<EditText
+		android:id="@+id/txtLoginPassword"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:inputType="textPassword"
+		android:layout_height="0dp"
+		android:layout_weight="15"
+		android:layout_marginBottom="30dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:hint="Password"
+		android:paddingLeft="10dp"
+		android:textColor="#f5f5f5"/>
 	<Button
 		android:layout_marginLeft="25dp"
 		android:layout_marginRight="25dp"
@@ -22,18 +46,22 @@
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="10"
-		android:background="#4eb8ce"
+		android:background="@drawable/ButtonSignInStyle"
 		android:id="@+id/btnSignIn" />
 	<TextView
+		android:text="Don't have an account?"
+		android:textColor="#f5f5f5"
 		android:layout_weight="10"
-		android:layout_width="match_parent"
-		android:layout_height="0dp" />
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		android:gravity="center" />
 	<Button
+		android:layout_marginBottom="50dp"
 		android:layout_marginLeft="25dp"
 		android:layout_marginRight="25dp"
 		android:text="Register"
 		android:textColor="#f5f5f5"
-		android:background="#4eb8ce"
+		android:background="@drawable/ButtonSignInStyle"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="10"
@@ -44,6 +72,7 @@
 		android:id="@+id/progressBar"
 		android:foregroundGravity="center"
 		android:indeterminate="true"
-		android:layout_gravity="center" 
+		android:layout_gravity="center"
+		android:background="@drawable/ProgressBarStyle"
 		/>
 </LinearLayout>
