@@ -199,7 +199,7 @@
     </Compile>
     <Compile Include="classes\logic\User.cs" />
     <Compile Include="classes\logic\UserManager.cs" />
-    <Compile Include="classes\logic\Signer.cs" />
+    <Compile Include="classes\logic\EventManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="classes\GUI\CreateTest.resx">

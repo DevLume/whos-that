@@ -82,7 +82,7 @@ namespace Whos_that
             }
         }
 
-        public bool SignUser(int id, Sign sg)
+        public bool SignUser(int id, SigningEventHandler sg)
         {
             if (GetUser(id) == null)
             {
@@ -95,7 +95,7 @@ namespace Whos_that
             }
         }
 
-        public bool UnsignUser(int id, Sign sg)
+        public bool UnsignUser(int id, SigningEventHandler sg)
         {
             if (this.GetUser(id) == null)
             {

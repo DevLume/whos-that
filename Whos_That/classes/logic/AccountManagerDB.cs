@@ -11,7 +11,8 @@ namespace Whos_that
     class AccountManagerDB : SecurityManager
     {
         UserManager userMan = new UserManager();
-
+        private event SigningEventHandler SignOn;
+        
         public bool CreateAccount(string username, string password, string email)
         {
             if (username.Length > 16) {
@@ -59,6 +60,7 @@ namespace Whos_that
 
         public bool Login(string username, string password)
         {
+            SignOn += EventManager.UserSignedOn;        
             User usr = userMan.GetUser(username);
             if (string.IsNullOrEmpty(usr.username))
             {
@@ -73,9 +75,9 @@ namespace Whos_that
                     if (string.Compare(password, dbPass) == 0)
                     {
                         MessageBox.Show("Username and password are correct");
-                        Signer.setID(usr.id);
-                        Sign action = Signer.UserSignedOn;
-                        action();
+                        
+                        EventManager.setID(usr.id);
+                        SignOn();                      
                         return true;
                     }
                     else

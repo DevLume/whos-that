@@ -19,6 +19,8 @@ namespace Whos_that
         public string email;
         private bool v;
 
+        public bool messageReceived { get; set; }
+        private event MessageEventHandler messagingEvent;
         User() :this(DataManager.GetDataManager()){}
         User(IDataManager dataman)
         {
@@ -205,7 +207,9 @@ namespace Whos_that
             }
             else
             {
-                Console.WriteLine("Message has been set succesfully");
+                messagingEvent += EventManager.MessageSent;
+                messagingEvent(friend);
+                Console.WriteLine("Message has been sent succesfully");
                 return true;
             }
         }
@@ -238,9 +242,10 @@ namespace Whos_that
             return result;
         }
 
-        public List<string> ListMessages(List<string> mesgData)
+        public List<string> ListMessages()
         {
             List<string> result = new List<string>();
+            List<string> mesgData = GetMessageData();
             UserManager userman = new UserManager();
             foreach (string s in mesgData)
             {

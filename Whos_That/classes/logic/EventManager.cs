@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    public delegate void Sign();
-    public static class Signer
-    {
+    public delegate void SigningEventHandler();
+    public delegate void MessageEventHandler(User user);
+
+    public static class EventManager
+    { 
         private static int id { get; set; }
         public static void UserSignedOff()
         {
             UserManager u = new UserManager();
-            if (Signer.id == 0)
+            if (EventManager.id == 0)
             {
                 Console.WriteLine("User is signing off from a login screen");
             }
@@ -30,11 +32,16 @@ namespace Whos_that
 
             u.SignUser(id, null);
             Console.WriteLine("User is signing on");
-        }
+        }    
+
+        public static void MessageSent(User recipient)
+        {
+            recipient.messageReceived = true;
+        }   
 
         public static void setID(int id)
         {
-            Signer.id = id;
+            EventManager.id = id;
         }
     }
 }

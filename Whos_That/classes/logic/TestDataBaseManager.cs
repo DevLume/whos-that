@@ -72,7 +72,7 @@ namespace Whos_that
         }
 
         //Database methods here:
-        //TODO:Add exception handling    
+   
         public List<User> GetAllOnlineUserData()
         {
             List<User> result = new List<User>();

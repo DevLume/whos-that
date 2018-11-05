@@ -13,7 +13,7 @@ namespace Whos_that
         User GetUser(string username);
         bool NewUser(User usr);
         bool RemoveUser(string username);
-        bool SignUser(int id, Sign sg); // Sign is useless
-        bool UnsignUser(int id, Sign sg); // Sign is useless
+        bool SignUser(int id, SigningEventHandler sg); // SigningEventHandler is useless
+        bool UnsignUser(int id, SigningEventHandler sg); // SigningEventHandler is useless
     }
 }
