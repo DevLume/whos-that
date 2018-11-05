@@ -8,11 +8,12 @@ using WT_DataManager.Models;
 
 namespace WT_DataManager.Controllers
 {
+    [RoutePrefix("api/Login")]
     public class RWController : ApiController
     {
         dataEntities db = new dataEntities();
         [HttpPost]
-        [ActionName("WebRegister")]
+        [Route("WEBREGISTER")]
         //POST: API/Login
         public HttpResponseMessage WebRegister(string username, string password)
         {
@@ -27,7 +28,7 @@ namespace WT_DataManager.Controllers
 
         //GET API/Login
         [HttpGet]
-        [ActionName("WebLogin")]
+        [Route("WEBLOGIN")]
         public HttpResponseMessage WebLogin(string username, string password)
         {
             //TODO: Rewrite this method to check for proper user data
