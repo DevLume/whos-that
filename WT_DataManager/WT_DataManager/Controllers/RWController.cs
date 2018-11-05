@@ -12,7 +12,7 @@ namespace WT_DataManager.Controllers
     {
         dataEntities db = new dataEntities();
         [HttpPost]
-        [ActionName("WebLogin")]
+        [ActionName("WebRegister")]
         //POST: API/Login
         public HttpResponseMessage WebRegister(string username, string password)
         {
@@ -26,6 +26,8 @@ namespace WT_DataManager.Controllers
         }
 
         //GET API/Login
+        [HttpGet]
+        [ActionName("WebLogin")]
         public HttpResponseMessage WebLogin(string username, string password)
         {
             //TODO: Rewrite this method to check for proper user data
