@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Whos_that
 {
-    [Activity(Label = "registerUI")]
+    [Activity]
     public class registerUI : Activity
     {
         LinearLayout linearLayout;
