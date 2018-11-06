@@ -12,6 +12,19 @@ namespace WT_DataManager.Controllers
     public class RWController : ApiController
     {
         dataEntities db = new dataEntities();
+        // GET api/Login
+        public string getString(string hotdog)
+        {
+            if (hotdog == "hotdog")
+            {
+                return "Hotdog!";
+            }
+            else
+            {
+                return "Not Hotdog!";
+            }
+        }
+
         [HttpPost]
         [Route("WEBREGISTER")]
         //POST: API/Login
