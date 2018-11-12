@@ -29,7 +29,7 @@ namespace Whos_that
             string e = crypt.HashString(email, cipher);
 
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("http://192.168.8.102:8086/api/Account/Register?username=" + cipher + u + "&password=" + cipher + p + "&email=" + cipher + e));
+            var uri = new Uri(string.Format("https://wtdatamanager.azurewebsites.net/api/Account/Register?username=" + cipher + u + "&password=" + cipher + p + "&email=" + cipher + e));
             HttpResponseMessage response;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             response = await client.GetAsync(uri);
@@ -49,7 +49,7 @@ namespace Whos_that
             string p = crypt.HashString(password, cipher);
 
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("http://192.168.8.102:8086/api/Account/Login?username=" + cipher + u + "&password=" + cipher + p));
+            var uri = new Uri(string.Format("https://wtdatamanager.azurewebsites.net/api/Account/Login?username=" + cipher + u + "&password=" + cipher + p));
             HttpResponseMessage response = null;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             response = await client.GetAsync(uri);
