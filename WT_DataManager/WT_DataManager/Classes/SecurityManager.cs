@@ -7,7 +7,7 @@ using System.IO;
 using System.Security.Cryptography;
 using MailKit.Net.Smtp;
 using MimeKit;
-
+using System.Text.RegularExpressions;
 
 namespace Whos_that
 {
@@ -62,6 +62,34 @@ namespace Whos_that
             memoryStream.Close();
             cryptoStream.Close();
             return Convert.ToBase64String(cipherTextBytes);
+        }
+
+        public string getDecipheredText(string cipheredString)
+        {
+            StringBuilder sb = new StringBuilder();
+            string s1 = "";
+            string s2;
+            bool c = false;
+            for (int i = 0; i < cipheredString.Length; i++)
+            {
+                if (c == false)
+                {
+                    sb.Append(cipheredString.Substring(i, 1)[0]).ToString();
+                    if (i == 7)
+                    {
+                        s1 = sb.ToString();
+                        sb.Clear();
+                        c = true;
+                    }
+                }
+                else
+                {
+                    sb.Append(cipheredString.Substring(i, 1)[0]).ToString();
+                }
+            }
+            s2 = sb.ToString();
+
+           return DehashString(s2, s1);
         }
 
         public bool RemindPassword(string email)

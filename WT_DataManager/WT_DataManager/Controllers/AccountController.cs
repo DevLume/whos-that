@@ -11,21 +11,21 @@ using WT_DataManager.Models;
 namespace WT_DataManager.Controllers
 {
     public class AccountController : ApiController
-    {
-        
+    {       
         AccountManagerDB accman = new AccountManagerDB();
+        SecurityManager secman = new SecurityManager();
         public AccountController()
         { }
 
 
         [AcceptVerbs("GET", "POST")]
-        [Route("api/Account")]
+        [Route("api/Account/Register")]
         [HttpPost]
         public HttpResponseMessage Register(string username, string password, string email)
         {
             bool result = false;
             string responseMessage;
-            result = accman.CreateAccount(username, password, email, out responseMessage);
+            result = accman.CreateAccount(secman.getDecipheredText(username), secman.getDecipheredText(password), secman.getDecipheredText(email), out responseMessage);
             if (result)
             {
                 return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
@@ -36,13 +36,13 @@ namespace WT_DataManager.Controllers
             }
         }
 
-        [Route("api/Account/5")]
+        [Route("api/Account/Login")]
         [HttpGet]
         public HttpResponseMessage Login(string username, string password)
         {
             bool result = false;
             string responseMessage;
-            result = accman.Login(username, password, out responseMessage);
+            result = accman.Login(secman.getDecipheredText(username), secman.getDecipheredText(password), out responseMessage);
             if (result)
             {
                 return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
@@ -52,5 +52,14 @@ namespace WT_DataManager.Controllers
                 return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
             }
         }
+
+        [Route("api/Account/Test")]
+        [HttpGet]
+        public HttpResponseMessage Test(string test)
+        {
+            string testString = $"your string is {test}";
+            return Request.CreateResponse(HttpStatusCode.Accepted, testString);
+        }
+
     }
 }
