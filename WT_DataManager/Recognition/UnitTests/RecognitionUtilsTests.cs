@@ -24,7 +24,7 @@ namespace Recognition.UnitTests
             //Act
             var recognitionUtils = new RecognitionUtils()
             {
-                WebClient = fakeWebClient
+                CustomWebClient = fakeWebClient
             };
             var result = recognitionUtils.GetStream("https://static.tvtropes.org/pmwiki/pub/images/young_joseph_joestar_anime.png");
 

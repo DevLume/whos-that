@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 namespace Recognition.Utilities
 {
     public class RecognitionUtils
-    {
-        public ICustomWebClient WebClient { get; set; }
+    {   
+        private ICustomWebClientFactory WebClientFactory { get; set; }
+        public ICustomWebClient CustomWebClient { get; set; }
+
+        public RecognitionUtils()
+        {
+            WebClientFactory = new CustomWebClientFactory();
+            CustomWebClient = WebClientFactory.Create();
+        }
 
         /// <summary>
         /// Gets stream of image from URI
@@ -19,10 +26,9 @@ namespace Recognition.Utilities
         /// <returns></returns>
         public MemoryStream GetStream(string uri)
         {
-            WebClient = new CustomWebClient();
             byte[] imageData = null;
 
-            imageData = WebClient.DownloadData(uri);
+            imageData = CustomWebClient.DownloadData(uri);
 
             return new MemoryStream(imageData);
         }
