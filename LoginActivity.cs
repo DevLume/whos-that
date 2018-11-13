@@ -44,10 +44,19 @@ namespace Whos_that
             linearLayout.Click += LinearLayout_Click;
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private async void btnSignIn_Click(object sender, EventArgs e)
         {
             EntryManager entryman = new EntryManager();
-            entryman.SendLoginRequest(usernameText.Text, passwordText.Text, this);
+            bool pass = await entryman.SendLoginRequest(usernameText.Text, passwordText.Text, this);
+            if (pass)
+            {
+                Intent intent = new Intent(this, typeof(MainActivity));
+                this.StartActivity(intent);
+            }
+            else
+            {
+                Toast.MakeText(this,"You Shall Not Pass", ToastLength.Long);
+            }
         }
         private void LinearLayout_Click(object sender, EventArgs e)
         {

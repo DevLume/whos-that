@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 
@@ -15,15 +16,23 @@ namespace Whos_that
 {
     public class GuiMessageManager
     {
-        public delegate void TransmitMessage(HttpResponseMessage m, Context con);
+        public delegate bool TransmitMessage(HttpResponseMessage m, Context con);
 
-        public void TransmitHttpMessage(HttpResponseMessage mesg, Context contxt)
+        public bool TransmitHttpMessage(HttpResponseMessage mesg, Context contxt)
         {
             var tmesg = mesg.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1]
                         {
                         '"'
                         });
             Toast.MakeText(contxt, tmesg, ToastLength.Long).Show();
+            if (mesg.StatusCode == HttpStatusCode.Accepted)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

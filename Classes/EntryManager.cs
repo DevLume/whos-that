@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-
+using System.Threading.Tasks;
 
 namespace Whos_that
 {
@@ -19,7 +19,7 @@ namespace Whos_that
             onResponseReceived += GuiMessenger.TransmitHttpMessage;
         }
 
-        public async void SendRegisterRequest(string username, string password, string email, Context context)
+        public async Task<bool> SendRegisterRequest(string username, string password, string email, Context context)
         {
             Cryptor crypt = new Cryptor();
             string cipher = crypt.GetRandomString(8);
@@ -36,11 +36,15 @@ namespace Whos_that
 
             if (response != null)
             {
-                onResponseReceived(response, context);
+                return onResponseReceived(response, context);
+            }
+            else
+            {
+                return false;
             }
         }
 
-        public async void SendLoginRequest(string username, string password, Context context)
+        public async Task<bool> SendLoginRequest(string username, string password, Context context)
         {
             Cryptor crypt = new Cryptor();
             string cipher = crypt.GetRandomString(8);
@@ -56,7 +60,11 @@ namespace Whos_that
 
             if (response != null)
             {
-                onResponseReceived(response, context);
+                return onResponseReceived(response, context);
+            }
+            else
+            {
+                return false;
             }
         }
     }
