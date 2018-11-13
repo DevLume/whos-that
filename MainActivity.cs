@@ -1,61 +1,103 @@
-﻿using Android.App;
+﻿using System;
+using Android;
+using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Runtime;
-using Android.Widget;
-using Android.Content;
-using Android.Views.InputMethods;
-using System;
-
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
+using Android.Support.V4.Widget;
+using Android.Support.V7.App;
 using Android.Views;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net;
+using Android.Views.InputMethods;
+using Android.Widget;
 
 namespace Whos_that
 {
-    [Activity(Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+    public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
-        private Button btnRegister;
-        LinearLayout linearLayout;
-
-        EditText usernameText;
-        EditText passwordText;
-        private Button btnLogin;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-          
-            usernameText = FindViewById<EditText>(Resource.Id.txtLoginUsername);
-            passwordText = FindViewById<EditText>(Resource.Id.txtLoginPassword);
-            btnLogin = FindViewById<Button>(Resource.Id.btnSignIn);
-          
-            btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
-            btnRegister.Click += (object sender, System.EventArgs e) =>
+            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            fab.Click += FabOnClick;
+
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
+            drawer.AddDrawerListener(toggle);
+            toggle.SyncState();
+
+            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            navigationView.SetNavigationItemSelectedListener(this);
+        }
+
+        public override void OnBackPressed()
+        {
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            if(drawer.IsDrawerOpen(GravityCompat.Start))
             {
-                Intent intent = new Intent(this, typeof(registerUI));
-                this.StartActivity(intent);
-            };
-
-            btnLogin.Click += btnSignIn_Click;
-
-            linearLayout = FindViewById<LinearLayout>(Resource.Id.loginLinearLayout);
-            linearLayout.Click += LinearLayout_Click;
+                drawer.CloseDrawer(GravityCompat.Start);
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            EntryManager entryman = new EntryManager();
-            entryman.SendLoginRequest(usernameText.Text, passwordText.Text, this);
+            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
+            return true;
         }
 
-        private void LinearLayout_Click(object sender, EventArgs e)
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            InputMethodManager inputManager = (InputMethodManager)this.GetSystemService(Activity.InputMethodService);
-            inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.None);
+            int id = item.ItemId;
+            if (id == Resource.Id.action_settings)
+            {
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
+        private void FabOnClick(object sender, EventArgs eventArgs)
+        {
+            View view = (View) sender;
+            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
+                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+        }
+
+        public bool OnNavigationItemSelected(IMenuItem item)
+        {
+            int id = item.ItemId;
+            var transaction = SupportFragmentManager.BeginTransaction();
+
+            if (id == Resource.Id.nav_create_test)
+            {
+                transaction.Add(Resource.Id.fragment_container, new Fragments.CreateTestUI(), "CreateTestUI");
+            }
+            else if (id == Resource.Id.nav_guess)
+            {
+                transaction.Add(Resource.Id.fragment_container, new Fragments.GuessUI(), "GuessUI");
+            }
+            else if (id == Resource.Id.nav_statistics)
+            {
+                transaction.Add(Resource.Id.fragment_container, new Fragments.StatisticsUI(), "StatisticsUI");
+            }
+            else if (id == Resource.Id.nav_friendlist)
+            {
+            }
+
+            transaction.Commit();
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            drawer.CloseDrawer(GravityCompat.Start);
+            return true;
         }
     }
 }
+
