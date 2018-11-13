@@ -24,14 +24,9 @@ namespace Whos_that
             SetContentView(Resource.Layout.register);
 
             btnRegister = FindViewById<Button>(Resource.Id.btnRegisterConfirmed);
-            btnRegister.Click += (object sender, System.EventArgs e) =>
-            {
-                Intent intent = new Intent(this, typeof(MainActivity));
-                this.StartActivity(intent);
-            };
-
+    
             linearLayout = FindViewById<LinearLayout>(Resource.Id.registerLinearLayout);
-             linearLayout.Click += LinearLayout_Click;
+            linearLayout.Click += LinearLayout_Click;
         }
 
         private void LinearLayout_Click(object sender, EventArgs e)
