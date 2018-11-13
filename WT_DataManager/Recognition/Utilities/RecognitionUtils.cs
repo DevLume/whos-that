@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recognition.Wrappers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Recognition.Utilities
 {
     public class RecognitionUtils
     {
-        public WebClient WebClient { get; set; }
+        public ICustomWebClient WebClient { get; set; }
 
         /// <summary>
         /// Gets stream of image from URI
@@ -18,7 +19,7 @@ namespace Recognition.Utilities
         /// <returns></returns>
         public MemoryStream GetStream(string uri)
         {
-            WebClient = new WebClient();
+            WebClient = new CustomWebClient();
             byte[] imageData = null;
 
             imageData = WebClient.DownloadData(uri);
