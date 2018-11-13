@@ -56,12 +56,12 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cryptor.cs" />
-    <Compile Include="EntryManager.cs" />
+    <Compile Include="Classes\Cryptor.cs" />
+    <Compile Include="Classes\EntryManager.cs" />
+    <Compile Include="Classes\GuiMessageManager.cs" />
     <Compile Include="Fragments\CreateTestUI.cs" />
     <Compile Include="Fragments\GuessUI.cs" />
     <Compile Include="Fragments\StatisticsUI.cs" />
-    <Compile Include="GuiMessageManager.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RegisterUI.cs" />
