@@ -8,11 +8,11 @@ namespace Recognition.Models
     public class UserModel
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string passHash { get; set; }
-        public string gender { get; set; }
-        public bool online { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string PassHash { get; set; }
+        public string Gender { get; set; }
+        public bool Online { get; set; }
         public string ImageUri { get; set; }
     }
 }
