@@ -5,8 +5,10 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 
-
+#pragma warning disable CS1030 // #warning directive
+#warning: AccountManager is legacy, consider using AccountManagerDB
 namespace Whos_that
+#pragma warning restore CS1030 // #warning directive
 {
     public class AccountManager : SecurityManager
     {

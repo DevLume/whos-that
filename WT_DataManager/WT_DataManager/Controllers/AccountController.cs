@@ -28,11 +28,11 @@ namespace WT_DataManager.Controllers
             result = accman.CreateAccount(secman.getDecipheredText(username), secman.getDecipheredText(password), secman.getDecipheredText(email), out responseMessage);
             if (result)
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
+                return Request.CreateResponse(HttpStatusCode.OK, responseMessage);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
+                return Request.CreateResponse(HttpStatusCode.Forbidden, responseMessage);
             }
         }
 
@@ -45,11 +45,11 @@ namespace WT_DataManager.Controllers
             result = accman.Login(secman.getDecipheredText(username), secman.getDecipheredText(password), out responseMessage);
             if (result)
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
+                return Request.CreateResponse(HttpStatusCode.OK, responseMessage);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.Accepted, responseMessage);
+                return Request.CreateResponse(HttpStatusCode.Forbidden, responseMessage);
             }
         }
 
