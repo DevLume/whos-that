@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT_DataManager", "WT_DataManager\WT_DataManager.csproj", "{5FDF101C-D769-453B-8683-463CC49E4279}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recognition", "Recognition\Recognition.csproj", "{19BBBEFB-1466-41CB-8019-B25E2F84461B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5FDF101C-D769-453B-8683-463CC49E4279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FDF101C-D769-453B-8683-463CC49E4279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FDF101C-D769-453B-8683-463CC49E4279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19BBBEFB-1466-41CB-8019-B25E2F84461B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19BBBEFB-1466-41CB-8019-B25E2F84461B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19BBBEFB-1466-41CB-8019-B25E2F84461B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19BBBEFB-1466-41CB-8019-B25E2F84461B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
