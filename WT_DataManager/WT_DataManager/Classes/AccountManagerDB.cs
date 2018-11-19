@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace Whos_that
 {
@@ -14,10 +16,22 @@ namespace Whos_that
         
         public bool CreateAccount(string username, string password, string email, out string responseMessage)
         {
-            if (username.Length > 16) {
+            int maxUsernameLength = Int32.Parse(WebConfigurationManager.AppSettings["maxUsernameLength"]);
+            int minUsernameLength = Int32.Parse(WebConfigurationManager.AppSettings["minUsernameLength"]);
+            int maxPaswordLength = Int32.Parse(WebConfigurationManager.AppSettings["maxPasswordLength"]);
+            int minPasswordLength = Int32.Parse(WebConfigurationManager.AppSettings["minPasswordLength"]);
+
+            if (username.Length > maxUsernameLength)
+            {
                 responseMessage = "Username is too long";
                 return false;
             }
+            else if (username.Length < minUsernameLength)
+            {
+                responseMessage = "Username is too short";
+                return false;
+            }
+
 
             for (int i = 0; i < username.Length; i++)
             {
@@ -44,6 +58,18 @@ namespace Whos_that
                 responseMessage = "such E-mail is already taken";
                 return false;
             }
+
+            if (password.Length < minPasswordLength)
+            {
+                responseMessage = "Your password is too short";
+                return false;
+            }
+            else if (password.Length > maxPaswordLength)
+            {
+                responseMessage = "Your password is too long";
+                return false;
+            }
+
             string passHash = HashString(password, username);
 
             //database time
@@ -55,7 +81,7 @@ namespace Whos_that
             }
             else
             {
-                responseMessage = "An account could not be created";
+                responseMessage = "An account could not be created, Such user Already exists";
                 return false;
             }
         }
