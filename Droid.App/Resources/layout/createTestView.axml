@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginTop="25dp"
 		android:layout_marginLeft="15dp"
 		android:textColorHint="#f5f5f5"
@@ -20,6 +21,7 @@
 		local:MvxBind="Text Question"
 	/>
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginLeft="10dp"
 		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
@@ -29,6 +31,7 @@
 		local:MvxBind="Text Answer1"
 	/>
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginLeft="10dp"
 		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
@@ -38,6 +41,7 @@
 		local:MvxBind="Text Answer2"
 	/>
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginLeft="10dp"
 		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
@@ -47,6 +51,7 @@
 		local:MvxBind="Text Answer3"
 	/>
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginLeft="10dp"
 		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
@@ -56,6 +61,7 @@
 		local:MvxBind="Text Answer4"
 	/>
 	<EditText
+		android:textColor="#f5f5f5"
 		android:layout_marginLeft="10dp"
 		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
