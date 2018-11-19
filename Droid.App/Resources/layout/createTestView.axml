@@ -4,54 +4,74 @@
 	xmlns:local="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+	android:background="#242a31"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 	<EditText
+		android:layout_marginTop="25dp"
+		android:layout_marginLeft="15dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:hint="Question here"
+		android:hint="Your question"
 		android:id="@+id/editText1"
 		local:MvxBind="Text Question"
 	/>
 	<EditText
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Answer1 here"
+		android:hint="Answer 1"
 		android:id="@+id/editText2"		
 		local:MvxBind="Text Answer1"
 	/>
 	<EditText
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Answer2 here"
+		android:hint="Answer 2"
 		android:id="@+id/editText3" 		
 		local:MvxBind="Text Answer2"
 	/>
 	<EditText
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Answer3 here"
+		android:hint="Answer 3"
 		android:id="@+id/editText4"		
 		local:MvxBind="Text Answer3"
 	/>
 	<EditText
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Answer4 here"
+		android:hint="Answer 4"
 		android:id="@+id/editText5"
 		local:MvxBind="Text Answer4"
 	/>
 	<EditText
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Correct answer index here {1,2,3,4}"
+		android:hint="Correct answer index {1,2,3,4}"
 		android:id="@+id/editText6"
 		android:inputType="number"
 		local:MvxBind="Text AnswerIndex"
 	/>
 	<Button
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:textColor="#f5f5f5"
+		android:background="@drawable/button_style"
 		android:text="Create Test"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -59,6 +79,10 @@
 		local:MvxBind="Click CreateTest"
 	/>
 	<Button
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:textColor="#f5f5f5"
+		android:background="@drawable/button_style"
 		android:text="Add Question"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
