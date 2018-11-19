@@ -11,7 +11,8 @@ namespace Whos_that
     class AccountManagerDB : SecurityManager
     {
         UserManager userMan = new UserManager();
-
+        private event SigningEventHandler SignOn;
+        
         public bool CreateAccount(string username, string password, string email)
         {
             if (username.Length > 16) {
@@ -39,7 +40,12 @@ namespace Whos_that
                 MessageBox.Show("E-mail format is wrong");
                 return false;
             }
-            string passHash = HashPassword(password, username);
+            if (userMan.GetUserByEmail(email).id != 0)
+            {
+                MessageBox.Show("such E-mail is already taken");
+                return false;
+            }
+            string passHash = HashString(password, username);
 
             //database time
             User newUser = new User(username,email, passHash,"unspecified");
@@ -54,6 +60,7 @@ namespace Whos_that
 
         public bool Login(string username, string password)
         {
+            SignOn += EventManager.UserSignedOn;        
             User usr = userMan.GetUser(username);
             if (string.IsNullOrEmpty(usr.username))
             {
@@ -64,15 +71,18 @@ namespace Whos_that
             {
                 try
                 {
-                    string dbPass = DehashPassword(usr.passwordHash, username);
+                    string dbPass = DehashString(usr.passwordHash, username);
                     if (string.Compare(password, dbPass) == 0)
                     {
                         MessageBox.Show("Username and password are correct");
+                        
+                        EventManager.setID(usr.id);
+                        SignOn();                      
                         return true;
                     }
                     else
                     {                      
-                        Console.WriteLine("Something is wrong");
+                        Console.WriteLine("wrong password");
                     }
                 }
                 catch (Exception e)

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    interface IUserManager
+    interface IDataTable
     {
-        List<User> ListOnlineUsers();
-        User GetUser(int id);
-        User GetUser(string username);
     }
 }

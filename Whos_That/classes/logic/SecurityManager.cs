@@ -16,13 +16,19 @@ namespace Whos_that
     {
         private const string initVector = "pemgail9uzpgzl88";
         private const int keysize = 256;
+        private IDataManager dataman;
+        public SecurityManager() : this(DataManager.GetDataManager()) { }
+        public SecurityManager(IDataManager dataman)
+        {
+            this.dataman = dataman;
+        }
 
         public string ChangePassword()
         {
             throw new NotImplementedException();
         }
 
-        public string DehashPassword(string cipherText, string passPhrase)
+        public string DehashString(string cipherText, string passPhrase)
         {
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
@@ -40,7 +46,7 @@ namespace Whos_that
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
 
-        public string HashPassword(string plainText, string passPhrase)
+        public string HashString(string plainText, string passPhrase)
         {
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -63,11 +69,11 @@ namespace Whos_that
         {
             //DataFileManager dataMan = new DataFileManager();
             //string[] temp = dataMan.GetDataLine(null, email);
-            IDataBaseManager dataBaseMan = new DataBaseManager();
-            UserData user = dataBaseMan.GetUserDataByEmail(email);
+            UserData user = dataman.GetUserDataByEmail(email);
+            UserData robo = dataman.GetUserData("robobat");
             if (user.passHash != null)
             {
-                string dehashedPass = DehashPassword(user.passHash, user.name);
+                string dehashedPass = DehashString(user.passHash, user.name);
                 var messg = new MimeMessage();
                 messg.From.Add(new MailboxAddress("your Whos_that password", "bot@whos_mail.com"));
 
@@ -84,7 +90,7 @@ namespace Whos_that
                 {
                     var client = new SmtpClient();
                     client.Connect("smtp.gmail.com", 465, true);
-                    client.Authenticate("whos.that.robobat@gmail.com", "robobatforever");
+                    client.Authenticate(robo.email, DehashString(robo.passHash, robo.name));
                     client.Send(messg);
                     client.Disconnect(true);
                 }

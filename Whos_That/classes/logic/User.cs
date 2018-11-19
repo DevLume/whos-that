@@ -13,35 +13,37 @@ namespace Whos_that
         public int id;
         public string username;
         public string gender;
-        private IDataBaseManager dataman;
-        private List<User> receivedFriendRequests;
-        private List<User> sentFriendRequests;
-        private List<User> friends;
-
+        private IDataManager dataman;
+        
         public string passwordHash;
         public string email;
+        private bool v;
 
-        public User() { }
-        public User(int id, string username, string email, string passhash, string gender) {
-            dataman = new DataBaseManager();
+        public bool messageReceived { get; set; }
+        private event MessageEventHandler messagingEvent;
+        User() :this(DataManager.GetDataManager()){}
+        User(IDataManager dataman)
+        {
+            this.dataman = dataman;
+        }
+        public User(int id, string username, string email, string passhash, string gender) : this(){
+            
             this.id = id;
             this.username = username;
             this.email = email;
             this.gender = gender;
             passwordHash = passhash;
         }
-        public User(string username, string email, string passhash, string gender)
-        {
-            dataman = new DataBaseManager();
+        public User(string username, string email, string passhash, string gender) : this()
+        {            
             this.username = username;
             this.email = email;
             this.gender = gender;
             passwordHash = passhash;
         }
 
-        public User(string username, string passHash, string email)
-        {
-            dataman = new DataBaseManager();
+        public User(string username, string passHash, string email) : this()
+        {        
             this.username = username;
             passwordHash = passHash;
             this.email = email;
@@ -51,70 +53,9 @@ namespace Whos_that
             friends = new List<User>();*/
         }
 
-
-        public void SendFriendRequest(User usr) {      
-            if (usr != null)
-            {
-                usr.receivedFriendRequests.Add(this);
-                sentFriendRequests.Add(usr);
-            }     
-        }
-
-        public bool ReceiveRequest(User usr, bool approval) {          
-            if (approval)
-            {
-                using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-                {
-                    while (usrEnumerator.MoveNext())
-                    {
-                        User temp = usrEnumerator.Current;
-                        if (usr.Equals(temp)) {
-                            receivedFriendRequests.Remove(temp);
-                            usr.sentFriendRequests.Remove(this);
-                            friends.Add(usr);
-                            usr.friends.Add(this);
-                            break;
-                        }
-                        //Console.WriteLine(usr.username);
-                    }
-                }
-            }
-            else {
-            }
-            return false;
-        }
-
-        public void ListReceivedFriendRequests() {
-            using (IEnumerator<User> usrEnumerator = receivedFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext()) {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListSentFriendRequests()
+        public User(int id, string username, string email, string passhash, string gender, bool v) : this(id, username, email, passhash, gender)
         {
-            using (IEnumerator<User> usrEnumerator = sentFriendRequests.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
-        }
-
-        public void ListAllFriends() {
-            using (IEnumerator<User> usrEnumerator = friends.GetEnumerator())
-            {
-                while (usrEnumerator.MoveNext())
-                {
-                    User usr = usrEnumerator.Current;
-                    Console.WriteLine(usr.username);
-                }
-            }
+            this.v = v;
         }
 
         public UserData ConvertToUserData() {
@@ -157,7 +98,7 @@ namespace Whos_that
         private void UnfriendDB(User u)
         {
             int usrID = u.id;
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
             List<UserRelData> unfriendRel = new List<UserRelData>();
 
             foreach (UserRelData r in rel)
@@ -167,13 +108,13 @@ namespace Whos_that
                     unfriendRel.Add(r);
                 }       
             }
-            dataman.RemoveUserRelDataDB(unfriendRel);        
+            dataman.RemoveUserRelData(unfriendRel);        
         }
         public List<User> ListFriends()
         {
             List<User> result = new List<User>();
             UserManager userMan = new UserManager();
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
 
             foreach (UserRelData dat in rel) {
                 if (dat.approved)
@@ -189,7 +130,7 @@ namespace Whos_that
         {
             List<User> result = new List<User>();
             UserManager userMan = new UserManager();
-            List<UserRelData> rel = dataman.GetUserRelDataDB(id);
+            List<UserRelData> rel = dataman.GetUserRelData(id);
 
             foreach (UserRelData dat in rel)
             {
@@ -203,50 +144,15 @@ namespace Whos_that
         }
 
         public bool AnswerFriendRq(int usrID, bool response)
-        {            
-            var dataSpace = new dataLinqDataContext();
-            var usrTable = dataSpace.GetTable<usersRelTable>();
-
-            var s = from a in usrTable where a.user1ID == usrID && a.user2ID == id select a;
-            foreach (var i in s) {
-                if (!(bool)i.received) {
-                    Console.WriteLine("Such relationship already exists");
-                    return false;
-                }
-            }
-
-            if (!response)
+        {          
+            if (dataman.CreateRelationship(id, usrID, response))
             {
-                List<UserRelData> reldat = new List<UserRelData>();
-                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
-                foreach (var i in q)
-                {
-                    reldat.Add(new UserRelData(i.Id, (int)i.user1ID, (int)i.user2ID, (bool)i.approved, DateTime.Today, (bool)i.received));
-                }
-
-                dataman.RemoveUserRelDataDB(reldat);
+                return true;
             }
-            else {
-                var q = from a in usrTable where a.user2ID == usrID && a.user1ID == id select a;
-                List<UserRelData> reldat = new List<UserRelData>();
-                foreach (var i in q) {
-                    i.approved = true;
-                    i.received = false;
-                    i.since = DateTime.Today;
-                    reldat.Add(new UserRelData(i.Id, usrID, id, true, (DateTime)i.since, false));
-                    Console.WriteLine("Adding with since date {0}", i.since);
-                    dataman.InsertUserRelDataDB(reldat);
-                }
-                try
-                {
-                    dataSpace.SubmitChanges();
-                }
-                catch (Exception e) {             
-                    Console.WriteLine(e);
-                    return false;
-                }               
+            else
+            {
+                return false;
             }
-            return true;
         }
 
         public bool SendFriendRq(int usrID)
@@ -255,7 +161,7 @@ namespace Whos_that
                 Console.WriteLine("friend request inception");
                 return false;
             }
-            List<UserRelData> temp = dataman.GetUserRelDataDB(usrID);
+            List<UserRelData> temp = dataman.GetUserRelData(usrID);
 
             foreach (UserRelData tmp in temp) {
                 if (tmp.user1ID == usrID && tmp.user2ID == id) {
@@ -275,8 +181,102 @@ namespace Whos_that
             Console.WriteLine("sent rq date {0}", udat.date);
             reldat.Add(udat);
 
-            dataman.InsertUserRelDataDB(reldat);
+            dataman.InsertUserRelData(reldat);
             return true;
+        }
+
+        public bool SendMessage(User friend, string message)
+        {
+            List<UserRelData> relationships = dataman.GetUserRelData(this.id);
+            SecurityManager secman = new SecurityManager();
+            bool sent = false;
+            string firstWord = message.Split(' ')[0];
+            foreach (UserRelData u in relationships)
+            {
+                if (friend.id == u.user2ID)
+                {
+                    sent = dataman.InsertMessage(this.id, friend.id, string.Concat(firstWord," ", secman.HashString(message,firstWord)));
+                    break;
+                }
+            }
+            if (!sent)
+            {
+                Console.WriteLine("Message could not be sent, " +
+                    "either you are not a friend to the recipient, or there is no such user");
+                return false;
+            }
+            else
+            {
+                messagingEvent += EventManager.MessageSent;
+                messagingEvent(friend);
+                Console.WriteLine("Message has been sent succesfully");
+                return true;
+            }
+        }
+
+        public List<string> GetMessageData()
+        {
+            List<string> result = new List<string>();
+            UserManager userMan = new UserManager();
+            SecurityManager secman = new SecurityManager();
+            List<UserRelData> rel = dataman.GetUserRelData(id);
+            string temp;
+            string ciph;
+            foreach (UserRelData dat in rel)
+            {
+                if (dat.message != null)
+                {
+                    try
+                    {
+                        temp = dat.message.Split(' ')[0];
+                        ciph = dat.message.Split(' ')[1];
+                        result.Add(string.Concat(dat.user2ID.ToString()," ",secman.DehashString(ciph, temp)));
+                        MarkMessageAsRead(dat.user2ID);
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        Console.WriteLine("something bad occured with messaging, ", ex);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public List<string> ListMessages()
+        {
+            List<string> result = new List<string>();
+            List<string> mesgData = GetMessageData();
+            UserManager userman = new UserManager();
+            foreach (string s in mesgData)
+            {
+                int uid = Int32.Parse(s.Split(' ')[0]);
+                string resMesg = string.Concat(userman.GetUser(uid).username, ": ");
+                IEnumerable<string> mesg = s.Split(' ').Skip(1);              
+                StringBuilder sb = new StringBuilder();
+                sb.Append(resMesg);
+                foreach (string m in mesg)
+                {
+                    sb.Append(m);
+                    sb.Append(' ');
+                }
+                resMesg = sb.ToString();
+                result.Add(resMesg);
+            }
+            return result;
+        }
+
+        public bool MarkMessageAsRead(int senderID)
+        {
+            bool marked = false;
+            try
+            {
+                marked = dataman.InsertMessage(senderID, this.id, null);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("something bad occured with messaging, ", ex);
+            }
+            return marked;
         }
     }
 }
@@ -321,8 +321,9 @@ public struct UserRelData {
     public bool approved;
     public System.DateTime date;
     public bool received;
+    public string message;
 
-    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received)
+    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received) : this()
     {
         this.id = id;
         user1ID = id1;
@@ -330,6 +331,17 @@ public struct UserRelData {
         approved = appr;
         this.date = date;
         this.received = received;
+    }
+
+    public UserRelData(int id, int id1, int id2, bool appr, DateTime date, bool received, string message)
+    {
+        this.id = id;
+        user1ID = id1;
+        user2ID = id2;
+        approved = appr;
+        this.date = date;
+        this.received = received;
+        this.message = message;
     }
 
     public override string ToString()

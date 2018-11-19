@@ -56,7 +56,7 @@ namespace Whos_that
             }
             else
             { 
-                passHash = HashPassword(password, username);
+                passHash = HashString(password, username);
             }
             //Open file to read
             String dataFilePath = String.Concat(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, @"\data.txt");
@@ -147,7 +147,7 @@ namespace Whos_that
                             String dbPass;
                             try
                             {
-                                dbPass = DehashPassword(passwordHash, username);
+                                dbPass = DehashString(passwordHash, username);
                                 if (String.Compare(password, dbPass) == 0)
                                 {
                                     fileRead.Close();

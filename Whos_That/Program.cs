@@ -10,12 +10,9 @@ namespace Whos_that
         [STAThread]
         static void Main()
         {
-            UserManager u = new UserManager();
-
-            User l = u.GetUser("luke");
-            User m = u.GetUser("Mister");
-
-            l.Unfriend(m);
+            DataManager.SetDataManager(new DataBaseManager());
+            UserManager uman = new UserManager();
+          
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -14,6 +14,7 @@ namespace Whos_that
     {
         private int maxLength = 35;
         private string username = "Username", password = "Password", email = "Email";
+        private event SigningEventHandler SignOff;
         AccountManagerDB acm = new AccountManagerDB();
 
         public LoginForm()
@@ -174,6 +175,7 @@ namespace Whos_that
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            SignOff += EventManager.UserSignedOff;
             base.OnFormClosing(e);
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
             // Confirm user wants to close
@@ -183,7 +185,8 @@ namespace Whos_that
                     e.Cancel = true;
                     break;
                 default:
-                    break;
+                    SignOff();
+                    break;                                     
             }
         }
     }
