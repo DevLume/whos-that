@@ -25,7 +25,7 @@ namespace WT_DataManager.Controllers
         {
             bool result = false;
             string responseMessage;
-            result = accman.CreateAccount(secman.getDecipheredText(username), secman.getDecipheredText(password), secman.getDecipheredText(email), out responseMessage);
+            result = accman.CreateAccount(username, password, email, out responseMessage);
             if (result)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, responseMessage);
@@ -42,7 +42,7 @@ namespace WT_DataManager.Controllers
         {
             bool result = false;
             string responseMessage;
-            result = accman.Login(secman.getDecipheredText(username), secman.getDecipheredText(password), out responseMessage);
+            result = accman.Login(username, password, out responseMessage);
             if (result)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, responseMessage);
