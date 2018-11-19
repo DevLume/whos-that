@@ -18,15 +18,9 @@ namespace Droid.Core.Services
         }
 
         public async Task<Tuple<bool, string>> SendLoginRequest(string username, string password)
-        {
-            Cryptor crypt = new Cryptor();
-            string cipher = crypt.GetRandomString(8);
-
-            string u = crypt.HashString(username, cipher);
-            string p = crypt.HashString(password, cipher);
-
+        { 
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Login?username=" + cipher + u + "&password=" + cipher + p));
+            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Login?username=" + username + "&password=" + password));
             HttpResponseMessage httpResponse = null;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpResponse = await client.GetAsync(uri);
@@ -34,8 +28,20 @@ namespace Droid.Core.Services
             bool pass = false;
             if (httpResponse != null)
             {
-                pass = onResponseReceived(httpResponse, out responseMessage);
-                return new Tuple<bool, string>(pass, responseMessage);
+                if (httpResponse.IsSuccessStatusCode || httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    pass = onResponseReceived(httpResponse, out responseMessage);
+                    return new Tuple<bool, string>(pass, responseMessage);
+                }else if(httpResponse.StatusCode == System.Net.HttpStatusCode.BadGateway || 
+                    httpResponse.StatusCode == System.Net.HttpStatusCode.GatewayTimeout || 
+                    httpResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                {
+                    return new Tuple<bool, string>(false, "Internal server error, please try again");
+                }
+                else
+                {
+                    return new Tuple<bool, string>(false, "You shall not pass!");
+                }
             }
             else
             {
