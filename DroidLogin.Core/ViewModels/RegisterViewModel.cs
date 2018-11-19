@@ -13,6 +13,7 @@ namespace Droid.Core.ViewModels
         private IRegisterService _IRegisterService;
 
         public static event EventHandler<SendRegisterRequestArgs> OnRequestSent;
+        public static event EventHandler<SendErrorArgs> OnInputError;
 
         private string _username;
         private string _password;
@@ -94,24 +95,16 @@ namespace Droid.Core.ViewModels
                 {
                     Console.WriteLine("A null exception has occurred: ", ex);
                 }
+                catch (ArgumentNullException)
+                {
+                    OnInputError?.Invoke(this, new SendErrorArgs("Please Fill all fields!"));
+                }
 
                 if (answerTuple != null)
                 {
                     OnRequestSent?.Invoke(this, new SendRegisterRequestArgs(answerTuple.Item1, answerTuple.Item2));
                 }
             }
-        }
-    }
-
-    public class SendRegisterRequestArgs
-    {
-        public bool pass;
-        public string response;
-
-        public SendRegisterRequestArgs(bool pass, string response)
-        {
-            this.pass = pass;
-            this.response = response;
         }
     }
 }

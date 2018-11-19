@@ -18,6 +18,7 @@ namespace Droid.Core.ViewModels
 
         public static event EventHandler<SendLoginRequestArgs> OnRequestSent;
         public static event EventHandler<ChangeActivityArgs> OnActivityChange;
+        public static event EventHandler<SendErrorArgs> OnError;
 
         public string Username
         {
@@ -74,10 +75,18 @@ namespace Droid.Core.ViewModels
             {
                 Console.WriteLine("A null exception has occurred: ", ex);
             }
+            catch (ArgumentNullException)
+            {
+                OnError?.Invoke(this, new SendErrorArgs("Please fill all fields!"));
+            }
 
             if (answerTuple != null)
             {
-                OnRequestSent?.Invoke(this, new SendLoginRequestArgs(answerTuple.Item1, answerTuple.Item2));
+                if (answerTuple.Item1)
+                {
+                    LoginApp.loggedUserName = _username;
+                }
+                OnRequestSent?.Invoke(this, new SendLoginRequestArgs(answerTuple.Item1, answerTuple.Item2, _username));
             }
         }
 
@@ -96,20 +105,4 @@ namespace Droid.Core.ViewModels
             OnActivityChange?.Invoke(this, new ChangeActivityArgs());
         }
     }
-
-    public class SendLoginRequestArgs : EventArgs
-    {
-        public bool pass;
-        public string response;    
-
-        public SendLoginRequestArgs(bool pass, string response)
-        {
-            this.pass = pass;
-            this.response = response;
-        }
-
-    }
-
-    public class ChangeActivityArgs : EventArgs
-    {}
 }

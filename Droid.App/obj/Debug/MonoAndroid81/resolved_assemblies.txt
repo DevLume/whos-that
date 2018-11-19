@@ -5,6 +5,11 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\Mono.Android.Export.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\mscorlib.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Core.UI.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Design.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Fragment.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.V7.AppCompat.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\Newtonsoft.Json.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.Core.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.Xml.dll

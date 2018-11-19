@@ -58,7 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="CreateTestView.cs" />
+    <Compile Include="Fragments\CreateTestUI.cs" />
+    <Compile Include="Fragments\GuessUI.cs" />
+    <Compile Include="Fragments\StatisticsUI.cs" />
+    <Compile Include="GuessTestView.cs" />
     <Compile Include="LoginView.cs" />
+    <Compile Include="MainView.cs" />
     <Compile Include="RegisterView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +100,15 @@
   <ItemGroup>
     <PackageReference Include="MvvmCross">
       <Version>6.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.Fragment">
+      <Version>6.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat">
+      <Version>6.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
@@ -183,6 +198,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\testLoginView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\createTestView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\guessTestView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

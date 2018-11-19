@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Droid.Core;
 using Droid.Core.ViewModels;
 using MvvmCross.Platforms.Android.Views;
 
@@ -23,11 +24,22 @@ namespace Droid.App
             SetContentView(Resource.Layout.login);
             LoginViewModel.OnRequestSent += LoginViewModel_OnLoginRequestSent;
             LoginViewModel.OnActivityChange += LoginViewModel_OnActivityChange;
+            LoginViewModel.OnError += LoginViewModel_OnError;
+        }
+
+        private void LoginViewModel_OnError(object sender, SendErrorArgs e)
+        {
+            Toast.MakeText(this, e.errorInfo, ToastLength.Long).Show();
         }
 
         private void LoginViewModel_OnLoginRequestSent(object sender, SendLoginRequestArgs e)
         {
             Toast.MakeText(this, e.response, ToastLength.Long).Show();
+            if (e.pass)
+            {              
+                Intent intent = new Intent(this, typeof(MainView));
+                this.StartActivity(intent);
+            }
         }
 
         private void LoginViewModel_OnActivityChange(object sender, ChangeActivityArgs e)

@@ -59,6 +59,8 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res\values\drawables.xml
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res\values-v21\styles.xml
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res\layout\testloginview.xml
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res\layout\createtestview.xml
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res\layout\guesstestview.xml
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\R.cs.flag
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\R.txt
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\uploadflags.txt
@@ -67,6 +69,10 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\Mono.Android.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\Mono.Security.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\mscorlib.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\MvvmCross.Droid.Support.Core.UI.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\MvvmCross.Droid.Support.Design.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\MvvmCross.Droid.Support.Fragment.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\MvvmCross.Droid.Support.V7.AppCompat.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\MvvmCross.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\System.ComponentModel.Composition.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\bin\Debug\System.Core.pdb
@@ -88,6 +94,10 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\Mono.Android.Export.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\mscorlib.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\MvvmCross.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\MvvmCross.Droid.Support.Core.UI.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\MvvmCross.Droid.Support.Design.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\MvvmCross.Droid.Support.Fragment.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\MvvmCross.Droid.Support.V7.AppCompat.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\System.Core.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\System.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\System.Xml.pdb
@@ -111,6 +121,10 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\Mono.Android.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\Mono.Security.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\mscorlib.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Core.UI.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Design.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.Fragment.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.Droid.Support.V7.AppCompat.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\MvvmCross.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.ComponentModel.Composition.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.Core.pdb
@@ -127,3 +141,4 @@ C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\Mon
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.Xml.Linq.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\android\assets\System.Xml.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\Droid.App.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\linksrc\Droid.Core.pdb

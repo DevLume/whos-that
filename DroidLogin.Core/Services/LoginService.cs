@@ -26,7 +26,7 @@ namespace Droid.Core.Services
             string p = crypt.HashString(password, cipher);
 
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://wtdatamanager.azurewebsites.net/api/Account/Login?username=" + cipher + u + "&password=" + cipher + p));
+            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Login?username=" + cipher + u + "&password=" + cipher + p));
             HttpResponseMessage httpResponse = null;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpResponse = await client.GetAsync(uri);

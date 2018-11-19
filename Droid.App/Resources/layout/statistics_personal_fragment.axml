@@ -2,6 +2,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
@@ -30,7 +31,9 @@
 		android:layout_marginLeft="10dp"
 		android:hint="username"
 		android:paddingLeft="10dp"
-		android:textColor="#f5f5f5"/>
+		android:textColor="#f5f5f5"
+		local:MvxBind="Text Title"
+	/>
 	<Button
 		android:layout_marginLeft="25dp"
 		android:layout_marginRight="25dp"
@@ -40,6 +43,8 @@
 		android:layout_height="0dp"
 		android:layout_weight="10"
 		android:background="@drawable/button_style"
-		android:id="@+id/btnConfirmStatisticsUsername" />
+		android:id="@+id/btnConfirmStatisticsUsername"
+		local:MvxBind="Click GetStatisticsCommand"
+	/>
 
 </LinearLayout>

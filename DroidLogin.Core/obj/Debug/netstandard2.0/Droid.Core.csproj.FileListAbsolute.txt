@@ -1,9 +1,9 @@
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\Droid.Core.deps.json
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\Droid.Core.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\Droid.Core.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.csproj.CoreCompileInputs.cache
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.AssemblyInfoInputs.cache
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.AssemblyInfo.cs
-C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\Droid.Core.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.dll
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.pdb
 C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.csprojAssemblyReference.cache
