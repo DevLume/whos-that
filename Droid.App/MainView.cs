@@ -68,10 +68,9 @@ namespace Droid.App
             //statisticsUI = (StatisticsUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct3);
             statisticsUI.ViewModel = ((MainScreenViewModel)ViewModel).Srt;
 
-            currentFragment = createTestUI;
             
             var transaction = SupportFragmentManager.BeginTransaction();
-
+            currentFragment = createTestUI;
             transaction.Add(Resource.Id.fragment_container, createTestUI, "createTestUI");
             transaction.Add(Resource.Id.fragment_container, guessUI, "guessUI");
             transaction.Add(Resource.Id.fragment_container, statisticsUI, "statisticsUI");
@@ -81,7 +80,12 @@ namespace Droid.App
         }
         private void ShowFragment(SupportFragment fragment)
         {
+            if (fragment.IsVisible)
+            {
+                return;
+            }
             var transaction = SupportFragmentManager.BeginTransaction();
+            transaction.SetCustomAnimations(Resource.Animation.slide_in, Resource.Animation.slide_out, Resource.Animation.slide_in, Resource.Animation.slide_out);
             transaction.Hide(currentFragment);
             transaction.Show(fragment);
             transaction.Commit();
