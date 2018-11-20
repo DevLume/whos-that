@@ -31,6 +31,11 @@ namespace Recognition.RecognitionServices
         public async Task<string> Identify(UserModel user)
         {
             string imageUri = user.ImageUri;
+
+            //Mock error heandling
+            if (imageUri == null)
+                return null;
+
             RecognitionUtils recUtils = new RecognitionUtils();
 
             var memoryStream = new MemoryStream();
@@ -38,9 +43,17 @@ namespace Recognition.RecognitionServices
 
             var faces = await _faceServiceClient.DetectAsync(memoryStream);
 
+            //Mock error heandling
+            if (faces.Length == 0 || faces == null)
+                return null;
+
             var faceIds = faces.Select(face => face.FaceId).ToArray();
 
             var results = await _faceServiceClient.IdentifyAsync(_groupId, faceIds);
+
+            //Mock error heandling
+            if (results.Length == 0 || results == null || results[0].Candidates.Length == 0 || results[0].Candidates[0] == null)
+                return null;
 
             var candidateId = results[0].Candidates[0].PersonId;
             var person = await _faceServiceClient.GetPersonAsync(_groupId, candidateId);
@@ -56,11 +69,42 @@ namespace Recognition.RecognitionServices
         public async Task<bool> InsertPersonInToGroup(UserModel user)
         {
             CreatePersonResult result = await _faceServiceClient.CreatePersonAsync(_groupId, user.Id.ToString());
+
+            //Mock error heandling
+            if (result == null)
+                return false;
+
             RecognitionUtils recUtils = new RecognitionUtils();
 
             await _faceServiceClient.AddPersonFaceAsync(_groupId, result.PersonId, recUtils.GetStream(user.ImageUri));
 
             await _faceServiceClient.TrainPersonGroupAsync(_groupId);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Creates person group in Azure face recognition API
+        /// </summary>
+        /// <returns>boolean</returns>
+        public async Task<bool> CreateGroup()
+        {
+            await _faceServiceClient.CreatePersonGroupAsync(_groupId, "peeps");
+
+            await _faceServiceClient.TrainPersonGroupAsync(_groupId);
+
+            TrainingStatus trainingStatus = null;
+            while (true)
+            {
+                trainingStatus = await _faceServiceClient.GetPersonGroupTrainingStatusAsync(_groupId);
+
+                if (trainingStatus.Status != Status.Running)
+                {
+                    break;
+                }
+
+                await Task.Delay(1000);
+            }
 
             return true;
         }
