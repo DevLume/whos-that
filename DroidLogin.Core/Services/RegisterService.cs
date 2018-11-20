@@ -18,34 +18,28 @@ namespace Droid.Core.Services
         }
 
         public async Task<Tuple<bool, string>> SendRegisterRequest(string username, string password, string email)
-        {  
+        {
+            Cryptor crypt = new Cryptor();
+            string cipher = crypt.GetRandomString(8);
+
+            string u = crypt.HashString(username, cipher);
+            string p = crypt.HashString(password, cipher);
+            string e = crypt.HashString(email, cipher);
+
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Register?username=" + username  + "&password=" + password  + "&email=" + email ));
-            HttpResponseMessage httpResponse;
+            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Register?username=" + cipher + u + "&password=" + cipher + p + "&email=" + cipher + e));
+            HttpResponseMessage response;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpResponse = await client.GetAsync(uri);
+            response = await client.GetAsync(uri);
             string mesg;
-            if (httpResponse != null)
+            if (response != null)
             {
-                if (httpResponse.IsSuccessStatusCode || httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    bool pass = onResponseReceived(httpResponse, out mesg);
-                    return new Tuple<bool, string>(pass, mesg);
-                }
-                else if (httpResponse.StatusCode == System.Net.HttpStatusCode.BadGateway ||
-                   httpResponse.StatusCode == System.Net.HttpStatusCode.GatewayTimeout ||
-                   httpResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
-                {
-                    return new Tuple<bool, string>(false, "Internal server error, please try again");
-                }
-                else
-                {
-                    return new Tuple<bool, string>(false, "You shall not register!");
-                }
+                bool pass = onResponseReceived(response, out mesg);
+                return new Tuple<bool, string>(pass, mesg);
             }
             else
             {
-                return new Tuple<bool, string>(false, "You shall not register!");
+                return new Tuple<bool, string>(false, "You shall not pass!");
             }
         }
     }
