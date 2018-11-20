@@ -38,12 +38,12 @@ namespace Recognition
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMvc();
+
             app.Run(async (context) =>
             {
                 context.Response.WriteAsync("what");
             });
-
-            app.UseMvc();
         }
     }
 }
