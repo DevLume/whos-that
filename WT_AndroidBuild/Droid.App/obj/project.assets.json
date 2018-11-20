@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "MonoAndroid,Version=v8.1": {
+    "MonoAndroid,Version=v9.0": {
       "MvvmCross/6.2.2": {
         "type": "package",
         "frameworkAssemblies": [
@@ -714,7 +714,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "MonoAndroid,Version=v8.1": [
+    "MonoAndroid,Version=v9.0": [
       "Droid.Core >= 1.0.0",
       "MvvmCross >= 6.2.2",
       "MvvmCross.Droid.Support.Fragment >= 6.2.2",
@@ -729,35 +729,36 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\Droid.App\\Droid.App.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
       "projectName": "Droid.App",
-      "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\Droid.App\\Droid.App.csproj",
+      "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
       "packagesPath": "C:\\Users\\Vartotojas1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\Droid.App\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\Droid.App\\obj\\",
       "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
       "configFilePaths": [
         "C:\\Users\\Vartotojas1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "monoandroid81"
+        "monoandroid90"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "monoandroid81": {
+        "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj": {
-              "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj"
+            "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj": {
+              "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj"
             }
           }
         }
       }
     },
     "frameworks": {
-      "monoandroid81": {
+      "monoandroid90": {
         "dependencies": {
           "MvvmCross": {
             "target": "Package",
