@@ -64,5 +64,31 @@ namespace Recognition.RecognitionServices
 
             return true;
         }
+
+        /// <summary>
+        /// Creates person group in Azure face recognition API
+        /// </summary>
+        /// <returns>boolean</returns>
+        public async Task<bool> CreateGroup()
+        {
+            await _faceServiceClient.CreatePersonGroupAsync(_groupId, "fun");
+
+            await _faceServiceClient.TrainPersonGroupAsync(_groupId);
+
+            TrainingStatus trainingStatus = null;
+            while (true)
+            {
+                trainingStatus = await _faceServiceClient.GetPersonGroupTrainingStatusAsync(_groupId);
+
+                if (trainingStatus.Status != Status.Running)
+                {
+                    break;
+                }
+
+                await Task.Delay(1000);
+            }
+
+            return true;
+        }
     }
 }
