@@ -273,11 +273,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj",
       "projectName": "Droid.Core",
-      "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj",
+      "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj",
       "packagesPath": "C:\\Users\\Vartotojas1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\obj\\",
+      "outputPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
