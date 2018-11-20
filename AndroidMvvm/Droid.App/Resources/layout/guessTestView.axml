@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+	android:background="#242a31"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginTop="25dp"
+		android:layout_marginLeft="15dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/editText1"
+		local:MvxBind="Text Question"
+	/>
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText2"		
+		local:MvxBind="Text Answer1"
+	/>
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText3" 		
+		local:MvxBind="Text Answer2"
+	/>
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText4"		
+		local:MvxBind="Text Answer3"
+	/>
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText5"
+		local:MvxBind="Text Answer4"
+	/>
+	<EditText
+		android:textColor="#f5f5f5"
+		android:layout_marginLeft="10dp"
+		android:textColorHint="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Correct answer index {1,2,3,4}"
+		android:id="@+id/editText6"
+		android:inputType="number"
+		local:MvxBind="Text AnswerIndex"
+	/>
+	<Button
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:textColor="#f5f5f5"
+		android:background="@drawable/button_style"
+		android:text="next question"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/button1"
+		local:MvxBind="Click NextQuestion"
+	/>
+	<Button
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:textColor="#f5f5f5"
+		android:background="@drawable/button_style"
+		android:text="End Test"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/button2"
+		local:MvxBind="Click EndTest"
+	/>
+
+</LinearLayout>
