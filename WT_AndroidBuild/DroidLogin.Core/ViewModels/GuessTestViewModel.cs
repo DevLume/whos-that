@@ -122,6 +122,14 @@ namespace Droid.Core.ViewModels
         {
             await base.Initialize();
             await GetTest(LoginApp.guessTestAuthorName, LoginApp.guessTestName);
+            Question q = GetNextQuestion();
+            _question = q.question;
+            _answer1 = q.answer1;
+            _answer2 = q.answer2;
+            _answer3 = q.answer3;
+            _answer4 = q.answer4;
+            _answerIndex = 0;
+            await RaiseAllPropertiesChanged();
         }
 
         private MvxCommand _nextQuestion;
@@ -174,20 +182,26 @@ namespace Droid.Core.ViewModels
 
         public void EndTestCommand()
         {
-            /*int i = 0;
+            int i = 0;
             int correctAnswers = 0;
-            int questionCount = _test.questions.Count;
             foreach (Question q in _test.questions)
             {
-                if (q.correctAnswerIndex == answerIndexes[i])
+                try
                 {
-                    correctAnswers++;
+                    if (q.correctAnswerIndex == answerIndexes[i])
+                    {
+                        correctAnswers++;
+                    }
+                    i++;
+                    //questionCount++;
                 }
-                i++;
-                //questionCount++;
-            }*/
+                catch (Exception)
+                {
+                    OnWrongInput?.Invoke(this, new WrongInputEventArgs(true,"Answer at least one question"));
+                }
+            }
 
-            OnTestEnd?.Invoke(this, new EndTestEventArgs(false, "Your test result:", 0, _test.questions.Count));
+            OnTestEnd?.Invoke(this, new EndTestEventArgs(false, "Your test result:", correctAnswers, _test.questions.Count));
         }
 
     }

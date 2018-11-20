@@ -18,22 +18,19 @@ namespace Droid.Core.Services
         }
 
         public async Task<Tuple<bool, string>> SendRegisterRequest(string username, string password, string email)
-        {
-            Cryptor crypt = new Cryptor();
-            string cipher = crypt.GetRandomString(8);
-
-            string u = crypt.HashString(username, cipher);
-            string p = crypt.HashString(password, cipher);
-            string e = crypt.HashString(email, cipher);
-
+        {        
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://wtdatamanager1.azurewebsites.net/api/Account/Register?username=" + cipher + u + "&password=" + cipher + p + "&email=" + cipher + e));
+            var uri = new Uri(string.Format("https://wtdatamanager.azurewebsites.net/api/Account/Register?username=" + username + "&password=" + password + "&email=" + email));
             HttpResponseMessage response;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             response = await client.GetAsync(uri);
             string mesg;
             if (response != null)
             {
+                if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                {
+                    return new Tuple<bool, string>(false, "Internal server error, please try again");
+                }
                 bool pass = onResponseReceived(response, out mesg);
                 return new Tuple<bool, string>(pass, mesg);
             }
