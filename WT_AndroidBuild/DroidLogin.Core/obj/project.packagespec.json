@@ -1,0 +1,51 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj",
+    "projectName": "Droid.Core",
+    "projectPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\Droid.Core.csproj",
+    "outputPath": "C:\\Users\\Vartotojas1\\Desktop\\Uni\\TOP\\whos-that\\DroidLogin.Core\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netstandard2.0"
+    ],
+    "frameworks": {
+      "netstandard2.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netstandard2.0": {
+      "dependencies": {
+        "MvvmCross": {
+          "target": "Package",
+          "version": "[6.2.2, )"
+        },
+        "NETStandard.Library": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.3, )",
+          "autoReferenced": true
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[11.0.2, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

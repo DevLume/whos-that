@@ -1,0 +1,8 @@
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\DroidLogin.Core.deps.json
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\DroidLogin.Core.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\DroidLogin.Core.csproj.CoreCompileInputs.cache
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\DroidLogin.Core.AssemblyInfoInputs.cache
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\DroidLogin.Core.AssemblyInfo.cs
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\bin\Debug\netstandard2.0\DroidLogin.Core.pdb
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\DroidLogin.Core.dll
+C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\DroidLogin.Core\obj\Debug\netstandard2.0\DroidLogin.Core.pdb
