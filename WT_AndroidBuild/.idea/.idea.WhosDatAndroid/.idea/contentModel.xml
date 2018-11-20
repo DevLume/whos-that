@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.arch.lifecycle.runtime\1.0.3.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.animated.vector.drawable\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.core.ui\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.design\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.media.compat\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.transition\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.nuget\packages\xamarin.android.support.v7.recyclerview\27.0.2.1\proguard" t="Include">
+      <e p="proguard.txt" t="Include" />
+    </e>
+    <e p="C:\Users\Vartotojas1\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Vartotojas1\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_WhosDatAndroid.-1546989868.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Vartotojas1\Desktop\Uni\TOP\whos-that" t="IncludeFlat">
+      <e p="Droid.App" t="IncludeRecursive">
+        <e p="Application.cs" t="Include" />
+        <e p="Assets" t="Include">
+          <e p="AboutAssets.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CreateTestView.cs" t="Include" />
+        <e p="Droid.App.csproj" t="IncludeRecursive" />
+        <e p="Fragments" t="Include">
+          <e p="CreateTestUI.cs" t="Include" />
+          <e p="GuessUI.cs" t="Include" />
+          <e p="StatisticsUI.cs" t="Include" />
+        </e>
+        <e p="GuessTestView.cs" t="Include" />
+        <e p="LoginView.cs" t="Include" />
+        <e p="MainView.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AndroidManifest.xml" t="Include" />
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="RegisterView.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="AboutResources.txt" t="Include" />
+          <e p="anim" t="Include">
+            <e p="slide_in.xml" t="Include" />
+            <e p="slide_out.xml" t="Include" />
+          </e>
+          <e p="drawable" t="Include">
+            <e p="button_style.xml" t="Include" />
+            <e p="loadingBar.xml" t="Include" />
+            <e p="side_nav_bar.xml" t="Include" />
+          </e>
+          <e p="drawable-v21" t="Include">
+            <e p="ic_menu_camera.xml" t="Include" />
+            <e p="ic_menu_gallery.xml" t="Include" />
+            <e p="ic_menu_manage.xml" t="Include" />
+            <e p="ic_menu_send.xml" t="Include" />
+            <e p="ic_menu_share.xml" t="Include" />
+            <e p="ic_menu_slideshow.xml" t="Include" />
+          </e>
+          <e p="drawable-v24" t="Include">
+            <e p="ic_launcher_foreground.xml" t="Include" />
+          </e>
+          <e p="layout" t="Include">
+            <e p="activity_main.axml" t="Include" />
+            <e p="app_bar_main.axml" t="Include" />
+            <e p="content_main.axml" t="Include" />
+            <e p="create_test_fragment.axml" t="Include" />
+            <e p="createTestView.axml" t="Include" />
+            <e p="guess_test_fragment.axml" t="Include" />
+            <e p="guessTestView.axml" t="Include" />
+            <e p="login.axml" t="Include" />
+            <e p="nav_header_main.axml" t="Include" />
+            <e p="register.axml" t="Include" />
+            <e p="statistics_personal_fragment.axml" t="Include" />
+            <e p="testLoginView.axml" t="Include" />
+          </e>
+          <e p="menu" t="Include">
+            <e p="activity_main_drawer.xml" t="Include" />
+            <e p="menu_main.xml" t="Include" />
+          </e>
+          <e p="mipmap-anydpi-v26" t="Include">
+            <e p="ic_launcher.xml" t="Include" />
+            <e p="ic_launcher_round.xml" t="Include" />
+          </e>
+          <e p="mipmap-hdpi" t="Include">
+            <e p="ic_launcher.png" t="Include" />
+            <e p="ic_launcher_foreground.png" t="Include" />
+            <e p="ic_launcher_round.png" t="Include" />
+          </e>
+          <e p="mipmap-mdpi" t="Include">
+            <e p="ic_launcher.png" t="Include" />
+            <e p="ic_launcher_foreground.png" t="Include" />
+            <e p="ic_launcher_round.png" t="Include" />
+          </e>
+          <e p="mipmap-xhdpi" t="Include">
+            <e p="ic_launcher.png" t="Include" />
+            <e p="ic_launcher_foreground.png" t="Include" />
+            <e p="ic_launcher_round.png" t="Include" />
+          </e>
+          <e p="mipmap-xxhdpi" t="Include">
+            <e p="ic_launcher.png" t="Include" />
+            <e p="ic_launcher_foreground.png" t="Include" />
+            <e p="ic_launcher_round.png" t="Include" />
+          </e>
+          <e p="mipmap-xxxhdpi" t="Include">
+            <e p="ic_launcher.png" t="Include" />
+            <e p="ic_launcher_foreground.png" t="Include" />
+            <e p="ic_launcher_round.png" t="Include" />
+          </e>
+          <e p="Resource.Designer.cs" t="Include" />
+          <e p="values" t="Include">
+            <e p="colors.xml" t="Include" />
+            <e p="dimens.xml" t="Include" />
+            <e p="drawables.xml" t="Include" />
+            <e p="ic_launcher_background.xml" t="Include" />
+            <e p="strings.xml" t="Include" />
+            <e p="styles.xml" t="Include" />
+          </e>
+          <e p="values-v21" t="Include">
+            <e p="styles.xml" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="DroidLogin.Core" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Droid.Core.csproj" t="IncludeRecursive" />
+        <e p="EventManager.cs" t="Include" />
+        <e p="LoginApp.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Droid.Core.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Services" t="Include">
+          <e p="CreateTestService.cs" t="Include" />
+          <e p="GuessTestService.cs" t="Include" />
+          <e p="ICreateTestService.cs" t="Include" />
+          <e p="IGuessTestService.cs" t="Include" />
+          <e p="ILoginService.cs" t="Include" />
+          <e p="IRegisterService.cs" t="Include" />
+          <e p="LoginService.cs" t="Include" />
+          <e p="RegisterService.cs" t="Include" />
+          <e p="Tools" t="Include">
+            <e p="Cryptor.cs" t="Include" />
+            <e p="GuiMessageManager.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Tools" t="Include">
+          <e p="Question.cs" t="Include" />
+          <e p="Test.cs" t="Include" />
+        </e>
+        <e p="ViewModels" t="Include">
+          <e p="CreateTestFragmentViewModel.cs" t="Include" />
+          <e p="CreateTestViewModel.cs" t="Include" />
+          <e p="GuessTestFragmentViewModel.cs" t="Include" />
+          <e p="GuessTestViewModel.cs" t="Include" />
+          <e p="LoginViewModel.cs" t="Include" />
+          <e p="MainScreenViewModel.cs" t="Include" />
+          <e p="RegisterViewModel.cs" t="Include" />
+          <e p="StatisticsFragmentViewModel.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="WhosDatAndroid.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
