@@ -11,28 +11,32 @@ using Android.Views;
 using Android.Widget;
 using Droid.Core;
 using Droid.Core.ViewModels;
+using Droid.Core.Services.ViewEvent;
 using MvvmCross.Platforms.Android.Views;
+using Acr.UserDialogs;
 
 namespace Droid.App
 {
     [Activity(Label = "Login Screen", MainLauncher = true)]
-    public class LoginView : MvxActivity<LoginViewModel>
-    {
+    public class LoginView : MvxActivity<LoginViewModel>, ILoginEventManager
+    {   
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.login);
-            LoginViewModel.OnRequestSent += LoginViewModel_OnLoginRequestSent;
-            LoginViewModel.OnActivityChange += LoginViewModel_OnActivityChange;
-            LoginViewModel.OnError += LoginViewModel_OnError;
+
+            LoginViewModel.OnRequestSent += OnLogin;
+            LoginViewModel.OnActivityChange += OnActivityChange;
+            LoginViewModel.OnError += OnError;               
         }
 
-        private void LoginViewModel_OnError(object sender, SendErrorArgs e)
+        
+        public void OnError(object sender, SendErrorArgs e)
         {
             Toast.MakeText(this, e.errorInfo, ToastLength.Long).Show();
         }
 
-        private void LoginViewModel_OnLoginRequestSent(object sender, SendLoginRequestArgs e)
+        public void OnLogin(object sender, SendLoginRequestArgs e)
         {
             Toast.MakeText(this, e.response, ToastLength.Long).Show();
             if (e.pass)
@@ -42,10 +46,12 @@ namespace Droid.App
             }
         }
 
-        private void LoginViewModel_OnActivityChange(object sender, ChangeActivityArgs e)
+        public void OnActivityChange(object sender, ChangeActivityArgs e)
         {
             Intent intent = new Intent(this, typeof(RegisterView));
             this.StartActivity(intent);
         }
+
+       
     }
 }

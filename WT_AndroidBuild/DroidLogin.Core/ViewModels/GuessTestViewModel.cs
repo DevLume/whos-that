@@ -14,6 +14,17 @@ namespace Droid.Core.ViewModels
     {
         private IGuessTestService _IGuessTestService;
 
+        private string _questionCounterText;
+        public string QuestionCounterText
+        {
+            get => _questionCounterText;
+            set
+            {
+                _questionCounterText = value;
+                RaisePropertyChanged(() => QuestionCounterText);
+            }
+        }
+
         private string _question;
         public string Question
         {
@@ -82,11 +93,13 @@ namespace Droid.Core.ViewModels
 
         private void ShowQuestion(Question q)
         {
+            _questionCounterText = string.Format("Question " + testPosition + " of " + _test.questions.Count);
             _question = q.question;
             _answer1 = q.answer1;
             _answer2 = q.answer2;
             _answer3 = q.answer3;
             _answer4 = q.answer4;
+            _answerIndex = 0;
             RaiseAllPropertiesChanged();
         }
 
@@ -100,17 +113,25 @@ namespace Droid.Core.ViewModels
 
         private Question GetNextQuestion()
         {
+            Question q;
             try
             {
-                Question q = _test.questions.ElementAt(testPosition);
+                q = _test.questions.ElementAt(testPosition);
                 testPosition++;
-                return q;
             }
             catch (Exception)
             {
-                Question q = _test.questions.First();
-                return q;
+                q = _test.questions.First();
             }
+            finally
+            {
+                if (testPosition == _test.questions.Count)
+                {
+                    //Show end test button
+                    _hideButton = false;
+                }               
+            }
+            return q;
         }
 
         public GuessTestViewModel(IGuessTestService gts)
@@ -122,13 +143,7 @@ namespace Droid.Core.ViewModels
         {
             await base.Initialize();
             await GetTest(LoginApp.guessTestAuthorName, LoginApp.guessTestName);
-            Question q = GetNextQuestion();
-            _question = q.question;
-            _answer1 = q.answer1;
-            _answer2 = q.answer2;
-            _answer3 = q.answer3;
-            _answer4 = q.answer4;
-            _answerIndex = 0;
+            ShowQuestion(GetNextQuestion());
             await RaiseAllPropertiesChanged();
         }
 
@@ -152,12 +167,22 @@ namespace Droid.Core.ViewModels
             }
         }
 
+        private bool _hideButton = true;
+        public bool ShowButton
+        {
+            get => _hideButton;
+            set
+            {
+                _hideButton = value; RaisePropertyChanged(() => ShowButton);
+            }
+        }
+
         private List<int> answerIndexes = new List<int>();
 
         public static event EventHandler<WrongInputEventArgs> OnWrongInput;
         public static event EventHandler<EndTestEventArgs> OnTestEnd;
         public void NextQuestionCommand()
-        {
+        {       
             if (testPosition > 0 && testPosition <= 4)
             {
                 answerIndexes.Add(_answerIndex);
@@ -169,13 +194,7 @@ namespace Droid.Core.ViewModels
             }
             else
             {
-                Question q = GetNextQuestion();
-                _question = q.question;
-                _answer1 = q.answer1;
-                _answer2 = q.answer2;
-                _answer3 = q.answer3;
-                _answer4 = q.answer4;
-                _answerIndex = 0;
+                ShowQuestion(GetNextQuestion());         
                 RaiseAllPropertiesChanged();
             }
         }
@@ -184,6 +203,17 @@ namespace Droid.Core.ViewModels
         {
             int i = 0;
             int correctAnswers = 0;
+
+            if (testPosition > 0 && testPosition <= 4)
+            {
+                answerIndexes.Add(_answerIndex);
+            }
+
+            if (_answerIndex == 0 || _answerIndex > 4)
+            {
+                OnWrongInput?.Invoke(this, new WrongInputEventArgs(true, "Enter your answer [number from 1 to 4]"));
+            }
+
             foreach (Question q in _test.questions)
             {
                 try

@@ -1,4 +1,6 @@
-﻿using Droid.Core.Services;
+﻿using Acr.UserDialogs;
+using Droid.Core.Services;
+using Droid.Core.Services.ViewEvent;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
@@ -12,6 +14,7 @@ namespace Droid.Core.ViewModels
     public class LoginViewModel : MvxViewModel
     {
         private ILoginService _ILoginService;
+        private ILoginEventManager _ILoginEventMan;
 
         private string _username;
         private string _password;
@@ -63,6 +66,7 @@ namespace Droid.Core.ViewModels
                 return _loginCommand;
             }
         }
+
 
         public async void DoCommand()
         {

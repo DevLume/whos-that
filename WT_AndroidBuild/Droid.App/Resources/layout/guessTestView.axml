@@ -7,6 +7,16 @@
 	android:background="#242a31"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	<TextView
+		android:text="TEST"
+		android:layout_marginLeft="130dp"
+		android:textColor="#f5f5f5"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/textView1"
+		local:MvxBind="Text QuestionCounterText"
+	/>
 	<EditText
 		android:textColor="#f5f5f5"
 		android:layout_marginTop="25dp"
@@ -77,7 +87,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/button1"
-		local:MvxBind="Click NextQuestion"
+		local:MvxBind="Click NextQuestion;  Visibility Visibility(ShowButton)"
 	/>
 	<Button
 		android:layout_marginLeft="25dp"
@@ -88,7 +98,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/button2"
-		local:MvxBind="Click EndTest"
+		local:MvxBind="Click EndTest; Visibility InvertedVisibility(ShowButton)"
 	/>
 
 </LinearLayout>

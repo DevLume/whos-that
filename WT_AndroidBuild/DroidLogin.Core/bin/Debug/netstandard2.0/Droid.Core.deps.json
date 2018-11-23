@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "7e1a9f9ede3ac59178a4c6f91e98c424a45b8793"
+    "signature": "0e5dbe20ba7f1a5bb687fa58713699081d8a0142"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,18 +9,52 @@
     ".NETStandard,Version=v2.0/": {
       "Droid.Core/1.0.0": {
         "dependencies": {
+          "Acr.UserDialogs": "7.0.1",
           "MvvmCross": "6.2.2",
+          "MvvmCross.Plugin.Messenger": "6.2.2",
+          "MvvmCross.Plugin.Visibility": "6.2.2",
           "NETStandard.Library": "2.0.3",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "11.0.2",
+          "Plugin.UserDialogs": "1.0.0"
         },
         "runtime": {
           "Droid.Core.dll": {}
+        }
+      },
+      "Acr.UserDialogs/7.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Acr.UserDialogs.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "MvvmCross/6.2.2": {
         "runtime": {
           "lib/netstandard2.0/MvvmCross.dll": {
+            "assemblyVersion": "6.2.2.0",
+            "fileVersion": "6.2.2.0"
+          }
+        }
+      },
+      "MvvmCross.Plugin.Messenger/6.2.2": {
+        "dependencies": {
+          "MvvmCross": "6.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MvvmCross.Plugin.Messenger.dll": {
+            "assemblyVersion": "6.2.2.0",
+            "fileVersion": "6.2.2.0"
+          }
+        }
+      },
+      "MvvmCross.Plugin.Visibility/6.2.2": {
+        "dependencies": {
+          "MvvmCross": "6.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MvvmCross.Plugin.Visibility.dll": {
             "assemblyVersion": "6.2.2.0",
             "fileVersion": "6.2.2.0"
           }
@@ -38,6 +72,11 @@
             "fileVersion": "11.0.2.21924"
           }
         }
+      },
+      "Plugin.UserDialogs/1.0.0": {
+        "dependencies": {
+          "Acr.UserDialogs": "7.0.1"
+        }
       }
     }
   },
@@ -47,10 +86,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Acr.UserDialogs/7.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4BB8g4I9YEvaxp6r1aq14TPLJztGTe2IW9BymNunYxigV/AMBeYhUDcerf9OgrPOTKtENVN23W+d0FtIvhiPLw==",
+      "path": "acr.userdialogs/7.0.1",
+      "hashPath": "acr.userdialogs.7.0.1.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "sha512-bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
@@ -61,19 +107,40 @@
       "path": "mvvmcross/6.2.2",
       "hashPath": "mvvmcross.6.2.2.nupkg.sha512"
     },
+    "MvvmCross.Plugin.Messenger/6.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B/5QNF4vJacBmbnKlBzAV0aZAxD9CtanjFmQKvn2fDVLwdufM1bwdB0eMu7/cphyaMxWprEgnjl49Vkdv8rSYQ==",
+      "path": "mvvmcross.plugin.messenger/6.2.2",
+      "hashPath": "mvvmcross.plugin.messenger.6.2.2.nupkg.sha512"
+    },
+    "MvvmCross.Plugin.Visibility/6.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PE+H4vIpqJuirhU7si0k+iPquwGTjLec2Y/tNAMnupUN7E7VQXiWbtXWncVdBuvQYTlteqhz2xC7bhGhhHngqQ==",
+      "path": "mvvmcross.plugin.visibility/6.2.2",
+      "hashPath": "mvvmcross.plugin.visibility.6.2.2.nupkg.sha512"
+    },
     "NETStandard.Library/2.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "sha512": "sha512-R73gEjqCkI2Nw/IlN8QvcgPNklqQiPowp47JwvW0Bnp/RZnjN4UrJwEvWVJWRK1MsQ+HIfGe9i4aQlfK+ei9jA==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
+    "Plugin.UserDialogs/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NbpdynjP4jWyyiS/IhUHAraW3XUyk+RyCD79P9rp6wgUR1MHRsGSBfLild+O2gB2hH3CIkRGY0rHTV2AstEP+w==",
+      "path": "plugin.userdialogs/1.0.0",
+      "hashPath": "plugin.userdialogs.1.0.0.nupkg.sha512"
     }
   }
 }

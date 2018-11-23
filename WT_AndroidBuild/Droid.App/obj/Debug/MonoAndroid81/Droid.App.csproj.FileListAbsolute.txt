@@ -1,3 +1,2 @@
-C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\Droid.App.csprojAssemblyReference.cache
-C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res.flag
-C:\Users\Luke M\source\repos\TestDroidMvvm\TestDroidMvvm\Droid.App\obj\Debug\MonoAndroid81\Droid.App.csproj.CoreCompileInputs.cache
+C:\Users\Luke M\source\repos\whos-that\AndroidMvvm\Droid.App\obj\Debug\MonoAndroid81\Droid.App.csprojAssemblyReference.cache
+C:\Users\Luke M\source\repos\whos-that\AndroidMvvm\Droid.App\obj\Debug\MonoAndroid81\res.flag
