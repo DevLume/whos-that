@@ -99,7 +99,7 @@ namespace Droid.Core.ViewModels
             _answer2 = q.answer2;
             _answer3 = q.answer3;
             _answer4 = q.answer4;
-            _answerIndex = 0;
+            _answerIndex = 1;
             RaiseAllPropertiesChanged();
         }
 
@@ -165,15 +165,31 @@ namespace Droid.Core.ViewModels
                 _endTest = _endTest ?? new MvxCommand(EndTestCommand);
                 return _endTest;
             }
+        }     
+#region  
+        private List<int> _items = new List<int>()
+        {
+            1,2,3,4 
+        };
+        public List<int> Items
+        {
+            get { return _items; }
+            set { _items = value; RaisePropertyChanged(() => Items); }
         }
-
+        private int _selectedItem = 1;
+        public int SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; RaisePropertyChanged(() => SelectedItem); _answerIndex = _selectedItem; }
+        }
+#endregion
         private bool _hideButton = true;
-        public bool ShowButton
+        public bool HideButton
         {
             get => _hideButton;
             set
             {
-                _hideButton = value; RaisePropertyChanged(() => ShowButton);
+                _hideButton = value; RaisePropertyChanged(() => HideButton);
             }
         }
 
@@ -236,31 +252,29 @@ namespace Droid.Core.ViewModels
 
     }
 
-    public class WrongInputEventArgs : EventArgs
+    public class Thing
     {
-        public bool error;
-        public string response;
-
-        public WrongInputEventArgs(bool error, string response)
+        public Thing(string caption)
         {
-            this.error = error;
-            this.response = response;
+            Caption = caption;
         }
-    }
-
-    public class EndTestEventArgs : EventArgs
-    {
-        public bool error;
-        public string response;
-        public int correctAnswerCount;
-        public int questionCount;
-
-        public EndTestEventArgs(bool error, string response, int correctAnswers, int questionCount)
+        public string Caption { get; private set; }
+        public override string ToString()
         {
-            this.error = error;
-            this.response = response;
-            this.correctAnswerCount = correctAnswers;
-            this.questionCount = questionCount;
+            return Caption;
+        }
+        public override bool Equals(object obj)
+        {
+            var rhs = obj as Thing;
+            if (rhs == null)
+                return false;
+            return rhs.Caption == Caption;
+        }
+        public override int GetHashCode()
+        {
+            if (Caption == null)
+                return 0;
+            return Caption.GetHashCode();
         }
     }
 }

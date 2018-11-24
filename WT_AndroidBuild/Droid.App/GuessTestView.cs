@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Droid.Core;
 using Droid.Core.ViewModels;
 using MvvmCross.Platforms.Android.Views;
 
