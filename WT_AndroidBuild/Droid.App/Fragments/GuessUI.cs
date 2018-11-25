@@ -30,21 +30,26 @@ namespace Droid.App
             // Create your fragment here
 
             GuessTestFragmentViewModel.OnRequestSent += GuessTestViewModel_OnGuessTestRequestSent;
+            GuessTestFragmentViewModel.OnWrongInput += GuessTestViewModel_OnWrongInput;
+        }
+
+        private void GuessTestViewModel_OnWrongInput(object sender, WrongInputEventArgs e)
+        {
+            Toast.MakeText(this.Activity, e.response, ToastLength.Long).Show(); // Or give photo of him
         }
 
         private void GuessTestViewModel_OnGuessTestRequestSent(object sender, GuessTestRequestArgs e)
         {
             if (e.authorName == "" || e.authorName == null)
             {
-                Toast.MakeText(this.Activity, "Write user name first!", ToastLength.Long).Show(); // Or give photo of him
+                Toast.MakeText(this.Activity, "Write user name first!", ToastLength.Long).Show(); 
             }
             else if (e.title == "" || e.title == null)
             {
-                Toast.MakeText(this.Activity, "Write user test name first!", ToastLength.Long).Show(); // Or give photo of him
+                Toast.MakeText(this.Activity, "Write user test name first!", ToastLength.Long).Show(); 
             }
             else
-            {
-                Toast.MakeText(this.Activity, "Lol kek", ToastLength.Long).Show(); // Or give photo of him
+            {             
                 Intent intent = new Intent(this.Activity, typeof(GuessTestView));
                 this.StartActivity(intent);
             }

@@ -1,4 +1,5 @@
-﻿using MvvmCross.ViewModels;
+﻿using Droid.Core.Services;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text;
 namespace Droid.Core.ViewModels
 {
     public class MainScreenViewModel : MvxViewModel
-    {
+    {     
         private CreateTestFragmentViewModel _crt = new CreateTestFragmentViewModel();
         public CreateTestFragmentViewModel Crt
         {
@@ -17,7 +18,7 @@ namespace Droid.Core.ViewModels
             }
         }
 
-        private GuessTestFragmentViewModel _grt = new GuessTestFragmentViewModel();
+        private GuessTestFragmentViewModel _grt = new GuessTestFragmentViewModel(new TestListService());
         public GuessTestFragmentViewModel Grt
         {
             get => _grt;

@@ -14,7 +14,7 @@ namespace Droid.Core.ViewModels
     public class LoginViewModel : MvxViewModel
     {
         private ILoginService _ILoginService;
-        private ILoginEventManager _ILoginEventMan;
+       // private ILoginEventManager _ILoginEventMan;
 
         private string _username;
         private string _password;
@@ -66,8 +66,7 @@ namespace Droid.Core.ViewModels
                 return _loginCommand;
             }
         }
-
-
+        
         public async void DoCommand()
         {
             Tuple<bool, string> answerTuple = null;

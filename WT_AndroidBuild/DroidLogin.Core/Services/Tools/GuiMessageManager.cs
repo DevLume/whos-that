@@ -1,4 +1,5 @@
-﻿using System;
+﻿///Class used to send message to user from a viewModel 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

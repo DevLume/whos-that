@@ -13,6 +13,7 @@ namespace Droid.Core.ViewModels
     public class GuessTestViewModel : MvxViewModel
     {
         private IGuessTestService _IGuessTestService;
+        private ISubmitResultService _ISubmitResultService;
 
         private string _questionCounterText;
         public string QuestionCounterText
@@ -134,9 +135,10 @@ namespace Droid.Core.ViewModels
             return q;
         }
 
-        public GuessTestViewModel(IGuessTestService gts)
+        public GuessTestViewModel(IGuessTestService gts, ISubmitResultService srs)
         {
-            _IGuessTestService = gts;          
+            _IGuessTestService = gts;
+            _ISubmitResultService = srs;
         }
 
         public override async Task Initialize()
@@ -166,7 +168,7 @@ namespace Droid.Core.ViewModels
                 return _endTest;
             }
         }     
-#region  
+
         private List<int> _items = new List<int>()
         {
             1,2,3,4 
@@ -182,7 +184,7 @@ namespace Droid.Core.ViewModels
             get { return _selectedItem; }
             set { _selectedItem = value; RaisePropertyChanged(() => SelectedItem); _answerIndex = _selectedItem; }
         }
-#endregion
+
         private bool _hideButton = true;
         public bool HideButton
         {
@@ -191,12 +193,13 @@ namespace Droid.Core.ViewModels
             {
                 _hideButton = value; RaisePropertyChanged(() => HideButton);
             }
-        }
+        } 
 
         private List<int> answerIndexes = new List<int>();
 
         public static event EventHandler<WrongInputEventArgs> OnWrongInput;
         public static event EventHandler<EndTestEventArgs> OnTestEnd;
+
         public void NextQuestionCommand()
         {       
             if (testPosition > 0 && testPosition <= 4)
@@ -215,7 +218,7 @@ namespace Droid.Core.ViewModels
             }
         }
 
-        public void EndTestCommand()
+        public async void EndTestCommand()
         {
             int i = 0;
             int correctAnswers = 0;
@@ -239,7 +242,6 @@ namespace Droid.Core.ViewModels
                         correctAnswers++;
                     }
                     i++;
-                    //questionCount++;
                 }
                 catch (Exception)
                 {
@@ -247,34 +249,18 @@ namespace Droid.Core.ViewModels
                 }
             }
 
-            OnTestEnd?.Invoke(this, new EndTestEventArgs(false, "Your test result:", correctAnswers, _test.questions.Count));
+            Tuple<bool, string> resTuple = await _ISubmitResultService.SubmitResults(new TestResult(LoginApp.loggedUserName,
+                LoginApp.guessTestAuthorName, LoginApp.guessTestName, correctAnswers, _test.questions.Count));
+
+            if (resTuple.Item1 == true)
+            {
+                OnWrongInput?.Invoke(this, new WrongInputEventArgs(true, resTuple.Item2));
+            }
+            else
+            {
+                OnTestEnd?.Invoke(this, new EndTestEventArgs(false, resTuple.Item2, correctAnswers, _test.questions.Count));
+            }
         }
 
-    }
-
-    public class Thing
-    {
-        public Thing(string caption)
-        {
-            Caption = caption;
-        }
-        public string Caption { get; private set; }
-        public override string ToString()
-        {
-            return Caption;
-        }
-        public override bool Equals(object obj)
-        {
-            var rhs = obj as Thing;
-            if (rhs == null)
-                return false;
-            return rhs.Caption == Caption;
-        }
-        public override int GetHashCode()
-        {
-            if (Caption == null)
-                return 0;
-            return Caption.GetHashCode();
-        }
-    }
+    }  
 }

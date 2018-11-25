@@ -72,5 +72,5 @@
 		android:layout_height="0dp"
 		android:layout_weight="10"
 		android:id="@+id/btnRegister" 
-		local:MvxBind="Click SwitchToRegCommand"/>
+		local:MvxBind="Click SwitchToRegCommand"/>	
 </LinearLayout>

@@ -34,7 +34,8 @@ namespace Droid.App
 
         private void GuessTestViewModel_OnTestEnd(object sender, EndTestEventArgs e)
         {
-            Toast.MakeText(this, e.response + " "+ e.correctAnswerCount + " of "+ e.questionCount, ToastLength.Long).Show();
+            Toast.MakeText(this, e.response + " " + e.correctAnswerCount + " of "+ e.questionCount, ToastLength.Long).Show();
+
         }
     }
 }

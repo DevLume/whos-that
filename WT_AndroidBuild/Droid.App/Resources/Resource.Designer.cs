@@ -4081,6 +4081,22 @@ namespace Droid.App
 			}
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f0f0000
+			public const int country_arrays = 2131689472;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -7371,11 +7387,11 @@ namespace Droid.App
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0f0000
-			public const int activity_main_drawer = 2131689472;
+			// aapt resource value: 0x7f100000
+			public const int activity_main_drawer = 2131755008;
 			
-			// aapt resource value: 0x7f0f0001
-			public const int menu_main = 2131689473;
+			// aapt resource value: 0x7f100001
+			public const int menu_main = 2131755009;
 			
 			static Menu()
 			{
@@ -7513,6 +7529,9 @@ namespace Droid.App
 			
 			// aapt resource value: 0x7f0a0020
 			public const int character_counter_pattern = 2131361824;
+			
+			// aapt resource value: 0x7f0a002e
+			public const int country_prompt = 2131361838;
 			
 			// aapt resource value: 0x7f0a0027
 			public const int fab_scroll_shrink_grow_autohide_behavior = 2131361831;
