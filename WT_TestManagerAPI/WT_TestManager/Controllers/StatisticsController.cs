@@ -25,7 +25,7 @@ namespace WT_TestManager.Controllers
                 ResultToSubmit resultToSubmit = JsonConvert.DeserializeObject<ResultToSubmit>(testResJSON);
 
                 testman.SubmitTestResults(resultToSubmit.authorName,
-                    "otherResults", resultToSubmit.testTitle, 
+                    "otherResults", resultToSubmit.testTitle,
                     string.Concat(resultToSubmit.correctAnswerCount,
                     "/", resultToSubmit.questionCount), resultToSubmit.guessingUserName);
 
@@ -40,7 +40,30 @@ namespace WT_TestManager.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
-       
+
+        }
+
+        [Route("api/stat/get")]
+        [HttpGet]
+        public HttpResponseMessage PersonalStatistics_Full(string username)
+        {
+            DirectoryManager dirman = new DirectoryManager();
+            StatisticsManager statman = new StatisticsManager(dirman);
+
+            Stat stat = statman.GetStat(username);
+
+            try
+            {          
+                var json = JsonConvert.SerializeObject(stat);
+
+                var res = Request.CreateResponse(HttpStatusCode.OK);
+                res.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                return res;
+            }
+            catch (Exception)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }           
         }
     }
 }

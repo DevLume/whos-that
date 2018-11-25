@@ -189,7 +189,6 @@ C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\b
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\bin\Microsoft.AI.Web.xml
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\obj\Debug\WT_TestManager.csprojAssemblyReference.cache
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\obj\Debug\WT_TestManager.csproj.CoreCompileInputs.cache
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\obj\Debug\WT_TestManager.csproj.CopyComplete
 C:\Users\Luke M\source\repos\WosDat\whos-that\WT_TestManagerAPI\WT_TestManager\obj\Debug\WT_TestManager.dll

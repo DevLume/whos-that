@@ -194,6 +194,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestManagement\ITestManager.cs" />
+    <Compile Include="TestManagement\Stat.cs" />
+    <Compile Include="TestManagement\StatisticsManager.cs" />
     <Compile Include="TestManagement\TestManager.cs" />
     <Compile Include="TestManagement\TestResultManager.cs" />
     <Compile Include="TestManagement\Tools\DirectoryManager.cs" />

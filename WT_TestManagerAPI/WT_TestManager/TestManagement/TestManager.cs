@@ -10,7 +10,7 @@ namespace WT_TestManager.TestManagement
 {
     public class TestManager : ITestManager
     {
-        private string rootPath { get; set; } // was public static!
+        private string rootPath { get; set; } 
         private IDirectoryManager dirMan;
 
         public TestManager(IDirectoryManager dir)

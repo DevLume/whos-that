@@ -295,10 +295,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2018 18:58:10</publishTime>
     </File>
     <File Include="bin/WT_TestManager.dll">
-      <publishTime>11/25/2018 14:05:55</publishTime>
+      <publishTime>11/25/2018 16:52:49</publishTime>
     </File>
     <File Include="bin/WT_TestManager.pdb">
-      <publishTime>11/25/2018 14:05:55</publishTime>
+      <publishTime>11/25/2018 16:52:49</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>11/23/2018 18:58:08</publishTime>
@@ -391,7 +391,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2018 18:58:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/24/2018 12:06:07</publishTime>
+      <publishTime>11/25/2018 16:52:49</publishTime>
     </File>
   </ItemGroup>
 </Project>
