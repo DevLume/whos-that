@@ -6505,8 +6505,8 @@ namespace Droid.App
 			// aapt resource value: 0x7f09005e
 			public const int action_mode_close_button = 2131296350;
 			
-			// aapt resource value: 0x7f0900db
-			public const int action_settings = 2131296475;
+			// aapt resource value: 0x7f0900da
+			public const int action_settings = 2131296474;
 			
 			// aapt resource value: 0x7f0900bc
 			public const int action_text = 2131296444;
@@ -6546,9 +6546,6 @@ namespace Droid.App
 			
 			// aapt resource value: 0x7f0900ad
 			public const int btnConfirmGuessUsername = 2131296429;
-			
-			// aapt resource value: 0x7f0900d3
-			public const int btnConfirmStatisticsUsername = 2131296467;
 			
 			// aapt resource value: 0x7f090096
 			public const int btnConfirmTestName = 2131296406;
@@ -6775,14 +6772,14 @@ namespace Droid.App
 			// aapt resource value: 0x7f0900b3
 			public const int loginLinearLayout = 2131296435;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int masked = 2131296470;
+			// aapt resource value: 0x7f0900d5
+			public const int masked = 2131296469;
 			
 			// aapt resource value: 0x7f0900c0
 			public const int media_actions = 2131296448;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int message = 2131296468;
+			// aapt resource value: 0x7f0900d3
+			public const int message = 2131296467;
 			
 			// aapt resource value: 0x7f090033
 			public const int middle = 2131296307;
@@ -6793,17 +6790,17 @@ namespace Droid.App
 			// aapt resource value: 0x7f09002a
 			public const int multiply = 2131296298;
 			
-			// aapt resource value: 0x7f0900d7
-			public const int nav_create_test = 2131296471;
-			
-			// aapt resource value: 0x7f0900da
-			public const int nav_friendlist = 2131296474;
-			
-			// aapt resource value: 0x7f0900d8
-			public const int nav_guess = 2131296472;
+			// aapt resource value: 0x7f0900d6
+			public const int nav_create_test = 2131296470;
 			
 			// aapt resource value: 0x7f0900d9
-			public const int nav_statistics = 2131296473;
+			public const int nav_friendlist = 2131296473;
+			
+			// aapt resource value: 0x7f0900d7
+			public const int nav_guess = 2131296471;
+			
+			// aapt resource value: 0x7f0900d8
+			public const int nav_statistics = 2131296472;
 			
 			// aapt resource value: 0x7f090091
 			public const int nav_view = 2131296401;
@@ -7081,8 +7078,8 @@ namespace Droid.App
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int visible = 2131296469;
+			// aapt resource value: 0x7f0900d4
+			public const int visible = 2131296468;
 			
 			// aapt resource value: 0x7f09003e
 			public const int withText = 2131296318;

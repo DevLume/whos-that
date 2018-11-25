@@ -23,6 +23,7 @@ namespace Droid.Core
             Mvx.IoCProvider.RegisterType<IGuessTestService, GuessTestService>();
             Mvx.IoCProvider.RegisterType<ISubmitResultService, SubmitResultService>();
             Mvx.IoCProvider.RegisterType<ITestListService, TestListService>();
+            Mvx.IoCProvider.RegisterType<IStatisticsService, StatisticsService>();
 
             RegisterAppStart<LoginViewModel>();
         } 

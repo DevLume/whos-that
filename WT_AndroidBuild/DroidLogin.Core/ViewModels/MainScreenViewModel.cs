@@ -28,7 +28,7 @@ namespace Droid.Core.ViewModels
             }
         }
 
-        private StatisticsFragmentViewModel _srt = new StatisticsFragmentViewModel();
+        private StatisticsFragmentViewModel _srt = new StatisticsFragmentViewModel(new StatisticsService());
         public StatisticsFragmentViewModel Srt
         {
             get => _srt;
