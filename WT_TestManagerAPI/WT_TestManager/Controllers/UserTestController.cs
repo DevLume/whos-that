@@ -62,14 +62,21 @@ namespace WT_TestManager.Controllers
             DirectoryManager dirman = new DirectoryManager();
             TestManager testman = new TestManager(dirman);
 
-            List<string> result = testman.GetTestList(author);
+            List<string> result = null;
+            try
+            {
+                result = testman.GetTestList(author);
+                var json = JsonConvert.SerializeObject(result);
 
-            var json = JsonConvert.SerializeObject(result);
-
-            var res = Request.CreateResponse(HttpStatusCode.OK);
-            res.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
-            return res;
+                var res = Request.CreateResponse(HttpStatusCode.OK);
+                res.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                return res;
+            }
+            catch (Exception)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+     
         }
 
     }
