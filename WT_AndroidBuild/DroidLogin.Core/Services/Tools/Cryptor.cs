@@ -1,4 +1,6 @@
-﻿using System;
+﻿/// string hashing management class
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,7 @@ namespace Droid.Core.Services
         private const int keysize = 256;
         private static Random rand = new Random();
 
+        //return hashed string (cipherText - text you want to dehash, passPhrase - string used as a key)
         public string DehashString(string cipherText, string passPhrase)
         {
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
@@ -32,6 +35,7 @@ namespace Droid.Core.Services
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
 
+        //return hashed string (plainText - text you want to hash, passPhrase - string used as a key)
         public string HashString(string plainText, string passPhrase)
         {
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
@@ -51,6 +55,7 @@ namespace Droid.Core.Services
             return Convert.ToBase64String(cipherTextBytes);
         }
 
+        //return random string of given length
         public string GetRandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

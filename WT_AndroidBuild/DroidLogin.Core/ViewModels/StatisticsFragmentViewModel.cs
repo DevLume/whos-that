@@ -1,54 +1,117 @@
-﻿using MvvmCross.Commands;
+﻿using Droid.Core.Services;
+using Droid.Core.Tools;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Droid.Core.ViewModels
 {
     public class StatisticsFragmentViewModel : MvxViewModel
     {
-        //private ICreateTestService _ICreateTestService;
-
-        private string _title;
-
-        public string Title
+        private IStatisticsService _IStatisticsService;
+        private Tuple<string, Stat> myStatTuple;
+        public StatisticsFragmentViewModel(IStatisticsService iStat)
         {
-            get => _title;
+            _IStatisticsService = iStat; // think different
+
+            Task.Run(async () =>
+            {
+                myStatTuple = await _IStatisticsService.GetStatistics(LoginApp.loggedUserName);
+
+                await SetStats(myStatTuple.Item2);
+            }).GetAwaiter().GetResult();
+            
+        }
+
+        private async Task SetStats(Stat myStat)
+        {
+            _pGuessCount += myStat.personalGuessCount.ToString();
+            _oGuessCount += myStat.otherGuessCount.ToString();
+            _pAverage += myStat.personalAverage.ToString();
+            _oAverage += myStat.otherAverage.ToString();
+            _bestGuesser += myStat.bestGuesser;
+            _oHighestRes += myStat.otherHighestResult.ToString();
+            _pHighestRes += myStat.personalHighestResult.ToString();
+            await RaiseAllPropertiesChanged();
+        }
+
+        private string _pGuessCount = "Personal Guess Count: ";
+        public string PGuessCount
+        {
+            get => _pGuessCount;
             set
             {
-                _title = value;
-                RaisePropertyChanged(() => Title);
+                PGuessCount = value;
+                RaisePropertyChanged(() => PGuessCount);
             }
         }
 
-        public static event EventHandler<GetTestStatisticsEventArgs> OnRequestSent;
-
-        private MvxCommand _getStatisticsCommand;
-        public MvxCommand GetStatisticsCommand
+        private string _oGuessCount = "Other Guess Count: ";
+        public string OGuessCount
         {
-            get
+            get => _oGuessCount;
+            set
             {
-                _getStatisticsCommand = _getStatisticsCommand ?? new MvxCommand(DoCreateTestCommand);
-                return _getStatisticsCommand;
+                OGuessCount = value;
+                RaisePropertyChanged(() => OGuessCount);
             }
         }
 
-        public void DoCreateTestCommand() //add async later
+        private string _pAverage = "Personal Average: ";
+        public string PAverage
         {
-            OnRequestSent?.Invoke(this, new GetTestStatisticsEventArgs(true, _title));
+            get => _pAverage;
+            set
+            {
+                PAverage = value;
+                RaisePropertyChanged(() => PAverage);
+            }
         }
 
-    }
-
-    public class GetTestStatisticsEventArgs : EventArgs
-    {
-        public bool pass;
-        public string title;
-        public GetTestStatisticsEventArgs(bool pass, string title)
+        private string _oAverage = "Other Average: ";
+        public string OAverage
         {
-            this.pass = pass;
-            this.title = title;
+            get => _oAverage;
+            set
+            {
+                OAverage = value;
+                RaisePropertyChanged(() => OAverage);
+            }
         }
+        private string _bestGuesser = "Best Guesser: ";
+        public string BestGuesser
+        {
+            get => _bestGuesser;
+            set
+            {
+                BestGuesser = value;
+                RaisePropertyChanged(() => BestGuesser);
+            }
+        }
+        private string _pHighestRes = "Personal Highest Result: ";
+        public string PHighestRes
+        {
+            get => _pHighestRes;
+            set
+            {
+                PHighestRes = value;
+                RaisePropertyChanged(() => PHighestRes);
+            }
+        }
+
+        private string _oHighestRes = "Other Highest Result: ";
+        public string OHighestRes
+        {
+            get => _oHighestRes;
+            set
+            {
+                OHighestRes = value;
+                RaisePropertyChanged(() => OHighestRes);
+            }
+        }
+
     }
 }

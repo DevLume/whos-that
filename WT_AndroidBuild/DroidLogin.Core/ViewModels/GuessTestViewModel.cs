@@ -13,6 +13,18 @@ namespace Droid.Core.ViewModels
     public class GuessTestViewModel : MvxViewModel
     {
         private IGuessTestService _IGuessTestService;
+        private ISubmitResultService _ISubmitResultService;
+
+        private string _questionCounterText;
+        public string QuestionCounterText
+        {
+            get => _questionCounterText;
+            set
+            {
+                _questionCounterText = value;
+                RaisePropertyChanged(() => QuestionCounterText);
+            }
+        }
 
         private string _question;
         public string Question
@@ -82,11 +94,13 @@ namespace Droid.Core.ViewModels
 
         private void ShowQuestion(Question q)
         {
+            _questionCounterText = string.Format("Question " + testPosition + " of " + _test.questions.Count);
             _question = q.question;
             _answer1 = q.answer1;
             _answer2 = q.answer2;
             _answer3 = q.answer3;
             _answer4 = q.answer4;
+            _answerIndex = 1;
             RaiseAllPropertiesChanged();
         }
 
@@ -100,35 +114,38 @@ namespace Droid.Core.ViewModels
 
         private Question GetNextQuestion()
         {
+            Question q;
             try
             {
-                Question q = _test.questions.ElementAt(testPosition);
+                q = _test.questions.ElementAt(testPosition);
                 testPosition++;
-                return q;
             }
             catch (Exception)
             {
-                Question q = _test.questions.First();
-                return q;
+                q = _test.questions.First();
             }
+            finally
+            {
+                if (testPosition == _test.questions.Count)
+                {
+                    //Show end test button
+                    _hideButton = false;
+                }               
+            }
+            return q;
         }
 
-        public GuessTestViewModel(IGuessTestService gts)
+        public GuessTestViewModel(IGuessTestService gts, ISubmitResultService srs)
         {
-            _IGuessTestService = gts;          
+            _IGuessTestService = gts;
+            _ISubmitResultService = srs;
         }
 
         public override async Task Initialize()
         {
             await base.Initialize();
             await GetTest(LoginApp.guessTestAuthorName, LoginApp.guessTestName);
-            Question q = GetNextQuestion();
-            _question = q.question;
-            _answer1 = q.answer1;
-            _answer2 = q.answer2;
-            _answer3 = q.answer3;
-            _answer4 = q.answer4;
-            _answerIndex = 0;
+            ShowQuestion(GetNextQuestion());
             await RaiseAllPropertiesChanged();
         }
 
@@ -150,14 +167,41 @@ namespace Droid.Core.ViewModels
                 _endTest = _endTest ?? new MvxCommand(EndTestCommand);
                 return _endTest;
             }
+        }     
+
+        private List<int> _items = new List<int>()
+        {
+            1,2,3,4 
+        };
+        public List<int> Items
+        {
+            get { return _items; }
+            set { _items = value; RaisePropertyChanged(() => Items); }
         }
+        private int _selectedItem = 1;
+        public int SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; RaisePropertyChanged(() => SelectedItem); _answerIndex = _selectedItem; }
+        }
+
+        private bool _hideButton = true;
+        public bool HideButton
+        {
+            get => _hideButton;
+            set
+            {
+                _hideButton = value; RaisePropertyChanged(() => HideButton);
+            }
+        } 
 
         private List<int> answerIndexes = new List<int>();
 
         public static event EventHandler<WrongInputEventArgs> OnWrongInput;
         public static event EventHandler<EndTestEventArgs> OnTestEnd;
+
         public void NextQuestionCommand()
-        {
+        {       
             if (testPosition > 0 && testPosition <= 4)
             {
                 answerIndexes.Add(_answerIndex);
@@ -169,21 +213,26 @@ namespace Droid.Core.ViewModels
             }
             else
             {
-                Question q = GetNextQuestion();
-                _question = q.question;
-                _answer1 = q.answer1;
-                _answer2 = q.answer2;
-                _answer3 = q.answer3;
-                _answer4 = q.answer4;
-                _answerIndex = 0;
+                ShowQuestion(GetNextQuestion());         
                 RaiseAllPropertiesChanged();
             }
         }
 
-        public void EndTestCommand()
+        public async void EndTestCommand()
         {
             int i = 0;
             int correctAnswers = 0;
+
+            if (testPosition > 0 && testPosition <= 4)
+            {
+                answerIndexes.Add(_answerIndex);
+            }
+
+            if (_answerIndex == 0 || _answerIndex > 4)
+            {
+                OnWrongInput?.Invoke(this, new WrongInputEventArgs(true, "Enter your answer [number from 1 to 4]"));
+            }
+
             foreach (Question q in _test.questions)
             {
                 try
@@ -193,7 +242,6 @@ namespace Droid.Core.ViewModels
                         correctAnswers++;
                     }
                     i++;
-                    //questionCount++;
                 }
                 catch (Exception)
                 {
@@ -201,36 +249,18 @@ namespace Droid.Core.ViewModels
                 }
             }
 
-            OnTestEnd?.Invoke(this, new EndTestEventArgs(false, "Your test result:", correctAnswers, _test.questions.Count));
+            Tuple<bool, string> resTuple = await _ISubmitResultService.SubmitResults(new TestResult(LoginApp.loggedUserName,
+                LoginApp.guessTestAuthorName, LoginApp.guessTestName, correctAnswers, _test.questions.Count));
+
+            if (resTuple.Item1 == true)
+            {
+                OnWrongInput?.Invoke(this, new WrongInputEventArgs(true, resTuple.Item2));
+            }
+            else
+            {
+                OnTestEnd?.Invoke(this, new EndTestEventArgs(false, resTuple.Item2, correctAnswers, _test.questions.Count));
+            }
         }
 
-    }
-
-    public class WrongInputEventArgs : EventArgs
-    {
-        public bool error;
-        public string response;
-
-        public WrongInputEventArgs(bool error, string response)
-        {
-            this.error = error;
-            this.response = response;
-        }
-    }
-
-    public class EndTestEventArgs : EventArgs
-    {
-        public bool error;
-        public string response;
-        public int correctAnswerCount;
-        public int questionCount;
-
-        public EndTestEventArgs(bool error, string response, int correctAnswers, int questionCount)
-        {
-            this.error = error;
-            this.response = response;
-            this.correctAnswerCount = correctAnswers;
-            this.questionCount = questionCount;
-        }
-    }
+    }  
 }

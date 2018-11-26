@@ -1,4 +1,5 @@
-﻿using System;
+﻿///ITestManager implementation
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,13 +10,29 @@ namespace WT_TestManager.TestManagement
 {
     public class TestManager : ITestManager
     {
-        public static string rootPath { get; set; }
+        private string rootPath { get; set; } 
         private IDirectoryManager dirMan;
 
         public TestManager(IDirectoryManager dir)
         {
             rootPath = dir.rootPath;
             dirMan = dir;
+        }
+
+        public List<string> GetTestList(string author)
+        {
+            List<string> result = new List<string>();
+
+            DirectoryInfo d = new DirectoryInfo(string.Concat(rootPath, @"\", author, @"\", "madeTests", @"\"));
+            FileInfo[] files = d.GetFiles("*.txt");      
+
+            foreach (FileInfo file in files)
+            {
+                string[] temp = file.Name.Split('.');
+                
+                result.Add(temp[0]);
+            }
+            return result;
         }
 
         public Test CreateTest(string author, string title, List<Question> questions)
@@ -106,5 +123,42 @@ namespace WT_TestManager.TestManagement
             }
         }
 
+        public bool SubmitTestResults(string username,
+            string typeFolder, string title, string result, string author)
+        {
+            if (!dirMan.CreateDirectory(rootPath, username))
+            {
+                Console.WriteLine("Such user directory already exists!");
+            }
+
+            if (!dirMan.CreateDirectory(string.Concat(rootPath, @"\", username, @"\"), typeFolder))
+            {
+                Console.WriteLine("Could not create a result file directory");
+            }
+
+            string resultPath = string.Concat(rootPath, @"\", username, @"\", typeFolder,@"\",title);
+            if (typeFolder == "otherResults")
+            {
+                WriteToFile(resultPath, string.Concat(username, " ", author, " ", result), true);
+            }
+            else
+            {
+                WriteToFile(resultPath, string.Concat(author, " ", username, " ", result), true);
+            }
+            return true;
+        }
+
+        public void WriteToFile(string path, string text, bool append)
+        {
+            if (append == false) File.Delete(path);
+            try
+            {
+                File.AppendAllText(path, text + Environment.NewLine);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Could Not modify" + text, e.GetType().Name);
+            }
+        }
     }
 }

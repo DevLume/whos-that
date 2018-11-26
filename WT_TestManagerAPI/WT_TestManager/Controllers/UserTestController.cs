@@ -55,14 +55,29 @@ namespace WT_TestManager.Controllers
             }
         }
 
-        [Route("api/userTest/Createt")]
-        [HttpPost]
-        public bool Createt([FromBody]string login)
+        [Route("api/userTest/List")]
+        [HttpGet]
+        public HttpResponseMessage ListTests(string author)
         {
-            if (login == "loginas") return true;
-            else return false;
+            DirectoryManager dirman = new DirectoryManager();
+            TestManager testman = new TestManager(dirman);
 
-            
+            List<string> result = null;
+            try
+            {
+                result = testman.GetTestList(author);
+                var json = JsonConvert.SerializeObject(result);
+
+                var res = Request.CreateResponse(HttpStatusCode.OK);
+                res.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                return res;
+            }
+            catch (Exception)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+     
         }
+
     }
 }

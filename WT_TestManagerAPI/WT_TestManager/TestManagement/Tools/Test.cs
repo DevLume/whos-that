@@ -1,4 +1,6 @@
-﻿using System;
+﻿///user test class, used to wrap its data
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

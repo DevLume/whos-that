@@ -11,40 +11,77 @@
 	android:minWidth="25px"
 	android:minHeight="25px"
 	android:weightSum="100">
-	<TextView
-		android:layout_marginTop="50dp"
-		android:text="Whose test did you take?"
+	
+	<TextView	
+		android:text="Basic Statistics:"
+		android:layout_marginTop="75dp"
 		android:textColor="#f5f5f5"
 		android:layout_weight="10"
 		android:layout_width="fill_parent"
 		android:layout_height="0dp"
-		android:gravity="center" />
-	<EditText
-		android:id="@+id/txtTestName"
-		android:textColorHint="#f5f5f5"
-		android:inputType="text"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="10"
-		android:layout_marginBottom="20dp"
-		android:layout_marginRight="10dp"
+		android:gravity="center"		
+	/>
+	<TextView
+		android:text="Personal Guess Count:"
 		android:layout_marginLeft="10dp"
-		android:hint="username"
-		android:paddingLeft="10dp"
 		android:textColor="#f5f5f5"
-		local:MvxBind="Text Title"
-	/>
-	<Button
-		android:layout_marginLeft="25dp"
-		android:layout_marginRight="25dp"
-		android:text="Confirm"
-		android:textColor="#f5f5f5"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
 		android:layout_weight="10"
-		android:background="@drawable/button_style"
-		android:id="@+id/btnConfirmStatisticsUsername"
-		local:MvxBind="Click GetStatisticsCommand"
-	/>
-
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text PGuessCount"
+	 />
+	<TextView
+		android:text="Other Guess Count:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text OGuessCount"
+	 />
+	<TextView
+		android:text="Personal Average:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text PAverage"
+	 />
+	<TextView
+		android:text="Other Average:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text OAverage"
+	 />
+	<TextView
+		android:text="Best Guesser:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text BestGuesser"
+	 />
+	<TextView
+		android:text="Personal Highest Result:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text PHighestRes"
+	 />
+	<TextView
+		android:text="Other Highest Result:"
+		android:layout_marginLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:layout_weight="10"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		local:MvxBind="Text OHighestRes"
+	 />	
 </LinearLayout>

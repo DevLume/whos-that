@@ -45,7 +45,7 @@ namespace Droid.Core.ViewModels
             }
         }
 
-        public void DoCreateTestCommand() //add async later
+        public void DoCreateTestCommand()
         {
             LoginApp.createTestName = _title;
             OnRequestSent?.Invoke(this, new GetToCreateTestActivityArgs(_title, _author));

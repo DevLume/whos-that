@@ -28,17 +28,17 @@ namespace Droid.App
             base.OnCreate(savedInstanceState);
             // Create your fragment here
 
-            StatisticsFragmentViewModel.OnRequestSent += StatisticsViewModel_OnGetTestStatisticsRequestSent;
+            //StatisticsFragmentViewModel.OnRequestSent += StatisticsViewModel_OnGetTestStatisticsRequestSent;
         }
 
-        private void StatisticsViewModel_OnGetTestStatisticsRequestSent(object sender, GetTestStatisticsEventArgs e)
+        /*private void StatisticsViewModel_OnGetTestStatisticsRequestSent(object sender, GetTestStatisticsEventArgs e)
         {
             if (e.pass)
             {
                 string resp = "statistically it's fine for now!" + e.title;
                 Toast.MakeText(this.Activity, resp, ToastLength.Long).Show();
             }
-        }
+        }*/
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Droid.Core;
 using Droid.Core.ViewModels;
 using MvvmCross.Platforms.Android.Views;
 
@@ -33,7 +34,8 @@ namespace Droid.App
 
         private void GuessTestViewModel_OnTestEnd(object sender, EndTestEventArgs e)
         {
-            Toast.MakeText(this, e.response + " "+ e.correctAnswerCount + " of "+ e.questionCount, ToastLength.Long).Show();
+            Toast.MakeText(this, e.response + " " + e.correctAnswerCount + " of "+ e.questionCount, ToastLength.Long).Show();
+
         }
     }
 }
