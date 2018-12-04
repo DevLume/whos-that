@@ -15,7 +15,7 @@ namespace Droid.Core.ViewModels
         private Tuple<string, Stat> myStatTuple;
         public StatisticsFragmentViewModel(IStatisticsService iStat)
         {
-            _IStatisticsService = iStat; // think different
+            _IStatisticsService = iStat; 
 
             Task.Run(async () =>
             {

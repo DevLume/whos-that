@@ -41,14 +41,14 @@ namespace Droid.App
             Toast.MakeText(this, e.response, ToastLength.Long).Show();
             if (e.pass)
             {              
-                Intent intent = new Intent(this, typeof(MainView));
+                Intent intent = new Intent(this, typeof(MainView)).SetFlags(ActivityFlags.ReorderToFront);
                 this.StartActivity(intent);
             }
         }
 
         public void OnActivityChange(object sender, ChangeActivityArgs e)
         {
-            Intent intent = new Intent(this, typeof(RegisterView));
+            Intent intent = new Intent(this, typeof(RegisterView)).SetFlags(ActivityFlags.ReorderToFront);
             this.StartActivity(intent);
         }
 

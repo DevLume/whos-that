@@ -50,7 +50,7 @@ namespace Droid.App
             }
             else
             {             
-                Intent intent = new Intent(this.Activity, typeof(GuessTestView));
+                Intent intent = new Intent(this.Activity, typeof(GuessTestView)).SetFlags(ActivityFlags.ReorderToFront);
                 this.StartActivity(intent);
             }
         }

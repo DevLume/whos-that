@@ -16,7 +16,7 @@ namespace Droid.Core.Services
             test.title += ".txt";
             var json = JsonConvert.SerializeObject(test);
 
-            client.BaseAddress = new Uri("https://wttestmanager.azurewebsites.net/api/userTest/Create");
+            client.BaseAddress = new Uri("http://192.168.8.102:8086/api/userTest/Create");
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("", json)

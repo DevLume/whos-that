@@ -7597,17 +7597,17 @@ namespace Droid.App
 			// aapt resource value: 0x7f0b015f
 			public const int Animation_Design_BottomSheetDialog = 2131427679;
 			
-			// aapt resource value: 0x7f0b0180
-			public const int AppTheme = 2131427712;
-			
-			// aapt resource value: 0x7f0b0182
-			public const int AppTheme_AppBarOverlay = 2131427714;
+			// aapt resource value: 0x7f0b0183
+			public const int AppTheme = 2131427715;
 			
 			// aapt resource value: 0x7f0b0181
-			public const int AppTheme_NoActionBar = 2131427713;
+			public const int AppTheme_AppBarOverlay = 2131427713;
 			
-			// aapt resource value: 0x7f0b0183
-			public const int AppTheme_PopupOverlay = 2131427715;
+			// aapt resource value: 0x7f0b0180
+			public const int AppTheme_NoActionBar = 2131427712;
+			
+			// aapt resource value: 0x7f0b0182
+			public const int AppTheme_PopupOverlay = 2131427714;
 			
 			// aapt resource value: 0x7f0b009a
 			public const int Base_AlertDialog_AppCompat = 2131427482;

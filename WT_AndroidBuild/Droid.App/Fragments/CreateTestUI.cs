@@ -43,7 +43,7 @@ namespace Droid.App
             else
             {
                 Toast.MakeText(Activity, "Kek Cheburek", ToastLength.Long).Show();
-                Intent intent = new Intent(this.Activity, typeof(CreateTestView));
+                Intent intent = new Intent(this.Activity, typeof(CreateTestView)).SetFlags(ActivityFlags.ReorderToFront);
                 this.StartActivity(intent);
             }
         }

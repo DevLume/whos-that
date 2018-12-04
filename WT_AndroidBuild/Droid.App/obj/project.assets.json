@@ -894,7 +894,8 @@
       "MvvmCross.Plugin.Messenger >= 6.2.2",
       "MvvmCross.Plugin.Visibility >= 6.2.2",
       "Newtonsoft.Json >= 11.0.2",
-      "Xamarin.Android.Support.Design >= 27.0.2.1"
+      "Xamarin.Android.Support.Design >= 27.0.2.1",
+      "Xamarin.Android.Support.v7.AppCompat >= 27.0.2.1"
     ]
   },
   "packageFolders": {
@@ -903,11 +904,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luke M\\source\\repos\\WosDat\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
+      "projectUniqueName": "C:\\Users\\Luke M\\source\\repos\\WosDat_Last\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
       "projectName": "Droid.App",
-      "projectPath": "C:\\Users\\Luke M\\source\\repos\\WosDat\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
+      "projectPath": "C:\\Users\\Luke M\\source\\repos\\WosDat_Last\\whos-that\\WT_AndroidBuild\\Droid.App\\Droid.App.csproj",
       "packagesPath": "C:\\Users\\Luke M\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luke M\\source\\repos\\WosDat\\whos-that\\WT_AndroidBuild\\Droid.App\\obj\\",
+      "outputPath": "C:\\Users\\Luke M\\source\\repos\\WosDat_Last\\whos-that\\WT_AndroidBuild\\Droid.App\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -924,8 +925,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Luke M\\source\\repos\\WosDat\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj": {
-              "projectPath": "C:\\Users\\Luke M\\source\\repos\\WosDat\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj"
+            "C:\\Users\\Luke M\\source\\repos\\WosDat_Last\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj": {
+              "projectPath": "C:\\Users\\Luke M\\source\\repos\\WosDat_Last\\whos-that\\WT_AndroidBuild\\DroidLogin.Core\\Droid.Core.csproj"
             }
           }
         }
@@ -963,6 +964,10 @@
             "version": "[11.0.2, )"
           },
           "Xamarin.Android.Support.Design": {
+            "target": "Package",
+            "version": "[27.0.2.1, )"
+          },
+          "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
             "version": "[27.0.2.1, )"
           }

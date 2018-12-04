@@ -4,6 +4,16 @@ using System.Text;
 
 namespace Droid.Core
 {
+    public class ShowTempActivityArgs : EventArgs
+    {
+        public string message;
+
+        public ShowTempActivityArgs(string message)
+        {
+            this.message = message;
+        }
+    }
+
     public class CreateTestRequestArgs : EventArgs
     {
         public bool pass;
