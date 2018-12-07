@@ -13,7 +13,9 @@ namespace Whos_that
         public string username;
         public string gender;
         private IDataManager dataman;
-        
+
+        public string userpicBase64;
+
         public string passwordHash;
         public string email;
         private bool v;
@@ -25,6 +27,18 @@ namespace Whos_that
         {
             this.dataman = dataman;
         }
+
+        public User(int id, string username, string email, string passhash, string gender, string userpic) : this()
+        {
+
+            this.id = id;
+            this.username = username;
+            this.email = email;
+            this.gender = gender;
+            userpicBase64 = userpic;
+            passwordHash = passhash;
+        }
+
         public User(int id, string username, string email, string passhash, string gender) : this(){
             
             this.id = id;
@@ -58,7 +72,7 @@ namespace Whos_that
         }
 
         public UserData ConvertToUserData() {
-            return new UserData(0, username, email, passwordHash, "unspecified", false);
+            return new UserData(0, username, email, passwordHash, "unspecified",null, false);
         }
 
         public bool Equals(User other)
@@ -154,34 +168,33 @@ namespace Whos_that
             }
         }
 
-        public bool SendFriendRq(int usrID)
+        public Tuple<bool, string> SendFriendRq(int usrID)
         {
             if (usrID == id) {
                 Console.WriteLine("friend request inception");
-                return false;
+                return new Tuple<bool, string>(false, "friend request inception");
             }
             List<UserRelData> temp = dataman.GetUserRelData(usrID);
 
             foreach (UserRelData tmp in temp) {
                 if (tmp.user1ID == usrID && tmp.user2ID == id) {
                     Console.WriteLine("Such relationship already exists");
-                    return false;
+                    return new Tuple<bool, string>(false, "Such relationship already exists");
                 }
                 else if (tmp.user2ID == usrID && tmp.user1ID == id)
                 {
                     Console.WriteLine("Such relationship already exists");
-                    return false;
+                    return new Tuple<bool, string>(false, "Such relationship already exists!");
                 }
             }
 
             List<UserRelData> reldat = new List<UserRelData>();
             DateTime date = DateTime.Today;
-            UserRelData udat = new UserRelData(0, usrID, id, false, DateTime.Today, true);
-            Console.WriteLine("sent rq date {0}", udat.date);
+            UserRelData udat = new UserRelData(0, usrID, id, false, DateTime.Today, true);          
             reldat.Add(udat);
 
             dataman.InsertUserRelData(reldat);
-            return true;
+            return new Tuple<bool, string>(true, "A relationship has been created succesfully!");
         }
 
         public bool SendMessage(User friend, string message)
@@ -287,6 +300,7 @@ public struct UserData
     public string email;
     public string passHash;
     public string gender;
+    public string userpic;
     public bool online;
 
     public UserData(string name, string email, string passHash, string gender, bool online) : this()
@@ -298,7 +312,7 @@ public struct UserData
         this.online = online;
     }
 
-    public UserData(int id, string name, string email, string passHash, string gender, bool online)
+    public UserData(int id, string name, string email, string passHash, string gender, string userpic, bool online)
     {
         this.id = id;
         this.name = name;
@@ -306,6 +320,7 @@ public struct UserData
         this.passHash = passHash;
         this.gender = gender;
         this.online = online;
+        this.userpic = userpic;
     }
     public override string ToString()
     {

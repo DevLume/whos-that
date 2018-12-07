@@ -24,6 +24,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Binding.BindingContext;
+using Droid.App.Fragments;
 
 namespace Droid.App
 {
@@ -34,6 +35,7 @@ namespace Droid.App
         private CreateTestUI createTestUI;
         private GuessUI guessUI;
         private StatisticsUI statisticsUI;
+        private FriendlistUI friendlistUI; 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -58,6 +60,7 @@ namespace Droid.App
             createTestUI = new CreateTestUI();
             guessUI = new GuessUI();
             statisticsUI = new StatisticsUI();
+            friendlistUI = new FriendlistUI();
 
             //createTestUI = (CreateTestUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct1);
             createTestUI.ViewModel = ((MainScreenViewModel)ViewModel).Crt;
@@ -68,14 +71,17 @@ namespace Droid.App
             //statisticsUI = (StatisticsUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct3);
             statisticsUI.ViewModel = ((MainScreenViewModel)ViewModel).Srt;
 
+            friendlistUI.ViewModel = ((MainScreenViewModel)ViewModel).Frt;
             
             var transaction = SupportFragmentManager.BeginTransaction();
-            currentFragment = createTestUI;
+            currentFragment = friendlistUI;
             transaction.Add(Resource.Id.fragment_container, createTestUI, "createTestUI");
             transaction.Add(Resource.Id.fragment_container, guessUI, "guessUI");
             transaction.Add(Resource.Id.fragment_container, statisticsUI, "statisticsUI");
+            transaction.Add(Resource.Id.fragment_container, friendlistUI, "friendlistUI");
             transaction.Hide(guessUI);
             transaction.Hide(statisticsUI);
+            transaction.Hide(createTestUI);
             transaction.Commit();
         }
         private void ShowFragment(SupportFragment fragment)
@@ -146,7 +152,7 @@ namespace Droid.App
             }
             else if (id == Resource.Id.nav_friendlist)
             {
-                ShowFragment(createTestUI);
+                ShowFragment(friendlistUI);
             }
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);

@@ -124,7 +124,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Name == username select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToString(), (bool)i.Online);
             }
             //Close data context
             dataSpace.Dispose();
@@ -143,7 +143,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Id == id select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToString(), (bool)i.Online);
             }
 
             //Close data context
@@ -164,7 +164,7 @@ namespace Whos_that
 
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToString(), (bool)i.Online);
             }
 
             //Close data context
@@ -224,7 +224,7 @@ namespace Whos_that
             foreach (UserData userdat in data)
             {
                 tbl = new usersTestTable(userdat.name,
-                    userdat.email, userdat.passHash, userdat.gender, online);
+                    userdat.email, userdat.passHash, userdat.gender, userdat.userpic, online);
                 dataSpace.usersTestTables.InsertOnSubmit(tbl);
             }
 

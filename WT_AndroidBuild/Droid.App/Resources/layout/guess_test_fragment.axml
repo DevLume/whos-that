@@ -35,7 +35,10 @@
 	/>
 	<MvxSpinner
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content"		
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:buttonTint="@color/button_material_light"				
         local:MvxBind="ItemsSource TestTitles;SelectedItem Title" />
 	<Button
 		android:layout_marginTop="25dp"

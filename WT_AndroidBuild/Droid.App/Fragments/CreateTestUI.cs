@@ -41,8 +41,7 @@ namespace Droid.App
                 Toast.MakeText(Activity, "Create a name for your test first!", ToastLength.Long).Show();
             }
             else
-            {
-                Toast.MakeText(Activity, "Kek Cheburek", ToastLength.Long).Show();
+            {              
                 Intent intent = new Intent(this.Activity, typeof(CreateTestView)).SetFlags(ActivityFlags.ReorderToFront);
                 this.StartActivity(intent);
             }

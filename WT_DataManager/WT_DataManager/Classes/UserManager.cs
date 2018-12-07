@@ -18,7 +18,7 @@ namespace Whos_that
         {    
             UserData userdat = dataman.GetUserData(id);
 
-            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic);
         }
         
         public User GetUserByEmail(string email)
@@ -26,14 +26,14 @@ namespace Whos_that
            // DataBaseManager dataMan = new TestDataBaseManager();
             UserData userdat = dataman.GetUserDataByEmail(email);
 
-            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic);
         }
         
         public User GetUser(string username)
         {
             UserData userdat = dataman.GetUserData(username);
 
-            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender);
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic);
         }
         public bool checkIfUserExists(string username)
         {

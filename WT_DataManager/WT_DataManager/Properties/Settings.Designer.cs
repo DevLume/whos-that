@@ -44,5 +44,16 @@ namespace WT_DataManager.Properties {
                 return ((string)(this["dataConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DKETPGE\\WTDATABASE;Initial Catalog=data;User ID=wtGuy;Passwor" +
+            "d=wtdatabasepass;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        public string dataConnectionString2 {
+            get {
+                return ((string)(this["dataConnectionString2"]));
+            }
+        }
     }
 }

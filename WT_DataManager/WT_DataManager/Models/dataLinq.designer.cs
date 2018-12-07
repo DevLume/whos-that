@@ -36,16 +36,16 @@ namespace WT_DataManager.Models
     partial void InsertusersTable(usersTable instance);
     partial void UpdateusersTable(usersTable instance);
     partial void DeleteusersTable(usersTable instance);
-    partial void InsertusersTestTable(usersTestTable instance);
-    partial void UpdateusersTestTable(usersTestTable instance);
-    partial void DeleteusersTestTable(usersTestTable instance);
     partial void InsertusersTestRelTable(usersTestRelTable instance);
     partial void UpdateusersTestRelTable(usersTestRelTable instance);
     partial void DeleteusersTestRelTable(usersTestRelTable instance);
+    partial void InsertusersTestTable(usersTestTable instance);
+    partial void UpdateusersTestTable(usersTestTable instance);
+    partial void DeleteusersTestTable(usersTestTable instance);
     #endregion
 		
 		public dataLinqDataContext() : 
-				base(global::WT_DataManager.Properties.Settings.Default.dataConnectionString1, mappingSource)
+				base(global::WT_DataManager.Properties.Settings.Default.dataConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -90,19 +90,19 @@ namespace WT_DataManager.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<usersTestTable> usersTestTables
-		{
-			get
-			{
-				return this.GetTable<usersTestTable>();
-			}
-		}
-		
 		public System.Data.Linq.Table<usersTestRelTable> usersTestRelTables
 		{
 			get
 			{
 				return this.GetTable<usersTestRelTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<usersTestTable> usersTestTables
+		{
+			get
+			{
+				return this.GetTable<usersTestTable>();
 			}
 		}
 	}
@@ -282,7 +282,7 @@ namespace WT_DataManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(50)")]
 		public string message
 		{
 			get
@@ -339,10 +339,13 @@ namespace WT_DataManager.Models
 		
 		private string _Gender;
 		
-		private System.Nullable<bool> _Online;
+		private System.Data.Linq.Binary _Userpic;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
+		private System.Nullable<bool> _Online;
+        private object p;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnIdChanging(int value);
@@ -355,6 +358,8 @@ namespace WT_DataManager.Models
     partial void OnPassHashChanged();
     partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
+    partial void OnUserpicChanging(System.Data.Linq.Binary value);
+    partial void OnUserpicChanged();
     partial void OnOnlineChanging(System.Nullable<bool> value);
     partial void OnOnlineChanged();
     #endregion
@@ -373,194 +378,13 @@ namespace WT_DataManager.Models
             Online = online;
         }
 
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassHash", DbType="VarChar(64)")]
-		public string PassHash
-		{
-			get
-			{
-				return this._PassHash;
-			}
-			set
-			{
-				if ((this._PassHash != value))
-				{
-					this.OnPassHashChanging(value);
-					this.SendPropertyChanging();
-					this._PassHash = value;
-					this.SendPropertyChanged("PassHash");
-					this.OnPassHashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(20)")]
-		public string Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this.OnGenderChanging(value);
-					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Online", DbType="Bit")]
-		public System.Nullable<bool> Online
-		{
-			get
-			{
-				return this._Online;
-			}
-			set
-			{
-				if ((this._Online != value))
-				{
-					this.OnOnlineChanging(value);
-					this.SendPropertyChanging();
-					this._Online = value;
-					this.SendPropertyChanged("Online");
-					this.OnOnlineChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usersTestTable")]
-	public partial class usersTestTable : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private string _Email;
-		
-		private string _PassHash;
-		
-		private string _Gender;
-		
-		private System.Nullable<bool> _Online;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPassHashChanging(string value);
-    partial void OnPassHashChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnOnlineChanging(System.Nullable<bool> value);
-    partial void OnOnlineChanged();
-    #endregion
-		
-		public usersTestTable()
-		{
-			OnCreated();
-		}
-
-        public usersTestTable(string name, string email, string passHash, string gender, bool online)
+        public usersTable(string name, string email, string passHash, string gender, object p, bool online)
         {
             Name = name;
             Email = email;
             PassHash = passHash;
             Gender = gender;
+            this.p = p;
             Online = online;
         }
 
@@ -644,7 +468,7 @@ namespace WT_DataManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(50)")]
 		public string Gender
 		{
 			get
@@ -660,6 +484,26 @@ namespace WT_DataManager.Models
 					this._Gender = value;
 					this.SendPropertyChanged("Gender");
 					this.OnGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Userpic", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Userpic
+		{
+			get
+			{
+				return this._Userpic;
+			}
+			set
+			{
+				if ((this._Userpic != value))
+				{
+					this.OnUserpicChanging(value);
+					this.SendPropertyChanging();
+					this._Userpic = value;
+					this.SendPropertyChanged("Userpic");
+					this.OnUserpicChanged();
 				}
 			}
 		}
@@ -880,7 +724,7 @@ namespace WT_DataManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="VarChar(50)")]
 		public string message
 		{
 			get
@@ -896,6 +740,223 @@ namespace WT_DataManager.Models
 					this._message = value;
 					this.SendPropertyChanged("message");
 					this.OnmessageChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usersTestTable")]
+	public partial class usersTestTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _Email;
+		
+		private string _PassHash;
+		
+		private string _Gender;
+		
+		private System.Data.Linq.Binary _Userpic;
+		
+		private System.Nullable<bool> _Online;
+        private string userpic;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPassHashChanging(string value);
+    partial void OnPassHashChanged();
+    partial void OnGenderChanging(string value);
+    partial void OnGenderChanged();
+    partial void OnUserpicChanging(System.Data.Linq.Binary value);
+    partial void OnUserpicChanged();
+    partial void OnOnlineChanging(System.Nullable<bool> value);
+    partial void OnOnlineChanged();
+    #endregion
+		
+		public usersTestTable()
+		{
+			OnCreated();
+		}
+
+        public usersTestTable(string name, string email, string passHash, string gender, string userpic, bool online)
+        {
+            Name = name;
+            Email = email;
+            PassHash = passHash;
+            Gender = gender;
+            this.userpic = userpic;
+            Online = online;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PassHash", DbType="VarChar(64)")]
+		public string PassHash
+		{
+			get
+			{
+				return this._PassHash;
+			}
+			set
+			{
+				if ((this._PassHash != value))
+				{
+					this.OnPassHashChanging(value);
+					this.SendPropertyChanging();
+					this._PassHash = value;
+					this.SendPropertyChanged("PassHash");
+					this.OnPassHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(50)")]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this.OnGenderChanging(value);
+					this.SendPropertyChanging();
+					this._Gender = value;
+					this.SendPropertyChanged("Gender");
+					this.OnGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Userpic", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Userpic
+		{
+			get
+			{
+				return this._Userpic;
+			}
+			set
+			{
+				if ((this._Userpic != value))
+				{
+					this.OnUserpicChanging(value);
+					this.SendPropertyChanging();
+					this._Userpic = value;
+					this.SendPropertyChanged("Userpic");
+					this.OnUserpicChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Online", DbType="Bit")]
+		public System.Nullable<bool> Online
+		{
+			get
+			{
+				return this._Online;
+			}
+			set
+			{
+				if ((this._Online != value))
+				{
+					this.OnOnlineChanging(value);
+					this.SendPropertyChanging();
+					this._Online = value;
+					this.SendPropertyChanged("Online");
+					this.OnOnlineChanged();
 				}
 			}
 		}

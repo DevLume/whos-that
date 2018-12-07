@@ -63,6 +63,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="CreateTestView.cs" />
     <Compile Include="Fragments\CreateTestUI.cs" />
+    <Compile Include="Fragments\FriendlistUI.cs" />
     <Compile Include="Fragments\GuessUI.cs" />
     <Compile Include="Fragments\StatisticsUI.cs" />
     <Compile Include="GuessTestView.cs" />
@@ -229,6 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AnswerRadioLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\friendlist_fragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -38,5 +38,15 @@ namespace Droid.Core.ViewModels
             }
         }
 
+        private FriendlistFragmentViewModel _frt = new FriendlistFragmentViewModel(new FriendlistService());
+        public FriendlistFragmentViewModel Frt
+        {
+            get => _frt;
+            set
+            {
+                _frt = value; RaisePropertyChanged(() => Frt);
+            }
+        }
+
     }
 }
