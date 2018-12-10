@@ -72,8 +72,8 @@ namespace Droid.Core.ViewModels
 
         public FriendlistFragmentViewModel(IFriendlistService friendlist)
         {
-            _IFriendlistService = friendlist;
-            ShowFriends();
+           /* _IFriendlistService = friendlist;
+            ShowFriends();*/
         }
 
         public async void ShowFriends()
