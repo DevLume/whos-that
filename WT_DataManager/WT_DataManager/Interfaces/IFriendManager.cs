@@ -11,7 +11,7 @@ namespace Whos_that
         List<User> ListFriends();
         List<User> ListFriendRequests();
         bool AnswerFriendRq(int usrID, bool response);
-        Tuple<bool, string> SendFriendRq(int usrID);
+        Tuple<bool, string> SendFriendRq(User u);
         void Unfriend(User u);
     }
 }

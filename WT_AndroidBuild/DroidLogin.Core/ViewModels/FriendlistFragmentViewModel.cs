@@ -10,84 +10,55 @@ namespace Droid.Core.ViewModels
 {
     public class FriendlistFragmentViewModel : MvxViewModel
     {
+        public static event EventHandler<FillFriendlistArgs> OnFriendlistFragmentStart;
+
         private IFriendlistService _IFriendlistService;
-        private List<Friend> _friendlist;
-        public List<Friend> Friendlist
+        private List<Friend> _friends;
+        public List<Friend> Friends
         {
-            get => _friendlist;
+            get => _friends;
             set
             {
-                _friendlist = value; RaisePropertyChanged(() => Friendlist);
+                _friends = value; RaisePropertyChanged(() => Friends);
             }
         }
 
-        private byte[] _rawImage;
-        public byte[] RawImage
+        private List<FriendDisplay> _dispFriends;
+        public List<FriendDisplay> DispFriends
         {
-            get { return _rawImage; }
+            get => _dispFriends;
             set
             {
-                _rawImage = value;
-                if (_rawImage == null)
-                    return;
-
-                var bitmap = BitmapFactory.DecodeByteArray(_rawImage, 0, _rawImage.Length);
-                RaisePropertyChanged(() => RawImage);
-            }
-        }
-
-        private Bitmap _userpic;
-        public Bitmap Userpic
-        {
-            get => _userpic;
-            set
-            {
-                _userpic = value;
-                RaisePropertyChanged(() => Userpic);
-            }
-        }
-
-        private string _friendName;
-        public string FriendName
-        {
-            get => _friendName;
-            set
-            {
-                _friendName = value;
-                RaisePropertyChanged(() => FriendName);
+                _dispFriends = value;
+                RaisePropertyChanged(() => DispFriends);
             }
         }
 
 
-        private string _friendMessage;
-        public string FriendMessage
-        {
-            get => _friendMessage;
-            set
-            {
-                _friendMessage = value;
-                RaisePropertyChanged(() => FriendMessage);
-            }
-        }
+        List<FriendDisplay> disp = new List<FriendDisplay>();
 
         public FriendlistFragmentViewModel(IFriendlistService friendlist)
         {
-           /* _IFriendlistService = friendlist;
-            ShowFriends();*/
+            _IFriendlistService = friendlist;
+
+            ShowFriends();
+
+            DispFriends = disp;
         }
+
+        public FriendlistFragmentViewModel() { }
 
         public async void ShowFriends()
         {
-            List<Friend> _friendlist = await GetFriendList();
-            foreach (Friend f in _friendlist)
+            _friends = await GetFriendList();
+            Bitmap bmp;
+            foreach (Friend f in _friends)
             {
-                //TODO: write a script to add new users as grid layout 
-                _friendName = f.username;
-                _friendMessage = f.message;
-                _rawImage = Convert.FromBase64String(f.imageBase64Code);
-                _userpic = BitmapFactory.DecodeByteArray(_rawImage, 0, _rawImage.Length);
-                await RaiseAllPropertiesChanged();
+                byte[] byteArr = Convert.FromBase64String(f.imageBase64Code);
+                bmp = BitmapFactory.DecodeByteArray(byteArr, 0, byteArr.Length);
+                disp.Add(new FriendDisplay(bmp, f.username, f.message));
             }
+            DispFriends = disp;
         }
 
         public async Task<List<Friend>> GetFriendList()
@@ -104,6 +75,50 @@ namespace Droid.Core.ViewModels
                 //invoke error
                 return null;
              }            
+        }
+    }
+
+    public class FriendDisplay : MvxViewModel
+    {
+        private Bitmap _userpic;
+        public Bitmap Userpic
+        {
+            get => _userpic;
+            set
+            {
+                _userpic = value;
+                RaisePropertyChanged(() => Userpic);
+            }
+        }
+
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                RaisePropertyChanged(() => Username);
+            }
+        }
+
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                _message = value;
+                RaisePropertyChanged(() => Message);
+            }
+        }
+
+        public FriendDisplay() { }
+        public FriendDisplay(Bitmap bmp, string uname, string messg)
+        {
+            Userpic = bmp;
+            Username = uname;
+            Message = messg;
         }
     }
 }

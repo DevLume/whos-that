@@ -4,6 +4,20 @@ using System.Text;
 
 namespace Droid.Core
 {
+    public class FillFriendlistArgs : EventArgs
+    {
+        public string picBase64;
+        public string username;
+        public string message;
+
+        public FillFriendlistArgs(string picBase64, string username, string message)
+        {
+            this.picBase64 = picBase64;
+            this.message = message;
+            this.username = username;
+        }
+    }
+
     public class ShowTempActivityArgs : EventArgs
     {
         public string message;

@@ -777,5 +777,15 @@ namespace Whos_that
         {
             throw new NotImplementedException();
         }
+
+        public bool ModifyUser(int usrID, UserData udata)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataManager.ModifyUser(int usrID, UserData udata)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

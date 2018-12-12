@@ -11,7 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Droid.Core;
+using Droid.Core.Services.Tools;
 using Droid.Core.ViewModels;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -35,23 +37,20 @@ namespace Droid.App.Fragments
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
 
-           
-            LayoutInflater vi = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+          /*  LayoutInflater vi = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
 
-            View v = vi.Inflate(Resource.Layout.friendlist_fragment, null);
+            View v = vi.Inflate(Resource.Layout.friend, null);
 
             ViewGroup vg = (ViewGroup)v;
-            for (int i = 0; i < 3; i++)
-            {
-                vg.AddView(AddFriendLayout(i));
-            }
-
-           
-            return this.BindingInflate(Resource.Layout.friendlist_fragment, vg);
+                   */
+            return this.BindingInflate(Resource.Layout.friendlist_fragment, null);
         }
 
-        public GridLayout AddFriendLayout(int givenID)
-        {         
+        public GridLayout AddFriendLayout(int givenID, byte[] pictureCode, string username, string message)
+        {
+            //TODO: Add Binding programmatically
+            this.CreateBindingSet<FriendlistUI, FriendlistFragmentViewModel>();
+
             GridLayout.Spec gridColumn = GridLayout.InvokeSpec(16, GridLayout.BaselineAlighment);
             GridLayout.Spec gridRow = GridLayout.InvokeSpec(16, GridLayout.BaselineAlighment);
 
@@ -82,15 +81,19 @@ namespace Droid.App.Fragments
             imageLayout.Width = 196;
             imageLayout.Height = 196;
            
-            ImageView imageView = new ImageView(Context);        
+            ImageView imageView = new ImageView(Context);
+            Bitmap bmp = BitmapFactory.DecodeByteArray(pictureCode, 0, pictureCode.Length);
+            imageView.SetImageBitmap(bmp);
             imageView.LayoutParameters = imageLayout;
                     
             TextView usernameView = new TextView(Context);
+            usernameView.Text = username;
             usernameView.SetTextColor(Color.White);
             usernameView.SetTextSize(Android.Util.ComplexUnitType.Px, 64);
             usernameView.LayoutParameters = usernameLayout;
 
             TextView messageView = new TextView(Context);
+            messageView.Text = message;
             messageView.SetTextColor(Color.White);
             messageView.SetTextSize(Android.Util.ComplexUnitType.Px, 48);
             messageView.LayoutParameters = messageLayout;

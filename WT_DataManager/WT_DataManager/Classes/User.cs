@@ -14,7 +14,7 @@ namespace Whos_that
         public string gender;
         private IDataManager dataman;
 
-        public string userpicBase64;
+        public byte[] userpic;
 
         public string passwordHash;
         public string email;
@@ -28,14 +28,14 @@ namespace Whos_that
             this.dataman = dataman;
         }
 
-        public User(int id, string username, string email, string passhash, string gender, string userpic) : this()
+        public User(int id, string username, string email, string passhash, string gender, byte[] userpic) : this()
         {
 
             this.id = id;
             this.username = username;
             this.email = email;
             this.gender = gender;
-            userpicBase64 = userpic;
+            this.userpic = userpic;
             passwordHash = passhash;
         }
 
@@ -168,8 +168,9 @@ namespace Whos_that
             }
         }
 
-        public Tuple<bool, string> SendFriendRq(int usrID)
+        public Tuple<bool, string> SendFriendRq(User u)
         {
+            int usrID = u.id;
             if (usrID == id) {
                 Console.WriteLine("friend request inception");
                 return new Tuple<bool, string>(false, "friend request inception");
@@ -290,6 +291,16 @@ namespace Whos_that
             }
             return marked;
         }
+
+        public bool ChangeProfilePic(byte[] userpic)
+        {
+            UserData udata = dataman.GetUserData(username);
+            udata.userpic = userpic;
+
+            dataman.ModifyUser(id, udata);
+
+            return true;
+        }
     }
 }
 
@@ -300,7 +311,7 @@ public struct UserData
     public string email;
     public string passHash;
     public string gender;
-    public string userpic;
+    public byte[] userpic;
     public bool online;
 
     public UserData(string name, string email, string passHash, string gender, bool online) : this()
@@ -312,7 +323,7 @@ public struct UserData
         this.online = online;
     }
 
-    public UserData(int id, string name, string email, string passHash, string gender, string userpic, bool online)
+    public UserData(int id, string name, string email, string passHash, string gender, byte[] userpic, bool online)
     {
         this.id = id;
         this.name = name;

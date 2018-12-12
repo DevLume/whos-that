@@ -29,13 +29,13 @@ namespace WT_DataManager.Controllers
 
             foreach (User u in friendlist)
             {
-                Friend f = new Friend(u.userpicBase64, u.username, "Just a not implemented message");
+                Friend f = new Friend(Convert.ToBase64String(u.userpic), u.username, "Just a not implemented message");
                 wrappedFriendlist.Add(f);
             }
 
             var json = JsonConvert.SerializeObject(wrappedFriendlist);
             var res = Request.CreateResponse(System.Net.HttpStatusCode.OK);
-            res.Content = new StringContent(json, System.Text.Encoding.UTF8, "multipart/mixed");
+            res.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
             return res;
         }

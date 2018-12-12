@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Droid.Core.Services.Tools
 {
-    public class Friend
+    public class Friend 
     {
         public string imageBase64Code;
         public string username;
