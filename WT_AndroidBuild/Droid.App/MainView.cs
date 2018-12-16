@@ -35,7 +35,8 @@ namespace Droid.App
         private CreateTestUI createTestUI;
         private GuessUI guessUI;
         private StatisticsUI statisticsUI;
-        private FriendlistUI friendlistUI; 
+        private FriendlistUI friendlistUI;
+        private CreateMessageUI createMessageUI;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -61,6 +62,7 @@ namespace Droid.App
             guessUI = new GuessUI();
             statisticsUI = new StatisticsUI();
             friendlistUI = new FriendlistUI();
+            createMessageUI = new CreateMessageUI();
 
             //createTestUI = (CreateTestUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct1);
             createTestUI.ViewModel = ((MainScreenViewModel)ViewModel).Crt;
@@ -72,13 +74,17 @@ namespace Droid.App
             statisticsUI.ViewModel = ((MainScreenViewModel)ViewModel).Srt;
 
             friendlistUI.ViewModel = ((MainScreenViewModel)ViewModel).Frt;
-            
+
+            createMessageUI.ViewModel = ((MainScreenViewModel)ViewModel).Cmf;
+
             var transaction = SupportFragmentManager.BeginTransaction();
             currentFragment = friendlistUI;
             transaction.Add(Resource.Id.fragment_container, createTestUI, "createTestUI");
             transaction.Add(Resource.Id.fragment_container, guessUI, "guessUI");
             transaction.Add(Resource.Id.fragment_container, statisticsUI, "statisticsUI");
             transaction.Add(Resource.Id.fragment_container, friendlistUI, "friendlistUI");
+            transaction.Add(Resource.Id.fragment_container, createMessageUI, "createMessageUI");
+            transaction.Hide(createMessageUI);
             transaction.Hide(guessUI);
             transaction.Hide(statisticsUI);
             transaction.Hide(createTestUI);
@@ -129,9 +135,7 @@ namespace Droid.App
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View)sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            ShowFragment(createMessageUI);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)

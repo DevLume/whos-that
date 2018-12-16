@@ -50,3 +50,4 @@ C:\Users\Luke M\source\repos\WosDat_Last\whos-that\WT_AndroidBuild\DroidLogin.Co
 C:\Users\Luke M\source\repos\WosDat_Last\whos-that\WT_AndroidBuild\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.csproj.CopyComplete
 C:\Users\Luke M\source\repos\WosDat_Last\whos-that\WT_AndroidBuild\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.dll
 C:\Users\Luke M\source\repos\WosDat_Last\whos-that\WT_AndroidBuild\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.pdb
+C:\Users\Luke M\source\repos\WosDat_Last\whos-that\WT_AndroidBuild\DroidLogin.Core\obj\Debug\netstandard2.0\Droid.Core.csprojAssemblyReference.cache

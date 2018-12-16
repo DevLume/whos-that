@@ -26,7 +26,7 @@
 			android:layout_columnSpan="2"
 			android:layout_gravity="fill"
 			android:layout_rowSpan="2"
-			local:MvxBind="Bitmap Userpic"
+			local:MvxBind="Bitmap Userpic; Click GoToProfileCommand"
 		/>
     <TextView
 			android:layout_marginTop="15dp"

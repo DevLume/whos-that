@@ -18,6 +18,16 @@ namespace Droid.Core
         }
     }
 
+    public class SendMessageArgs : EventArgs
+    {
+        public string response;
+
+        public SendMessageArgs(string resp)
+        {
+            response = resp;
+        }
+    }
+
     public class ShowTempActivityArgs : EventArgs
     {
         public string message;

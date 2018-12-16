@@ -16,6 +16,8 @@ namespace WT_DataManager.Controllers
     {
         UserManager userman = new UserManager();
 
+        SecurityManager secman = new SecurityManager();
+
         public FriendlistController() { }
 
         [AcceptVerbs("GET")]
@@ -25,12 +27,24 @@ namespace WT_DataManager.Controllers
         {
             User loggedUser = userman.GetUser(username);
             List<User> friendlist = loggedUser.ListFriends();
+            List<Tuple<string, string>> messages = loggedUser.ListMessages();
             List<Friend> wrappedFriendlist = new List<Friend>();
 
             foreach (User u in friendlist)
             {
-                Friend f = new Friend(Convert.ToBase64String(u.userpic), u.username, "Just a not implemented message");
+                Friend f = new Friend(Convert.ToBase64String(u.userpic), u.username,"  ");
                 wrappedFriendlist.Add(f);
+            }
+
+            foreach (Friend f in wrappedFriendlist)
+            {
+                foreach (Tuple<string, string> t in messages)
+                {
+                    if (f.username == t.Item1)
+                    {
+                        f.message = t.Item2;
+                    }
+                }
             }
 
             var json = JsonConvert.SerializeObject(wrappedFriendlist);

@@ -1,5 +1,6 @@
 ﻿using Android.Graphics;
 using Droid.Core.Services.Tools;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,7 @@ namespace Droid.Core.ViewModels
                 return null;
              }            
         }
+    
     }
 
     public class FriendDisplay : MvxViewModel
@@ -111,6 +113,21 @@ namespace Droid.Core.ViewModels
                 _message = value;
                 RaisePropertyChanged(() => Message);
             }
+        }
+
+        private MvxCommand _goToProfileCommand;
+        public MvxCommand GoToProfileCommand
+        {
+            get
+            {
+                _goToProfileCommand = _goToProfileCommand ?? new MvxCommand(checkProfile);
+                return _goToProfileCommand;
+            }
+        }
+
+        public void checkProfile()
+        {
+
         }
 
         public FriendDisplay() { }

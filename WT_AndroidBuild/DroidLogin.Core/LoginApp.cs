@@ -24,6 +24,7 @@ namespace Droid.Core
             Mvx.IoCProvider.RegisterType<ISubmitResultService, SubmitResultService>();
             Mvx.IoCProvider.RegisterType<ITestListService, TestListService>();
             Mvx.IoCProvider.RegisterType<IStatisticsService, StatisticsService>();
+            Mvx.IoCProvider.RegisterType<IMessagingService, MessagingService>();
 
             RegisterAppStart<LoginViewModel>();
         } 

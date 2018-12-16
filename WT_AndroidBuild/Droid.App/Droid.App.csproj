@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="CreateTestView.cs" />
+    <Compile Include="Fragments\CreateMessageUI.cs" />
     <Compile Include="Fragments\CreateTestUI.cs" />
     <Compile Include="Fragments\FriendlistUI.cs" />
     <Compile Include="Fragments\GuessUI.cs" />
+    <Compile Include="Fragments\ProfileUI.cs" />
     <Compile Include="Fragments\StatisticsUI.cs" />
     <Compile Include="GuessTestView.cs" />
     <Compile Include="LoginView.cs" />
@@ -240,6 +242,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\friend.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CreateMessage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

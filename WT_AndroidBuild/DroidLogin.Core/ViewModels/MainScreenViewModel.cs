@@ -48,5 +48,15 @@ namespace Droid.Core.ViewModels
             }
         }
 
+        private CreateMessageFragmentViewModel _cmf = new CreateMessageFragmentViewModel(new MessagingService(), new FriendlistService());
+        public CreateMessageFragmentViewModel Cmf
+        {
+            get => _cmf;
+            set
+            {
+                _cmf = value; RaisePropertyChanged(() => Cmf);
+            }
+        }
+
     }
 }
