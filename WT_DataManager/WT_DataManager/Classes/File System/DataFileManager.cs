@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WT_DataManager.Classes;
 
 namespace Whos_that
 {
@@ -784,6 +785,11 @@ namespace Whos_that
         }
 
         void IDataManager.ModifyUser(int usrID, UserData udata)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ModifyUserProfile(int usrID, UserProfile profile)
         {
             throw new NotImplementedException();
         }

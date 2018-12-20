@@ -53,6 +53,26 @@ namespace WT_DataManager.Controllers
 
             return res;
         }
+
+        [AcceptVerbs("GET")]
+        [Route("api/Friendlist/set")]
+        [HttpGet]
+        public HttpResponseMessage Set(string sender, string receiver)
+        {
+            UserManager userman = new UserManager();
+
+            User u = userman.GetUser(sender);
+            User y = userman.GetUser(receiver);
+
+            Tuple<bool, string> res = u.SendFriendRq(y);
+            if (res.Item1 == true)
+            {
+                y.AnswerFriendRq(u.id, true);
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK);
+            }
+
+            return Request.CreateResponse(System.Net.HttpStatusCode.Forbidden);
+        }
  
         [Route("api/Friendlist/test")]
         [HttpGet]

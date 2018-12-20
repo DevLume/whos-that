@@ -88,6 +88,7 @@ namespace Droid.Core.ViewModels
                 if (answerTuple.Item1)
                 {
                     LoginApp.loggedUserName = _username;
+                    LoginApp.profileUserName = _username;
                 }
                 OnRequestSent?.Invoke(this, new SendLoginRequestArgs(answerTuple.Item1, answerTuple.Item2, _username));
             }

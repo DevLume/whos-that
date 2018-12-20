@@ -20,7 +20,7 @@ namespace Droid.Core.Services
         public async Task<Tuple<bool, string>> SendRegisterRequest(string username, string password, string email)
         {        
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("http://192.168.8.102:8087/api/Account/Register?username=" + username + "&password=" + password + "&email=" + email));
+            var uri = new Uri(string.Format("http://10.3.1.158:8087/api/Account/Register?username=" + username + "&password=" + password + "&email=" + email));
             HttpResponseMessage response;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             response = await client.GetAsync(uri);

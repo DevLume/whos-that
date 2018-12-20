@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#242a31"
+	>
+	<TextView
+		android:text="Write something about yourself!"
+		android:textColor="#f5f5f5"
+		android:layout_weight="1"
+		android:layout_width="fill_parent"
+		android:layout_height="10dp"
+		android:gravity="center" />
+	<EditText
+		android:id="@+id/txtLoginUsername"
+		android:textColorHint="#f5f5f5"
+		android:inputType="text"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:layout_weight="2"
+		android:layout_marginRight="10dp"
+		android:layout_marginLeft="10dp"
+		android:hint="About me"
+		android:paddingLeft="10dp"
+		android:textColor="#f5f5f5"
+		android:scrollHorizontally="true"
+		local:MvxBind="Text Description"
+	    />
+  <Button 
+	android:layout_marginLeft="25dp"
+	android:layout_marginRight="25dp"	
+		android:text="Take picture using camera"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:layout_weight="1"
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+    local:MvxBind="Click TakePictureCommand"
+    />
+  <Button
+    android:layout_marginLeft="25dp"
+    android:layout_marginTop="25dp"
+		android:layout_marginRight="25dp"
+		android:text="Choose photo from library"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:layout_weight="1"
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+    local:MvxBind="Click ChoosePictureCommand"
+    />
+  <ImageView
+    android:layout_width="fill_parent"
+  	android:layout_height="10dp"
+	android:layout_weight="5"
+    local:MvxBind="Bitmap Bytes,Converter=InMemoryImage"
+    />
+	<Button 
+	android:layout_marginLeft="25dp"
+	android:layout_marginRight="25dp"
+		android:layout_marginBottom="25dp"
+		android:text="Submit Your Profile!"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:layout_weight="1"
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+    local:MvxBind="Click SubmitProfile"
+    />   
+</LinearLayout>

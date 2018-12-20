@@ -124,9 +124,12 @@ namespace Droid.Core.ViewModels
                 return _goToProfileCommand;
             }
         }
+        public static event EventHandler<ShowProfileArgs> OnProfileCheck;
 
         public void checkProfile()
         {
+            LoginApp.profileUserName = _username;
+            OnProfileCheck?.Invoke(this, new ShowProfileArgs(_username));
 
         }
 

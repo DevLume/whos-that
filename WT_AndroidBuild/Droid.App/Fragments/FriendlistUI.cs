@@ -30,7 +30,17 @@ namespace Droid.App.Fragments
       
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);   
+            base.OnCreate(savedInstanceState);
+
+            FriendDisplay.OnProfileCheck += CheckProfile;
+        }
+
+        private void CheckProfile(object sender, ShowProfileArgs e)
+        {
+            Toast.MakeText(Activity, "showig profile of a user " + e.username, ToastLength.Long).Show();
+
+            Intent intent = new Intent(Context,typeof(FriendProfileView)).SetFlags(ActivityFlags.ReorderToFront);
+            this.StartActivity(intent);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

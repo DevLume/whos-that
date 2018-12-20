@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "0e5dbe20ba7f1a5bb687fa58713699081d8a0142"
+    "signature": "cad26b35133535ffee4c0c8a444cc96b11733815"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,10 +12,12 @@
           "Acr.UserDialogs": "7.0.1",
           "MvvmCross": "6.2.2",
           "MvvmCross.Plugin.Messenger": "6.2.2",
+          "MvvmCross.Plugin.PictureChooser": "6.2.2",
           "MvvmCross.Plugin.Visibility": "6.2.2",
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "11.0.2",
           "Plugin.UserDialogs": "1.0.0",
+          "Xam.Plugin.Media": "4.0.1.5",
           "Mono.Android": "0.0.0.0"
         },
         "runtime": {
@@ -50,6 +52,17 @@
           }
         }
       },
+      "MvvmCross.Plugin.PictureChooser/6.2.2": {
+        "dependencies": {
+          "MvvmCross": "6.2.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MvvmCross.Plugin.PictureChooser.dll": {
+            "assemblyVersion": "6.2.2.0",
+            "fileVersion": "6.2.2.0"
+          }
+        }
+      },
       "MvvmCross.Plugin.Visibility/6.2.2": {
         "dependencies": {
           "MvvmCross": "6.2.2"
@@ -74,9 +87,28 @@
           }
         }
       },
+      "Plugin.Permissions/3.0.0.12": {
+        "runtime": {
+          "lib/netstandard2.0/Plugin.Permissions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Plugin.UserDialogs/1.0.0": {
         "dependencies": {
           "Acr.UserDialogs": "7.0.1"
+        }
+      },
+      "Xam.Plugin.Media/4.0.1.5": {
+        "dependencies": {
+          "Plugin.Permissions": "3.0.0.12"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Plugin.Media.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Mono.Android/0.0.0.0": {
@@ -123,6 +155,13 @@
       "path": "mvvmcross.plugin.messenger/6.2.2",
       "hashPath": "mvvmcross.plugin.messenger.6.2.2.nupkg.sha512"
     },
+    "MvvmCross.Plugin.PictureChooser/6.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rmLZSp22iVHThYm/2Sd3RUiXlslrs9LFOJQ4iHQT+EuXxuUQff6UIiFDlGYL4zmmJMHpTSyLthwoSbksSics/g==",
+      "path": "mvvmcross.plugin.picturechooser/6.2.2",
+      "hashPath": "mvvmcross.plugin.picturechooser.6.2.2.nupkg.sha512"
+    },
     "MvvmCross.Plugin.Visibility/6.2.2": {
       "type": "package",
       "serviceable": true,
@@ -144,12 +183,26 @@
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
+    "Plugin.Permissions/3.0.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R8Rlzfci1byoPBGOiJfCMzu0HhhN6Q4Vq4YizlF41W946NEmoL/Mb8U5caP5t5KfSbdPQpzdQ9JfM8fxPG8pfw==",
+      "path": "plugin.permissions/3.0.0.12",
+      "hashPath": "plugin.permissions.3.0.0.12.nupkg.sha512"
+    },
     "Plugin.UserDialogs/1.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-NbpdynjP4jWyyiS/IhUHAraW3XUyk+RyCD79P9rp6wgUR1MHRsGSBfLild+O2gB2hH3CIkRGY0rHTV2AstEP+w==",
       "path": "plugin.userdialogs/1.0.0",
       "hashPath": "plugin.userdialogs.1.0.0.nupkg.sha512"
+    },
+    "Xam.Plugin.Media/4.0.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PxL0vcTXpS79l2KgtaJBShcPVMRK2HC5J08vG6hKTC7hk5+3RjgFrdX0N6Gd4oF8pxVxV2ia7rhYnjxRCMWZtw==",
+      "path": "xam.plugin.media/4.0.1.5",
+      "hashPath": "xam.plugin.media.4.0.1.5.nupkg.sha512"
     },
     "Mono.Android/0.0.0.0": {
       "type": "reference",

@@ -1,9 +1,52 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Droid.Core
 {
+    public class MessageArgs : EventArgs
+    {
+        public string message;
+        public MessageArgs(string message)
+        {
+            this.message = message;
+        }
+    }
+
+    public class ShowProfileArgs : EventArgs
+    {
+        public string username;
+        public ShowProfileArgs(string username)
+        {
+            this.username = username;
+        }
+    }
+
+    public class ModifyProfileArgs : EventArgs
+    {
+        string username;
+        string oldDescription;
+        Bitmap oldPic;
+        public ModifyProfileArgs(string username, string oldDescription, Bitmap oldPic)
+        {
+            this.username = username;
+            this.oldDescription = oldDescription;
+            this.oldPic = oldPic;
+        }
+    }
+
+    public class SubmitProfileArgs : EventArgs
+    {      
+        public SubmitProfileArgs()
+        {
+        }
+    }
+
+    public class PhotoStreamEventArgs : EventArgs
+    {
+        public PhotoStreamEventArgs() { }
+    }
     public class FillFriendlistArgs : EventArgs
     {
         public string picBase64;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WT_DataManager.Classes;
 
 namespace Whos_that
 {
@@ -23,5 +24,6 @@ namespace Whos_that
         bool InsertMessage(int uid1, int uid2, string message);
         bool ModifyOnline(int usrID, bool isOnline);
         void ModifyUser(int usrID, UserData udata);
+        bool ModifyUserProfile(int usrID, UserProfile profile);
     }
 }

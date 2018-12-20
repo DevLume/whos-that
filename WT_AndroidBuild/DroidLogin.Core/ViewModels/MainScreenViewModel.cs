@@ -1,4 +1,6 @@
 ﻿using Droid.Core.Services;
+using Droid.Core.Services.Tools;
+using MvvmCross.Plugin.PictureChooser;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -55,6 +57,17 @@ namespace Droid.Core.ViewModels
             set
             {
                 _cmf = value; RaisePropertyChanged(() => Cmf);
+            }
+        }
+
+        private ProfileFragmentViewModel _pfv = new ProfileFragmentViewModel(new ProfileService());
+        public ProfileFragmentViewModel Pfv
+        {
+            get => _pfv;
+            set
+            {
+                _pfv = value;
+                RaisePropertyChanged(() => Pfv);
             }
         }
 

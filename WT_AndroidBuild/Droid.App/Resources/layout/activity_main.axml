@@ -15,7 +15,7 @@
 	android:id="@+id/ct1"
 	android:layout_width="match_parent"
     android:layout_height="match_parent"	
-	/>
+	/>		
 
 	<fragment
 	class="Droid.App.GuessUI"

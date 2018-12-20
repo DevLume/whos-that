@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using WT_DataManager.Classes;
 
 namespace Whos_that
 {
@@ -28,12 +32,51 @@ namespace Whos_that
 
             return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic);
         }
-        
+
+        public async Task<UserProfile> GetUserProfile(string username)
+        {
+            UserProfile uprofile = null;
+            UserData userdat = dataman.GetUserData(username);
+            User u = GetUser(username);
+
+            HttpClient client = new HttpClient();
+
+            List<string> testList;
+            HttpResponseMessage response = await client.GetAsync("http://10.3.1.158:8086/api/userTest/List?author=" + username);
+
+            try
+            {
+                response.EnsureSuccessStatusCode();
+
+                using (HttpContent content = response.Content)
+                {
+                    string respBody = await response.Content.ReadAsStringAsync();
+
+                    testList = JsonConvert.DeserializeObject<List<string>>(respBody);
+                }
+            }
+            catch (Exception)
+            {
+                testList = new List<string>();
+            }        
+
+            uprofile = new UserProfile(Convert.ToBase64String(u.userpic), username, u.description, testList);
+
+            return uprofile;
+        }
+
+        public bool SetUserProfile(UserProfile profile)
+        {
+            User u = GetUser(profile.username);         
+            int id = u.id;
+
+            return dataman.ModifyUserProfile(id, profile);
+        }
         public User GetUser(string username)
         {
             UserData userdat = dataman.GetUserData(username);
 
-            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic);
+            return new User(userdat.id, userdat.name, userdat.email, userdat.passHash, userdat.gender, userdat.userpic, userdat.description);
         }
         public bool checkIfUserExists(string username)
         {

@@ -19,7 +19,7 @@ namespace Droid.Core.Services
         {
             HttpClient client = new HttpClient();
 
-            HttpResponseMessage response = await client.GetAsync("http://192.168.8.102:8087/api/messaging/read?receiverName= " +
+            HttpResponseMessage response = await client.GetAsync("http://10.3.1.158:8087/api/messaging/read?receiverName= " +
                 receiverName + "&senderName" + senderName);
         }
 
@@ -30,7 +30,7 @@ namespace Droid.Core.Services
             Message message = new Message(sender, receiver, messageData);
             var json = JsonConvert.SerializeObject(message);
 
-            client.BaseAddress = new Uri("http://192.168.8.102:8087/api/messaging/send");
+            client.BaseAddress = new Uri("http://10.3.1.158:8087/api/messaging/send");
             var content = new FormUrlEncodedContent(new[]
             {
               new KeyValuePair<string, string>("",json)  

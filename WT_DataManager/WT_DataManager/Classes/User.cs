@@ -18,6 +18,7 @@ namespace Whos_that
 
         public string passwordHash;
         public string email;
+        public string description;
         private bool v;
 
         public bool messageReceived { get; set; }
@@ -36,6 +37,17 @@ namespace Whos_that
             this.email = email;
             this.gender = gender;
             this.userpic = userpic;
+            passwordHash = passhash;
+        }
+
+        public User(int id, string username, string email, string passhash, string gender, byte[] userpic, string description) : this()
+        {
+            this.id = id;
+            this.username = username;
+            this.email = email;
+            this.gender = gender;
+            this.userpic = userpic;
+            this.description = description;
             passwordHash = passhash;
         }
 
@@ -72,7 +84,7 @@ namespace Whos_that
         }
 
         public UserData ConvertToUserData() {
-            return new UserData(0, username, email, passwordHash, "unspecified",null, false);
+            return new UserData(0, username, email, passwordHash, "unspecified",null, false, description);
         }
 
         public bool Equals(User other)
@@ -244,7 +256,7 @@ namespace Whos_that
                         temp = dat.message.Split(' ')[0];
                         ciph = dat.message.Split(' ')[1];
                         result.Add(string.Concat(dat.user2ID.ToString()," ",secman.DehashString(ciph, temp)));
-                        MarkMessageAsRead(dat.user2ID);
+                        //MarkMessageAsRead(dat.user2ID);
                     }
                     catch (NullReferenceException ex)
                     {
@@ -255,25 +267,27 @@ namespace Whos_that
             return result;
         }
 
-        public List<string> ListMessages()
+        public List<Tuple<string, string>> ListMessages()
         {
-            List<string> result = new List<string>();
+            List<Tuple<string, string>> result = new List<Tuple<string, string>>();
             List<string> mesgData = GetMessageData();
             UserManager userman = new UserManager();
             foreach (string s in mesgData)
             {
                 int uid = Int32.Parse(s.Split(' ')[0]);
-                string resMesg = string.Concat(userman.GetUser(uid).username, ": ");
+                string username = userman.GetUser(uid).username;
+                string message = null;
                 IEnumerable<string> mesg = s.Split(' ').Skip(1);              
                 StringBuilder sb = new StringBuilder();
-                sb.Append(resMesg);
+                // sb.Append(resMesg);
                 foreach (string m in mesg)
                 {
                     sb.Append(m);
                     sb.Append(' ');
                 }
-                resMesg = sb.ToString();
-                result.Add(resMesg);
+                message = sb.ToString();
+
+                result.Add(new Tuple<string, string>(username, message));
             }
             return result;
         }
@@ -313,17 +327,19 @@ public struct UserData
     public string gender;
     public byte[] userpic;
     public bool online;
+    public string description;
 
-    public UserData(string name, string email, string passHash, string gender, bool online) : this()
+    public UserData(string name, string email, string passHash, string gender, bool online, string description) : this()
     {
         this.name = name;
         this.email = email;
         this.passHash = passHash;
         this.gender = gender;
         this.online = online;
+        this.description = description;
     }
 
-    public UserData(int id, string name, string email, string passHash, string gender, byte[] userpic, bool online)
+    public UserData(int id, string name, string email, string passHash, string gender, byte[] userpic, bool online, string description)
     {
         this.id = id;
         this.name = name;
@@ -332,6 +348,7 @@ public struct UserData
         this.gender = gender;
         this.online = online;
         this.userpic = userpic;
+        this.description = description;
     }
     public override string ToString()
     {

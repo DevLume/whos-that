@@ -135,6 +135,22 @@
           "lib/netstandard2.0/MvvmCross.Plugin.Messenger.dll": {}
         }
       },
+      "MvvmCross.Plugin.PictureChooser/6.2.2": {
+        "type": "package",
+        "dependencies": {
+          "MvvmCross": "6.2.2",
+          "Xamarin.Android.Support.Exif": "27.0.2.1"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid81/MvvmCross.Plugin.PictureChooser.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid81/MvvmCross.Plugin.PictureChooser.dll": {}
+        }
+      },
       "MvvmCross.Plugin.Visibility/6.2.2": {
         "type": "package",
         "dependencies": {
@@ -159,10 +175,55 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "Plugin.CurrentActivity/2.1.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid44/Plugin.CurrentActivity.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid44/Plugin.CurrentActivity.dll": {}
+        }
+      },
+      "Plugin.Permissions/3.0.0.12": {
+        "type": "package",
+        "dependencies": {
+          "Plugin.CurrentActivity": "2.1.0.2",
+          "Xamarin.Android.Support.Compat": "25.4.0.2",
+          "Xamarin.Android.Support.Core.Utils": "25.4.0.2"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid71/Plugin.Permissions.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid71/Plugin.Permissions.dll": {}
+        }
+      },
       "Plugin.UserDialogs/1.0.0": {
         "type": "package",
         "dependencies": {
           "Acr.UserDialogs": "6.2.4"
+        }
+      },
+      "Xam.Plugin.Media/4.0.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Plugin.Permissions": "3.0.0.12",
+          "Xamarin.Android.Support.Core.Utils": "25.4.0.2"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid71/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid71/Plugin.Media.dll": {}
         }
       },
       "Xamarin.Android.Arch.Core.Common/1.0.0.1": {
@@ -307,6 +368,21 @@
           "build/MonoAndroid81/Xamarin.Android.Support.Design.targets": {}
         }
       },
+      "Xamarin.Android.Support.Exif/27.0.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Support.Annotations": "[27.0.2.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid81/Xamarin.Android.Support.Exif.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid81/Xamarin.Android.Support.Exif.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid81/_._": {}
+        }
+      },
       "Xamarin.Android.Support.Fragment/27.0.2.1": {
         "type": "package",
         "dependencies": {
@@ -423,9 +499,11 @@
           "Acr.UserDialogs": "7.0.1",
           "MvvmCross": "6.2.2",
           "MvvmCross.Plugin.Messenger": "6.2.2",
+          "MvvmCross.Plugin.PictureChooser": "6.2.2",
           "MvvmCross.Plugin.Visibility": "6.2.2",
           "Newtonsoft.Json": "11.0.2",
-          "Plugin.UserDialogs": "1.0.0"
+          "Plugin.UserDialogs": "1.0.0",
+          "Xam.Plugin.Media": "4.0.1.5"
         },
         "compile": {
           "bin/placeholder/Droid.Core.dll": {}
@@ -577,6 +655,47 @@
         "mvvmcross.plugin.messenger.nuspec"
       ]
     },
+    "MvvmCross.Plugin.PictureChooser/6.2.2": {
+      "sha512": "rmLZSp22iVHThYm/2Sd3RUiXlslrs9LFOJQ4iHQT+EuXxuUQff6UIiFDlGYL4zmmJMHpTSyLthwoSbksSics/g==",
+      "type": "package",
+      "path": "mvvmcross.plugin.picturechooser/6.2.2",
+      "files": [
+        ".signature.p7s",
+        "lib/monoandroid81/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/monoandroid81/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/monoandroid81/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/net461/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/net461/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/net461/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/netcoreapp2.0/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/netcoreapp2.0/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/netcoreapp2.0/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/netstandard2.0/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/netstandard2.0/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/netstandard2.0/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/tizen40/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/tizen40/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/tizen40/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/uap10.0.16299/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/uap10.0.16299/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/uap10.0.16299/MvvmCross.Plugin.PictureChooser.pri",
+        "lib/uap10.0.16299/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/xamarinios10/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/xamarinios10/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/xamarinios10/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/xamarinmac20/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/xamarinmac20/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/xamarinmac20/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/xamarintvos10/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/xamarintvos10/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/xamarintvos10/MvvmCross.Plugin.PictureChooser.xml",
+        "lib/xamarinwatchos10/MvvmCross.Plugin.PictureChooser.dll",
+        "lib/xamarinwatchos10/MvvmCross.Plugin.PictureChooser.pdb",
+        "lib/xamarinwatchos10/MvvmCross.Plugin.PictureChooser.xml",
+        "mvvmcross.plugin.picturechooser.6.2.2.nupkg.sha512",
+        "mvvmcross.plugin.picturechooser.nuspec"
+      ]
+    },
     "MvvmCross.Plugin.Visibility/6.2.2": {
       "sha512": "PE+H4vIpqJuirhU7si0k+iPquwGTjLec2Y/tNAMnupUN7E7VQXiWbtXWncVdBuvQYTlteqhz2xC7bhGhhHngqQ==",
       "type": "package",
@@ -646,6 +765,41 @@
         "newtonsoft.json.nuspec"
       ]
     },
+    "Plugin.CurrentActivity/2.1.0.2": {
+      "sha512": "5jmilYPu9fcSh/3AYRrDkvXhWlsZTzf3SDhJKdtIl8EL+/YM1lrjv99MGVqC0jKloCWND9aOrgBKJCMzQsVamw==",
+      "type": "package",
+      "path": "plugin.currentactivity/2.1.0.2",
+      "files": [
+        ".signature.p7s",
+        "lib/monoandroid44/Plugin.CurrentActivity.dll",
+        "lib/monoandroid44/Plugin.CurrentActivity.xml",
+        "plugin.currentactivity.2.1.0.2.nupkg.sha512",
+        "plugin.currentactivity.nuspec",
+        "readme.txt"
+      ]
+    },
+    "Plugin.Permissions/3.0.0.12": {
+      "sha512": "R8Rlzfci1byoPBGOiJfCMzu0HhhN6Q4Vq4YizlF41W946NEmoL/Mb8U5caP5t5KfSbdPQpzdQ9JfM8fxPG8pfw==",
+      "type": "package",
+      "path": "plugin.permissions/3.0.0.12",
+      "files": [
+        ".signature.p7s",
+        "lib/monoandroid71/Plugin.Permissions.dll",
+        "lib/monoandroid71/Plugin.Permissions.xml",
+        "lib/netstandard1.0/Plugin.Permissions.dll",
+        "lib/netstandard1.0/Plugin.Permissions.xml",
+        "lib/netstandard2.0/Plugin.Permissions.dll",
+        "lib/netstandard2.0/Plugin.Permissions.xml",
+        "lib/uap10.0.10240/Plugin.Permissions.dll",
+        "lib/uap10.0.10240/Plugin.Permissions.pri",
+        "lib/uap10.0.10240/Plugin.Permissions.xml",
+        "lib/xamarinios10/Plugin.Permissions.dll",
+        "lib/xamarinios10/Plugin.Permissions.xml",
+        "plugin.permissions.3.0.0.12.nupkg.sha512",
+        "plugin.permissions.nuspec",
+        "readme.txt"
+      ]
+    },
     "Plugin.UserDialogs/1.0.0": {
       "sha512": "NbpdynjP4jWyyiS/IhUHAraW3XUyk+RyCD79P9rp6wgUR1MHRsGSBfLild+O2gB2hH3CIkRGY0rHTV2AstEP+w==",
       "type": "package",
@@ -656,6 +810,30 @@
         "plugin.userdialogs.1.0.0.nupkg.sha512",
         "plugin.userdialogs.nuspec",
         "push.cmd"
+      ]
+    },
+    "Xam.Plugin.Media/4.0.1.5": {
+      "sha512": "PxL0vcTXpS79l2KgtaJBShcPVMRK2HC5J08vG6hKTC7hk5+3RjgFrdX0N6Gd4oF8pxVxV2ia7rhYnjxRCMWZtw==",
+      "type": "package",
+      "path": "xam.plugin.media/4.0.1.5",
+      "files": [
+        ".signature.p7s",
+        "lib/monoandroid71/Plugin.Media.dll",
+        "lib/monoandroid71/Plugin.Media.xml",
+        "lib/netstandard1.0/Plugin.Media.dll",
+        "lib/netstandard1.0/Plugin.Media.xml",
+        "lib/netstandard2.0/Plugin.Media.dll",
+        "lib/netstandard2.0/Plugin.Media.xml",
+        "lib/tizen40/Plugin.Media.dll",
+        "lib/tizen40/Plugin.Media.xml",
+        "lib/uap10.0.10240/Plugin.Media.dll",
+        "lib/uap10.0.10240/Plugin.Media.pri",
+        "lib/uap10.0.10240/Plugin.Media.xml",
+        "lib/xamarinios10/Plugin.Media.dll",
+        "lib/xamarinios10/Plugin.Media.xml",
+        "readme.txt",
+        "xam.plugin.media.4.0.1.5.nupkg.sha512",
+        "xam.plugin.media.nuspec"
       ]
     },
     "Xamarin.Android.Arch.Core.Common/1.0.0.1": {
@@ -779,6 +957,19 @@
         "xamarin.android.support.design.nuspec"
       ]
     },
+    "Xamarin.Android.Support.Exif/27.0.2.1": {
+      "sha512": "M92BebX+TU3pPh2RnM988YnZU7jh/uohm8KE5+85d33zMqsTimPTOeHRIYXK7dLV6e2PotMa1P8K9gL5rjG2pw==",
+      "type": "package",
+      "path": "xamarin.android.support.exif/27.0.2.1",
+      "files": [
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/MonoAndroid81/Xamarin.Android.Support.Exif.targets",
+        "lib/MonoAndroid81/Xamarin.Android.Support.Exif.dll",
+        "xamarin.android.support.exif.27.0.2.1.nupkg.sha512",
+        "xamarin.android.support.exif.nuspec"
+      ]
+    },
     "Xamarin.Android.Support.Fragment/27.0.2.1": {
       "sha512": "W217/JM+t+H4+bKc+LBIhblnLW4sZc8HABak9eTv5yJl3FlTfq0cNt7aMNOKxUxy2/wt0Uo8YNSZK6YVHYsVhg==",
       "type": "package",
@@ -892,8 +1083,10 @@
       "MvvmCross.Droid.Support.Fragment >= 6.2.2",
       "MvvmCross.Droid.Support.V7.AppCompat >= 6.2.2",
       "MvvmCross.Plugin.Messenger >= 6.2.2",
+      "MvvmCross.Plugin.PictureChooser >= 6.2.2",
       "MvvmCross.Plugin.Visibility >= 6.2.2",
       "Newtonsoft.Json >= 11.0.2",
+      "Xam.Plugin.Media >= 4.0.1.5",
       "Xamarin.Android.Support.Design >= 27.0.2.1",
       "Xamarin.Android.Support.v7.AppCompat >= 27.0.2.1"
     ]
@@ -955,6 +1148,10 @@
             "target": "Package",
             "version": "[6.2.2, )"
           },
+          "MvvmCross.Plugin.PictureChooser": {
+            "target": "Package",
+            "version": "[6.2.2, )"
+          },
           "MvvmCross.Plugin.Visibility": {
             "target": "Package",
             "version": "[6.2.2, )"
@@ -962,6 +1159,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[11.0.2, )"
+          },
+          "Xam.Plugin.Media": {
+            "target": "Package",
+            "version": "[4.0.1.5, )"
           },
           "Xamarin.Android.Support.Design": {
             "target": "Package",
