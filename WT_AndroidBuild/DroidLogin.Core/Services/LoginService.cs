@@ -20,7 +20,7 @@ namespace Droid.Core.Services
         public async Task<Tuple<bool, string>> SendLoginRequest(string username, string password)
         {
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format("https://wtdatamanager.azurewebsites.net/api/Account/Login?username=" + username + "&password=" + password));
+            var uri = new Uri(string.Format("http://10.3.1.158:8087/api/Account/Login?username=" + username + "&password=" + password));
             HttpResponseMessage httpResponse = null;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpResponse = await client.GetAsync(uri);

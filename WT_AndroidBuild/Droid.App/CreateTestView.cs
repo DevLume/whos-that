@@ -25,8 +25,14 @@ namespace Droid.App
 
             CreateTestViewModel.OnCreateTest += CreateTestViewModel_OnTestCreated;
             CreateTestViewModel.OnAddQuestion += CreateTestViewModel_OnQuestionAdded;
+            CreateTestViewModel.OnTestCreated += CreateTestViewModel_OnTempActivityRequest;
         }
 
+        private void CreateTestViewModel_OnTempActivityRequest(object sender, ShowTempActivityArgs e)
+        {
+            base.OnBackPressed();         
+        }
+            
         private void CreateTestViewModel_OnQuestionAdded(object sender, AddQuestionEventArgs e)
         {            
             Toast.MakeText(this,e.response,ToastLength.Long).Show();

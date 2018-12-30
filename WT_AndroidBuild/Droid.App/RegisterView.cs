@@ -34,6 +34,7 @@ namespace Droid.App
         private void RegisterViewModel_OnRequestSent(object sender, SendRegisterRequestArgs e)
         {
             Toast.MakeText(this, e.response, ToastLength.Long).Show();
+            //continue registration from here
         }
     }
 }

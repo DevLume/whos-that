@@ -14,7 +14,7 @@ namespace Droid.Core.Services
             HttpClient client = new HttpClient();
 
             List<string> articles;
-            HttpResponseMessage response = await client.GetAsync("http://192.168.8.102:8086/api/userTest/List?author="+author);
+            HttpResponseMessage response = await client.GetAsync("http://10.3.1.158:8086/api/userTest/List?author=" + author);
 
             try
             {

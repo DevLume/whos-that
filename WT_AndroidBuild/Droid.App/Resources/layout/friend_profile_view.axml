@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#242a31"
+	android:minWidth="25px"
+	android:minHeight="25px"	
+	>
+	<ImageView
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="105dp"
+		android:layout_width="175dp"
+		android:layout_height="175dp"
+		android:src="@android:drawable/ic_menu_gallery"		
+		local:MvxBind="Bitmap Userpic"
+	/>
+	<TextView
+		android:text="Username"
+		android:textSize="25dp"
+		android:textColor="#f5f5f5"
+		android:layout_width="fill_parent"
+		android:layout_marginTop="25dp"
+		android:layout_height="32dp"
+		android:gravity="center" 
+		local:MvxBind="Text Username"
+	/>
+	<TextView
+		android:text="About me:"
+		android:textSize="16dp"
+		android:textColor="#f5f5f5"
+		android:layout_width="fill_parent"
+		android:layout_height="20dp"
+		android:gravity="center" 
+	/>
+	<TextView
+		android:text="Description Description Description Description 
+Description Description DescriptionDescription Description Description Description 
+Description Description Description"
+		android:layout_marginTop="12dp"
+		android:layout_marginLeft="45dp"
+		android:textSize="14dp"
+		android:textColor="#f5f5f5"
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		local:MvxBind="Text Description"
+	/>	
+	<MvxSpinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"		
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp"
+		android:buttonTint="@color/button_material_light"				
+        local:MvxBind="ItemsSource TestTitles;SelectedItem Title" />
+	<Button
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="25dp"
+		android:layout_marginRight="25dp"
+		android:text="Tap here to solve selected test"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="36dp"
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+		local:MvxBind="Click GoToSelectedTest"
+	    />
+	<Button
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="25dp"
+		android:layout_marginRight="25dp"
+		android:layout_marginBottom="75dp"
+		android:text="Tap here send friend request"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="35dp"	
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+		local:MvxBind="Click SendFriendRq"
+	    />
+</LinearLayout>

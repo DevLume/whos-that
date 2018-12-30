@@ -62,12 +62,17 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="CreateTestView.cs" />
+    <Compile Include="Fragments\CreateMessageUI.cs" />
     <Compile Include="Fragments\CreateTestUI.cs" />
+    <Compile Include="Fragments\FriendlistUI.cs" />
     <Compile Include="Fragments\GuessUI.cs" />
+    <Compile Include="Fragments\ProfileUI.cs" />
     <Compile Include="Fragments\StatisticsUI.cs" />
+    <Compile Include="FriendProfileView.cs" />
     <Compile Include="GuessTestView.cs" />
     <Compile Include="LoginView.cs" />
     <Compile Include="MainView.cs" />
+    <Compile Include="profileBuilderView.cs" />
     <Compile Include="RegisterView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,13 +122,22 @@
     <PackageReference Include="MvvmCross.Plugin.Messenger">
       <Version>6.2.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.PictureChooser">
+      <Version>6.2.2</Version>
+    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DroidLogin.Core\Droid.Core.csproj">
@@ -226,6 +240,36 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AnswerRadioLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\friendlist_fragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\friend.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CreateMessage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\profile_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\friend_profile_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\profileBuilder.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

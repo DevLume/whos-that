@@ -9,23 +9,20 @@
 	android:background="#242a31"
 	android:minWidth="25px"
 	android:minHeight="25px"
-	android:weightSum="100">
+	>
 	<TextView
 		android:layout_marginTop="50dp"
 		android:text="Whose test do you want to take?"
 		android:textColor="#f5f5f5"
-		android:layout_weight="10"
 		android:layout_width="fill_parent"
-		android:layout_height="0dp"
+		android:layout_height="25dp"
 		android:gravity="center" />
 	<EditText
 		android:id="@+id/txtTestName"
 		android:textColorHint="#f5f5f5"
 		android:inputType="text"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="10"
-		android:layout_marginBottom="20dp"
+		android:layout_height="50dp"
 		android:layout_marginRight="10dp"
 		android:layout_marginLeft="10dp"
 		android:hint="username"
@@ -33,36 +30,48 @@
 		android:textColor="#f5f5f5"
 		local:MvxBind="Text TestAuthor"
 	/>
-	<MvxSpinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        local:MvxBind="ItemsSource TestTitles;SelectedItem Title" />
+	
 	<Button
 		android:layout_marginTop="25dp"
 		android:layout_marginLeft="25dp"
 		android:layout_marginRight="25dp"
-		android:text="Get Test List"
+		android:text="Go To Profile"
 		android:textColor="#f5f5f5"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="10"
+		android:layout_height="50dp"
 		android:background="@drawable/button_style"
 		android:id="@+id/btnConfirmGuessUsername"
-		local:MvxBind="Click GetTestListCommand"
+		local:MvxBind="Click GoToProfileCommand"
 	/>
 
-	<Button
-		android:layout_marginTop="25dp"
-		android:layout_marginLeft="25dp"
-		android:layout_marginRight="25dp"
-		android:text="Confirm"
+	<Button 
+	android:layout_marginTop="25dp"
+	android:layout_marginLeft="25dp"
+	android:layout_marginRight="25dp"	
+		android:text="Take picture using camera"
 		android:textColor="#f5f5f5"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="10"
+		android:layout_height="50dp"
 		android:background="@drawable/button_style"
-		android:id="@+id/btnConfirmGuessUsername"
-		local:MvxBind="Click GuessTestCommand"
-	/>
+		android:id="@+id/btnSignIn"
+    local:MvxBind="Click TakePictureCommand"
+    />
+  <Button
+    android:layout_marginLeft="25dp"
+    android:layout_marginTop="25dp"
+		android:layout_marginRight="25dp"
+		android:text="Choose photo from library"
+		android:textColor="#f5f5f5"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:background="@drawable/button_style"
+		android:id="@+id/btnSignIn"
+    local:MvxBind="Click ChoosePictureCommand"
+    />
+  <ImageView
+    android:layout_width="fill_parent"
+  	android:layout_height="100dp"
+    local:MvxBind="Bitmap Bytes,Converter=InMemoryImage"
+    />
 
 </LinearLayout>

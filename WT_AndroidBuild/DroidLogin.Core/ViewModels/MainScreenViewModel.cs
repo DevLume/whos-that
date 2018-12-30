@@ -1,4 +1,6 @@
 ﻿using Droid.Core.Services;
+using Droid.Core.Services.Tools;
+using MvvmCross.Plugin.PictureChooser;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,37 @@ namespace Droid.Core.ViewModels
             set
             {
                 _srt = value; RaisePropertyChanged(() => Srt);
+            }
+        }
+
+        private FriendlistFragmentViewModel _frt = new FriendlistFragmentViewModel(new FriendlistService());
+        public FriendlistFragmentViewModel Frt
+        {
+            get => _frt;
+            set
+            {
+                _frt = value; RaisePropertyChanged(() => Frt);
+            }
+        }
+
+        private CreateMessageFragmentViewModel _cmf = new CreateMessageFragmentViewModel(new MessagingService(), new FriendlistService());
+        public CreateMessageFragmentViewModel Cmf
+        {
+            get => _cmf;
+            set
+            {
+                _cmf = value; RaisePropertyChanged(() => Cmf);
+            }
+        }
+
+        private ProfileFragmentViewModel _pfv = new ProfileFragmentViewModel(new ProfileService());
+        public ProfileFragmentViewModel Pfv
+        {
+            get => _pfv;
+            set
+            {
+                _pfv = value;
+                RaisePropertyChanged(() => Pfv);
             }
         }
 

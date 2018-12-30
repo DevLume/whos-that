@@ -1,9 +1,86 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Droid.Core
 {
+    public class MessageArgs : EventArgs
+    {
+        public string message;
+        public MessageArgs(string message)
+        {
+            this.message = message;
+        }
+    }
+
+    public class ShowProfileArgs : EventArgs
+    {
+        public string username;
+        public ShowProfileArgs(string username)
+        {
+            this.username = username;
+        }
+    }
+
+    public class ModifyProfileArgs : EventArgs
+    {
+        string username;
+        string oldDescription;
+        Bitmap oldPic;
+        public ModifyProfileArgs(string username, string oldDescription, Bitmap oldPic)
+        {
+            this.username = username;
+            this.oldDescription = oldDescription;
+            this.oldPic = oldPic;
+        }
+    }
+
+    public class SubmitProfileArgs : EventArgs
+    {      
+        public SubmitProfileArgs()
+        {
+        }
+    }
+
+    public class PhotoStreamEventArgs : EventArgs
+    {
+        public PhotoStreamEventArgs() { }
+    }
+    public class FillFriendlistArgs : EventArgs
+    {
+        public string picBase64;
+        public string username;
+        public string message;
+
+        public FillFriendlistArgs(string picBase64, string username, string message)
+        {
+            this.picBase64 = picBase64;
+            this.message = message;
+            this.username = username;
+        }
+    }
+
+    public class SendMessageArgs : EventArgs
+    {
+        public string response;
+
+        public SendMessageArgs(string resp)
+        {
+            response = resp;
+        }
+    }
+
+    public class ShowTempActivityArgs : EventArgs
+    {
+        public string message;
+
+        public ShowTempActivityArgs(string message)
+        {
+            this.message = message;
+        }
+    }
+
     public class CreateTestRequestArgs : EventArgs
     {
         public bool pass;

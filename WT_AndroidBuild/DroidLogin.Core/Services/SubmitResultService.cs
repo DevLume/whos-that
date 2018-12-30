@@ -19,7 +19,7 @@ namespace Droid.Core.Services
            
             var json = JsonConvert.SerializeObject(tr);
 
-            client.BaseAddress = new Uri("http://192.168.8.102:8086/api/stat/submitRes");
+            client.BaseAddress = new Uri("http://10.3.1.158:8086/api/stat/submitRes");
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("", json)

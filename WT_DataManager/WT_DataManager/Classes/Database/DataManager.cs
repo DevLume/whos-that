@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Whos_that
 {
-    public static class DataManager
+    public static class DataManager 
     {
         private static IDataManager Dataman { get; set; }
 

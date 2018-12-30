@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WT_DataManager.Classes;
 using WT_DataManager.Models;
 
 namespace Whos_that
 {
     public class DataBaseManager : IDataManager
     {
-        //Database methods here:
-        //TODO:Add exception handling
+        //Database methods here:               
         public UserData GetUserData(string username)
         {
             UserData result = new UserData();
@@ -20,10 +20,13 @@ namespace Whos_that
             var usrTable = dataSpace.GetTable<usersTable>();
             //query and parsing here:
 
+            byte[] pic = new byte[1];
+            pic[0] = 1;
+
             var q = from a in usrTable where a.Name == username select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, i.Description);
             }
             //Close data context
             dataSpace.Dispose();
@@ -38,11 +41,11 @@ namespace Whos_that
             //get needed table from data context
             var usrTable = dataSpace.GetTable<usersTable>();
             //query and parsing here:
-
+         
             var q = from a in usrTable where a.Id == id select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, i.Description);
             }
 
             //Close data context
@@ -59,11 +62,13 @@ namespace Whos_that
             var usrTable = dataSpace.GetTable<usersTable>();
             //query and parsing here:
 
+            
+
             var q = from a in usrTable where a.Email == email select a;
 
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, i.Description);
             }
 
             //Close data context
@@ -123,7 +128,7 @@ namespace Whos_that
             foreach (UserData userdat in data)
             {
                 tbl = new usersTable(userdat.name,
-                    userdat.email, userdat.passHash, userdat.gender, online);
+                    userdat.email, userdat.passHash, userdat.gender, userdat.userpic, online, userdat.description);
                 dataSpace.usersTables.InsertOnSubmit(tbl);
             }
 
@@ -359,6 +364,51 @@ namespace Whos_that
             dataSpace.SubmitChanges();
             dataSpace.Dispose();
             return true;                     
+        }
+
+        public void ModifyUser(int usrID, UserData udata)
+        {
+            var dataSpace = new dataLinqDataContext();
+            var usrTable = dataSpace.GetTable<usersTable>();
+
+            var obj = usrTable.Single(x => x.Id == usrID);
+
+            obj.Id = udata.id;
+            obj.Name = udata.name;
+            obj.Email = udata.email;
+            obj.PassHash = udata.passHash;
+            obj.Gender = udata.gender;
+            obj.Userpic = udata.userpic;
+            obj.Online = udata.online;
+            obj.Description = udata.description;
+
+            dataSpace.SubmitChanges();          
+        }
+
+        public bool ModifyUserProfile(int usrID, UserProfile profile)
+        {
+            var dataSpace = new dataLinqDataContext();
+            var usrTable = dataSpace.GetTable<usersTable>();
+
+            var obj = usrTable.Single(x => x.Id == usrID);
+
+            if (profile.username != null)
+            {
+                obj.Name = profile.username;
+            }
+
+            if (profile.description != null && profile.description != "none")
+            {
+                obj.Description = profile.description;
+            }
+
+            if (profile.picBase64 != null && profile.picBase64 != "" && profile.picBase64 != "none")
+            {
+                obj.Userpic = Convert.FromBase64String(profile.picBase64);
+            }
+            dataSpace.SubmitChanges();
+
+            return true;
         }
     }
 }

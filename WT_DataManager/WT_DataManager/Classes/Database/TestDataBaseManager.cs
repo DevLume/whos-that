@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WT_DataManager.Classes;
 using WT_DataManager.Models;
 
 namespace Whos_that
@@ -124,7 +125,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Name == username select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, null);
             }
             //Close data context
             dataSpace.Dispose();
@@ -143,7 +144,7 @@ namespace Whos_that
             var q = from a in usrTable where a.Id == id select a;
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, null);
             }
 
             //Close data context
@@ -164,7 +165,7 @@ namespace Whos_that
 
             foreach (var i in q)
             {
-                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, (bool)i.Online);
+                result = new UserData(i.Id, i.Name, i.Email, i.PassHash, i.Gender, i.Userpic.ToArray(), (bool)i.Online, null);
             }
 
             //Close data context
@@ -224,7 +225,7 @@ namespace Whos_that
             foreach (UserData userdat in data)
             {
                 tbl = new usersTestTable(userdat.name,
-                    userdat.email, userdat.passHash, userdat.gender, online);
+                    userdat.email, userdat.passHash, userdat.gender, userdat.userpic.ToString(), online);
                 dataSpace.usersTestTables.InsertOnSubmit(tbl);
             }
 
@@ -358,6 +359,21 @@ namespace Whos_that
             dataSpace.SubmitChanges();
             dataSpace.Dispose();
             return true;
+        }
+
+        public bool ModifyUser(int usrID, UserData udata)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataManager.ModifyUser(int usrID, UserData udata)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ModifyUserProfile(int usrID, UserProfile profile)
+        {
+            throw new NotImplementedException();
         }
     }
 }

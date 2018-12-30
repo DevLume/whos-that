@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#242a31"
+	android:minWidth="25px"
+	android:minHeight="25px"
+	android:weightSum="100"
+	>
+  <GridLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:columnCount="9"
+		android:orientation="horizontal"
+		android:rowCount="8">
+    <ImageView
+			android:layout_marginTop="10dp"
+			android:layout_marginLeft="10dp"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:src="@android:drawable/ic_menu_gallery"
+			android:layout_columnSpan="2"
+			android:layout_gravity="fill"
+			android:layout_rowSpan="2"
+			local:MvxBind="Bitmap Userpic; Click GoToProfileCommand"
+		/>
+    <TextView
+			android:layout_marginTop="15dp"
+			android:layout_marginLeft="10dp"
+			android:layout_columnSpan="4"
+			android:layout_rowSpan="1"
+			android:layout_gravity="fill_horizontal"
+			android:text="UserName"
+			android:textColor="@color/button_material_light"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			local:MvxBind="Text Username"
+		/>
+    <TextView
+			android:layout_marginTop="5dp"
+			android:layout_marginLeft="10dp"
+			android:layout_columnSpan="4"
+			android:layout_rowSpan="1"
+			android:layout_gravity="fill_horizontal"
+			android:text="This is message"
+			android:textColor="@color/button_material_light"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			local:MvxBind="Text Message"
+		/>
+  </GridLayout>
+
+</LinearLayout>

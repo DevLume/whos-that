@@ -82,6 +82,7 @@ namespace Droid.Core.ViewModels
 
         public static event EventHandler<CreateTestEventArgs> OnCreateTest;
         public static event EventHandler<AddQuestionEventArgs> OnAddQuestion;
+        public static event EventHandler<ShowTempActivityArgs> OnTestCreated;
 
         private MvxCommand _createTest;
         public MvxCommand CreateTest
@@ -134,6 +135,7 @@ namespace Droid.Core.ViewModels
                 if (answerTuple.Item1)
                 {
                     OnCreateTest?.Invoke(this, new CreateTestEventArgs(false, "Test has been published!"));
+                    OnTestCreated?.Invoke(this, new ShowTempActivityArgs("You have successfully created a test!"));
                 }
                 else
                 {

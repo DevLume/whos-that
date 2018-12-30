@@ -31,6 +31,13 @@ namespace Droid.App
 
             GuessTestFragmentViewModel.OnRequestSent += GuessTestViewModel_OnGuessTestRequestSent;
             GuessTestFragmentViewModel.OnWrongInput += GuessTestViewModel_OnWrongInput;
+            GuessTestFragmentViewModel.OnRecog += OnRecog;
+        }
+
+        private void OnRecog(object sender, ShowProfileArgs e)
+        {
+            Intent intent = new Intent(this.Activity, typeof(FriendProfileView)).SetFlags(ActivityFlags.ReorderToFront);
+            this.StartActivity(intent);
         }
 
         private void GuessTestViewModel_OnWrongInput(object sender, WrongInputEventArgs e)
@@ -50,7 +57,7 @@ namespace Droid.App
             }
             else
             {             
-                Intent intent = new Intent(this.Activity, typeof(GuessTestView));
+                Intent intent = new Intent(this.Activity, typeof(GuessTestView)).SetFlags(ActivityFlags.ReorderToFront);
                 this.StartActivity(intent);
             }
         }

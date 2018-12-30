@@ -24,6 +24,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Binding.BindingContext;
+using Droid.App.Fragments;
 
 namespace Droid.App
 {
@@ -34,7 +35,10 @@ namespace Droid.App
         private CreateTestUI createTestUI;
         private GuessUI guessUI;
         private StatisticsUI statisticsUI;
-
+        private FriendlistUI friendlistUI;
+        private CreateMessageUI createMessageUI;
+        private ProfileUI profileUI;
+      
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -58,6 +62,9 @@ namespace Droid.App
             createTestUI = new CreateTestUI();
             guessUI = new GuessUI();
             statisticsUI = new StatisticsUI();
+            friendlistUI = new FriendlistUI();
+            createMessageUI = new CreateMessageUI();
+            profileUI = new ProfileUI();
 
             //createTestUI = (CreateTestUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct1);
             createTestUI.ViewModel = ((MainScreenViewModel)ViewModel).Crt;
@@ -68,14 +75,25 @@ namespace Droid.App
             //statisticsUI = (StatisticsUI)SupportFragmentManager.FindFragmentById(Resource.Id.ct3);
             statisticsUI.ViewModel = ((MainScreenViewModel)ViewModel).Srt;
 
-            
+            friendlistUI.ViewModel = ((MainScreenViewModel)ViewModel).Frt;
+
+            createMessageUI.ViewModel = ((MainScreenViewModel)ViewModel).Cmf;
+
+            profileUI.ViewModel = ((MainScreenViewModel)ViewModel).Pfv;
+
             var transaction = SupportFragmentManager.BeginTransaction();
-            currentFragment = createTestUI;
+            currentFragment = profileUI;
             transaction.Add(Resource.Id.fragment_container, createTestUI, "createTestUI");
             transaction.Add(Resource.Id.fragment_container, guessUI, "guessUI");
             transaction.Add(Resource.Id.fragment_container, statisticsUI, "statisticsUI");
+            transaction.Add(Resource.Id.fragment_container, friendlistUI, "friendlistUI");
+            transaction.Add(Resource.Id.fragment_container, createMessageUI, "createMessageUI");
+            transaction.Add(Resource.Id.fragment_container, profileUI, "profileUI");
+            transaction.Hide(createMessageUI);
+            transaction.Hide(friendlistUI);
             transaction.Hide(guessUI);
             transaction.Hide(statisticsUI);
+            transaction.Hide(createTestUI);
             transaction.Commit();
         }
         private void ShowFragment(SupportFragment fragment)
@@ -123,9 +141,7 @@ namespace Droid.App
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            View view = (View)sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            ShowFragment(createMessageUI);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
@@ -146,7 +162,11 @@ namespace Droid.App
             }
             else if (id == Resource.Id.nav_friendlist)
             {
-                ShowFragment(createTestUI);
+                ShowFragment(friendlistUI);
+            }
+            else if (id == Resource.Id.nav_PersonalProfile)
+            {
+                ShowFragment(profileUI);
             }
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
